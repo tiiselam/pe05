@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<listaParametros>
+  <servidor>[SERVIDOR\INSTANCIA]</servidor>
+  <seguridadIntegrada>[valor: 1 si es integrada, 0 si no]</seguridadIntegrada>
+  <usuariosql>[valor: indicar na si la seguridad es integrada]</usuariosql>
+  <passwordsql>na</passwordsql>
+  <compannia bd="[NOMBRE BD DE LA COMPAÑIA]">
+    <URLArchivoXSD>[RUTA Y ARCHIVO XSD]</URLArchivoXSD>
+    <URLArchivoXSLT>[RUTA Y ARCHIVO XSLT]</URLArchivoXSLT>
+    <URLConsulta>[url de verificación de cfdi. Se usa para generar el código de barras]</URLConsulta>
+    <PAC>
+      <urlWebService>[URL del servicio web del PAC]</urlWebService>
+    </PAC>
+    <reporteador>[valor: CRYSTAL o SSRS]</reporteador>
+    <reporteExtensiones>
+       <Factura>EJ: .rpt</Factura>
+	     <Cobro>ej: .COB.rpt</Cobro>
+	     <Traslado>ej: .REM.rpt</Traslado>
+    </reporteExtensiones>
+    <rutaReporteCrystal tipo="default">
+      <Ruta>[RUTA DEL ARCHIVO CRYSTAL RPT. Indicar la extensión en el tag reporteExtensiones]</Ruta>
+      <Margenes>
+        <bottomMargin>[INDICAR UN VALOR]</bottomMargin>
+        <topMargin>[INDICAR UN VALOR]</topMargin>
+        <leftMargin>[INDICAR UN VALOR]</leftMargin>
+        <rightMargin>[INDICAR UN VALOR]</rightMargin>
+      </Margenes>
+      <Parametro>
+        <Nombre>[nombre del parámetro]</Nombre>
+        <Tipo>[tipo de dato]</Tipo>
+      </Parametro>
+	    <imprime>[1: SI, 0: NO]</imprime>
+	    <nombreImpresora>[Nombre de la impresora predeterminada]</nombreImpresora>
+    </rutaReporteCrystal>
+    <ReporteSSRS tipo="default">
+      <Ruta>[ruta y nombre del reporte en reporting services Ej: /xpress/factura. Indicar la extensión en el tag reporteExtensiones]</Ruta>
+      <SSRSServer>[URL reporting services server]</SSRSServer>
+      <Parametro>
+        <Nombre>soptype</Nombre>
+        <Tipo>int</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>sopnumbe</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+    </ReporteSSRS>
+    <emite>[valor: 0 indica no, 1 indica sí emite cfd]</emite>
+    <anula>0</anula>
+    <imprime>[1 indica imprime factura, 0 no]</imprime>
+    <publica>0</publica>
+    <envia>[1 indica envía factura por mail, 0 no]</envia>
+    <zip>[1 si genera zip, 0 si no]</zip>
+    <emailSetup>
+      <smtp>[SMTP]</smtp>
+      <puerto>[PUERTO]</puerto>
+      <cuenta>[CUENTA]</cuenta>
+      <usuario>[USUARIO]</usuario>
+      <clave>[CLAVE]</clave>
+      <ssl>[SSL]</ssl>
+      <replyto>[EMAIL PARA CONTESTAR]</replyto>
+      <carta>FACTURA_ELECTRONICA</carta>
+      <adjuntoEmite>[Si emite cfd, indicar la extensión del archivo a adjuntar Ej: zip, xml, sino na]</adjuntoEmite>
+      <adjuntoImprime>[Si imprime, indicar la extensión del archivo de impresión Ej: pdf]</adjuntoImprime>
+    </emailSetup>
+  </compannia>
+</listaParametros>
+

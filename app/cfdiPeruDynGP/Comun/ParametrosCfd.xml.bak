@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<listaParametros>
+  <servidor>[SERVIDOR\INSTANCIA]</servidor>
+  <seguridadIntegrada>1</seguridadIntegrada>
+  <usuariosql>na</usuariosql>
+  <passwordsql>na</passwordsql>
+  <compannia bd="[NOMBRE COMPAÑIA]">
+    <URLArchivoXSD>[RUTA Y ARCHIVO XSD]</URLArchivoXSD>
+    <URLArchivoXSLT>[RUTA Y ARCHIVO XSLT]</URLArchivoXSLT>
+    <reporteador>[valores: CRYSTAL o SSRS]</reporteador>
+    <rutaReporteCrystal tipo="default">
+      <Ruta>[RUTA DEL ARCHIVO CRYSTAL RPT]</Ruta>
+      <Margenes>
+        <bottomMargin>[INDICAR UN VALOR]</bottomMargin>
+        <topMargin>[INDICAR UN VALOR]</topMargin>
+        <leftMargin>[INDICAR UN VALOR]</leftMargin>
+        <rightMargin>[INDICAR UN VALOR]</rightMargin>
+      </Margenes>
+      <Parametro>
+        <Nombre>Desde Numero</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>Hasta Numero</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>STabla</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+    </rutaReporteCrystal>
+    <ReporteSSRS tipo="default">
+      <Ruta>[ruta y nombre del reporte en reporting services Ej: /xpress/factura]</Ruta>
+      <SSRSServer>[URL reporting services server]</SSRSServer>
+      <Parametro>
+        <Nombre>[]</Nombre>
+        <Tipo>[]</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>[]</Nombre>
+        <Tipo>[]</Tipo>
+      </Parametro>
+    </ReporteSSRS>
+    <emite>[cero indica no, uno indica sí]</emite>
+    <anula>0</anula>
+    <imprime>1</imprime>
+    <publica>0</publica>
+    <envia>1</envia>
+    <zip>0</zip>
+    <emailSetup>
+      <smtp>[SMTP]</smtp>
+      <puerto>[PUERTO]</puerto>
+      <cuenta>[CUENTA]</cuenta>
+      <usuario>[USUARIO]</usuario>
+      <clave>[CLAVE]</clave>
+      <ssl>[SSL]</ssl>
+      <replyto>[EMAIL PARA CONTESTAR]</replyto>
+      <carta>FACTURA_ELECTRONICA</carta>
+      <adjuntoEmite>na</adjuntoEmite>
+      <adjuntoImprime>pdf</adjuntoImprime>
+    </emailSetup>
+  </compannia>
+</listaParametros>
+
