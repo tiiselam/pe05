@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:sql="http://schemas.microsoft.com/wix/SqlExtension">
+
+  <Product Id="F79551E3-DFE3-4C13-AD17-447BD890B12C" Name="GP Factura Digital"
+           Language="1033" Version="6.3.0" Manufacturer="JCF" UpgradeCode="44281eba-a31e-4e51-92b8-ff8327561a96">
+    <Package Id="*" InstallerVersion="200" Manufacturer="JCF" Compressed="yes" />
+    <WixVariable Id="WixUIBannerBmp" Value="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_App\EjecutableEncriptador\Recursos\banner.bmp" />
+
+    <!--Actualiza una versión anterior-->
+    <Upgrade Id='44281eba-a31e-4e51-92b8-ff8327561a96'>
+      <UpgradeVersion OnlyDetect='no' Property='PREVIOUSFOUND' Minimum='1.0.0' IncludeMinimum='yes' Maximum='6.3.0' IncludeMaximum='no'/>
+    </Upgrade>
+
+    <InstallExecuteSequence>
+      <RemoveExistingProducts Before='InstallInitialize'/>
+    </InstallExecuteSequence>
+
+    <Condition Message='Instale en Windows XP, Vista, 7, Server 2003 o Server 2008'>
+      <![CDATA[Installed OR (VersionNT >= 600)]]>
+    </Condition>
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+    <util:User Id="SQLUser" Name="[SQLUSER]" Password="[SQLPASSWORD]"></util:User>
+
+    <Feature Id="Complete" Title="GP Factura Digital" Level="1" Description="Objetos sql y archivos de programa." Display="expand" ConfigurableDirectory="INSTALLFOLDER">
+      <Feature Id="SqlFeatureDyn" Title="Objetos Sql Dynamics" Description="Tablas, vistas y procedimientos almacenados de Dynamics." Level="0">
+        <ComponentRef Id="SqlComponentDyn" />
+        <ComponentGroupRef Id="ProductComponents" />
+      </Feature>
+
+      <Feature Id="SqlFeature" Title="Objetos Sql Compañía" Description="Tablas, vistas y procedimientos almacenados de la Compañía." Level="0">
+        <ComponentRef Id="SqlComponent" />
+        <ComponentGroupRef Id="ProductComponents" />
+      </Feature>
+
+      <Feature Id="Parametros" Title="Parámetros" Description="Archivo de parámetros." Level="1">
+        <ComponentRef Id="Parametros" />
+        <ComponentGroupRef Id="ProductComponents" />
+      </Feature>
+
+      <Feature Id="AppFeature" Title="Programa" Description="Archivos del programa." Level="1">
+        <ComponentRef Id="EjecutableEncriptador" />
+        <ComponentRef Id="ProgramMenuDir"/>
+        <ComponentRef Id="Comun"/>
+        <ComponentRef Id="EMailManejador"/>
+        <ComponentRef Id="Encriptador"/>
+        <ComponentRef Id="MaquinaDeEstados"/>
+        <ComponentRef Id="MyGeneration.dOOdads_2005"/>
+        <ComponentRef Id="QRCodeLib"/>
+        <ComponentRef Id="Compresor"/>
+        <ComponentRef Id="Reporteador"/>
+        <ComponentRef Id="Documentacion"/>
+        <ComponentGroupRef Id="ProductComponents"/>
+      </Feature>
+    </Feature>
+
+    <!--Variables SQL-->
+    <!--<Property Id="SQLUSER">sa</Property>
+    <Property Id="SQLPASSWORD">password</Property>
+    <Property Id="SQLSERVER">servidor\instancia</Property>
+    <Property Id="SQLDATABASE">bd</Property>-->
+
+    <UI Id="MyWixUI_Mondo">
+      <UIRef Id="WixUI_Mondo"/>
+
+      <!--Pide valores para variables SQL-->    
+      <!--<DialogRef Id="UserRegistrationDlg"/>-->
+      <!--<Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="UserRegistrationDlg" Order="4">WixUI_InstallMode = "Change"</Publish>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="UserRegistrationDlg" Order="5">WixUI_InstallMode = "InstallCustom"</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="UserRegistrationDlg" Order="5">WixUI_InstallMode = "InstallCustom"</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="UserRegistrationDlg" Order="6">WixUI_InstallMode = "Change"</Publish>-->
+
+    <!--<Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="UserRegistrationDlg" Order="3">LicenseAccepted = "1"</Publish>
+      <Publish Dialog="SetupTypeDlg" Control="Back" Event="NewDialog" Value="UserRegistrationDlg">1</Publish>-->
+
+
+    </UI>
+
+    <UIRef Id="WixUI_ErrorProgressText" />
+  </Product>
+
+  	  <Fragment>
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder" Name="PFiles">
+              <Directory Id="MainDirectory" Name="Microsoft Dynamics">
+                <Directory Id="INSTALLFOLDER" Name="GP Factura Digital">
+                </Directory>
+              </Directory>
+            </Directory>
+
+            <Directory Id="ProgramMenuFolder" Name="Programs">
+              <Directory Id="ProgramMenuDir" Name="GP Factura Digital">
+                <Component Id="ProgramMenuDir" Guid="B7342905-BA78-4c21-9C71-EAFB383674B9">
+                  <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+                  <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes"/>
+                </Component>
+              </Directory>
+            </Directory>
+            <Directory Id="DesktopFolder" Name="Desktop" />
+        </Directory>
+
+        <!--<Icon Id="GPFDigital.exe" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_App\EjecutableEncriptador\bin\Release\EjecutableEncriptador.exe" />-->
+        <Icon Id="GPFDigital.exe" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_App\EjecutableEncriptador\Recursos\invoice.ico"/>
+        <Property Id="ARPPRODUCTICON" Value="invoice.ico" />
+    </Fragment>
+
+    <Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+            <Component Id="EjecutableEncriptador" Guid="86f24e6c-389e-464b-b2ad-790efba8457a">
+              <File Id="EjecutableEncriptador" Name="$(var.EjecutableEncriptador.TargetFileName)" Source="$(var.EjecutableEncriptador.TargetPath)" DiskId="1" KeyPath="yes"/>
+              <Shortcut Id="startmenuFDigital" Directory="ProgramMenuDir" Name="GP Factura Digital"
+                WorkingDirectory='INSTALLFOLDER' Icon="GPFDigital.exe" IconIndex="0" Advertise="yes" />
+              <Shortcut Id="desktopFDigital" Directory="DesktopFolder" Name="GP Factura Digital"
+                WorkingDirectory='INSTALLFOLDER' Icon="GPFDigital.exe" IconIndex="0" Advertise="yes" />
+
+            </Component>
+            <Component Id="Comun" Guid="B279B297-7290-42a4-8D38-1AF9DF1CF31D">
+              <File Id="Comun" Name="$(var.Comun.TargetFileName)" Source="$(var.Comun.TargetPath)" DiskId="1" KeyPath="yes"/>
+            </Component>
+            <Component Id="Parametros" Guid="803CC646-A468-47e3-9FDF-36935BCA4D89">
+              <File Id="ParametrosCfd" Name="ParametrosCfd.xml" Source="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_App\Comun\ParametrosCfd.xml" DiskId="1" KeyPath="no"/>
+            </Component>
+            <Component Id="EMailManejador" Guid="2C73E2CE-2A0B-4358-8E28-10201B86B693">
+              <File Id="EMailManejador" Name="$(var.EMailManejador.TargetFileName)" Source="$(var.EMailManejador.TargetPath)" DiskId="1" KeyPath="yes"/>
+            </Component>
+            <Component Id="MaquinaDeEstados" Guid="C25C6559-1445-4621-B3BB-6A1D77BADD98">
+              <File Id="MaquinaDeEstados" Name="$(var.MaquinaDeEstados.TargetFileName)" Source="$(var.MaquinaDeEstados.TargetPath)" DiskId="1" KeyPath="yes"/>
+            </Component>
+            <Component Id="Encriptador" Guid="AE9D4AE3-A494-44b5-BF8A-45B5FA987BB8">
+              <File Id="Encriptador" Name="$(var.Encriptador.TargetFileName)" Source="$(var.Encriptador.TargetPath)" DiskId="1" KeyPath="yes"/>
+              <File Id="Encriptador.XmlSerializers" Name="Encriptador.XmlSerializers.dll" Source="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_App\Encriptador\bin\Release\Encriptador.XmlSerializers.dll" DiskId="1" KeyPath="no"/>
+            </Component>
+            <Component Id="MyGeneration.dOOdads_2005" Guid="336CAF4D-F98E-45e0-AE15-DF23EAB24D75">
+              <File Id="MyGeneration.dOOdads_2005" Name="$(var.MyGeneration.dOOdads_2005.TargetFileName)" Source="$(var.MyGeneration.dOOdads_2005.TargetPath)" DiskId="1" KeyPath="yes"/>
+            </Component>
+            <Component Id="Reporteador" Guid="B6471120-14DB-43c4-A784-7C6DB1531489">
+              <File Id="Reporteador" Name="$(var.Reporteador.TargetFileName)" Source="$(var.Reporteador.TargetPath)" DiskId="1" KeyPath="yes"/>
+              <File Id="Reporteador.XmlSerializers" Name="Reporteador.XmlSerializers.dll" Source="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_App\Reporteador\bin\Release\Reporteador.XmlSerializers.dll" DiskId="1" KeyPath="no"/>
+              <File Id="Microsoft.ReportViewer.Common" Name="Microsoft.ReportViewer.Common.dll" Source="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_App\Reporteador\bin\Release\Microsoft.ReportViewer.Common.dll" DiskId="1" KeyPath="no"/>
+              <File Id="Microsoft.ReportViewer.WinForms" Name="Microsoft.ReportViewer.WinForms.dll" Source="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_App\Reporteador\bin\Release\Microsoft.ReportViewer.WinForms.dll" DiskId="1" KeyPath="no"/>
+              <File Id="Microsoft.ReportViewer.WinForms.xml" Name="Microsoft.ReportViewer.WinForms.xml" Source="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_App\Reporteador\bin\Release\Microsoft.ReportViewer.WinForms.xml" DiskId="1" KeyPath="no"/>
+            </Component>
+            <Component Id="QRCodeLib" Guid="CC0250EC-B886-42e4-9CDB-B570C71CB385">
+              <File Id="QRCodeLib" Name="$(var.QRCodeLib.TargetFileName)" Source="$(var.QRCodeLib.TargetPath)" DiskId="1" KeyPath="yes"/>
+            </Component>
+            <Component Id="Compresor" Guid="FC22CA1D-4E4F-47e5-AE5C-8D6AD882E1DD">
+              <File Id="Compresor" Name="Ionic.Zip.Reduced.dll" Source="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_App\Comun\bin\Release\Ionic.Zip.Reduced.dll" DiskId="1" KeyPath="yes"/>
+            </Component>
+
+            <Component Id="Documentacion" Guid="6495A0D2-610D-49e5-99E2-E6EB3F0357C5">
+              <File Id="DocInstalacion" Name="Instalación de GP factura digital cfdi.pdf" Source="C:\JCTii\Desarrollo\MEX_Factura_digital_cfdi\G. Deployment\Instalación de GP factura digital cfdi.pdf" DiskId="1" KeyPath="yes"/>
+              <File Id="ManualUsuario" Name="Manual de Usuario GP Factura Digital cfdi.pdf" Source="C:\JCTii\Desarrollo\MEX_Factura_digital_cfdi\G. Deployment\Manual de Usuario GP Factura Digital cfdi.pdf" DiskId="1" KeyPath="no"/>
+            </Component>
+
+            <Component Id="SqlComponentDyn" Guid="116E3271-192B-4ea7-8CB3-E91CDA1B8C03" KeyPath="yes">
+              <sql:SqlDatabase Id="SqlDatabaseDyn" User="SQLUser" Server="[SQLSERVER]" Database="DYNAMICS" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes">
+                <sql:SqlScript Id="Createview01" BinaryKey="Createview01" ExecuteOnInstall="yes" Sequence="30"/>
+                <sql:SqlScript Id="Grants02" BinaryKey="Grants02" ExecuteOnInstall="yes" Sequence="1000"/>
+              </sql:SqlDatabase>
+            </Component>
+
+            <Component Id="SqlComponent" Guid="7c32cf65-e060-4c7f-b5dd-d85c181da89c" KeyPath="yes">
+              <sql:SqlDatabase Id="SqlDatabase" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+                <sql:SqlScript Id="CreateFun03" BinaryKey="CreateFun03" ExecuteOnInstall="yes" Sequence="03" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createview10" BinaryKey="Createview10" ExecuteOnInstall="yes" Sequence="10" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createfun12" BinaryKey="Createfun12" ExecuteOnInstall="yes" Sequence="12" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createtrig35" BinaryKey="Createtrig35" ExecuteOnInstall="yes" Sequence="35" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createview40" BinaryKey="Createview40" ExecuteOnInstall="yes" Sequence="40" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createfun50" BinaryKey="Createfun50" ExecuteOnInstall="yes" Sequence="50" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createtable60" BinaryKey="Createtable60" ExecuteOnInstall="yes" Sequence="60" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createtable70" BinaryKey="Createtable70" ExecuteOnInstall="yes" Sequence="70" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createfun72" BinaryKey="Createfun72" ExecuteOnInstall="yes" Sequence="72" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createsp80" BinaryKey="Createsp80" ExecuteOnInstall="yes" Sequence="80" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createview83" BinaryKey="Createview83" ExecuteOnInstall="yes" Sequence="83" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createfunc85" BinaryKey="Createfunc85" ExecuteOnInstall="yes" Sequence="85" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createview86" BinaryKey="Createview86" ExecuteOnInstall="yes" Sequence="86" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createview90" BinaryKey="Createview90" ExecuteOnInstall="yes" Sequence="90" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createfunc98" BinaryKey="Createfunc98" ExecuteOnInstall="yes" Sequence="98" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createview100" BinaryKey="Createview100" ExecuteOnInstall="yes" Sequence="100" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createview101" BinaryKey="Createview101" ExecuteOnInstall="yes" Sequence="101" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Grants110" BinaryKey="Grants110" ExecuteOnInstall="yes" Sequence="110" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createfunc120" BinaryKey="Createfunc120" ExecuteOnInstall="yes" Sequence="120" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Createview130" BinaryKey="Createview130" ExecuteOnInstall="yes" Sequence="130" ExecuteOnReinstall="yes"/>
+                <sql:SqlScript Id="Grants140" BinaryKey="Grants140" ExecuteOnInstall="yes" Sequence="140" ExecuteOnReinstall="yes"/>
+              </sql:SqlDatabase>
+            </Component>
+
+    </ComponentGroup>
+        <Binary Id="Createview01" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\01_DynObtieneBdsQueEmitenFElectronica.view.sql"/>
+        <Binary Id="Grants02" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\02_DynDaPermisosFacturaElectronica.grant.sql"/>
+        <Binary Id="CreateFun03" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\03_fcfdiParametros.function.sql"/>
+        <Binary Id="Createview10" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\10_cfdiCatalogo.table.sql"/>      
+        <Binary Id="Createfun12" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\12_fCfdObtieneImagenC.function.sql"/>
+        <Binary Id="Createtrig35" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\35_RegistraHoradeFacturaElectronica.trigger.sql"/>
+        <Binary Id="Createview40" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\40_ObtieneConfiguracionCartasEmail.viewGP2015.sql"/>
+        <Binary Id="Createfun50" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\50_ObtieneDireccionesCorreoClientes.function.sql"/>
+        <Binary Id="Createtable60" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\60_OPCIONALCreaMaestroDeCertificadosYFolios.table.sql"/>
+        <Binary Id="Createtable70" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\70_CreaLogFacturaElectronica.table.sql"/>
+        <Binary Id="Createfun72" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\72_fcfdDatosXmlParaImpresion.function.sql"/>
+        <Binary Id="Createsp80" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\80_ABMcfdLogFacturaXML.sprocedure.sql"/>
+      
+        <Binary Id="Createview83" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\83_UtilesYConfiguracion.view.sql"/> 
+        <Binary Id="Createfunc85" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\85_fCfdDatosAdicionales.function.sql"/>
+        <Binary Id="Createview86" SourceFile="C:\JCTii\GPRelational\rmvwRmTransaccionesTodas.view.sql"/>
+        <Binary Id="Createview90" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\90_vwSopTransacionesVenta.view.sql"/>
+        <Binary Id="Createfunc98" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\98_Addenda.function.sql"/>
+        <Binary Id="Createview100" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\100_ObtieneDocumentosXml.view.sql"/>
+        <Binary Id="Createview101" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\101_vwRmCfdFacturasConFolioFiscal.view.sql"/>
+        <Binary Id="Grants110" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\110_DaPermisosFacturaElectronicaCia.grant.sql"/>
+        <!--Reportes y permisos-->
+        <Binary Id="Createfunc120" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MEXImprimirFactura\10_tii_invoice_amount_letters.function.igarcia120622.sql"/>
+        <Binary Id="Createview130" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MEXImprimirFactura\20_tii_sopinvoice.view.sql"/>
+        <Binary Id="Grants140" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MEXImprimirFactura\30_tii_sopinvoice.grant.sql"/>
+
+      <!--<Binary Id="Grants120" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\120_DaPermisosReporteFacturaElectrónica.GETTYgrant.sql"/>
+        <Binary Id="Grants130" SourceFile="C:\jcTii\Desarrollo\MEX_Factura_digital_cfdi\mxfe\MxFElctr_SQLScripts\130_DaPermisosAUsuariosGETTY.grant.sql"/>-->
+
+	</Fragment>
+</Wix>

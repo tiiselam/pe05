@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<listaParametros>
+  <servidor>TP-GP\GPTP</servidor>
+  <seguridadIntegrada>1</seguridadIntegrada>
+  <usuariosql>sa</usuariosql>
+  <passwordsql>-</passwordsql>
+  <compannia bd="TPOPE">
+    <URLArchivoXSD>na</URLArchivoXSD>
+    <URLArchivoXSLT>na</URLArchivoXSLT>
+    <PAC>
+      <urlWebService>na</urlWebService>
+    </PAC>
+    <reporteador>SSRS</reporteador>
+    <rutaReporteCrystal tipo="default">
+      <Ruta>na</Ruta>
+      <Margenes>
+        <bottomMargin>0</bottomMargin>
+        <topMargin>0</topMargin>
+        <leftMargin>0</leftMargin>
+        <rightMargin>0</rightMargin>
+      </Margenes>
+      <Parametro>
+        <Nombre>Desde Numero</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>Hasta Numero</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>sTabla</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <imprime>1</imprime>
+      <nombreImpresora>Microsoft XPS Document Writer</nombreImpresora>
+    </rutaReporteCrystal>
+    <ReporteSSRS tipo="default">
+      <Ruta>/SOPINVOICE</Ruta>
+      <SSRSServer>http://tp-gp/ReportServer_GPTP</SSRSServer>
+      <Parametro>
+        <Nombre>SOPTYPE</Nombre>
+        <Tipo>integer</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>SOPNUMBE</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>COMPANNIA</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+    </ReporteSSRS>
+    <emite>0</emite>
+    <anula>0</anula>
+    <imprime>1</imprime>
+    <publica>0</publica>
+    <envia>1</envia>
+    <zip>0</zip>
+    <emailSetup>
+      <smtp>smtp.gmail.com</smtp>
+      <puerto>587</puerto>
+      <cuenta>na</cuenta>
+      <usuario>na</usuario>
+      <clave>na</clave>
+      <ssl>true</ssl>
+      <replyto>na</replyto>
+      <carta>FACTURA_ELECTRONICA</carta>
+      <adjuntoEmite>na</adjuntoEmite>
+      <adjuntoImprime>pdf</adjuntoImprime>
+    </emailSetup>
+  </compannia>
+</listaParametros>
+

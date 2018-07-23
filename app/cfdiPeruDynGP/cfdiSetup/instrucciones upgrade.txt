@@ -1,0 +1,72 @@
+﻿  10/5/12 jcf 
+  ------------------------------------------------------------------------------------
+  Propósito. Elimina los archivos de programas anteriores y registra los nuevos.
+			 También sirve para nuevas instalaciones.
+  Ref. http://wix.tramontana.co.hu/tutorial/upgrades-and-modularization
+		https://www.firegiant.com/wix/tutorial/getting-started/the-software-package/
+  
+  If our intention is a complete and automatic removal of the previous version when a new one arrives, 
+  we just need to set OnlyDetect to no and to set the version numbers accordingly.
+  
+  1. Definir un nuevo product guid, y reemplazar el atributo id del tag Product
+  2. Indicar la nueva versión en los siguientes lugares: 
+		tag Product, atributo Version
+		tag Upgrade, atributo Maximum
+  3. Si necesita ejecutar scripts SQL:
+	a. Deshabilite el tag Upgrade. Sección: Actualiza una versión anterior
+	b. Cambie el atributo Level=1 del tag Feature Id=SqlFeature y SqlFeatureDyn para ejecutar scripts sql
+	c. Habilite la sección: Variables SQL
+	d. Habilite la sección: Pide valores para variables SQL
+	e. Revisar la sección Reportes y permisos. Se puede agregar datos específicos de la compañía.
+  4. Si no necesita ejecutar scripts SQL:
+	a. Habilite el tag Upgrade. Sección: Actualiza una versión anterior
+	b. Cambie el atributo Level=0 del tag Feature Id=SqlFeature y SqlFeatureDyn para ejecutar scripts sql
+	c. Comente la sección: Variables SQL
+	d. Comente la sección: Pide valores para variables SQL
+  
+  Historial de Product GUID:
+  Versión 5.0.2 bec7fdc7-8f73-472e-8514-f07456d52611
+  Versión 5.0.4 5C8D34A0-0B61-4d06-A2F3-5B585AD1683B  
+  Versión 5.0.5 562743EC-CFBE-4277-887F-92EDE626D150
+  Versión 5.6.0 31798F53-05D9-4590-8E3B-1CC03EA9EE54
+  Versión 6.0.0 67BC7B50-1B88-492b-BC7A-032E53411913
+  Versión 6.0.1 BF67B923-D733-4fc7-AD10-14674D3413C5
+  Versión 6.0.2 6BFFEFBD-9B19-4048-906F-96443BFACF47  
+  Versión 6.0.3 B7AF5BF5-EB1D-46ce-840D-738D564A73D0
+  Versión 6.0.4 04E74594-9BFC-4ac7-9AC4-85669B048CEA
+  Versión 6.0.5 AF18F45B-9640-4e00-912F-3A02D38B69BD
+  Versión 6.0.5 A45D2AE8-AB1C-4DDD-9DDD-DFFC37E23EBF
+  Versión 6.1.1 33166D62-BACA-4B6A-9F7B-063F7F2A6239
+  Versión 6.2.0 B74626CC-6309-4A28-9439-CEBF2092913F
+  Versión 6.2.2 10AFE134-88E3-467C-B52B-F55A9ADE4ED0
+  Versión 6.2.5 3829CE64-9AF6-4AB6-AE7B-42AF02E70DCD
+  Versión 6.3.0 F79551E3-DFE3-4C13-AD17-447BD890B12C
+
+  ACHILLES
+  24/10/16 Sí utiliza instalador
+
+  GETTY MEX
+  5/6/17 jcf Instala v6.3.0
+
+  GILA
+  13/2/12 No utiliza instalador
+  29/8/13 A partir de cfdi utiliza instalador
+  
+  GLOBAL TOWERS
+  3/10/12 Sí utiliza instalador
+  19/8/15 Descontinuado
+  
+  MCLEAN ENGINEERING
+  20/5/12 Sí utiliza instalador
+  
+  MTP, CAPSA
+  19/8/15 sí utiliza instalador
+
+  WINTERS
+  13/2/12 Sí utiliza instalador
+  
+  TEAM PEDIATRICO
+  17/11/16 Sí utiliza instalador. Sólo habilitado para generar pdf
+
+  TII (azure)
+  09/01/17 Sí utiliza instalador. Sólo habilitado para generar pdf

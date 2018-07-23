@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="cfd.FacturaElectronica.cfdEmailWorker" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAQAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\cfdEmailWorker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.cfdFacturaPdfWorker" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAQAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\cfdFacturaPdfWorker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.cfdFacturaXmlWorker" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAQQAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\cfdFacturaXmlWorker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.cfdLogFacturaXML" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\cfdLogFacturaXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.cfdReglasEmail" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAACAAAAAAAEQQAAAAAAgAAABAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\cfdReglasEmail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.cfdReglasFacturaXml">
+    <Position X="9.25" Y="4.75" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAEACCAAAAIAEQQDAAAAAAAAAImAAAoAAAgAA=</HashCode>
+      <FileName>BLL\cfdReglasFacturaXml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.ProcesaCfdi">
+    <Position X="6" Y="4.75" Width="3" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="cfd.FacturaElectronica.ProcesaCfdi.LogHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>BLL\ProcesaCfdi.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EAAgAAAAACAQWEOAAAAQQAAEABAAQACgICAAAAAAIAA=</HashCode>
+      <FileName>BLL\ProcesaCfdi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.ServicioOpenInvoice" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAAAAAAAAAAAAAAAAAAJAAAAAEAAAAAA=</HashCode>
+      <FileName>BLL\ServicioOpenInvoice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.vwCfdCompannias" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAIBAkAQAAgAAEgAAAQAAAAAEAQAAAAAgAAAAEAAE=</HashCode>
+      <FileName>BLL\vwCfdCompannias.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.vwCfdiDatosDelXml" Collapsed="true">
+    <Position X="3.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MQAECTIFEkQAAASEMCgIwAAAACEReAYAASBAZABAAkk=</HashCode>
+      <FileName>BLL\vwCfdiDatosDelXml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.vwCfdiDatosDelXml_wrapper" Collapsed="true">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\vwCfdiDatosDelXml_wrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.vwCfdIdDocumentos" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAABAEBAQAAAAEAAAQQAAAAAUAQAAAAAAAAAAAAEE=</HashCode>
+      <FileName>BLL\vwCfdIdDocumentos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica.vwCfdInformeMensualVentas" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAABAEBAQAAAAEEAABYAAAQAUAUAACAAAAAAAAAEE=</HashCode>
+      <FileName>BLL\vwCfdInformeMensualVentas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfd.FacturaElectronica._cfdLogFacturaXML" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAACFQFAEQAAABEEQAAQAAAAAEEUAQggCAIpQBAIEk=</HashCode>
+      <FileName>DAL\_cfdLogFacturaXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.vwCfdCartasReclamacionDeuda" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAQABBEAwAAAAEEQAwAQABGAAEASAAAgAAAAAEAAAE=</HashCode>
+      <FileName>BLL\vwCfdCartasReclamacionDeuda.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.vwCfdClienteDireccionesCorreo" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAABIEAQAAAAAEAAAARAAAAEEAQAgAABAAAAAAAgE=</HashCode>
+      <FileName>BLL\vwCfdClienteDireccionesCorreo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.vwCfdiPagosSimultaneos" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EYAAABAEQAAAAAAEAAAAQAAAAAEQQAEAAAAAAgAAQBE=</HashCode>
+      <FileName>BLL\vwCfdiPagosSimultaneos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.vwCfdiPagosSimultaneos_wrapper" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\vwCfdiPagosSimultaneos_wrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.vwCfdiTransaccionesDeVenta" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ESAEjDiFBGyADYKUMAABcAQUAAUAWAxABBREJABAGEk=</HashCode>
+      <FileName>BLL\vwCfdiTransaccionesDeVenta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.vwCfdTransaccionesDeVenta" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAIAAAAAIAAAAIAAAAQAIAAABACAACAAAIAAA=</HashCode>
+      <FileName>BLL\vwCfdTransaccionesDeVenta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.ConexionDB" Collapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAABAAAAAAAACEAAAAEAQAAAAAAAAAAAAAAAEAAgAAA=</HashCode>
+      <FileName>ConexionDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.Program" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.winformGeneraFE" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>Qeea+BU4JTdenD//VNGMQMKSvQNbIN2gAPmF6wzWyY8=</HashCode>
+      <FileName>winformGeneraFE.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.Properties.Resources" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAABEAIAAQgAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cfdiPeru.Properties.Settings" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
