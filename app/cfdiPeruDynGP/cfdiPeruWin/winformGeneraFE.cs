@@ -992,6 +992,45 @@ namespace cfdiPeru
             }
         }
 
+        private async void toolStripButton2_Click_1(object sender, EventArgs e)
+        {
+            int errores = 0;
+            txtbxMensajes.Text = "";
 
+            Parametros Param = new Parametros(DatosConexionDB.Elemento.Intercompany);
+            Param.ExtDefault = this.tabCfdi.SelectedTab.Name;
+
+            if (!Param.ultimoMensaje.Equals(string.Empty))
+            {
+                txtbxMensajes.Text = Param.ultimoMensaje;
+                errores++;
+            }
+            if (regla.CfdiTransacciones.RowCount == 0)
+            {
+                txtbxMensajes.Text = "No hay documentos para generar. Verifique los criterios de búsqueda.";
+                errores++;
+            }
+            if (!filtraListaSeleccionada()) //Filtra cfdiTransacciones sólo con docs marcados
+            {
+                txtbxMensajes.Text = ultimoMensaje;
+                errores++;
+            }
+            if (errores == 0 && !ExistenTransaccionesAMedioContabilizar(regla.CfdiTransacciones))
+            {
+                HabilitarVentana(false, false, false, false, false, false);
+                ProcesaCfdi proc = new ProcesaCfdi(DatosConexionDB.Elemento, Param);
+                proc.TrxVenta = regla.CfdiTransacciones;
+                proc.Progreso += new ProcesaCfdi.LogHandler(reportaProgreso);
+                pBarProcesoActivo.Visible = true;
+
+                await proc.GeneraDocumentoXmlTestAsync();
+
+            }
+            //Actualiza la pantalla
+            HabilitarVentana(Param.emite, Param.anula, Param.imprime, Param.publica, Param.envia, true);
+            AplicaFiltroYActualizaPantalla(this.tabCfdi.SelectedTab.Name);
+            progressBar1.Value = 0;
+            pBarProcesoActivo.Visible = false;
+        }
     }
 }

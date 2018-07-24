@@ -214,6 +214,68 @@ namespace cfd.FacturaElectronica
             OnProgreso(100, "Proceso finalizado!");
         }
 
+        public async Task GeneraDocumentoXmlTestAsync()
+        {
+            try
+            {
+                String msj = String.Empty;
+                trxVenta.Rewind();                                                          //move to first record
+
+                int errores = 0; int i = 1;
+                cfdReglasFacturaXml DocVenta = new cfdReglasFacturaXml(_Conex, _Param);     //log de facturas xml emitidas y anuladas
+                ReglasME maquina = new ReglasME(_Param);
+                ValidadorXML validadorxml = new ValidadorXML(_Param);
+                TransformerXML loader = new TransformerXML();
+                OnProgreso(1, "INICIANDO EMISION DE COMPROBANTES DE VENTA...");              //Notifica al suscriptor
+                do
+                {
+                    msj = String.Empty;
+                    try
+                    {
+                        trxVenta.ArmarDocElectronico();
+//                        trxVenta.DocElectronico
+
+                    }
+                    catch (HttpRequestException he)
+                    {
+                        msj = string.Concat(he.Message, Environment.NewLine, he.StackTrace);
+                        errores++;
+                    }
+                    catch (ApplicationException ae)
+                    {
+                        msj = ae.Message + Environment.NewLine + ae.StackTrace;
+                        errores++;
+                    }
+                    catch (IOException io)
+                    {
+                        msj = "Excepción al revisar la carpeta/archivo: " + trxVenta.Ruta_clave + " Verifique su existencia y privilegios." + Environment.NewLine + io.Message + Environment.NewLine;
+                        errores++;
+                    }
+                    catch (Exception lo)
+                    {
+                        string imsj = lo.InnerException == null ? "" : lo.InnerException.ToString();
+                        msj = lo.Message + " " + imsj + Environment.NewLine + lo.StackTrace;
+                        errores++;
+                    }
+                    finally
+                    {
+                        OnProgreso(i * 100 / trxVenta.RowCount, "Doc:" + trxVenta.Sopnumbe + " " + msj.Trim() + Environment.NewLine);              //Notifica al suscriptor
+                        i++;
+                    }
+                } while (trxVenta.MoveNext() && errores < 10);
+            }
+            catch (Exception xw)
+            {
+                string imsj = xw.InnerException == null ? "" : xw.InnerException.ToString();
+                this.ultimoMensaje = xw.Message + " " + imsj + Environment.NewLine + xw.StackTrace;
+            }
+            finally
+            {
+                OnProgreso(100, ultimoMensaje);
+            }
+            OnProgreso(100, "Proceso finalizado!");
+        }
+
         /// <summary>
         /// Ejecuta la generación del resumen de boletas
         /// </summary>

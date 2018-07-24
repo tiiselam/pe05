@@ -1,0 +1,5 @@
+0A|MANUAL|
+01|Jordan Aguirre|41254784/1|piero.lozada@dfacture.com.pe|2173000|AV. EL DERBY N° 055, TORRE 1, OF. 801  SANTIAGO DE SURCO - LIMA||||||NO|
+02|2017-03-14||03|BPL4-00000042|||0|0|0|0|0|0||0|0|PEN|||1180|LIMA||1||0||
+03|NIU|1|Reparacion Integral de Portarodamiento WARMAN - 400  RR-41409 - COMPONENTE N° 1 OC. O74087|0|0|0|0|0|1|BZNA004|1180|10|10||
+04|1|Obs|Gratuita

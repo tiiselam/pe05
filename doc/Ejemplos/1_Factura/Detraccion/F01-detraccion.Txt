@@ -1,0 +1,9 @@
+﻿0A|MANUAL
+01|AILANY FLORES AVELLANEDA|10457580121/6|stefanie.echevarria@dfacture.com.pe||JR. BOLIVAR NRO. 623 CENTRO CIVICO|TRUJILLO|||||SI|
+02|2017-04-03||01|FZZ1-4|||464.41|0|0|||83.59||50.00|548.00|PEN||||S. AG. Trujillo 070||1|SUNAT (Superintendencia Nacional de Aduanas y de Administraci�n Tributaria), de acuerdo a la Ley General aprobada por Decreto Legislativo N� 501 de la misma, es un organismo t�cnico especializado, adscrito al Ministerio de Econom�a y Finanzas peruano|0||||||||||
+03|NIU|2.00|TARJETA USIM 4G 128K PREPAGO 2FF/3FF R5|0.00|0.00|0.00|0.00|0.00|1|091583|||10||
+03|NIU|1.00|CELISTICS BMOBILE AX1020 AZUL|232.20|274.00|41.80|0.00|232.20|2|091678|||10||
+03|NIU|1.00|EQ CELISTICS BMOBILE AX1020 NEGRO|232.20|274.00|41.80|0.00|232.20|3|091679|||10||
+04|1|PRUEBA|Se registra en este campo el valor de la secci�n para el identificador 4. Concepto y caracter�sticas de la Factura Electr�nica: Es el tipo de comprobante de pago denominado FACTURA, emitido a trav�s del sistema de emisi�n electr�nica desarrollado desde los sistemas del contribuyente. Mediante el Sistema de Emisi�n Electr�nica desde los sistemas desarrollados por el contribuyente, se emiten tambi�n las Notas de D�bito y Cr�dito vinculadas a la Factura Electr�nica desde el Contribuyente.|
+05|3001|111111|4|21.92
+FG|140115|Av. Federico Villarreal 344 - Urb. Santa Cruz|URB1|MIRAFLORES|LIMA|LIMA|PE|250101|JR. PROGRESO NRO. 508 (POR EL HOTEL AREQUIPA) UCAYALI - CORONEL PORTILLO - CALLERIA|URB2|CALLERIA|CORONEL PORTILLO|UCAYALI|PE|ABC123|1|SIN MARCA|111111|20101876137|06|IMPORTACIONES Y SERVICIOS GERMANIA S.A.|02|NIU|10.00|

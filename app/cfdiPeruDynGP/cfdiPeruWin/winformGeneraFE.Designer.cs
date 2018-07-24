@@ -141,6 +141,7 @@
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgridTrxFacturas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwCfdTransaccionesDeVentaBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -662,7 +663,8 @@
             this.toolStripConsulta.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStripConsulta.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripConsulta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsDDButtonFiltroF});
+            this.tsDDButtonFiltroF,
+            this.toolStripButton2});
             this.toolStripConsulta.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStripConsulta.Location = new System.Drawing.Point(602, 0);
             this.toolStripConsulta.Name = "toolStripConsulta";
@@ -1317,6 +1319,15 @@
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton1";
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(53, 20);
+            this.toolStripButton2.Text = "TEST";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click_1);
+            // 
             // winformGeneraFE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1507,6 +1518,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Voidstts;
         private System.Windows.Forms.DataGridViewTextBoxColumn MensajeEA;
         private System.Windows.Forms.DataGridViewTextBoxColumn eBinAct;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }
 
