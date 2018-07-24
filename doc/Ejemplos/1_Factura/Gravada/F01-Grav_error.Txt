@@ -1,0 +1,7 @@
+0A|MANUAL
+01|AILANY FLORES AVELLANEDA|10457580121/6|stefanie.echevarria@dfacture.com.pe||JR. BOLIVAR NRO. 623 CENTRO CIVICO|TRUJILLO|||||SI|
+02|2017-03-14||01|FPL1-00000103|||464.41|0|0|||83.59||50.00|548.00|PEN||||S. AG. Trujillo 070||1|aSUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria), de acuerdo a la Ley General aprobada por Decreto Legislativo Nº 501 de la misma, es un organismo técnico especializado, adscrito al Ministerio de Economía y Finanzas peruano|0||||||||||
+03|NIU|2.00|TARJETA USIM 4G 128K PREPAGO 2FF/3FF R5|0.00|0.00|0.00|0.00|0.00|1|091583|||10||
+03|NIU|1.00|CELISTICS BMOBILE AX1020 AZUL|232.20|274.00|41.80|0.00|232.20|2|091678|||10||
+03|NIU|1.00|EQ CELISTICS BMOBILE AX1020 NEGRO|232.20|274.00|41.80|0.00|232.20|3|091679|||10||
+04|1|PRUEBA|Se registra en este campo el valor de la sección para el identificador 4. Concepto y características de la Factura Electrónica: Es el tipo de comprobante de pago denominado FACTURA, emitido a través del sistema de emisión electrónica desarrollado desde los sistemas del contribuyente. Mediante el Sistema de Emisión Electrónica desde los sistemas desarrollados por el contribuyente, se emiten también las Notas de Débito y Crédito vinculadas a la Factura Electrónica desde el Contribuyente. StefanieE|

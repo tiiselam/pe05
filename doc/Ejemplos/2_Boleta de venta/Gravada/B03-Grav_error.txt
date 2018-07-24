@@ -1,0 +1,9 @@
+0A|MANUAL
+01|RAMIRO CAMPOS GUTIERREZ|07045850/1|stefanie.echevarria@dfacture.com.pe||ANGASMARCA|TRUJILLO|||||SI|
+02|2017-03-14||03|BPL4-00000041|||266.95|0|0|||48.05||39.00|315.00|PEN||||S. AG. Trujillo 070||1|SUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria), de acuerdo a la Ley General aprobada por Decreto Legislativo Nº 501 de la misma, es un organismo técnico especializado, adscrito al Ministerio de Economía y Finanzas peruano|||||||||||
+03|NIU|6.00|TARJETA USIM 4G 128K PREPAGO 2FF/3FF R5|0.00|0.00|0.00||0.00|1|091583|||10||
+03|NIU|3.00|TERM 2G BMOBILE K350 NEGRO|44.49|52.50|8.01||133.47|2|091622|||10||
+03|NIU|1.00|TERM 2G BMOBILE K350 BLANCO GRIS|44.49|52.50|8.01||44.49|3|091623|||10||
+03|NIU|1.00|TERM 2G BMOBILE K350 AZUL|44.49|52.50|8.01||44.49|4|091624|||10||
+03|NIU|1.00|TERM 2G BMOBILE K350 FUCSIA|44.49|52.50|8.01||44.49|5|091625|||10||
+04|1|PRUEBA|aSe registra en este campo el valor de la sección para el identificador 4. Concepto y características de la Factura Electrónica: Es el tipo de comprobante de pago denominado FACTURA, emitido a través del sistema de emisión electrónica desarrollado desde los sistemas del contribuyente. Mediante el Sistema de Emisión Electrónica desde los sistemas desarrollados por el contribuyente, se emiten también las Notas de Débito y Crédito vinculadas a la Factura Electrónica desde el Contribuyente. StefanieE|

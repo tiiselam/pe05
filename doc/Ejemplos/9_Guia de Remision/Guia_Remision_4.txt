@@ -1,0 +1,7 @@
+﻿01|T001-00000022|2017-05-02|09|obs:250|||||
+02|20114547854|6|LA PONDEROSA|43147785|1|Destinatario Echevarria|20011554478|6|Proveedor Lozada|
+03|19|Descripcion motivo traslado|false|1000.200|KG|10|02|2017-05-02|20222222222|6|Transportes Romero|AUS-2312|41478744|1|150114|Av. La Rutinaria 555,Urb. Planeta, Cercado de Lima, Lima, Perú|CONT-4827|150122|Av. Larco 998, Urb. Miramar, Miraflores, Lima, Lima, Perú|P87|
+04|1|200|NIU|Paquete x 1 millar - Papel A4 Bond 100 gr||
+04|2|200|NIU|Paquete x 1 millar - Papel A4 Bond 100 gr||
+04|3|200|NIU|Paquete x 1 millar - Papel A4 Bond 100 gr||
+04|4|200|NIU|Paquete x 1 millar - Papel A4 Bond 100 gr||
