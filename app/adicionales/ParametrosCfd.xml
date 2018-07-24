@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<listaParametros>
+  <servidor>10.1.1.22</servidor>
+  <seguridadIntegrada>0</seguridadIntegrada>
+  <usuariosql>sa</usuariosql>
+  <passwordsql>sa22</passwordsql>
+  <compannia bd="PER10">
+    <URLArchivoXSD>NA</URLArchivoXSD>
+    <URLArchivoXSLT>NA</URLArchivoXSLT>
+    <URLConsulta>NA</URLConsulta>
+    <PAC>
+      <urlWebService>https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService</urlWebService>
+    </PAC>
+    <reporteador>CRYSTAL</reporteador>
+	<reporteExtensiones>
+       <Factura>.rpt</Factura>
+	   <Cobro>.COB.rpt</Cobro>
+	   <Traslado>.REM.rpt</Traslado>
+	</reporteExtensiones>
+    <rutaReporteCrystal tipo="default">
+      <Ruta>\\10.1.1.22\Integraciones Getty\Factura Perú\PER10_FACTURA_UNICA</Ruta>
+      <Margenes>
+        <bottomMargin>0</bottomMargin>
+        <topMargin>0</topMargin>
+        <leftMargin>0</leftMargin>
+        <rightMargin>0</rightMargin>
+      </Margenes>
+      <Parametro>
+        <Nombre>Desde Numero</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>Hasta Numero</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>sTabla</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <imprime>0</imprime>
+      <nombreImpresora>na</nombreImpresora>
+    </rutaReporteCrystal>
+    <ReporteSSRS tipo="default">
+      <Ruta>na</Ruta>
+      <SSRSServer>na</SSRSServer>
+      <Parametro>
+        <Nombre>na</Nombre>
+        <Tipo>na</Tipo>
+      </Parametro>
+    </ReporteSSRS>
+    <emite>1</emite>
+    <anula>1</anula>
+    <imprime>1</imprime>
+    <publica>1</publica>
+    <envia>1</envia>
+    <zip>1</zip>
+    <emailSetup>
+                <smtp>smtp.gmail.com</smtp>
+                <puerto>587</puerto>
+                <cuenta>billing@gettyimageslatam.com</cuenta>
+		<usuario>billing@gettyimageslatam.com</usuario>
+		<clave>327L43</clave>
+	        <ssl>true</ssl>
+		<replyto>billing@gettyimageslatam.com</replyto>
+                <carta>FACTURA_ELECTRONICA</carta>
+                <adjuntoEmite>zip</adjuntoEmite>
+                <adjuntoImprime>pdf</adjuntoImprime>
+    </emailSetup>
+  </compannia>
+  <compannia bd="COL10">
+    <URLArchivoXSD>na</URLArchivoXSD>
+    <URLArchivoXSLT>na</URLArchivoXSLT>
+    <PAC>
+      <urlWebService>na</urlWebService>
+    </PAC>
+    <reporteador>CRYSTAL</reporteador>
+	<reporteExtensiones>
+       <Factura>.rpt</Factura>
+	   <Cobro>.COB.rpt</Cobro>
+	   <Traslado>.REM.rpt</Traslado>
+	</reporteExtensiones>
+    <rutaReporteCrystal tipo="default">
+      <Ruta>\\10.1.1.22\Integraciones Getty\Factura Colombia\COL10_FACTURA_UNICA.rpt</Ruta>
+      <Margenes>
+        <bottomMargin>0</bottomMargin>
+        <topMargin>0</topMargin>
+        <leftMargin>0</leftMargin>
+        <rightMargin>0</rightMargin>
+      </Margenes>
+      <Parametro>
+        <Nombre>Desde Numero</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>Hasta Numero</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>sTabla</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+	  <imprime>0</imprime>
+	  <nombreImpresora>Microsoft XPS Document Writer</nombreImpresora>
+    </rutaReporteCrystal>
+    <ReporteSSRS tipo="default">
+      <Ruta>na</Ruta>
+      <SSRSServer>na</SSRSServer>
+      <Parametro>
+        <Nombre>na</Nombre>
+        <Tipo>na</Tipo>
+      </Parametro>
+    </ReporteSSRS>
+    <emite>0</emite>
+    <anula>0</anula>
+    <imprime>1</imprime>
+    <publica>0</publica>
+    <envia>1</envia>
+    <zip>0</zip>
+    <emailSetup>
+        <smtp>smtp.gmail.com</smtp>
+        <puerto>587</puerto>
+        <cuenta>billing@gettyimageslatam.com</cuenta>
+		<usuario>billing@gettyimageslatam.com</usuario>
+		<clave>327L43</clave>
+	    <ssl>true</ssl>
+		<replyto>billing@gettyimageslatam.com</replyto>
+        <carta>FACTURA_ELECTRONICA</carta>
+        <adjuntoEmite>na</adjuntoEmite>
+        <adjuntoImprime>pdf</adjuntoImprime>
+    </emailSetup>
+  </compannia>
+  
+</listaParametros>
