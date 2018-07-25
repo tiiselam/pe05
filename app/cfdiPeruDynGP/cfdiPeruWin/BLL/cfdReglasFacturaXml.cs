@@ -12,7 +12,6 @@ using cfdiPeru;
 using Comun;
 //using Reporteador;
 using MaquinaDeEstados;
-using QRCodeLib;
 
 namespace cfd.FacturaElectronica
 {
