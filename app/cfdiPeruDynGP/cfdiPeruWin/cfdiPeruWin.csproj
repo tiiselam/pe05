@@ -211,10 +211,6 @@
       <Project>{3325D053-41AA-48A1-9166-11DC6AFEA8D7}</Project>
       <Name>MaquinaDeEstados</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Reporteador\Reporteador.csproj">
-      <Project>{b2942d0b-1af0-434c-a9b5-f090d8361e84}</Project>
-      <Name>Reporteador</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\process.jpg" />
