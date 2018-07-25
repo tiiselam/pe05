@@ -9,7 +9,6 @@ using Comun;
 using cfdiPeru;
 //using Encriptador;
 using MaquinaDeEstados;
-using QRCodeLib;
 
 namespace cfd.FacturaElectronica
 {
