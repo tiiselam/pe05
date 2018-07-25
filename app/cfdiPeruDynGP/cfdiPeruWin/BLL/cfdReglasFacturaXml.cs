@@ -10,7 +10,7 @@ using System.Security.AccessControl;
 using MyGeneration.dOOdads;
 using cfdiPeru;
 using Comun;
-using Reporteador;
+//using Reporteador;
 using MaquinaDeEstados;
 using QRCodeLib;
 
@@ -23,7 +23,7 @@ namespace cfd.FacturaElectronica
         private ConexionAFuenteDatos _Conexion = null;
         private Parametros _Param = null;
         //CodigoDeBarras codigobb;
-        Documento reporte;
+        //Documento reporte;
         vwCfdTransaccionesDeVenta cfdiTransacciones;
         vwCfdiDatosDelXml_wrapper cfdiDatosXml;
         private string x_uuid;
@@ -46,11 +46,10 @@ namespace cfd.FacturaElectronica
         {
             _Conexion = conex;
             _Param = param;
-            reporte = new Documento(_Conexion, _Param);
-            //codigobb = new CodigoDeBarras();
+            //reporte = new Documento(_Conexion, _Param);
 
-            numMensajeError = reporte.numErr;
-            ultimoMensaje = reporte.mensajeErr;
+            numMensajeError = 0; // reporte.numErr;
+            ultimoMensaje = string.Empty;   // reporte.mensajeErr;
         }
 
         public void AplicaFiltroADocumentos(bool filtroFecha, DateTime desdeF, DateTime hastaF, DateTime deFDefault, DateTime aFDefault,
@@ -319,8 +318,8 @@ namespace cfd.FacturaElectronica
                                         status, eBinario, msjBinActual);
 
                 //Genera pdf
-                if (tipoDoc.Equals("FACTURA") && accion.Equals("EMITE XML Y PDF"))
-                   reporte.generaEnFormatoPDF(rutaYNomArchivoCfdi, trxVenta.Soptype, trxVenta.Sopnumbe, trxVenta.EstadoContabilizado);
+                //if (tipoDoc.Equals("FACTURA") && accion.Equals("EMITE XML Y PDF"))
+                //   reporte.generaEnFormatoPDF(rutaYNomArchivoCfdi, trxVenta.Soptype, trxVenta.Sopnumbe, trxVenta.EstadoContabilizado);
 
             }
             catch (DirectoryNotFoundException)
@@ -391,13 +390,13 @@ namespace cfd.FacturaElectronica
                 string nomArchivo = Utiles.FormatoNombreArchivo(trxVenta.Docid + trxVenta.Sopnumbe + "_" + trxVenta.s_CUSTNMBR, trxVenta.s_NombreCliente, 20);
                 string rutaYNomArchivo = trxVenta.RutaXml.Trim() + nomArchivo;
 
-                reporte.generaEnFormatoPDF(rutaYNomArchivo, trxVenta.Soptype, trxVenta.Sopnumbe, trxVenta.EstadoContabilizado);
+                //reporte.generaEnFormatoPDF(rutaYNomArchivo, trxVenta.Soptype, trxVenta.Sopnumbe, trxVenta.EstadoContabilizado);
 
-                numMensajeError = reporte.numErr; // + codigobb.iErr;
-                ultimoMensaje = reporte.mensajeErr; // + codigobb.strMensajeErr;
+                //numMensajeError = reporte.numErr; // + codigobb.iErr;
+                //ultimoMensaje = reporte.mensajeErr; // + codigobb.strMensajeErr;
 
-                if (reporte.numErr==0)  // && codigobb.iErr==0)
-                    RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, "Almacenado en " + rutaYNomArchivo, "0", _Conexion.Usuario, "", eBase, eBinario, enLetras);
+                //if (reporte.numErr==0) 
+                RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, "Almacenado en " + rutaYNomArchivo, "0", _Conexion.Usuario, "", eBase, eBinario, enLetras);
 
                 return ultimoMensaje.Equals(string.Empty);
             }

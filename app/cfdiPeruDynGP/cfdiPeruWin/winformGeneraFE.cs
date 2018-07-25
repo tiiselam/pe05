@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.IO;
 
 using Comun;
-using Reporteador;
+//using Reporteador;
 using cfd.FacturaElectronica;
 using MyGeneration.dOOdads;
 using MaquinaDeEstados;
@@ -19,10 +19,8 @@ namespace cfdiPeru
 {
     public partial class winformGeneraFE : Form
     {
-        static winVisorDeReportes FrmVisorDeReporte;
-        //vwCfdTransaccionesDeVenta trxVenta;     //todos los documentos de venta
+        //static winVisorDeReportes FrmVisorDeReporte;
         cfdReglasFacturaXml regla;
-        //vwCfdInformeMensualVentas infMes;       //documentos de venta para informe mensual
         DataGridView dGridActivo;
         String vistaActiva = String.Empty;
 
@@ -527,74 +525,74 @@ namespace cfdiPeru
         /// <param name="e"></param>
         private void tsButtonImprimir_Click(object sender, EventArgs e)
         {
-            string prmFolioDesde = "";
-            string prmFolioHasta = "";
-            string prmTabla = "SOP30200";
-            int prmSopType = 0;
-            Parametros configCfd = new Parametros(DatosConexionDB.Elemento.Intercompany);   //Carga configuración desde xml
-            configCfd.ExtDefault = this.tabCfdi.SelectedTab.Name;
+            //string prmFolioDesde = "";
+            //string prmFolioHasta = "";
+            //string prmTabla = "SOP30200";
+            //int prmSopType = 0;
+            //Parametros configCfd = new Parametros(DatosConexionDB.Elemento.Intercompany);   //Carga configuración desde xml
+            //configCfd.ExtDefault = this.tabCfdi.SelectedTab.Name;
             
-            txtbxMensajes.Text = "";
-            txtbxMensajes.Refresh();
-            configCfd.ImprimeEnImpresora = false;
-            if (tsComboDestinoRep.Text.Equals("Impresora"))
-                configCfd.ImprimeEnImpresora = true;
+            //txtbxMensajes.Text = "";
+            //txtbxMensajes.Refresh();
+            //configCfd.ImprimeEnImpresora = false;
+            //if (tsComboDestinoRep.Text.Equals("Impresora"))
+            //    configCfd.ImprimeEnImpresora = true;
 
-            if (dgridTrxFacturas.CurrentRow != null)
-            {
-                if (dgridTrxFacturas.CurrentCell.Selected)
-                {
-                    prmFolioDesde = dgridTrxFacturas.CurrentRow.Cells[idxSopnumbe].Value.ToString();
-                    prmFolioHasta = dgridTrxFacturas.CurrentRow.Cells[idxSopnumbe].Value.ToString();
-                    prmSopType = Convert.ToInt16(dgridTrxFacturas.CurrentRow.Cells[idxSoptype].Value.ToString());
+            //if (dgridTrxFacturas.CurrentRow != null)
+            //{
+            //    if (dgridTrxFacturas.CurrentCell.Selected)
+            //    {
+            //        prmFolioDesde = dgridTrxFacturas.CurrentRow.Cells[idxSopnumbe].Value.ToString();
+            //        prmFolioHasta = dgridTrxFacturas.CurrentRow.Cells[idxSopnumbe].Value.ToString();
+            //        prmSopType = Convert.ToInt16(dgridTrxFacturas.CurrentRow.Cells[idxSoptype].Value.ToString());
 
-                    //En el caso de una compañía que debe emitir xml, controlar que la factura ha sido emitida antes de imprimir.
-                    if(configCfd.emite)
-                    {
-                        if (!dgridTrxFacturas.CurrentRow.Cells[idxEstado].Value.Equals("emitido"))      //estado FE
-                        {
-                            txtbxMensajes.Text = "La factura " + prmFolioDesde + " no fue emitida. Emita la factura y vuelva a intentar.\r\n";
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        if (dgridTrxFacturas.CurrentRow.Cells[idxAnulado].Value.ToString().Equals("1")) //factura anulada en GP
-                        {
-                            txtbxMensajes.Text = "La factura " + prmFolioDesde + " no se puede imprimir porque está anulada. \r\n";
-                            return;
-                        }
-                        if (dgridTrxFacturas.CurrentRow.Cells[idxEstadoContab].Value.Equals("en lote")) //estado contabilizado en GP
-                            prmTabla = "SOP10100";
-                    }
+            //        //En el caso de una compañía que debe emitir xml, controlar que la factura ha sido emitida antes de imprimir.
+            //        if(configCfd.emite)
+            //        {
+            //            if (!dgridTrxFacturas.CurrentRow.Cells[idxEstado].Value.Equals("emitido"))      //estado FE
+            //            {
+            //                txtbxMensajes.Text = "La factura " + prmFolioDesde + " no fue emitida. Emita la factura y vuelva a intentar.\r\n";
+            //                return;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (dgridTrxFacturas.CurrentRow.Cells[idxAnulado].Value.ToString().Equals("1")) //factura anulada en GP
+            //            {
+            //                txtbxMensajes.Text = "La factura " + prmFolioDesde + " no se puede imprimir porque está anulada. \r\n";
+            //                return;
+            //            }
+            //            if (dgridTrxFacturas.CurrentRow.Cells[idxEstadoContab].Value.Equals("en lote")) //estado contabilizado en GP
+            //                prmTabla = "SOP10100";
+            //        }
 
-                    if (FrmVisorDeReporte == null)
-                    {
-                        try
-                        {
-                            FrmVisorDeReporte = new winVisorDeReportes(DatosConexionDB.Elemento, configCfd, prmFolioDesde, prmFolioHasta, prmTabla, prmSopType);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }
-                    else
-                    {
-                        if (FrmVisorDeReporte.Created == false)
-                        {
-                            FrmVisorDeReporte = new winVisorDeReportes(DatosConexionDB.Elemento, configCfd, prmFolioDesde, prmFolioHasta, prmTabla, prmSopType);
-                        }
-                    }
+            //        if (FrmVisorDeReporte == null)
+            //        {
+            //            try
+            //            {
+            //                FrmVisorDeReporte = new winVisorDeReportes(DatosConexionDB.Elemento, configCfd, prmFolioDesde, prmFolioHasta, prmTabla, prmSopType);
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                MessageBox.Show(ex.Message);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (FrmVisorDeReporte.Created == false)
+            //            {
+            //                FrmVisorDeReporte = new winVisorDeReportes(DatosConexionDB.Elemento, configCfd, prmFolioDesde, prmFolioHasta, prmTabla, prmSopType);
+            //            }
+            //        }
 
-                    // Always show and activate the WinForm
-                    FrmVisorDeReporte.Show();
-                    FrmVisorDeReporte.Activate();
-                    txtbxMensajes.Text = FrmVisorDeReporte.mensajeErr;
-                }
-                else
-                    txtbxMensajes.Text = "No seleccionó ninguna factura. Debe marcar la factura que desea imprimir y luego presionar el botón de impresión.";
-            }
+            //        // Always show and activate the WinForm
+            //        FrmVisorDeReporte.Show();
+            //        FrmVisorDeReporte.Activate();
+            //        txtbxMensajes.Text = FrmVisorDeReporte.mensajeErr;
+            //    }
+            //    else
+            //        txtbxMensajes.Text = "No seleccionó ninguna factura. Debe marcar la factura que desea imprimir y luego presionar el botón de impresión.";
+            //}
         }
 
         private void cmbBxCompannia_TextChanged(object sender, EventArgs e)
@@ -781,71 +779,71 @@ namespace cfdiPeru
 
         private void tsMenuImprimir_Click(object sender, EventArgs e)
         {
-            string prmFolioDesde = "";
-            string prmFolioHasta = "";
-            string prmTabla = "SOP30200";
-            int prmSopType = 0;
-            Parametros configCfd = new Parametros(DatosConexionDB.Elemento.Intercompany);   //Carga configuración desde xml
-            configCfd.ExtDefault = this.tabCfdi.SelectedTab.Name;
+            //string prmFolioDesde = "";
+            //string prmFolioHasta = "";
+            //string prmTabla = "SOP30200";
+            //int prmSopType = 0;
+            //Parametros configCfd = new Parametros(DatosConexionDB.Elemento.Intercompany);   //Carga configuración desde xml
+            //configCfd.ExtDefault = this.tabCfdi.SelectedTab.Name;
 
-            txtbxMensajes.Text = "";
-            txtbxMensajes.Refresh();
-            configCfd.ImprimeEnImpresora = false;
-            if (tsComboDestinoRep.Text.Equals("Impresora"))
-                configCfd.ImprimeEnImpresora = true;
+            //txtbxMensajes.Text = "";
+            //txtbxMensajes.Refresh();
+            //configCfd.ImprimeEnImpresora = false;
+            //if (tsComboDestinoRep.Text.Equals("Impresora"))
+            //    configCfd.ImprimeEnImpresora = true;
 
-            if (dgridTrxFacturas.CurrentRow != null && dgridTrxFacturas.CurrentCell.Selected)
-            {
-                    prmFolioDesde = tsTextDesde.Text;
-                    prmFolioHasta = tsTextHasta.Text;
-                    prmSopType = Convert.ToInt16(dgridTrxFacturas.CurrentRow.Cells[idxSoptype].Value.ToString());
+            //if (dgridTrxFacturas.CurrentRow != null && dgridTrxFacturas.CurrentCell.Selected)
+            //{
+            //        prmFolioDesde = tsTextDesde.Text;
+            //        prmFolioHasta = tsTextHasta.Text;
+            //        prmSopType = Convert.ToInt16(dgridTrxFacturas.CurrentRow.Cells[idxSoptype].Value.ToString());
 
-                    //En el caso de una compañía que debe emitir xml, controlar que la factura ha sido emitida antes de imprimir.
-                    if (configCfd.emite)
-                    {
-                        if (!dgridTrxFacturas.CurrentRow.Cells[idxEstado].Value.Equals("emitido"))      //estado FE
-                        {
-                            txtbxMensajes.Text = "La factura " + prmFolioDesde + " no fue emitida. Emita la factura y vuelva a intentar.\r\n";
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        if (dgridTrxFacturas.CurrentRow.Cells[idxAnulado].Value.ToString().Equals("1")) //factura anulada en GP
-                        {
-                            txtbxMensajes.Text = "La factura " + prmFolioDesde + " no se puede imprimir porque está anulada. \r\n";
-                            return;
-                        }
-                        if (dgridTrxFacturas.CurrentRow.Cells[idxEstadoContab].Value.Equals("en lote")) //estado contabilizado en GP
-                            prmTabla = "SOP10100";
-                    }
+            //        //En el caso de una compañía que debe emitir xml, controlar que la factura ha sido emitida antes de imprimir.
+            //        if (configCfd.emite)
+            //        {
+            //            if (!dgridTrxFacturas.CurrentRow.Cells[idxEstado].Value.Equals("emitido"))      //estado FE
+            //            {
+            //                txtbxMensajes.Text = "La factura " + prmFolioDesde + " no fue emitida. Emita la factura y vuelva a intentar.\r\n";
+            //                return;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (dgridTrxFacturas.CurrentRow.Cells[idxAnulado].Value.ToString().Equals("1")) //factura anulada en GP
+            //            {
+            //                txtbxMensajes.Text = "La factura " + prmFolioDesde + " no se puede imprimir porque está anulada. \r\n";
+            //                return;
+            //            }
+            //            if (dgridTrxFacturas.CurrentRow.Cells[idxEstadoContab].Value.Equals("en lote")) //estado contabilizado en GP
+            //                prmTabla = "SOP10100";
+            //        }
 
-                    if (FrmVisorDeReporte == null)
-                    {
-                        try
-                        {
-                            FrmVisorDeReporte = new winVisorDeReportes(DatosConexionDB.Elemento, configCfd, prmFolioDesde, prmFolioHasta, prmTabla, prmSopType);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }
-                    else
-                    {
-                        if (FrmVisorDeReporte.Created == false)
-                        {
-                            FrmVisorDeReporte = new winVisorDeReportes(DatosConexionDB.Elemento, configCfd, prmFolioDesde, prmFolioHasta, prmTabla, prmSopType);
-                        }
-                    }
+            //        if (FrmVisorDeReporte == null)
+            //        {
+            //            try
+            //            {
+            //                FrmVisorDeReporte = new winVisorDeReportes(DatosConexionDB.Elemento, configCfd, prmFolioDesde, prmFolioHasta, prmTabla, prmSopType);
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                MessageBox.Show(ex.Message);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (FrmVisorDeReporte.Created == false)
+            //            {
+            //                FrmVisorDeReporte = new winVisorDeReportes(DatosConexionDB.Elemento, configCfd, prmFolioDesde, prmFolioHasta, prmTabla, prmSopType);
+            //            }
+            //        }
 
-                    // Always show and activate the WinForm
-                    FrmVisorDeReporte.Show();
-                    FrmVisorDeReporte.Activate();
-                    txtbxMensajes.Text = FrmVisorDeReporte.mensajeErr;
-            }
-            else
-                txtbxMensajes.Text = "No seleccionó ninguna factura. Debe marcar la factura que desea imprimir y luego presionar el botón de impresión.";
+            //        // Always show and activate the WinForm
+            //        FrmVisorDeReporte.Show();
+            //        FrmVisorDeReporte.Activate();
+            //        txtbxMensajes.Text = FrmVisorDeReporte.mensajeErr;
+            //}
+            //else
+            //    txtbxMensajes.Text = "No seleccionó ninguna factura. Debe marcar la factura que desea imprimir y luego presionar el botón de impresión.";
         }
 
         private void tsddButtonImprimir_Click(object sender, EventArgs e)
