@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PERUEntitiesStoreContainer" CdmEntityContainer="PER10Entities">
+    <EntitySetMapping Name="vwCfdiConceptos">
+      <EntityTypeMapping TypeName="PERUEntities.vwCfdiConceptos">
+        <MappingFragment StoreEntitySet="vwCfdiConceptos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="soptype" ColumnName="soptype" />
+          <ScalarProperty Name="sopnumbe" ColumnName="sopnumbe" />
+          <ScalarProperty Name="LNITMSEQ" ColumnName="LNITMSEQ" />
+          <ScalarProperty Name="ITEMNMBR" ColumnName="ITEMNMBR" />
+          <ScalarProperty Name="SERLTNUM" ColumnName="SERLTNUM" />
+          <ScalarProperty Name="ITEMDESC" ColumnName="ITEMDESC" />
+          <ScalarProperty Name="CMPNTSEQ" ColumnName="CMPNTSEQ" />
+          <ScalarProperty Name="udemSunat" ColumnName="udemSunat" />
+          <ScalarProperty Name="NoIdentificacion" ColumnName="NoIdentificacion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="precioUniConIva" ColumnName="precioUniConIva" />
+          <ScalarProperty Name="valorUni" ColumnName="valorUni" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="orslstax" ColumnName="orslstax" />
+          <ScalarProperty Name="tipoPrecio" ColumnName="tipoPrecio" />
+          <ScalarProperty Name="tipoImpuesto" ColumnName="tipoImpuesto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwCfdiGeneraDocumentoDeVenta">
+      <EntityTypeMapping TypeName="PERUEntities.vwCfdiGeneraDocumentoDeVenta">
+        <MappingFragment StoreEntitySet="vwCfdiGeneraDocumentoDeVenta">
+          <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+          <ScalarProperty Name="soptype" ColumnName="soptype" />
+          <ScalarProperty Name="sopnumbe" ColumnName="sopnumbe" />
+          <ScalarProperty Name="serie" ColumnName="serie" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="tipoDocumento" ColumnName="tipoDocumento" />
+          <ScalarProperty Name="emisorTipoDoc" ColumnName="emisorTipoDoc" />
+          <ScalarProperty Name="emisorNroDoc" ColumnName="emisorNroDoc" />
+          <ScalarProperty Name="emisorNombre" ColumnName="emisorNombre" />
+          <ScalarProperty Name="emisorUbigeo" ColumnName="emisorUbigeo" />
+          <ScalarProperty Name="emisorDireccion" ColumnName="emisorDireccion" />
+          <ScalarProperty Name="emisorUrbanizacion" ColumnName="emisorUrbanizacion" />
+          <ScalarProperty Name="emisorDepartamento" ColumnName="emisorDepartamento" />
+          <ScalarProperty Name="emisorProvincia" ColumnName="emisorProvincia" />
+          <ScalarProperty Name="emisorDistrito" ColumnName="emisorDistrito" />
+          <ScalarProperty Name="receptorTipoDoc" ColumnName="receptorTipoDoc" />
+          <ScalarProperty Name="receptorNroDoc" ColumnName="receptorNroDoc" />
+          <ScalarProperty Name="receptorNombre" ColumnName="receptorNombre" />
+          <ScalarProperty Name="idDocumento" ColumnName="idDocumento" />
+          <ScalarProperty Name="fechaEmision" ColumnName="fechaEmision" />
+          <ScalarProperty Name="moneda" ColumnName="moneda" />
+          <ScalarProperty Name="tipoOperacion" ColumnName="tipoOperacion" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="ORTDISAM" ColumnName="ORTDISAM" />
+          <ScalarProperty Name="ivaTasa" ColumnName="ivaTasa" />
+          <ScalarProperty Name="ivaImponible" ColumnName="ivaImponible" />
+          <ScalarProperty Name="iva" ColumnName="iva" />
+          <ScalarProperty Name="inafecta" ColumnName="inafecta" />
+          <ScalarProperty Name="exonerado" ColumnName="exonerado" />
+          <ScalarProperty Name="gratuito" ColumnName="gratuito" />
+          <ScalarProperty Name="xchgrate" ColumnName="xchgrate" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="trdisamt" ColumnName="trdisamt" />
+          <ScalarProperty Name="IvaImponiblePen" ColumnName="IvaImponiblePen" />
+          <ScalarProperty Name="ivaPen" ColumnName="ivaPen" />
+          <ScalarProperty Name="inafectaPen" ColumnName="inafectaPen" />
+          <ScalarProperty Name="exoneradoPen" ColumnName="exoneradoPen" />
+          <ScalarProperty Name="gratuitoPen" ColumnName="gratuitoPen" />
+          <ScalarProperty Name="docamnt" ColumnName="docamnt" />
+          <ScalarProperty Name="discrepanciaTipo" ColumnName="discrepanciaTipo" />
+          <ScalarProperty Name="discrepanciaDesc" ColumnName="discrepanciaDesc" />
+          <ScalarProperty Name="montoEnLetras" ColumnName="montoEnLetras" />
+          <ScalarProperty Name="estadoContabilizado" ColumnName="estadoContabilizado" />
+          <ScalarProperty Name="docdate" ColumnName="docdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwCfdiGeneraResumenDiario">
+      <EntityTypeMapping TypeName="PERUEntities.vwCfdiGeneraResumenDiario">
+        <MappingFragment StoreEntitySet="vwCfdiGeneraResumenDiario">
+          <ScalarProperty Name="tipoResumenDiario" ColumnName="tipoResumenDiario" />
+          <ScalarProperty Name="numResumenDiario" ColumnName="numResumenDiario" />
+          <ScalarProperty Name="docdate" ColumnName="docdate" />
+          <ScalarProperty Name="tipoDocumento" ColumnName="tipoDocumento" />
+          <ScalarProperty Name="emisorTipoDoc" ColumnName="emisorTipoDoc" />
+          <ScalarProperty Name="emisorNroDoc" ColumnName="emisorNroDoc" />
+          <ScalarProperty Name="emisorNombre" ColumnName="emisorNombre" />
+          <ScalarProperty Name="emisorUbigeo" ColumnName="emisorUbigeo" />
+          <ScalarProperty Name="emisorDireccion" ColumnName="emisorDireccion" />
+          <ScalarProperty Name="emisorUrbanizacion" ColumnName="emisorUrbanizacion" />
+          <ScalarProperty Name="emisorDepartamento" ColumnName="emisorDepartamento" />
+          <ScalarProperty Name="emisorProvincia" ColumnName="emisorProvincia" />
+          <ScalarProperty Name="emisorDistrito" ColumnName="emisorDistrito" />
+          <ScalarProperty Name="receptorTipoDoc" ColumnName="receptorTipoDoc" />
+          <ScalarProperty Name="receptorNroDoc" ColumnName="receptorNroDoc" />
+          <ScalarProperty Name="serie" ColumnName="serie" />
+          <ScalarProperty Name="sopnumbe" ColumnName="sopnumbe" />
+          <ScalarProperty Name="iniRango" ColumnName="iniRango" />
+          <ScalarProperty Name="finRango" ColumnName="finRango" />
+          <ScalarProperty Name="moneda" ColumnName="moneda" />
+          <ScalarProperty Name="totalIvaImponible" ColumnName="totalIvaImponible" />
+          <ScalarProperty Name="totalIva" ColumnName="totalIva" />
+          <ScalarProperty Name="totalInafecta" ColumnName="totalInafecta" />
+          <ScalarProperty Name="totalExonerado" ColumnName="totalExonerado" />
+          <ScalarProperty Name="totalGratuito" ColumnName="totalGratuito" />
+          <ScalarProperty Name="totalDescuento" ColumnName="totalDescuento" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="tipoDocumentoTo" ColumnName="tipoDocumentoTo" />
+          <ScalarProperty Name="sopnumbeTo" ColumnName="sopnumbeTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwCfdiRelacionados">
+      <EntityTypeMapping TypeName="PERUEntities.vwCfdiRelacionados">
+        <MappingFragment StoreEntitySet="vwCfdiRelacionados">
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="tipoDocumento" ColumnName="tipoDocumento" />
+          <ScalarProperty Name="soptypeFrom" ColumnName="soptypeFrom" />
+          <ScalarProperty Name="sopnumbeFrom" ColumnName="sopnumbeFrom" />
+          <ScalarProperty Name="soptypeTo" ColumnName="soptypeTo" />
+          <ScalarProperty Name="sopnumbeTo" ColumnName="sopnumbeTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

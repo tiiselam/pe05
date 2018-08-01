@@ -1,0 +1,12 @@
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\obj\Debug\cfdiPeruDFacture.csprojAssemblyReference.cache
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\obj\Debug\cfdiPeruDFacture.csproj.CoreCompileInputs.cache
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\bin\Debug\cfdiPeruDFacture.dll.config
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\bin\Debug\cfdiPeruDFacture.dll
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\bin\Debug\cfdiPeruDFacture.pdb
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\bin\Debug\cfdiPeruInterfacesFacturador.dll
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\bin\Debug\OpenInvoicePeru.Comun.Dto.dll
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\bin\Debug\cfdiPeruInterfacesFacturador.pdb
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\bin\Debug\cfdiPeruInterfacesFacturador.dll.config
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\obj\Debug\cfdiPeruDFacture.csproj.CopyComplete
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\obj\Debug\cfdiPeruDFacture.dll
+C:\DESA\TIISELAM\pe05-master\app\cfdiPeruDFacture\obj\Debug\cfdiPeruDFacture.pdb
