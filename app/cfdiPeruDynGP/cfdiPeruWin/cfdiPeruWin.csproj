@@ -101,6 +101,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Net.Http.dll</HintPath>
@@ -194,6 +195,14 @@
       <Project>{4954c962-f4d6-4c0c-91dd-18a690e326cd}</Project>
       <Name>cfdiEntidadesGP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\cfdiPeruDFactureWS\cfdiPeruDFactureWS.csproj">
+      <Project>{7ec180e2-bcc6-4cb0-a992-375bed2ce336}</Project>
+      <Name>cfdiPeruDFactureWS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\cfdiPeruInterfacesFacturador\cfdiPeruInterfaces.csproj">
+      <Project>{32e2bbb0-c891-4b06-8dec-7075d00cac71}</Project>
+      <Name>cfdiPeruInterfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Comun\Comun.csproj">
       <Project>{d43004bd-e235-41be-b272-a05fc4fb9a96}</Project>
       <Name>Comun</Name>
@@ -229,7 +238,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

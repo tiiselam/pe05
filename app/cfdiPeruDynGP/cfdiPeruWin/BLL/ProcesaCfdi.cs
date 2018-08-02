@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using cfdiPeruInterfaces;
 
 namespace cfd.FacturaElectronica
 {
@@ -61,6 +62,121 @@ namespace cfd.FacturaElectronica
             _Conex = Conex;
             _client = new HttpClient { BaseAddress = new Uri(ConfigurationManager.AppSettings["UrlOpenInvoicePeruApi"]) };
 
+        }
+
+        /// <summary>
+        /// Ejecuta la generación de documentos xml: factura, boleta, nc, nd
+        /// </summary>
+        public void GeneraDocumentoXml(ICfdiMetodosWebService servicioTimbre)
+        {
+            string xmlFactura = string.Empty;
+            string rutaYNom = string.Empty;
+            try
+            {
+                String msj = String.Empty;
+                trxVenta.Rewind();                                                          //move to first record
+
+                int errores = 0; int i = 1;
+                cfdReglasFacturaXml DocVenta = new cfdReglasFacturaXml(_Conex, _Param);     //log de facturas xml emitidas y anuladas
+                ReglasME maquina = new ReglasME(_Param);
+                ValidadorXML validadorxml = new ValidadorXML(_Param);
+                TransformerXML loader = new TransformerXML();
+                OnProgreso(1, "INICIANDO EMISION DE COMPROBANTES DE VENTA...");              //Notifica al suscriptor
+                do
+                {
+                    msj = String.Empty;
+                    String accion = "EMITE XML Y PDF";
+                    try
+                    {
+                        if (trxVenta.Estado.Equals("no emitido") &&
+                            maquina.ValidaTransicion(_Param.tipoDoc, accion, trxVenta.EstadoActual, "emitido/impreso") &&
+                            trxVenta.EstadoContabilizado.Equals("contabilizado"))
+                            if (trxVenta.Voidstts == 0)  //documento no anulado
+                            {
+                                trxVenta.ArmarDocElectronico();
+
+                                switch (trxVenta.DocElectronico.TipoDocumento)
+                                {
+                                    case "07":
+                                        if (trxVenta.DocElectronico.Relacionados.Count() == 0)
+                                        {
+                                            msj = "La nota de crédito no está aplicada.";
+                                            continue;
+                                        }
+                                        else
+                                        {
+                                            if (trxVenta.DocElectronico.Relacionados
+                                                                        .Where(f => f.NroDocumento.Substring(0, 1) == trxVenta.DocElectronico.IdDocumento.Substring(0, 1)).Count() != trxVenta.DocElectronico.Relacionados.Count())
+                                            {
+                                                msj = "La serie de la nota de crédito y de la factura aplicada deben empezar con la misma letra: F o B.";
+                                                continue;
+                                            }
+                                        }
+                                        if (trxVenta.DocElectronico.Discrepancias.Count() == 0)
+                                        {
+                                            msj = "No ha informado la causa de la discrepancia en la nota de crédito.";
+                                            continue;
+                                        }
+
+                                        break;
+                                    default:
+                                        msj = "No existe API para el tipo de documento: " + trxVenta.DocElectronico.TipoDocumento;
+                                        throw new ApplicationException(msj);
+                                        //break;
+                                }
+
+                                string textoFactura = string.Empty; //CONVERTIR A TEXTO
+
+                                xmlFactura = servicioTimbre.TimbraYEnviaASunat(trxVenta.DocElectronico.Emisor.NroDocumento, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, textoFactura);
+
+                                rutaYNom = DocVenta.GuardaArchivo(trxVenta, xmlFactura, string.Empty, _Param.tipoDoc, accion);
+
+                                //Anota en la bitácora la factura emitida
+                                DocVenta.LogDocumento(trxVenta, xmlFactura, maquina, "FAC", _Param.tipoDoc, accion, true, rutaYNom);
+
+                            }
+                            else //si el documento está anulado en gp, agregar al log como emitido
+                            {
+                                maquina.ValidaTransicion("FACTURA", "ANULA VENTA", trxVenta.EstadoActual, "emitido");
+                                msj = "Anulado en GP y marcado como emitido.";
+                                DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, "Anulado en GP", "0", _Conex.Usuario, "", "emitido", maquina.eBinarioNuevo, msj.Trim());
+                            }
+                    }
+                    catch (TimeoutException ae)
+                    {
+                        msj = ae.Message + Environment.NewLine + ae.StackTrace;
+                        errores++;
+                    }
+                    catch (IOException io)
+                    {
+                        msj = "El comprobante fue emitido, pero no se pudo guardar el archivo en: " + trxVenta.Ruta_clave + " Verifique la carpeta y sus permisos." + Environment.NewLine + io.Message + Environment.NewLine;
+                        DocVenta.LogDocumento(trxVenta, xmlFactura, maquina, "FAC", _Param.tipoDoc, accion, true, msj);
+                        errores++;
+                    }
+                    catch (Exception lo)
+                    {
+                        string imsj = lo.InnerException == null ? "" : lo.InnerException.ToString();
+                        msj = lo.Message + " " + imsj + Environment.NewLine + lo.StackTrace;
+                        DocVenta.LogDocumento(trxVenta, xmlFactura, maquina, "FAC", _Param.tipoDoc, accion, false, msj);
+                        errores++;
+                    }
+                    finally
+                    {
+                        OnProgreso(i * 100 / trxVenta.RowCount, "Doc:" + trxVenta.Sopnumbe + " " + msj.Trim() + Environment.NewLine);              //Notifica al suscriptor
+                        i++;
+                    }
+                } while (trxVenta.MoveNext() && errores < 10);
+            }
+            catch (Exception xw)
+            {
+                string imsj = xw.InnerException == null ? "" : xw.InnerException.ToString();
+                this.ultimoMensaje = xw.Message + " " + imsj + Environment.NewLine + xw.StackTrace;
+            }
+            finally
+            {
+                OnProgreso(100, ultimoMensaje);
+            }
+            OnProgreso(100, "Proceso finalizado!");
         }
 
         /// <summary>
@@ -233,6 +349,8 @@ namespace cfd.FacturaElectronica
                     try
                     {
                         trxVenta.ArmarDocElectronico();
+
+
 //                        trxVenta.DocElectronico
 
                     }

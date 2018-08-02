@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace cfdiPeru.Properties {
+namespace cfdiPeruDFactureWS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -20,6 +20,16 @@ namespace cfdiPeru.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://ws.dfacture.com.pe/integracionesdemo/MetodosClient.asmx")]
+        public string cfdiPeruDFactureWS_pe_dfacture_ws_MetodosClient {
+            get {
+                return ((string)(this["cfdiPeruDFactureWS_pe_dfacture_ws_MetodosClient"]));
             }
         }
     }

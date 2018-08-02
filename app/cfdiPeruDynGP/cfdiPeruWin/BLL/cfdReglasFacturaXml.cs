@@ -249,6 +249,104 @@ namespace cfd.FacturaElectronica
         }
 
         /// <summary>
+        /// Guarda el archivo xml.
+        /// </summary>
+        /// <param name="trxVenta">Lista de facturas cuyo índice apunta a la factura que se va procesar.</param>
+        /// <param name="comprobante">Documento xml firmado por la sunat</param>
+        /// <param name="nombreArchivo">nombre de archivo (opcional)</param>
+        /// <param name="tipoDoc">Tipo de documento</param>
+        /// <param name="accion">Acción ejecutada por el usuario</param>
+        public string GuardaArchivo(vwCfdTransaccionesDeVenta trxVenta, String comprobante, String nombreArchivo, String tipoDoc, String accion)
+        {
+            try
+            {   //arma el nombre del archivo xml
+                string nomArchivo = string.IsNullOrEmpty(nombreArchivo) ? Utiles.FormatoNombreArchivo(trxVenta.Docid + trxVenta.Sopnumbe + "_" + trxVenta.s_CUSTNMBR, trxVenta.s_NombreCliente, 20) : nombreArchivo;
+                string rutaYNomArchivoCfdi = string.Concat(trxVenta.RutaXml.Trim(), nomArchivo, "_", accion.Substring(0, 2), ".xml");
+
+                //Guarda el archivo xml
+                if ((tipoDoc.Equals("FACTURA") && accion.Equals("EMITE XML Y PDF")) ||
+                    (tipoDoc.Equals("RESUMEN") && accion.Equals("ENVIA RESUMEN")) ||
+                    (tipoDoc.Equals("FACTURA") && accion.Equals("DAR DE BAJA")) ||
+                    accion.Equals("CONSULTA CDR")
+                    )
+                {
+                    if (!string.IsNullOrEmpty(comprobante))
+                        File.WriteAllText(rutaYNomArchivoCfdi, comprobante);
+                    else
+                        throw new ArgumentException("No se puede guardar el archivo xml " + nomArchivo + " porque está vacío.");
+                }
+                return rutaYNomArchivoCfdi;
+
+            }
+            catch (DirectoryNotFoundException)
+            {
+                string smsj = "Verifique la existencia de la carpeta indicada en la configuración de Ruta de archivos Xml de GP. La ruta de la carpeta no existe: " + trxVenta.RutaXml;
+                throw new DirectoryNotFoundException(smsj);
+            }
+            catch (IOException)
+            {
+                string smsj = "Verifique permisos de escritura en la carpeta: " + trxVenta.RutaXml + ". No se pudo guardar el archivo xml.";
+                throw new IOException(smsj);
+            }
+            catch (Exception eAFE)
+            {
+                string smsj;
+                if (eAFE.Message.Contains("denied"))
+                    smsj = "Elimine el archivo xml antes de volver a generar uno nuevo. Luego vuelva a intentar. " + eAFE.Message;
+                else
+                    smsj = "Contacte a su administrador. No se pudo guardar el archivo XML. " + eAFE.Message + Environment.NewLine + eAFE.StackTrace;
+                throw new Exception(smsj);
+            }
+        }
+        /// <summary>
+        /// Anota en la bitácora la factura emitida y el nuevo estado binario.
+        /// </summary>
+        /// <param name="trxVenta">Lista de facturas cuyo índice apunta a la factura que se va procesar.</param>
+        /// <param name="comprobante">Documento xml firmado por la sunat</param>
+        /// <param name="mEstados">Nuevo set de estados</param>
+        /// <param name="ticket"></param>
+        /// <param name="tipoDoc"></param>
+        /// <param name="accion"></param>
+        /// <param name="eBinarioOK"></param>
+        public void LogDocumento(vwCfdTransaccionesDeVenta trxVenta, String comprobante, ReglasME mEstados, String ticket, String tipoDoc, String accion, bool eBinarioOK, String rutaYNomArchivoCfdi)
+        {
+            try
+            {   
+                String status;
+                String msjBinActual;
+                String eBinario = !eBinarioOK ? mEstados.eBinActualConError : mEstados.eBinarioNuevo;
+                switch (accion)
+                {
+                    case "DAR DE BAJA":
+                        status = "publicado";
+                        msjBinActual = "Baja solicitada el " + DateTime.Today.ToString();
+                        break;
+                    case "CONSULTA CDR":
+                        if (tipoDoc.Equals("FACTURA"))
+                            status = !eBinarioOK ? "rechazo_sunat" : "anulado";
+                        else
+                            status = !eBinarioOK ? "rechazo_sunat" : "acepta_sunat";
+
+                        msjBinActual = comprobante;
+                        break;
+                    default:
+                        status = "emitido";
+                        msjBinActual = mEstados.EnLetras(eBinario, tipoDoc);
+                        break;
+                }
+
+                //Registra log de la emisión del xml antes de imprimir el pdf, sino habrá error al imprimir
+                RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNomArchivoCfdi, ticket, _Conexion.Usuario, comprobante.Replace("encoding=\"utf-8\"", ""),
+                                        status, eBinario, msjBinActual);
+            }
+            catch (Exception eAFE)
+            {
+                string smsj = "Contacte al administrador. No se pudo registrar el estado del documento en la bitácora. " + eAFE.Message + Environment.NewLine + eAFE.StackTrace;
+                throw new Exception(smsj);
+            }
+        }
+
+        /// <summary>
         /// Guarda el archivo xml, lo comprime en zip y anota en la bitácora la factura emitida y el nuevo estado binario.
         /// Luego genera y guarda el código de barras bidimensional y pdf. En caso de error, anota en la bitácora. 
         /// </summary>
@@ -279,7 +377,7 @@ namespace cfd.FacturaElectronica
                 }
 
                 //Guarda el CDR
-                if (tipoDoc.Equals("FACTURA") && accion.Equals("EMITE XML Y PDF") ||
+                if (tipoDoc.Equals("FACTURA") && //accion.Equals("EMITE XML Y PDF") ||
                     accion.Equals("CONSULTA CDR")
                     )
                 {
