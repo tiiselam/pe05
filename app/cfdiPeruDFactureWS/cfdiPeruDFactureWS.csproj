@@ -96,6 +96,9 @@
     <None Include="Web References\pe.dfacture.ws\MetodosClient.disco" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="OpenInvoicePeru.Comun.Dto">
+      <HintPath>..\..\..\pe02\app\OpenInvoicePeru.Comun.Dto\bin\Debug\OpenInvoicePeru.Comun.Dto.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.EnterpriseServices" />
@@ -114,6 +117,12 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="WSDFacture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\cfdiPeruInterfacesFacturador\cfdiPeruInterfaces.csproj">
+      <Project>{32e2bbb0-c891-4b06-8dec-7075d00cac71}</Project>
+      <Name>cfdiPeruInterfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

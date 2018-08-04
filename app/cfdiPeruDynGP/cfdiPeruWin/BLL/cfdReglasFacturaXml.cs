@@ -12,6 +12,7 @@ using cfdiPeru;
 using Comun;
 //using Reporteador;
 using MaquinaDeEstados;
+using System.Threading.Tasks;
 
 namespace cfd.FacturaElectronica
 {
@@ -245,6 +246,62 @@ namespace cfd.FacturaElectronica
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        /// <summary>
+        /// Guarda el archivo xml.
+        /// </summary>
+        /// <param name="trxVenta">Lista de facturas cuyo índice apunta a la factura que se va procesar.</param>
+        /// <param name="comprobante">Documento xml firmado por la sunat</param>
+        /// <param name="nombreArchivo">nombre de archivo (opcional)</param>
+        /// <param name="tipoDoc">Tipo de documento</param>
+        /// <param name="accion">Acción ejecutada por el usuario</param>
+        /// <param name="esBinario">Es archivo binario o texto?</param>
+        /// <param name="extension">.xml .pdf ...</param>
+        public async Task<string> GuardaArchivoAsync(vwCfdTransaccionesDeVenta trxVenta, String comprobante, String nombreArchivo, string extension, bool esBinario)
+        {
+            try
+            {   
+                string rutaYNomArchivoCfdi = Path.Combine(trxVenta.RutaXml.Trim(), nombreArchivo, extension);
+
+                if (esBinario)
+                {
+                    byte[] data = Convert.FromBase64String(comprobante);
+                    using (FileStream SourceStream = File.Open(rutaYNomArchivoCfdi, FileMode.OpenOrCreate))
+                    {
+                        SourceStream.Seek(0, SeekOrigin.End);
+                        await SourceStream.WriteAsync(data, 0, data.Length);
+                    }
+
+                }
+                else
+                {
+                    using (StreamWriter outputFile = new StreamWriter(rutaYNomArchivoCfdi))
+                    {
+                        await outputFile.WriteAsync(comprobante);
+                    }
+                }
+                return rutaYNomArchivoCfdi;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                string smsj = "Verifique la existencia de la carpeta indicada en la configuración de Ruta de archivos Xml de GP. La ruta de la carpeta no existe: " + trxVenta.RutaXml;
+                throw new DirectoryNotFoundException(smsj);
+            }
+            catch (IOException)
+            {
+                string smsj = "Verifique permisos de escritura en la carpeta: " + trxVenta.RutaXml + ". No se pudo guardar el archivo xml.";
+                throw new IOException(smsj);
+            }
+            catch (Exception eAFE)
+            {
+                string smsj;
+                if (eAFE.Message.Contains("denied"))
+                    smsj = "Elimine el archivo xml antes de volver a generar uno nuevo. Luego vuelva a intentar. " + eAFE.Message;
+                else
+                    smsj = "Contacte a su administrador. No se pudo guardar el archivo XML. " + eAFE.Message + Environment.NewLine + eAFE.StackTrace;
+                throw new Exception(smsj);
             }
         }
 
