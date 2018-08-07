@@ -89,6 +89,7 @@
             this.ultimos30diasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ultimos60DíasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mesActualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripAccionesXMLOtros = new System.Windows.Forms.ToolStrip();
             this.tsButtonConsultaTimbre = new System.Windows.Forms.ToolStripButton();
             this.tsBtnAnulaElimina = new System.Windows.Forms.ToolStripButton();
@@ -111,7 +112,6 @@
             this.toolStripEmail = new System.Windows.Forms.ToolStrip();
             this.tsBtnEnviaEmail = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsPbProcesoActivo = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripPDF = new System.Windows.Forms.ToolStrip();
             this.tsBtnGeneraPDF = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -141,7 +141,6 @@
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgridTrxFacturas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwCfdTransaccionesDeVentaBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -156,7 +155,6 @@
             this.toolStripAuxRechazar.SuspendLayout();
             this.toolStripEmailMas.SuspendLayout();
             this.toolStripEmail.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.toolStripPDF.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -198,7 +196,7 @@
             this.dgridTrxFacturas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgridTrxFacturas.RowHeadersWidth = 10;
             this.dgridTrxFacturas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgridTrxFacturas.Size = new System.Drawing.Size(1133, 287);
+            this.dgridTrxFacturas.Size = new System.Drawing.Size(1014, 287);
             this.dgridTrxFacturas.TabIndex = 50;
             this.dgridTrxFacturas.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgridTrxFacturas_RowPostPaint_1);
             // 
@@ -457,7 +455,7 @@
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.progressBar1.Location = new System.Drawing.Point(0, 531);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1147, 10);
+            this.progressBar1.Size = new System.Drawing.Size(1028, 10);
             this.progressBar1.Step = 4;
             this.progressBar1.TabIndex = 6;
             // 
@@ -471,7 +469,7 @@
             this.txtbxMensajes.Multiline = true;
             this.txtbxMensajes.Name = "txtbxMensajes";
             this.txtbxMensajes.ReadOnly = true;
-            this.txtbxMensajes.Size = new System.Drawing.Size(1147, 38);
+            this.txtbxMensajes.Size = new System.Drawing.Size(1028, 38);
             this.txtbxMensajes.TabIndex = 60;
             // 
             // toolStripProgressBar2
@@ -692,21 +690,21 @@
             // hoyToolStripMenuItem
             // 
             this.hoyToolStripMenuItem.Name = "hoyToolStripMenuItem";
-            this.hoyToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.hoyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hoyToolStripMenuItem.Text = "Hoy          ";
             this.hoyToolStripMenuItem.Click += new System.EventHandler(this.hoyToolStripMenuItem_Click);
             // 
             // ayerToolStripMenuItem
             // 
             this.ayerToolStripMenuItem.Name = "ayerToolStripMenuItem";
-            this.ayerToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.ayerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ayerToolStripMenuItem.Text = "Ayer             ";
             this.ayerToolStripMenuItem.Click += new System.EventHandler(this.ayerToolStripMenuItem_Click);
             // 
             // ultimos7DíasToolStripMenuItem
             // 
             this.ultimos7DíasToolStripMenuItem.Name = "ultimos7DíasToolStripMenuItem";
-            this.ultimos7DíasToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.ultimos7DíasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ultimos7DíasToolStripMenuItem.Tag = "";
             this.ultimos7DíasToolStripMenuItem.Text = "Ultimos 7 días";
             this.ultimos7DíasToolStripMenuItem.Click += new System.EventHandler(this.ultimos7DíasToolStripMenuItem_Click);
@@ -714,23 +712,32 @@
             // ultimos30diasToolStripMenuItem
             // 
             this.ultimos30diasToolStripMenuItem.Name = "ultimos30diasToolStripMenuItem";
-            this.ultimos30diasToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.ultimos30diasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ultimos30diasToolStripMenuItem.Text = "Ultimos 30 días";
             this.ultimos30diasToolStripMenuItem.Click += new System.EventHandler(this.dToolStripMenuItem_Click);
             // 
             // ultimos60DíasToolStripMenuItem
             // 
             this.ultimos60DíasToolStripMenuItem.Name = "ultimos60DíasToolStripMenuItem";
-            this.ultimos60DíasToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.ultimos60DíasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ultimos60DíasToolStripMenuItem.Text = "Ultimos 60 días";
             this.ultimos60DíasToolStripMenuItem.Click += new System.EventHandler(this.ultimos60DíasToolStripMenuItem_Click);
             // 
             // mesActualToolStripMenuItem
             // 
             this.mesActualToolStripMenuItem.Name = "mesActualToolStripMenuItem";
-            this.mesActualToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.mesActualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mesActualToolStripMenuItem.Text = "Mes actual";
             this.mesActualToolStripMenuItem.Click += new System.EventHandler(this.mesActualToolStripMenuItem_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(53, 20);
+            this.toolStripButton2.Text = "TEST";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click_1);
             // 
             // toolStripAccionesXMLOtros
             // 
@@ -838,7 +845,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1147, 26);
+            this.panel4.Size = new System.Drawing.Size(1028, 26);
             this.panel4.TabIndex = 74;
             // 
             // panel2
@@ -848,7 +855,7 @@
             this.panel2.Controls.Add(this.lblUsuario);
             this.panel2.Controls.Add(this.lblFecha);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(717, 0);
+            this.panel2.Location = new System.Drawing.Point(598, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(430, 26);
             this.panel2.TabIndex = 17;
@@ -898,7 +905,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 26);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1147, 88);
+            this.panel5.Size = new System.Drawing.Size(1028, 88);
             this.panel5.TabIndex = 75;
             // 
             // toolStripAuxRechazar
@@ -993,20 +1000,13 @@
             this.toolStrip1.AutoSize = false;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Right;
             this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsPbProcesoActivo});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.toolStrip1.Location = new System.Drawing.Point(800, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(681, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(347, 88);
             this.toolStrip1.TabIndex = 72;
             this.toolStrip1.Tag = "";
             this.toolStrip1.Text = "Restricciones";
-            // 
-            // tsPbProcesoActivo
-            // 
-            this.tsPbProcesoActivo.Name = "tsPbProcesoActivo";
-            this.tsPbProcesoActivo.Size = new System.Drawing.Size(100, 15);
             // 
             // toolStripPDF
             // 
@@ -1057,7 +1057,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 114);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1147, 60);
+            this.panel1.Size = new System.Drawing.Size(1028, 60);
             this.panel1.TabIndex = 76;
             // 
             // textBCliente
@@ -1103,7 +1103,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1133, 287);
+            this.panel3.Size = new System.Drawing.Size(1014, 287);
             this.panel3.TabIndex = 77;
             // 
             // checkBoxMark
@@ -1138,7 +1138,7 @@
             this.tabCfdi.Location = new System.Drawing.Point(0, 174);
             this.tabCfdi.Name = "tabCfdi";
             this.tabCfdi.SelectedIndex = 0;
-            this.tabCfdi.Size = new System.Drawing.Size(1147, 319);
+            this.tabCfdi.Size = new System.Drawing.Size(1028, 319);
             this.tabCfdi.TabIndex = 78;
             this.tabCfdi.SelectedIndexChanged += new System.EventHandler(this.tabCfdi_SelectedIndexChanged);
             // 
@@ -1149,7 +1149,7 @@
             this.tabFacturas.Location = new System.Drawing.Point(4, 22);
             this.tabFacturas.Name = "tabFacturas";
             this.tabFacturas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFacturas.Size = new System.Drawing.Size(1139, 293);
+            this.tabFacturas.Size = new System.Drawing.Size(1020, 293);
             this.tabFacturas.TabIndex = 0;
             this.tabFacturas.Text = "FACTURAS";
             this.tabFacturas.UseVisualStyleBackColor = true;
@@ -1161,7 +1161,7 @@
             this.tabResumen.Location = new System.Drawing.Point(4, 22);
             this.tabResumen.Name = "tabResumen";
             this.tabResumen.Padding = new System.Windows.Forms.Padding(3);
-            this.tabResumen.Size = new System.Drawing.Size(1139, 293);
+            this.tabResumen.Size = new System.Drawing.Size(1020, 293);
             this.tabResumen.TabIndex = 1;
             this.tabResumen.Text = "RESUMEN";
             this.tabResumen.UseVisualStyleBackColor = true;
@@ -1208,7 +1208,7 @@
             this.dgridTrxResumen.Location = new System.Drawing.Point(3, 3);
             this.dgridTrxResumen.Name = "dgridTrxResumen";
             this.dgridTrxResumen.RowHeadersWidth = 10;
-            this.dgridTrxResumen.Size = new System.Drawing.Size(1133, 287);
+            this.dgridTrxResumen.Size = new System.Drawing.Size(1014, 287);
             this.dgridTrxResumen.TabIndex = 0;
             this.dgridTrxResumen.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgridTrxResumen_RowPostPaint);
             // 
@@ -1319,20 +1319,11 @@
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton1";
             // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(53, 20);
-            this.toolStripButton2.Text = "TEST";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click_1);
-            // 
             // winformGeneraFE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 541);
+            this.ClientSize = new System.Drawing.Size(1028, 541);
             this.Controls.Add(this.tabCfdi);
             this.Controls.Add(this.pBarProcesoActivo);
             this.Controls.Add(this.tsConfirmaAnulaXml);
@@ -1370,8 +1361,6 @@
             this.toolStripEmailMas.PerformLayout();
             this.toolStripEmail.ResumeLayout(false);
             this.toolStripEmail.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.toolStripPDF.ResumeLayout(false);
             this.toolStripPDF.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -1476,7 +1465,6 @@
         private System.Windows.Forms.TabControl tabCfdi;
         private System.Windows.Forms.TabPage tabFacturas;
         private System.Windows.Forms.TabPage tabResumen;
-        private System.Windows.Forms.ToolStripProgressBar tsPbProcesoActivo;
         private System.Windows.Forms.CheckBox cBoxMarcCobros;
         private System.Windows.Forms.DataGridView dgridTrxResumen;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechahoraDataGridViewTextBoxColumn1;

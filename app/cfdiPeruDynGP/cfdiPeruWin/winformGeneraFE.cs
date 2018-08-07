@@ -1021,7 +1021,14 @@ namespace cfdiPeru
                 proc.Progreso += new ProcesaCfdi.LogHandler(reportaProgreso);
                 pBarProcesoActivo.Visible = true;
 
-                await proc.GeneraDocumentoXmlTestAsync();
+                if (this.tabCfdi.SelectedTab.Name.Equals("tabResumen"))
+                    await proc.GeneraResumenXmTestlAsync(); 
+                else
+                    await proc.GeneraDocumentoXmlTestAsync();
+
+
+
+             //   await proc.GeneraDocumentoXmlTestAsync();
 
             }
             //Actualiza la pantalla
@@ -1029,6 +1036,11 @@ namespace cfdiPeru
             AplicaFiltroYActualizaPantalla(this.tabCfdi.SelectedTab.Name);
             progressBar1.Value = 0;
             pBarProcesoActivo.Visible = false;
+        }
+
+        private void toolStripLabel1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

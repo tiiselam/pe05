@@ -4,6 +4,7 @@ using System.Text;
 using OpenInvoicePeru.Comun.Dto.Modelos;
 using cfdiEntidadesGP;
 using Comun;
+using System.Windows.Forms;
 
 namespace cfdiPeru
 {
@@ -69,13 +70,12 @@ namespace cfdiPeru
             try
             {
                 DocumentoVentaGP docGP = new DocumentoVentaGP();
-
                 docGP.GetDatosDocumentoVenta(this.Sopnumbe, this.Soptype);
 
                 _docElectronico = new DocumentoElectronico();
                 _docElectronico.TipoDocumento = docGP.DocVenta.tipoDocumento;
                 _docElectronico.IdDocumento = docGP.DocVenta.idDocumento;
-                _docElectronico.FechaEmision = this.Fechahora.ToString();
+                _docElectronico.FechaEmision = this.Fechahora.ToString(FormatoFecha);
                 _docElectronico.Moneda = docGP.DocVenta.moneda;
                 _docElectronico.Emisor.NroDocumento = docGP.DocVenta.emisorNroDoc;
                 _docElectronico.Emisor.NombreComercial = docGP.DocVenta.emisorNombre;

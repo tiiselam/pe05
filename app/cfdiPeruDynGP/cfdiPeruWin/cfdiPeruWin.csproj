@@ -75,7 +75,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>D4AF225F9B6CFED19BA87670431D0B54F757C575</ManifestCertificateThumbprint>
@@ -95,6 +95,10 @@
     <Reference Include="OpenInvoicePeru.Comun.Dto, Version=1.3.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\pe02\app\OpenInvoicePeru.Comun.Dto\bin\Debug\OpenInvoicePeru.Comun.Dto.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCodeLib, Version=1.0.6513.27482, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\_DevLibrary\QRCodeLib\QRCodeLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -193,6 +197,10 @@
     <ProjectReference Include="..\..\cfdiEntidadesGP\cfdiEntidadesGP.csproj">
       <Project>{4954c962-f4d6-4c0c-91dd-18a690e326cd}</Project>
       <Name>cfdiEntidadesGP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\cfdiPeruDFacture\cfdiPeruDFacture.csproj">
+      <Project>{24a130e0-d666-4473-bba3-9514315384c1}</Project>
+      <Name>cfdiPeruDFacture</Name>
     </ProjectReference>
     <ProjectReference Include="..\Comun\Comun.csproj">
       <Project>{d43004bd-e235-41be-b272-a05fc4fb9a96}</Project>
