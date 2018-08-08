@@ -14,6 +14,7 @@ using cfd.FacturaElectronica;
 using MyGeneration.dOOdads;
 using MaquinaDeEstados;
 using System.Linq;
+using cfdiPeruInterfaces;
 
 namespace cfdiPeru
 {
@@ -1020,8 +1021,8 @@ namespace cfdiPeru
                 proc.TrxVenta = regla.CfdiTransacciones;
                 proc.Progreso += new ProcesaCfdi.LogHandler(reportaProgreso);
                 pBarProcesoActivo.Visible = true;
-
-                await proc.GeneraDocumentoXmlTestAsync();
+                ICfdiMetodosWebService servicioTimbre = null;
+                await proc.GeneraResumenXmlAsync(servicioTimbre);
 
             }
             //Actualiza la pantalla

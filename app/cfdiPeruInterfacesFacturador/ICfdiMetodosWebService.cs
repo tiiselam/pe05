@@ -11,6 +11,8 @@ namespace cfdiPeruInterfaces
         string TimbraYEnviaASunat(string ruc, string usuario, string usuarioPassword, string texto);
         Task<string> ObtieneYGuardaPDFAsync(string ruc, string tipoDoc, string serie, string correlativo, string ruta, string nombreArchivo, string extension);
         Tuple<string, string> ResumenDiario(string ruc, string usuario, string usuarioPassword, string texto);
+        Task<string> ObtieneYGuardaCDRAsync(string ruc, string tipoDoc, string serie, string correlativo, string rutaYNomArchivoCfdi);
+
     }
 
 }

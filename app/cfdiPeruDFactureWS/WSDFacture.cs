@@ -52,13 +52,40 @@ namespace cfdiPeruDFactureWS
 
         }
 
+        public string DescargaCDR(string ruc, string tipoDoc, string serie, string correlativo)
+        {
+            string serieCorrelativo = string.Concat(tipoDoc, "-", serie, "-", correlativo);
+            string archivoCDR = Servicio.DescargaCDR(ruc, serieCorrelativo);
+            if (archivoCDR == "0")
+            {
+                throw new ArgumentException(string.Concat("No se puede descargar el CDR. Verifique la numeración: tipo - serie - correlativo: ", serieCorrelativo, " e intente nuevamente más tarde. "));
+            }
+            return archivoCDR;
+        }
+
+        public async Task<string> ObtieneYGuardaCDRAsync(string ruc, string tipoDoc, string serie, string correlativo, string rutaYNomArchivoCfdi) //string ruta, string nombreArchivo, string extension)
+        {
+            //string rutaYNomArchivoCfdi = Path.Combine(ruta, nombreArchivo, extension);
+            string archivoCDR = DescargaCDR(ruc, tipoDoc, serie, correlativo);
+
+            byte[] data = Convert.FromBase64String(archivoCDR);
+            using (FileStream SourceStream = File.Open(rutaYNomArchivoCfdi, FileMode.OpenOrCreate))
+            {
+                SourceStream.Seek(0, SeekOrigin.End);
+                await SourceStream.WriteAsync(data, 0, data.Length);
+            }
+
+            return Encoding.UTF8.GetString(data);
+
+        }
+
         public string DescargaPDF(string ruc, string tipoDoc, string serie, string correlativo)
         {
             string serieCorrelativo = string.Concat(tipoDoc, "-", serie, "-", correlativo);
             string archivoPdf = Servicio.DescargaPDF(ruc, serieCorrelativo);
             if (archivoPdf == "0")
             {
-                throw new ArgumentException(string.Concat("No se puede descargar el PDF, verifique la numeración: tipo - serie - correlativo: ", serieCorrelativo, " e intente nuevamente. "));
+                throw new ArgumentException(string.Concat("No se puede descargar el PDF. Verifique la numeración: tipo - serie - correlativo: ", serieCorrelativo, " e intente nuevamente más tarde. "));
             }
             return archivoPdf;
         }

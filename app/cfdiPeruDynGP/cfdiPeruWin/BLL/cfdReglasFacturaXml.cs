@@ -369,32 +369,32 @@ namespace cfd.FacturaElectronica
         {
             try
             {   
-                String status;
+                String statusBase;
                 String msjBinActual;
                 String eBinario = !eBinarioOK ? mEstados.eBinActualConError : mEstados.eBinarioNuevo;
                 switch (accion)
                 {
                     case "DAR DE BAJA":
-                        status = "publicado";
+                        statusBase = "publicado";
                         msjBinActual = "Baja solicitada el " + DateTime.Today.ToString();
                         break;
                     case "CONSULTA CDR":
                         if (tipoDoc.Equals("FACTURA"))
-                            status = !eBinarioOK ? "rechazo_sunat" : "anulado";
+                            statusBase = !eBinarioOK ? "rechazo_sunat" : "anulado";
                         else
-                            status = !eBinarioOK ? "rechazo_sunat" : "acepta_sunat";
+                            statusBase = !eBinarioOK ? "rechazo_sunat" : "acepta_sunat";
 
                         msjBinActual = comprobante;
                         break;
                     default:
-                        status = "emitido";
+                        statusBase = "emitido";
                         msjBinActual = mEstados.EnLetras(eBinario, tipoDoc);
                         break;
                 }
 
                 //Registra log de la emisión del xml antes de imprimir el pdf, sino habrá error al imprimir
                 RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNomArchivoCfdi, ticket, _Conexion.Usuario, comprobante.Replace("encoding=\"utf-8\"", ""),
-                                        status, eBinario, msjBinActual);
+                                        statusBase, eBinario, msjBinActual);
             }
             catch (Exception eAFE)
             {
