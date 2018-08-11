@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cfdiPeruDFactureWS
+namespace cfdiPeruOperadorServiciosElectronicos
 {
-    public class WSDFacture : ICfdiMetodosWebService
+    public class WebServicesOSE : ICfdiMetodosWebService
     {
         pe.dfacture.ws.MetodosClient Servicio = new pe.dfacture.ws.MetodosClient();
 
@@ -46,7 +46,7 @@ namespace cfdiPeruDFactureWS
             }
             else
             {
-                throw new TimeoutException("Excepción al conectarse con el Web Service de Facturacion de DFactur-e. " + respuestaT.NumeroError + " - " + respuestaT.MensajeError);
+                throw new TimeoutException("Excepción al conectarse con el Web Service de Facturacion de DFactur-e. [ResumenDiario] " + respuestaT.NumeroError + " - " + respuestaT.MensajeError);
             }
             return Tuple.Create(respuestaT.Nroticketdeatencion, respuestaT.XmlResumen);
 
@@ -63,7 +63,7 @@ namespace cfdiPeruDFactureWS
             return archivoCDR;
         }
 
-        public async Task<string> ObtieneYGuardaCDRAsync(string ruc, string tipoDoc, string serie, string correlativo, string rutaYNomArchivoCfdi) //string ruta, string nombreArchivo, string extension)
+        public async Task<string> ObtieneCDRdelOSEAsync(string ruc, string tipoDoc, string serie, string correlativo, string rutaYNomArchivoCfdi) //string ruta, string nombreArchivo, string extension)
         {
             //string rutaYNomArchivoCfdi = Path.Combine(ruta, nombreArchivo, extension);
             string archivoCDR = DescargaCDR(ruc, tipoDoc, serie, correlativo);
@@ -90,7 +90,7 @@ namespace cfdiPeruDFactureWS
             return archivoPdf;
         }
 
-        public async Task<string> ObtieneYGuardaPDFAsync(string ruc, string tipoDoc, string serie, string correlativo, string ruta, string nombreArchivo, string extension)
+        public async Task<string> ObtienePDFdelOSEAsync(string ruc, string tipoDoc, string serie, string correlativo, string ruta, string nombreArchivo, string extension)
         {
             string rutaYNomArchivoCfdi = Path.Combine(ruta, nombreArchivo, extension);
             string archivoPdf = DescargaPDF(ruc, tipoDoc, serie, correlativo);
@@ -106,6 +106,22 @@ namespace cfdiPeruDFactureWS
 
         }
 
+        public Tuple<string, string> Baja(string ruc, string usuario, string usuarioPassword, string nroDocumento)
+        {
+            pe.dfacture.ws.Cancelacion cancela = new pe.dfacture.ws.Cancelacion();
+
+            cancela = Servicio.ComunicacionBaja(ruc, usuario, usuarioPassword, nroDocumento);
+
+            if (cancela.Procesado)
+            {
+                Debug.WriteLine(" Baja solicitada con el número de ticket: " + cancela.Nroticketdeatencion);
+            }
+            else
+            {
+                throw new TimeoutException("Excepción al conectarse con el Web Service de Facturacion de DFactur-e. [Baja] " + cancela.NumeroError + " - " + cancela.MensajeError);
+            }
+            return Tuple.Create(cancela.Nroticketdeatencion, cancela.XmlBaja);
+        }
         //public async Task DescargaPDFAsync(string ruc, string tipoDoc, string serie, string correlativo)
         //{
         //    Servicio.DescargaPDFCompleted += Servicio_DescargaPDFCompleted;

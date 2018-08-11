@@ -141,7 +141,6 @@
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgridTrxFacturas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwCfdTransaccionesDeVentaBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -663,8 +662,7 @@
             this.toolStripConsulta.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStripConsulta.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripConsulta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsDDButtonFiltroF,
-            this.toolStripButton2});
+            this.tsDDButtonFiltroF});
             this.toolStripConsulta.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStripConsulta.Location = new System.Drawing.Point(602, 0);
             this.toolStripConsulta.Name = "toolStripConsulta";
@@ -692,21 +690,21 @@
             // hoyToolStripMenuItem
             // 
             this.hoyToolStripMenuItem.Name = "hoyToolStripMenuItem";
-            this.hoyToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.hoyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hoyToolStripMenuItem.Text = "Hoy          ";
             this.hoyToolStripMenuItem.Click += new System.EventHandler(this.hoyToolStripMenuItem_Click);
             // 
             // ayerToolStripMenuItem
             // 
             this.ayerToolStripMenuItem.Name = "ayerToolStripMenuItem";
-            this.ayerToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.ayerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ayerToolStripMenuItem.Text = "Ayer             ";
             this.ayerToolStripMenuItem.Click += new System.EventHandler(this.ayerToolStripMenuItem_Click);
             // 
             // ultimos7DíasToolStripMenuItem
             // 
             this.ultimos7DíasToolStripMenuItem.Name = "ultimos7DíasToolStripMenuItem";
-            this.ultimos7DíasToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.ultimos7DíasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ultimos7DíasToolStripMenuItem.Tag = "";
             this.ultimos7DíasToolStripMenuItem.Text = "Ultimos 7 días";
             this.ultimos7DíasToolStripMenuItem.Click += new System.EventHandler(this.ultimos7DíasToolStripMenuItem_Click);
@@ -714,21 +712,21 @@
             // ultimos30diasToolStripMenuItem
             // 
             this.ultimos30diasToolStripMenuItem.Name = "ultimos30diasToolStripMenuItem";
-            this.ultimos30diasToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.ultimos30diasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ultimos30diasToolStripMenuItem.Text = "Ultimos 30 días";
             this.ultimos30diasToolStripMenuItem.Click += new System.EventHandler(this.dToolStripMenuItem_Click);
             // 
             // ultimos60DíasToolStripMenuItem
             // 
             this.ultimos60DíasToolStripMenuItem.Name = "ultimos60DíasToolStripMenuItem";
-            this.ultimos60DíasToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.ultimos60DíasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ultimos60DíasToolStripMenuItem.Text = "Ultimos 60 días";
             this.ultimos60DíasToolStripMenuItem.Click += new System.EventHandler(this.ultimos60DíasToolStripMenuItem_Click);
             // 
             // mesActualToolStripMenuItem
             // 
             this.mesActualToolStripMenuItem.Name = "mesActualToolStripMenuItem";
-            this.mesActualToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.mesActualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mesActualToolStripMenuItem.Text = "Mes actual";
             this.mesActualToolStripMenuItem.Click += new System.EventHandler(this.mesActualToolStripMenuItem_Click);
             // 
@@ -1319,15 +1317,6 @@
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton1";
             // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(53, 20);
-            this.toolStripButton2.Text = "TEST";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click_1);
-            // 
             // winformGeneraFE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1518,7 +1507,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Voidstts;
         private System.Windows.Forms.DataGridViewTextBoxColumn MensajeEA;
         private System.Windows.Forms.DataGridViewTextBoxColumn eBinAct;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace cfdiPeruDFactureWS.Properties {
+namespace cfdiPeruOperadorServiciosElectronicos.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

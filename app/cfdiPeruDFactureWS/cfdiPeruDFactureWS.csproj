@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7EC180E2-BCC6-4CB0-A992-375BED2CE336}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>cfdiPeruDFactureWS</RootNamespace>
+    <RootNamespace>cfdiPeruOperadorServiciosElectronicos</RootNamespace>
     <AssemblyName>cfdiPeruDFactureWS</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -40,36 +40,36 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\pe.dfacture.ws\Cancelacion.datasource">
+    <None Include="Web References\pe.dfacture.ws\Cancelacion1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\pe.dfacture.ws\certificateresponse.datasource">
+    <None Include="Web References\pe.dfacture.ws\certificateresponse1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\pe.dfacture.ws\DownloadResponse.datasource">
+    <None Include="Web References\pe.dfacture.ws\DownloadResponse1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\pe.dfacture.ws\MetodosClient.wsdl" />
-    <None Include="Web References\pe.dfacture.ws\Proceso.datasource">
+    <None Include="Web References\pe.dfacture.ws\Proceso1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\pe.dfacture.ws\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\pe.dfacture.ws\RespuestaTimbradoTXT.datasource">
+    <None Include="Web References\pe.dfacture.ws\RespuestaTimbradoTXT1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\pe.dfacture.ws\Resumen.datasource">
+    <None Include="Web References\pe.dfacture.ws\Resumen1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\pe.dfacture.ws\StampingResult.datasource">
+    <None Include="Web References\pe.dfacture.ws\StampingResult1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\pe.dfacture.ws\StatusResponse.datasource">
+    <None Include="Web References\pe.dfacture.ws\StatusResponse1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\pe.dfacture.ws\Timbresrestantes.datasource">
+    <None Include="Web References\pe.dfacture.ws\Timbresrestantes1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
@@ -111,12 +111,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="DocumentosOSE.cs" />
     <Compile Include="Web References\pe.dfacture.ws\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="WSDFacture.cs" />
+    <Compile Include="WebServicesOSE.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cfdiPeruInterfacesFacturador\cfdiPeruInterfaces.csproj">

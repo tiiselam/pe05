@@ -165,7 +165,7 @@ namespace MaquinaDeEstados
                         ultimoMensaje = "No se puede consultar el CDR porque no existe la solicitud, o el resumen ya fue aceptado/rechazado por la SUNAT. [ValidaTransicion] " + eBinarioActual;
             }
 
-            if (tipoDoc.Equals("FACTURA") && accion.Equals("DAR DE BAJA"))
+            if (tipoDoc.Equals("FACTURA") && accion.Equals("BAJA"))
             {
                     if (_Compania.emite == emitido(eBinarioActual) && !Anulado(eBinarioActual) && !RechazaSunat(eBinarioActual) && !publicado(eBinarioActual))
                     {

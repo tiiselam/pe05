@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace cfdiPeruDFactureWS.pe.dfacture.ws {
+namespace cfdiPeruOperadorServiciosElectronicos.pe.dfacture.ws {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -65,7 +65,7 @@ namespace cfdiPeruDFactureWS.pe.dfacture.ws {
         
         /// <remarks/>
         public MetodosClient() {
-            this.Url = global::cfdiPeruDFactureWS.Properties.Settings.Default.cfdiPeruDFactureWS_pe_dfacture_ws_MetodosClient;
+            this.Url = global::cfdiPeruOperadorServiciosElectronicos.Properties.Settings.Default.cfdiPeruDFactureWS_pe_dfacture_ws_MetodosClient;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

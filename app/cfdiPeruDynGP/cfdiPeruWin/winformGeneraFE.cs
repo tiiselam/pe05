@@ -15,6 +15,7 @@ using MyGeneration.dOOdads;
 using MaquinaDeEstados;
 using System.Linq;
 using cfdiPeruInterfaces;
+using cfdiPeruOperadorServiciosElectronicos;
 
 namespace cfdiPeru
 {
@@ -41,6 +42,9 @@ namespace cfdiPeru
         short idxEstadoDoc = 13;                //columna estado del documento (en números) del grid
         List<CfdiDocumentoId> LDocsNoSeleccionados = new List<CfdiDocumentoId>();   //Docs no marcados del grid
         private ConexionDB DatosConexionDB = new ConexionDB();  //Lee la configuración del archivo xml y obtiene los datos de conexión.
+
+        ICfdiMetodosWebService ServiciosOse = new WebServicesOSE();
+        ICfdiPeruDocumento EstructuraDocsOse = new DocumentosOSE();
 
         public winformGeneraFE()
         {
@@ -372,9 +376,9 @@ namespace cfdiPeru
                 pBarProcesoActivo.Visible = true;
 
                 if (this.tabCfdi.SelectedTab.Name.Equals("tabResumen"))
-                    await proc.GeneraResumenXmlAsync();
+                    await proc.GeneraResumenXmlAsync(ServiciosOse, EstructuraDocsOse);
                 else
-                    await proc.GeneraDocumentoXmlAsync();
+                    await proc.GeneraDocumentoXmlAsync(ServiciosOse, EstructuraDocsOse);
 
             }
             //Actualiza la pantalla
@@ -991,45 +995,45 @@ namespace cfdiPeru
             }
         }
 
-        private async void toolStripButton2_Click_1(object sender, EventArgs e)
-        {
-            int errores = 0;
-            txtbxMensajes.Text = "";
+        //private async void toolStripButton2_Click_1(object sender, EventArgs e)
+        //{
+        //    int errores = 0;
+        //    txtbxMensajes.Text = "";
 
-            Parametros Param = new Parametros(DatosConexionDB.Elemento.Intercompany);
-            Param.ExtDefault = this.tabCfdi.SelectedTab.Name;
+        //    Parametros Param = new Parametros(DatosConexionDB.Elemento.Intercompany);
+        //    Param.ExtDefault = this.tabCfdi.SelectedTab.Name;
 
-            if (!Param.ultimoMensaje.Equals(string.Empty))
-            {
-                txtbxMensajes.Text = Param.ultimoMensaje;
-                errores++;
-            }
-            if (regla.CfdiTransacciones.RowCount == 0)
-            {
-                txtbxMensajes.Text = "No hay documentos para generar. Verifique los criterios de búsqueda.";
-                errores++;
-            }
-            if (!filtraListaSeleccionada()) //Filtra cfdiTransacciones sólo con docs marcados
-            {
-                txtbxMensajes.Text = ultimoMensaje;
-                errores++;
-            }
-            if (errores == 0 && !ExistenTransaccionesAMedioContabilizar(regla.CfdiTransacciones))
-            {
-                HabilitarVentana(false, false, false, false, false, false);
-                ProcesaCfdi proc = new ProcesaCfdi(DatosConexionDB.Elemento, Param);
-                proc.TrxVenta = regla.CfdiTransacciones;
-                proc.Progreso += new ProcesaCfdi.LogHandler(reportaProgreso);
-                pBarProcesoActivo.Visible = true;
-                ICfdiMetodosWebService servicioTimbre = null;
-                await proc.GeneraResumenXmlAsync(servicioTimbre);
+        //    if (!Param.ultimoMensaje.Equals(string.Empty))
+        //    {
+        //        txtbxMensajes.Text = Param.ultimoMensaje;
+        //        errores++;
+        //    }
+        //    if (regla.CfdiTransacciones.RowCount == 0)
+        //    {
+        //        txtbxMensajes.Text = "No hay documentos para generar. Verifique los criterios de búsqueda.";
+        //        errores++;
+        //    }
+        //    if (!filtraListaSeleccionada()) //Filtra cfdiTransacciones sólo con docs marcados
+        //    {
+        //        txtbxMensajes.Text = ultimoMensaje;
+        //        errores++;
+        //    }
+        //    if (errores == 0 && !ExistenTransaccionesAMedioContabilizar(regla.CfdiTransacciones))
+        //    {
+        //        HabilitarVentana(false, false, false, false, false, false);
+        //        ProcesaCfdi proc = new ProcesaCfdi(DatosConexionDB.Elemento, Param);
+        //        proc.TrxVenta = regla.CfdiTransacciones;
+        //        proc.Progreso += new ProcesaCfdi.LogHandler(reportaProgreso);
+        //        pBarProcesoActivo.Visible = true;
+        //        ICfdiMetodosWebService servicioTimbre = null;
+        //        await proc.GeneraResumenXmlAsync(servicioTimbre);
 
-            }
-            //Actualiza la pantalla
-            HabilitarVentana(Param.emite, Param.anula, Param.imprime, Param.publica, Param.envia, true);
-            AplicaFiltroYActualizaPantalla(this.tabCfdi.SelectedTab.Name);
-            progressBar1.Value = 0;
-            pBarProcesoActivo.Visible = false;
-        }
+        //    }
+        //    //Actualiza la pantalla
+        //    HabilitarVentana(Param.emite, Param.anula, Param.imprime, Param.publica, Param.envia, true);
+        //    AplicaFiltroYActualizaPantalla(this.tabCfdi.SelectedTab.Name);
+        //    progressBar1.Value = 0;
+        //    pBarProcesoActivo.Visible = false;
+        //}
     }
 }
