@@ -523,12 +523,7 @@ namespace cfdiPeru
         {
         }
 
-        /// <summary>
-        /// Imprimir en pantalla
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsButtonImprimir_Click(object sender, EventArgs e)
+        private void GenerarReportePdf()
         {
             //string prmFolioDesde = "";
             //string prmFolioHasta = "";
@@ -536,7 +531,7 @@ namespace cfdiPeru
             //int prmSopType = 0;
             //Parametros configCfd = new Parametros(DatosConexionDB.Elemento.Intercompany);   //Carga configuración desde xml
             //configCfd.ExtDefault = this.tabCfdi.SelectedTab.Name;
-            
+
             //txtbxMensajes.Text = "";
             //txtbxMensajes.Refresh();
             //configCfd.ImprimeEnImpresora = false;
@@ -598,6 +593,44 @@ namespace cfdiPeru
             //    else
             //        txtbxMensajes.Text = "No seleccionó ninguna factura. Debe marcar la factura que desea imprimir y luego presionar el botón de impresión.";
             //}
+        }
+
+        /// <summary>
+        /// Imprimir en pantalla
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsButtonImprimir_Click(object sender, EventArgs e)
+        {
+            string prmFolioDesde = "";
+
+            txtbxMensajes.Text = "";
+            txtbxMensajes.Refresh();
+
+            if (dgridTrxFacturas.CurrentRow != null)
+            {
+                if (dgridTrxFacturas.CurrentCell.Selected)
+                {
+                    string nombreYRutaPdf = dgridTrxFacturas.CurrentRow.Cells[idxMensaje].Value.ToString();
+                    prmFolioDesde = dgridTrxFacturas.CurrentRow.Cells[idxSopnumbe].Value.ToString();
+
+                        if (!dgridTrxFacturas.CurrentRow.Cells[idxEstado].Value.Equals("emitido"))      //estado FE
+                        {
+                            txtbxMensajes.Text = "La factura " + prmFolioDesde + " no fue emitida. Emita la factura y vuelva a intentar.\r\n";
+                            return;
+                        }
+                        if (dgridTrxFacturas.CurrentRow.Cells[idxAnulado].Value.ToString().Equals("1")) //factura anulada en GP
+                        {
+                            txtbxMensajes.Text = "La factura " + prmFolioDesde + " no se puede imprimir porque está anulada. \r\n";
+                            return;
+                        }
+
+                    System.Diagnostics.Process.Start(nombreYRutaPdf);
+
+                }
+                else
+                    txtbxMensajes.Text = "No seleccionó ninguna factura. Debe marcar la factura que desea imprimir y luego presionar el botón de impresión.";
+            }
         }
 
         private void cmbBxCompannia_TextChanged(object sender, EventArgs e)
@@ -767,8 +800,8 @@ namespace cfdiPeru
 
                 pBarProcesoActivo.Visible = true;
 
-//                if (this.tabCfdi.SelectedTab.Name.Equals("tabResumen"))
-                    await proc.ProcesaConsultaCDR();
+                //                if (this.tabCfdi.SelectedTab.Name.Equals("tabResumen"))
+                await proc.ProcesaConsultaCDRAsync(ServiciosOse); //.ProcesaConsultaCDR();
                 //else
                 //    txtbxMensajes.Text = "Presione el tab RESUMEN y luego el botón Consulta CDR." + Environment.NewLine;
 
@@ -935,7 +968,8 @@ namespace cfdiPeru
                 pBarProcesoActivo.Visible = true;
 
                 if (this.tabCfdi.SelectedTab.Name.Equals("tabFacturas"))
-                    await proc.ProcesaBajaComprobante(tsTextBoxMotivoRechazo.Text);
+                    await proc.ProcesaBajaComprobanteAsync(tsTextBoxMotivoRechazo.Text, ServiciosOse);
+                    //await proc.ProcesaBajaComprobante(tsTextBoxMotivoRechazo.Text);
                 else
                     txtbxMensajes.Text = "Presione el tab FACTURAS y vuelva a intentar." + Environment.NewLine;
 

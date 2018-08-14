@@ -32,11 +32,12 @@ namespace cfdiEntidadesGP
         public string receptorTipoDoc { get; set; }
         public string receptorNroDoc { get; set; }
         public string receptorNombre { get; set; }
+        public string emailTo { get; set; }
         public string idDocumento { get; set; }
         public Nullable<System.DateTime> fechaEmision { get; set; }
         public string moneda { get; set; }
         public string tipoOperacion { get; set; }
-        public Nullable<decimal> descuento { get; set; }
+        public decimal descuento { get; set; }
         public decimal ORTDISAM { get; set; }
         public Nullable<decimal> ivaTasa { get; set; }
         public decimal ivaImponible { get; set; }
@@ -53,6 +54,7 @@ namespace cfdiEntidadesGP
         public decimal exoneradoPen { get; set; }
         public decimal gratuitoPen { get; set; }
         public decimal docamnt { get; set; }
+        public string formaPago { get; set; }
         public string discrepanciaTipo { get; set; }
         public string discrepanciaDesc { get; set; }
         public string montoEnLetras { get; set; }

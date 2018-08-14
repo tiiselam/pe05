@@ -90,8 +90,10 @@ namespace cfdiPeru
                 _docElectronico.Receptor.NroDocumento = docGP.DocVenta.receptorNroDoc;
                 _docElectronico.Receptor.NombreComercial = docGP.DocVenta.receptorNombre;
                 _docElectronico.Receptor.NombreLegal = docGP.DocVenta.receptorNombre;
+                _docElectronico.Receptor.EMailTo = docGP.DocVenta.emailTo;
                 _docElectronico.TipoOperacion = docGP.DocVenta.tipoOperacion;
                 _docElectronico.DescuentoGlobal = docGP.DocVenta.ORTDISAM;
+                _docElectronico.DescuentoNoGlobal = docGP.DocVenta.descuento;
                 _docElectronico.TotalIgv = docGP.DocVenta.iva;
                 _docElectronico.Gravadas = docGP.DocVenta.ivaImponible;
                 _docElectronico.Inafectas = docGP.DocVenta.inafecta;
@@ -99,6 +101,7 @@ namespace cfdiPeru
                 _docElectronico.Gratuitas = docGP.DocVenta.gratuito;
                 _docElectronico.TotalVenta = docGP.DocVenta.total;
                 _docElectronico.MontoEnLetras = docGP.DocVenta.montoEnLetras;
+                _docElectronico.MetodoPago = docGP.DocVenta.formaPago;
 
                 lDetalleDocumento = new List<DetalleDocumento>();
                 int i = 1;
@@ -195,16 +198,20 @@ namespace cfdiPeru
                         TipoDocumentoReceptor = re.receptorTipoDoc,
                         CodigoEstadoItem = 1,
                         Moneda = re.moneda,
+                        TasaDeCambio = Convert.ToDecimal(re.xchgrate),
                         TotalVenta = Convert.ToDecimal(re.total),
                         TotalDescuentos = Convert.ToDecimal(re.totalDescuento),
+                        DescuentosGlobales = Convert.ToDecimal(re.ORTDISAM),
                         Gratuitas = Convert.ToDecimal(re.totalGratuito),
                         Gravadas = Convert.ToDecimal(re.totalIvaImponible),
                         Exoneradas = Convert.ToDecimal(re.totalExonerado),
                         Inafectas = Convert.ToDecimal(re.totalInafecta),
                         TotalIgv = Convert.ToDecimal(re.totalIva),
-
+                        TotalIsc = Convert.ToDecimal(0.00),
+                        TotalOtrosImpuestos = Convert.ToDecimal(0.00),
+                        MetodoPago = re.formaPago,
                         DocumentoRelacionado = (re.tipoDocumento=="07" || re.tipoDocumento == "08") ? re.sopnumbeTo : null,
-                        TipoDocumentoRelacionado = (re.tipoDocumento == "07" || re.tipoDocumento == "08") ? re.tipoDocumentoTo : null
+                        TipoDocumentoRelacionado = (re.tipoDocumento == "07" || re.tipoDocumento == "08") ? re.tipoDocumentoTo : null,
                         //IdDocumento = re.serie,
                         //Serie = re.serie,
                         //CorrelativoInicio = Convert.ToInt32(re.iniRango),

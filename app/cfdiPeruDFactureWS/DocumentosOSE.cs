@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,25 +22,23 @@ namespace cfdiPeruOperadorServiciosElectronicos
         public String FormatearDocElectronico(String tipoDocumento, DocumentoElectronico docElectronico)
         {
             //LINEA 0A
-            Console.WriteLine("Metodo Formatear Documento");
+            Debug.WriteLine("Método Formatear Documento");
             _DocElectronicoLinea0A = "0A|MANUAL|";
             _DocElectronicoLinea0A = _DocElectronicoLinea0A + Environment.NewLine;
-            // VER EL TEMA DE sALto DE CARRo
 
             //LINEA 1 RECEPTOR
             _DocElectronicoLinea01 = "01|"; // 1 - Identificador de LInea
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.NombreLegal + "|";  // 2 - 
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.NroDocumento + "/"; // 3 
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.TipoDocumento + "|";
-            _DocElectronicoLinea01 = _DocElectronicoLinea01 + "|"; //docElectronico.Receptor.Mail + "|";
+            _DocElectronicoLinea01 += string.Concat(docElectronico.Receptor.EMailTo, "|"); 
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + "|"; //docElectronico.Receptor.Telefono + "|";
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.Direccion + "|";
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.Provincia + "|";
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + "|"; //docElectronico.Receptor.CodigoPostal + "|";
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.Departamento + "|";
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + "|"; //país
-            _DocElectronicoLinea01 = _DocElectronicoLinea01 + "NO|";
-            //_DocElectronicoLinea01 = _DocElectronicoLinea01 + String.IsNullOrEmpty(docElectronico.Receptor?.Mail) ? "NO" : "SI" + "|";
+            _DocElectronicoLinea01 += string.Concat(String.IsNullOrEmpty(docElectronico.Receptor.EMailTo) ? "NO" : "SI", "|");
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + Environment.NewLine;
 
             //LINEA 2  DATOS GENERALES
@@ -57,21 +56,21 @@ namespace cfdiPeruOperadorServiciosElectronicos
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.TotalIsc.ToString("0.00").Replace(",", ".") + "|";
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.TotalIgv.ToString("0.00").Replace(",", ".") + "|";
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.TotalOtrosTributos.ToString("0.00").Replace(",", ".") + "|";
-            _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // DESCUENTOS NO GLOBALES
+            _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.DescuentoNoGlobal.ToString("0.00").Replace(",", ".") + "|";
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.TotalVenta.ToString("0.00").Replace(",", ".") + "|";
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.Moneda + "|";
 
             foreach (OpenInvoicePeru.Comun.Dto.Modelos.DocumentoRelacionado relacionados in docElectronico.Relacionados)
             {
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + relacionados.NroDocumento; //VERIFICAR
+                _DocElectronicoLinea02 = _DocElectronicoLinea02 + relacionados.NroDocumento; 
             }
-            _DocElectronicoLinea02 += "|"; //VERIFICAR
+            _DocElectronicoLinea02 += "|"; 
 
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|";
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.Gratuitas.ToString("0.00").Replace(",", ".") + "|";
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + string.Concat(docElectronico.Emisor.Direccion, " ", docElectronico.Emisor.Urbanizacion, " ", docElectronico.Emisor.Departamento, " ", docElectronico.Emisor.Distrito, " cp", docElectronico.Emisor.Ubigeo, "|");
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // TIPO_CAMBIO
-            _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // METODO_PAGO
+            _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.MetodoPago + "|"; // METODO_PAGO
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // Observaciones
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.DescuentoGlobal.ToString("0.00").Replace(",", ".") + "|"; 
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // CODIGO_NOTA
@@ -82,17 +81,17 @@ namespace cfdiPeruOperadorServiciosElectronicos
             foreach (OpenInvoicePeru.Comun.Dto.Modelos.DetalleDocumento detalle in docElectronico.Items)
             {
                 _DocElectronicoLinea03 = _DocElectronicoLinea03 + "03|"; // 1 - Identificador de LInea
-                //Console.WriteLine(detalle);
                 _DocElectronicoLinea03 = _DocElectronicoLinea03 + detalle.UnidadMedida + "|";
                 _DocElectronicoLinea03 = _DocElectronicoLinea03 + detalle.Cantidad.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea03 = _DocElectronicoLinea03 + detalle.Descripcion + "|";
-                //_DocElectronicoLinea03 = _DocElectronicoLinea03 + Regex.Replace(detalle.Descripcion, @"[^0-9A-Za-z]", "", RegexOptions.None);  + "|";
                 _DocElectronicoLinea03 = _DocElectronicoLinea03 + detalle.PrecioUnitario.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea03 = _DocElectronicoLinea03 + detalle.PrecioReferencial.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea03 = _DocElectronicoLinea03 + detalle.Impuesto.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea03 = _DocElectronicoLinea03 + detalle.ImpuestoSelectivo.ToString("0.00").Replace(",", ".") + "|";
-                _DocElectronicoLinea03 = _DocElectronicoLinea03 + detalle.Suma.ToString("0.00").Replace(",", ".") + "|";
-                _DocElectronicoLinea03 = _DocElectronicoLinea03 + Environment.NewLine;
+                _DocElectronicoLinea03 = _DocElectronicoLinea03 + detalle.TotalVenta.ToString("0.00").Replace(",", ".") + "|";
+                _DocElectronicoLinea03 += "||||";
+                _DocElectronicoLinea03 += detalle.TipoImpuesto +"|";
+                _DocElectronicoLinea03 += "|" + Environment.NewLine;
 
             }
 
@@ -104,43 +103,47 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
         public String FormatearResumenElectronico(String tipoDocumento, ResumenDiarioNuevo docResumen)
         {
-            Console.WriteLine("Metodo Formatear Resumen");
+            Debug.WriteLine("Método Formatear Resumen");
             //LINEA 1
             _DocElectronicoLinea01 = "01|RESUMEN||||||||||NO|";
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + Environment.NewLine;
 
             // _DocElectronicoLinea02 = _DocElectronicoLinea02 + docResumen.  + "|";
 
+            DateTime hoy = DateTime.Today;
+
             foreach (OpenInvoicePeru.Comun.Dto.Modelos.GrupoResumenNuevo detalle in docResumen.Resumenes)
             {
+                String[] serieCorrelativo = detalle.IdDocumento.Split(new char[] { '-' });
+
                 //Datos Genericos
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + "02|"; //Identificador de LInea
+                _DocElectronicoLinea02 = _DocElectronicoLinea02 + hoy.ToString("yyyy-MM-dd") + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + docResumen.FechaEmision.Substring(0, 10) + "|";
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + docResumen.FechaReferencia.Substring(0, 10) + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.TipoDocumento + "|";
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.IdDocumento.Substring(0, 4) + "|"; //SERIE Hay que ahcer el substr
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.IdDocumento.Substring(5, 8) + "|";
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.IdDocumento.Substring(5, 8) + "|";
+                _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.IdDocumento + "|"; 
+                _DocElectronicoLinea02 += serieCorrelativo[1] + "|";
+                _DocElectronicoLinea02 += serieCorrelativo[1] + "|";
                 //Importes 
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.Gravadas.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.Exoneradas.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.Inafectas.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // OTROS_CONCEPTOS
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.TotalIsc.ToString("0.00").Replace(",", ".") + "|";
+                _DocElectronicoLinea02 += string.Concat( detalle.TotalIsc.ToString("0.00")?.Replace(",", "."),  "|");
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.TotalIgv.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.TotalOtrosImpuestos.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.TotalDescuentos.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.TotalVenta.ToString("0.00").Replace(",", ".") + "|";
                 //Oros Datos
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.Moneda + "|";
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.DocumentoRelacionado + "|"; //VERIFICAR
+                _DocElectronicoLinea02 += string.Concat(detalle.DocumentoRelacionado, "|");
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.Gratuitas.ToString("0.00").Replace(",", ".") + "|";
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + docResumen.Emisor.Direccion + "|";
+                _DocElectronicoLinea02 += string.Concat(docResumen.Emisor.Direccion, " ", docResumen.Emisor.Urbanizacion, " ", docResumen.Emisor.Departamento, " ", docResumen.Emisor.Distrito,  "|");
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // TIPO_CAMBIO
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // METODO_PAGO
+                _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.MetodoPago + "|"; // METODO_PAGO
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // Observaciones
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // Observaciones
+                _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.DescuentosGlobales.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // CODIGO_NOTA\n
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + Environment.NewLine;
             }

@@ -34,14 +34,17 @@ namespace cfdiEntidadesGP
         public int iniRango { get; set; }
         public int finRango { get; set; }
         public string moneda { get; set; }
+        public decimal xchgrate { get; set; }
         public decimal totalIvaImponible { get; set; }
         public decimal totalIva { get; set; }
         public decimal totalInafecta { get; set; }
         public decimal totalExonerado { get; set; }
         public decimal totalGratuito { get; set; }
-        public decimal totalDescuento { get; set; }
+        public Nullable<decimal> totalDescuento { get; set; }
+        public decimal ORTDISAM { get; set; }
         public decimal total { get; set; }
         public int cantidad { get; set; }
+        public string formaPago { get; set; }
         public string tipoDocumentoTo { get; set; }
         public string sopnumbeTo { get; set; }
     }

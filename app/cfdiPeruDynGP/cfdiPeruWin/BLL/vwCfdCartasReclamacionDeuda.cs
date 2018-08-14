@@ -17,7 +17,7 @@ using System.Collections.Specialized;
 
 using MyGeneration.dOOdads;
 
-namespace cfdiPeru
+namespace cfd.FacturaElectronica
 {
 	public class vwCfdCartasReclamacionDeuda : SqlClientEntity
 	{

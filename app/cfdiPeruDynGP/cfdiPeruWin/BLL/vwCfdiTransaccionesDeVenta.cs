@@ -18,8 +18,8 @@ using System.Collections.Specialized;
 using MyGeneration.dOOdads;
 
 namespace cfdiPeru
-{
-	public class vwCfdiTransaccionesDeVenta : SqlClientEntity
+{ 
+    public class vwCfdiTransaccionesDeVenta : SqlClientEntity
 	{
 		public vwCfdiTransaccionesDeVenta()
 		{

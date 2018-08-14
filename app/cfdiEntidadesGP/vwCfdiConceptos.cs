@@ -29,7 +29,7 @@ namespace cfdiEntidadesGP
         public decimal valorUni { get; set; }
         public decimal cantidad { get; set; }
         public Nullable<decimal> descuento { get; set; }
-        public decimal importe { get; set; }
+        public Nullable<decimal> importe { get; set; }
         public decimal orslstax { get; set; }
         public string tipoPrecio { get; set; }
         public string tipoImpuesto { get; set; }
