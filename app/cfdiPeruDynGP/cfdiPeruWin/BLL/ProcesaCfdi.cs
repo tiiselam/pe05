@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using cfdiPeruInterfaces;
+using System.Xml.Linq;
 
 namespace cfd.FacturaElectronica
 {
@@ -317,12 +318,12 @@ namespace cfd.FacturaElectronica
                                 trxVenta.ArmarDocElectronico();
                                 rutaNombreCDR = Path.Combine(trxVenta.RutaXml.Trim(), nombreArchivo, ".xml");
                                 var cdr = await servicioTimbre.ObtieneCDRdelOSEAsync(trxVenta.Rfc, trxVenta.DocElectronico.TipoDocumento, serieCorrelativo[0], serieCorrelativo[1], rutaNombreCDR);
-                                //leer el cdr para verificar que la factura fue aceptada
-                                maquina.DestinoAceptado = ResultadoCDR(td, cdr);
+                                var rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, cdr, nombreArchivo, ".xml", false);
 
-                                DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaNombreCDR, ticket, _Conex.Usuario, accion, maquina.DestinoStatusBase, maquina.DestinoEBinario, accion);
-
-                                DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje + _mensajeSunat, ticket);
+                                var resCdr = ResultadoCDR(td, cdr);
+                                maquina.DestinoAceptado = resCdr.Item1;
+                                DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaNombreCDR, ticket, _Conex.Usuario, accion, maquina.DestinoStatusBase, maquina.DestinoEBinario, accion+":"+resCdr.Item3);
+                                DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje, ticket);
 
                             }
                     }
@@ -361,9 +362,21 @@ namespace cfd.FacturaElectronica
             OnProgreso(100, "PROCESO FINALIZADO!");
         }
 
-        private bool ResultadoCDR(string tipoDocumento, string cdr)
+        private Tuple<bool, string, string> ResultadoCDR(string tipoDocumento, string cdr)
         {
-            throw new NotImplementedException();
+            var xmlCdr = XElement.Parse(cdr);
+            XNamespace nscac = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";
+            XNamespace nscbc = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";
+            var responseCode = xmlCdr?.Elements(nscac + "DocumentResponse")?.Elements(nscac + "Response")?.Elements(nscbc + "ResponseCode")?.First().Value;
+            var description = xmlCdr?.Elements(nscac + "DocumentResponse")?.Elements(nscac + "Response")?.Elements(nscbc + "Description")?.First().Value;
+            //var refId = xmlCdr?.Elements(nscac + "DocumentResponse")?.Elements(nscac + "Response")?.Elements(nscbc + "ReferenceID")?.First().Value;
+
+            if (string.IsNullOrEmpty(responseCode))
+            {
+                throw new ArgumentException("El archivo de respuesta no corresponde a un cdr. ");
+            }
+
+            return Tuple.Create(responseCode.Equals("0"), responseCode, description);
         }
 
         public async Task ProcesaObtienePDFAsync(ICfdiMetodosWebService servicioTimbre)
@@ -400,7 +413,7 @@ namespace cfd.FacturaElectronica
 
                                 DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaNombrePDF, ticket, _Conex.Usuario, accion, maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
 
-                                DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje + _mensajeSunat, ticket);
+                                DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje, ticket);
                             }
                             else
                                 msj = "No se puede generar porque no está Contabilizado o está Anulado.";
@@ -410,7 +423,7 @@ namespace cfd.FacturaElectronica
                     {
                         msj = ae.Message + Environment.NewLine ;
                         //DocVenta.LogDocumento(trxVenta, msj, maquina, ticket, _Param.tipoDoc, accion, false, rutaNombrePDF);
-                        //DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.eBinActualConError, maquina.EnLetras(maquina.eBinActualConError, _Param.tipoDoc) + _mensajeSunat, ticket);
+                        //DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.eBinActualConError, maquina.EnLetras(maquina.eBinActualConError, _Param.tipoDoc), ticket);
                         errores++;
                     }
                     catch (IOException io)

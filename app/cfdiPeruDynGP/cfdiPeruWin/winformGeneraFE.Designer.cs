@@ -496,7 +496,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(152, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(272, 24);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -527,8 +527,8 @@
             // genFacturaElectrónicaV10ToolStripMenuItem
             // 
             this.genFacturaElectrónicaV10ToolStripMenuItem.Name = "genFacturaElectrónicaV10ToolStripMenuItem";
-            this.genFacturaElectrónicaV10ToolStripMenuItem.Size = new System.Drawing.Size(272, 22);
-            this.genFacturaElectrónicaV10ToolStripMenuItem.Text = "Factura Electrónica PERU v.7.1.5+ubl2";
+            this.genFacturaElectrónicaV10ToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.genFacturaElectrónicaV10ToolStripMenuItem.Text = "Factura Electrónica PERU v8.0.0-beta+ubl2";
             // 
             // toolStripMenuItem2
             // 

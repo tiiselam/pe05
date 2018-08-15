@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cfdiPeruInterfaces", "cfdiP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cfdiPeruDFactureWS", "cfdiPeruDFactureWS\cfdiPeruDFactureWS.csproj", "{7EC180E2-BCC6-4CB0-A992-375BED2CE336}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "cfdiPeruWinSetup", "cfdiPeruWinSetup\cfdiPeruWinSetup.vdproj", "{4CDD495F-C05E-4535-A7D8-E21BE1C3C218}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Release|x86.ActiveCfg = Release|Any CPU
 		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Release|x86.Build.0 = Release|Any CPU
+		{4CDD495F-C05E-4535-A7D8-E21BE1C3C218}.Debug|Any CPU.ActiveCfg = Debug
+		{4CDD495F-C05E-4535-A7D8-E21BE1C3C218}.Debug|x86.ActiveCfg = Debug
+		{4CDD495F-C05E-4535-A7D8-E21BE1C3C218}.Release|Any CPU.ActiveCfg = Release
+		{4CDD495F-C05E-4535-A7D8-E21BE1C3C218}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
