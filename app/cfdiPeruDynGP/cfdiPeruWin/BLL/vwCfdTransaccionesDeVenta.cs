@@ -14,6 +14,7 @@ namespace cfdiPeru
         ResumenDiarioNuevo _resumenElectronico;
         List<DetalleDocumento> lDetalleDocumento;
         private const string FormatoFecha = "yyyy-MM-dd";
+        private const string FormatoFechaHora = "yyyy-MM-dd";
 
         public DocumentoElectronico DocElectronico
         {
@@ -75,7 +76,7 @@ namespace cfdiPeru
                 _docElectronico = new DocumentoElectronico();
                 _docElectronico.TipoDocumento = docGP.DocVenta.tipoDocumento;
                 _docElectronico.IdDocumento = docGP.DocVenta.idDocumento;
-                _docElectronico.FechaEmision = this.Fechahora.ToString();
+                _docElectronico.FechaEmision = this.Fechahora.ToString(FormatoFechaHora);
                 _docElectronico.Moneda = docGP.DocVenta.moneda;
                 _docElectronico.Emisor.NroDocumento = docGP.DocVenta.emisorNroDoc;
                 _docElectronico.Emisor.NombreComercial = docGP.DocVenta.emisorNombre;

@@ -1,4 +1,6 @@
 ﻿using cfdiPeruInterfaces;
+using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Zip;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -63,19 +65,74 @@ namespace cfdiPeruOperadorServiciosElectronicos
             return archivoCDR;
         }
 
+        private string UnzipFromStream(Stream zipStream)
+        {
+            
+            string documento = string.Empty;
+            ZipInputStream zipInputStream = new ZipInputStream(zipStream);
+            ZipEntry zipEntry = zipInputStream.GetNextEntry();
+            while (zipEntry != null)
+            {
+                String entryFileName = zipEntry.Name;
+                // to remove the folder from the entry:- entryFileName = Path.GetFileName(entryFileName);
+                // Optionally match entrynames against a selection list here to skip as desired.
+                // The unpacked length is available in the zipEntry.Size property.
+
+                byte[] buffer = new byte[4096];     // 4K is optimum
+
+                // Manipulate the output filename here as desired.
+                //String fullZipToPath = Path.Combine(outFolder, entryFileName);
+                //string directoryName = Path.GetDirectoryName(fullZipToPath);
+                //if (directoryName.Length > 0)
+                //    Directory.CreateDirectory(directoryName);
+
+                // Skip directory entry
+                //string fileName = Path.GetFileName(fullZipToPath);
+                //if (fileName.Length == 0)
+                //{
+                //    zipEntry = zipInputStream.GetNextEntry();
+                //    continue;
+                //}
+
+                // Unzip file in buffered chunks. This is just as fast as unpacking to a buffer the full size
+                // of the file, but does not waste memory.
+                // The "using" will close the stream even if an exception occurs.
+                //using (FileStream streamWriter = File.Create(fullZipToPath))
+                //{
+                    using (var cdr = new MemoryStream())
+                    {
+                        StreamUtils.Copy(zipInputStream, cdr, buffer);
+                        byte[] datos = cdr.ToArray();
+                        //streamWriter.Seek(0, SeekOrigin.End);
+                        //streamWriter.Write(datos, 0, datos.Length);
+
+                        documento = Encoding.UTF8.GetString(datos);
+                    }
+                //}
+
+                zipEntry = zipInputStream.GetNextEntry();
+            }
+            return documento;
+        }
+
         public async Task<string> ObtieneCDRdelOSEAsync(string ruc, string tipoDoc, string serie, string correlativo, string rutaYNomArchivoCfdi) //string ruta, string nombreArchivo, string extension)
         {
-            //string rutaYNomArchivoCfdi = Path.Combine(ruta, nombreArchivo, extension);
-            string archivoCDR = DescargaCDR(ruc, tipoDoc, serie, correlativo);
+            throw new NotImplementedException();
 
+        }
+
+        public string ObtieneCDRdelOSE(string ruc, string tipoDoc, string serie, string correlativo) 
+        {
+            string archivoCDR = DescargaCDR(ruc, tipoDoc, serie, correlativo);
+            string cdr = string.Empty;
             byte[] data = Convert.FromBase64String(archivoCDR);
-            using (FileStream SourceStream = File.Open(rutaYNomArchivoCfdi, FileMode.OpenOrCreate))
+
+            using (var compressedStream = new MemoryStream(data))
             {
-                SourceStream.Seek(0, SeekOrigin.End);
-                await SourceStream.WriteAsync(data, 0, data.Length);
+                cdr = UnzipFromStream(compressedStream);
             }
 
-            return Encoding.UTF8.GetString(data);
+            return cdr;
 
         }
 
@@ -92,7 +149,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
         public async Task<string> ObtienePDFdelOSEAsync(string ruc, string tipoDoc, string serie, string correlativo, string ruta, string nombreArchivo, string extension)
         {
-            string rutaYNomArchivoCfdi = Path.Combine(ruta, nombreArchivo, extension);
+            string rutaYNomArchivoCfdi = Path.Combine(ruta, nombreArchivo + extension);
             string archivoPdf = DescargaPDF(ruc, tipoDoc, serie, correlativo);
 
             byte[] data = Convert.FromBase64String(archivoPdf);
@@ -112,7 +169,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
             cancela = Servicio.ComunicacionBaja(ruc, usuario, usuarioPassword, nroDocumento);
 
-            if (cancela.Procesado)
+            if (cancela.Procesado || cancela.NumeroError.Equals("95"))
             {
                 Debug.WriteLine(" Baja solicitada con el número de ticket: " + cancela.Nroticketdeatencion);
             }

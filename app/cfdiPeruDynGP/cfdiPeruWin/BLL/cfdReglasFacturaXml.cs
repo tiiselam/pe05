@@ -261,9 +261,10 @@ namespace cfd.FacturaElectronica
         /// <param name="extension">.xml .pdf ...</param>
         public async Task<string> GuardaArchivoAsync(vwCfdTransaccionesDeVenta trxVenta, String comprobante, String nombreArchivo, string extension, bool esBinario)
         {
+            string rutaYNomArchivoCfdi = string.Empty;
             try
             {   
-                string rutaYNomArchivoCfdi = Path.Combine(trxVenta.RutaXml.Trim(), nombreArchivo, extension);
+                rutaYNomArchivoCfdi = Path.Combine(trxVenta.RutaXml.Trim(), nombreArchivo + extension);
 
                 if (esBinario)
                 {
@@ -286,12 +287,12 @@ namespace cfd.FacturaElectronica
             }
             catch (DirectoryNotFoundException)
             {
-                string smsj = "Verifique la existencia de la carpeta indicada en la configuración de Ruta de archivos Xml de GP. La ruta de la carpeta no existe: " + trxVenta.RutaXml;
+                string smsj = "Verifique la existencia de la carpeta indicada en la configuración de Ruta de archivos Xml de GP. La ruta de la carpeta no existe: " + rutaYNomArchivoCfdi;
                 throw new DirectoryNotFoundException(smsj);
             }
             catch (IOException)
             {
-                string smsj = "Verifique permisos de escritura en la carpeta: " + trxVenta.RutaXml + ". No se pudo guardar el archivo xml.";
+                string smsj = "Verifique permisos de escritura en la carpeta: " + rutaYNomArchivoCfdi + ". No se pudo guardar el archivo xml.";
                 throw new IOException(smsj);
             }
             catch (Exception eAFE)
@@ -393,7 +394,7 @@ namespace cfd.FacturaElectronica
                 }
 
                 //Registra log de la emisión del xml antes de imprimir el pdf, sino habrá error al imprimir
-                RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNomArchivoCfdi, ticket, _Conexion.Usuario, comprobante.Replace("encoding=\"utf-8\"", ""),
+                RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNomArchivoCfdi, ticket, _Conexion.Usuario, comprobante.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""),
                                         statusBase, eBinario, msjBinActual);
             }
             catch (Exception eAFE)
@@ -468,7 +469,7 @@ namespace cfd.FacturaElectronica
                 }
                 
                 //Registra log de la emisión del xml antes de imprimir el pdf, sino habrá error al imprimir
-                RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNomArchivoCfdi, ticket, _Conexion.Usuario, comprobante.Replace("encoding=\"utf-8\"", ""),
+                RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNomArchivoCfdi, ticket, _Conexion.Usuario, comprobante.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""),
                                         status, eBinario, msjBinActual);
 
                 //Genera pdf

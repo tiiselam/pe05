@@ -26,14 +26,19 @@ namespace cfdiPeruOperadorServiciosElectronicos
             _DocElectronicoLinea0A = "0A|MANUAL|";
             _DocElectronicoLinea0A = _DocElectronicoLinea0A + Environment.NewLine;
 
+            string em = string.Empty;
+            if (!string.IsNullOrEmpty(docElectronico.Receptor.EMailTo))
+                em = docElectronico.Receptor.EMailTo.Substring(1, docElectronico.Receptor.EMailTo.Length-1);
+
             //LINEA 1 RECEPTOR
             _DocElectronicoLinea01 = "01|"; // 1 - Identificador de LInea
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.NombreLegal + "|";  // 2 - 
-            _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.NroDocumento + "/"; // 3 
-            _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.TipoDocumento + "|";
-            _DocElectronicoLinea01 += string.Concat(docElectronico.Receptor.EMailTo, "|"); 
+            _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.NroDocumento + "/";  
+            _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.TipoDocumento + "|"; //3
+            _DocElectronicoLinea01 += string.Concat(em, "|"); 
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + "|"; //docElectronico.Receptor.Telefono + "|";
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.Direccion + "|";
+            _DocElectronicoLinea01 +=  "|"; //distrito
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.Provincia + "|";
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + "|"; //docElectronico.Receptor.CodigoPostal + "|";
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + docElectronico.Receptor.Departamento + "|";
@@ -42,6 +47,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
             _DocElectronicoLinea01 = _DocElectronicoLinea01 + Environment.NewLine;
 
             //LINEA 2  DATOS GENERALES
+            _DocElectronicoLinea02 = string.Empty;
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + "02|"; //Identificador de LInea
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.FechaEmision.Substring(0, 10) + "|";
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // FECHA EMISION RESUMEN
@@ -77,7 +83,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + Environment.NewLine;
 
             //LINEA 3 CONCEPTOS 
-
+            _DocElectronicoLinea03 = string.Empty;
             foreach (OpenInvoicePeru.Comun.Dto.Modelos.DetalleDocumento detalle in docElectronico.Items)
             {
                 _DocElectronicoLinea03 = _DocElectronicoLinea03 + "03|"; // 1 - Identificador de LInea
@@ -121,7 +127,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + hoy.ToString("yyyy-MM-dd") + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + docResumen.FechaEmision.Substring(0, 10) + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.TipoDocumento + "|";
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.IdDocumento + "|"; 
+                _DocElectronicoLinea02 = _DocElectronicoLinea02 + serieCorrelativo[0] + "|"; //detalle.IdDocumento.Substring(0,4) 
                 _DocElectronicoLinea02 += serieCorrelativo[1] + "|";
                 _DocElectronicoLinea02 += serieCorrelativo[1] + "|";
                 //Importes 

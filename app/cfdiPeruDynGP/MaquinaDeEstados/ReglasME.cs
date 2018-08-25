@@ -32,8 +32,8 @@ namespace MaquinaDeEstados
             }
         }
         
-        public string DestinoMensaje { get => EnLetras(nodoDestinoEBinario, tipoDocumento); set => nodoDestinoMensaje = value; }
-        public string DestinoEBinario { get => !nodoDestinoAceptado ? eBinActualConError : eBinarioNuevo; set => nodoDestinoEBinario = value; }
+        public string DestinoMensaje { get => EnLetras(DestinoEBinario, tipoDocumento); set => nodoDestinoMensaje = value; }
+        public string DestinoEBinario { get => !DestinoAceptado ? eBinActualConError : eBinarioNuevo; set => nodoDestinoEBinario = value; }
         public bool DestinoAceptado { get => nodoDestinoAceptado; set => nodoDestinoAceptado = value; }
         public string TipoDocumento { get => tipoDocumento; set => tipoDocumento = value; }
         public string Accion { get => accion; set => accion = value; }
@@ -124,7 +124,7 @@ namespace MaquinaDeEstados
                         if (_Compania.imprime)
                         {                                                               //Cambia el bit impreso
                             _eBinarioNuevo = Utiles.Izquierda(eBinarioActual, 3) + "1" + Utiles.Derecha(eBinarioActual, 2);
-                            //_eBinarioNuevo = "0" + Utiles.Derecha(_eBinarioNuevo, 5);
+                            nodoDestinoStatusBase = "impreso";
                             return true;
                         }
                         else
@@ -181,17 +181,26 @@ namespace MaquinaDeEstados
 
             if (tipoDoc.Equals("FACTURA") && accion.Equals("CONSULTA CDR"))
             {
-                    if (_Compania.emite == emitido(eBinarioActual) && !Anulado(eBinarioActual) && publicado(eBinarioActual) && !RechazaSunat(eBinarioActual))
-                    {
-                        _eBinarioNuevo = Utiles.Izquierda(eBinarioActual, 4) + "1" + Utiles.Derecha(_eBinarioNuevo, 1);     //baja aceptada
-                        _eBinarioNuevo = "0" + Utiles.Derecha(_eBinarioNuevo, 5);
-                        eBinActualConError = Utiles.Izquierda(eBinarioActual, 4) + "0" + Utiles.Derecha(_eBinarioNuevo, 1); //baja rechazada
-                        eBinActualConError = "1" + Utiles.Derecha(eBinActualConError, 5);
-                        nodoDestinoStatusBase = !nodoDestinoAceptado ? "rechazo_sunat" : "anulado";
-                        return true;
-                    }
-                    else
-                        ultimoMensaje = "No se puede consultar en la SUNAT porque no se hizo la solicitud, ya fue dado de baja o la baja fue rechazada. [ValidaTransicion] " + eBinarioActual;
+                if (_Compania.emite == emitido(eBinarioActual) && !Anulado(eBinarioActual) && !RechazaSunat(eBinarioActual) && publicado(eBinarioActual))
+                {
+                    _eBinarioNuevo = Utiles.Izquierda(eBinarioActual, 4) + "1" + Utiles.Derecha(_eBinarioNuevo, 1);     //rechazado o baja aceptada
+                    _eBinarioNuevo = "0" + Utiles.Derecha(_eBinarioNuevo, 5);
+                    eBinActualConError = Utiles.Izquierda(eBinarioActual, 4) + "0" + Utiles.Derecha(_eBinarioNuevo, 1); //baja rechazada
+                    eBinActualConError = "1" + Utiles.Derecha(eBinActualConError, 5);
+                    nodoDestinoStatusBase = !nodoDestinoAceptado ? "rechazo_sunat" : "anulado";
+                    return true;
+                }
+                else if (_Compania.emite == emitido(eBinarioActual) && !Anulado(eBinarioActual) && !RechazaSunat(eBinarioActual) && !publicado(eBinarioActual))
+                {
+                    _eBinarioNuevo = Utiles.Izquierda(eBinarioActual, 4) + "0" + Utiles.Derecha(_eBinarioNuevo, 1);     //doc aceptado
+                    _eBinarioNuevo = "0" + Utiles.Derecha(_eBinarioNuevo, 5);
+                    eBinActualConError = Utiles.Izquierda(eBinarioActual, 4) + "1" + Utiles.Derecha(_eBinarioNuevo, 1); //doc rechazado
+                    eBinActualConError = "0" + Utiles.Derecha(eBinActualConError, 5);
+                    nodoDestinoStatusBase = !nodoDestinoAceptado ? "rechazo_sunat" : "aceptado_sunat";
+                    return true;
+                }
+                else
+                    ultimoMensaje = "No se puede consultar en la SUNAT porque no se hizo la solicitud, ya fue dado de baja o la baja fue rechazada. [ValidaTransicion] " + eBinarioActual;
             }
 
             return false;

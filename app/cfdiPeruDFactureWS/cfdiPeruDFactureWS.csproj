@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -96,6 +97,9 @@
     <None Include="Web References\pe.dfacture.ws\MetodosClient.disco" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="OpenInvoicePeru.Comun.Dto">
       <HintPath>..\..\..\pe02\app\OpenInvoicePeru.Comun.Dto\bin\Debug\OpenInvoicePeru.Comun.Dto.dll</HintPath>
     </Reference>

@@ -678,7 +678,7 @@ namespace cfdiPeru
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsBtnGeneraPDF_Click(object sender, EventArgs e)
+        private async void tsBtnGeneraPDF_Click(object sender, EventArgs e)
         {
             int errores = 0;
             txtbxMensajes.Text = "";
@@ -703,13 +703,26 @@ namespace cfdiPeru
             }
             if (errores == 0)
             {
-                cfdFacturaPdfWorker _bw = new cfdFacturaPdfWorker(DatosConexionDB.Elemento, Param);
                 pBarProcesoActivo.Visible = true;
                 HabilitarVentana(false, false, false, false, false, false);
-                _bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_Completed);
-                _bw.ProgressChanged += new ProgressChangedEventHandler(bw_Progress);
-                object[] arguments = { regla.CfdiTransacciones };
-                _bw.RunWorkerAsync(arguments);
+                ProcesaCfdi proc = new ProcesaCfdi(DatosConexionDB.Elemento, Param);
+                proc.TrxVenta = regla.CfdiTransacciones;
+                proc.Progreso += new ProcesaCfdi.LogHandler(reportaProgreso);
+                pBarProcesoActivo.Visible = true;
+
+                if (!this.tabCfdi.SelectedTab.Name.Equals("tabResumen"))
+                    await proc.ProcesaObtienePDFAsync(ServiciosOse);
+
+                //cfdFacturaPdfWorker _bw = new cfdFacturaPdfWorker(DatosConexionDB.Elemento, Param);
+                //_bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_Completed);
+                //_bw.ProgressChanged += new ProgressChangedEventHandler(bw_Progress);
+                //object[] arguments = { regla.CfdiTransacciones };
+                //_bw.RunWorkerAsync(arguments);
+                //Actualiza la pantalla
+                HabilitarVentana(Param.emite, Param.anula, Param.imprime, Param.publica, Param.envia, true);
+                AplicaFiltroYActualizaPantalla(this.tabCfdi.SelectedTab.Name);
+                progressBar1.Value = 0;
+                pBarProcesoActivo.Visible = false;
             }
         }
 

@@ -72,7 +72,7 @@ namespace cfd.FacturaElectronica
         {
             string xmlFactura = string.Empty;
             string rutaYNom = string.Empty;
-            Task t = null;
+            //Task t = null;
             try
             {
                 String msj = String.Empty;
@@ -83,7 +83,7 @@ namespace cfd.FacturaElectronica
                 ReglasME maquina = new ReglasME(_Param);
                 ValidadorXML validadorxml = new ValidadorXML(_Param);
                 TransformerXML loader = new TransformerXML();
-                OnProgreso(1, "INICIANDO EMISION DE COMPROBANTES DE VENTA...");              //Notifica al suscriptor
+                OnProgreso(1, "INICIANDO EMISION DE COMPROBANTES DE VENTA...");             //Notifica al suscriptor
                 do
                 {
                     msj = String.Empty;
@@ -144,7 +144,7 @@ namespace cfd.FacturaElectronica
 
                                 rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, xmlFactura, nombreArchivo, ".xml", false);
 
-                                DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, "FAC", _Conex.Usuario, xmlFactura.Replace("encoding=\"utf-8\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
+                                DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, "FAC", _Conex.Usuario, xmlFactura.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
 
                                 var tPdf = await servicioTimbre.ObtienePDFdelOSEAsync(trxVenta.DocElectronico.Emisor.NroDocumento, trxVenta.DocElectronico.TipoDocumento, serieCorrelativo[0], serieCorrelativo[1], trxVenta.RutaXml.Trim(), nombreArchivo, ".pdf");
                             }
@@ -189,7 +189,7 @@ namespace cfd.FacturaElectronica
                         i++;
                     }
                 } while (trxVenta.MoveNext() && errores < 10);
-                Task.WaitAll(t);
+                //Task.WaitAll(t);
             }
             catch (Exception xw)
             {
@@ -236,13 +236,13 @@ namespace cfd.FacturaElectronica
 
                                 string nombreArchivo = Utiles.FormatoNombreArchivo(trxVenta.Docid + trxVenta.Sopnumbe + "_" + trxVenta.s_CUSTNMBR, trxVenta.s_NombreCliente, 20) + "_" + accion.Substring(0, 2);
 
-                                string tramaResumen = servicioEstructuraDoc.FormatearDocElectronico(trxVenta.DocElectronico.TipoDocumento, trxVenta.DocElectronico);
+                                string tramaResumen = servicioEstructuraDoc.FormatearResumenElectronico(string.Empty, trxVenta.ResumenElectronico);
 
-                                var resultado = servicioTimbre.ResumenDiario(trxVenta.DocElectronico.Emisor.NroDocumento, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, tramaResumen);
+                                var resultado = servicioTimbre.ResumenDiario(trxVenta.ResumenElectronico.Emisor.NroDocumento, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, tramaResumen);
 
                                 var rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, resultado.Item2, nombreArchivo, ".xml", false);
 
-                                DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, resultado.Item1, _Conex.Usuario, resultado.Item2.Replace("encoding=\"utf-8\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
+                                DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, resultado.Item1, _Conex.Usuario, resultado.Item2.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
 
                             }
                     }
@@ -306,21 +306,37 @@ namespace cfd.FacturaElectronica
                     msj = String.Empty;
                     String rutaNombreCDR = String.Empty;
                     String ticket = trxVenta.Regimen;
-                    String td = !trxVenta.Docid.Equals("RESUMEN") ? _Param.tipoDoc : trxVenta.Docid;
+                    String claseDocumento = !trxVenta.Docid.Equals("RESUMEN") ? _Param.tipoDoc : trxVenta.Docid;
                     try
                     {
                         String[] serieCorrelativo = trxVenta.Sopnumbe.Split(new char[] { '-' });
+
                         string nombreArchivo = Utiles.FormatoNombreArchivo(trxVenta.Docid + trxVenta.Sopnumbe + "_" + trxVenta.s_CUSTNMBR, trxVenta.s_NombreCliente, 20) + "_CDR_" + accion.Substring(0, 2);
 
-                        if (maquina.ValidaTransicion(td, accion, trxVenta.EstadoActual))
+                        if (maquina.ValidaTransicion(claseDocumento, accion, trxVenta.EstadoActual))
                             if (trxVenta.Voidstts == 0 && trxVenta.EstadoContabilizado.Equals("contabilizado"))  //documento no anulado
                             {
-                                trxVenta.ArmarDocElectronico();
-                                rutaNombreCDR = Path.Combine(trxVenta.RutaXml.Trim(), nombreArchivo, ".xml");
-                                var cdr = await servicioTimbre.ObtieneCDRdelOSEAsync(trxVenta.Rfc, trxVenta.DocElectronico.TipoDocumento, serieCorrelativo[0], serieCorrelativo[1], rutaNombreCDR);
+                                string tipoDoc = string.Empty;
+                                string serie = string.Empty;
+                                string correlativo = string.Empty;
+                                if (!trxVenta.Docid.Equals("RESUMEN"))
+                                {
+                                    trxVenta.ArmarDocElectronico();
+                                    tipoDoc = trxVenta.DocElectronico.TipoDocumento;
+                                    serie = serieCorrelativo[0];
+                                    correlativo = serieCorrelativo[1];
+                                }
+                                else
+                                {
+                                    tipoDoc = serieCorrelativo[0];
+                                    serie = serieCorrelativo[1];
+                                    correlativo = serieCorrelativo[2];
+                                }
+                                rutaNombreCDR = Path.Combine(trxVenta.RutaXml.Trim(), nombreArchivo + ".xml");
+                                var cdr = servicioTimbre.ObtieneCDRdelOSE(trxVenta.Rfc, tipoDoc, serie, correlativo);
                                 var rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, cdr, nombreArchivo, ".xml", false);
 
-                                var resCdr = ResultadoCDR(td, cdr);
+                                var resCdr = ResultadoCDR(claseDocumento, cdr);
                                 maquina.DestinoAceptado = resCdr.Item1;
                                 DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaNombreCDR, ticket, _Conex.Usuario, accion, maquina.DestinoStatusBase, maquina.DestinoEBinario, accion+":"+resCdr.Item3);
                                 DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje, ticket);
@@ -481,7 +497,8 @@ namespace cfd.FacturaElectronica
 
                             trxVenta.ArmarBaja(motivoBaja);
                             String[] serieCorrelativo = trxVenta.Sopnumbe.Split(new char[] { '-' });
-                            string numeroSunat = serieCorrelativo[0] + "-" + long.Parse(serieCorrelativo[1]).ToString();
+                            string numeroSunat = serieCorrelativo[0] + "-" + serieCorrelativo[1];
+                            //string numeroSunat = serieCorrelativo[0] + "-" + long.Parse(serieCorrelativo[1]).ToString();
 
                             //validaciones
                             switch (trxVenta.DocumentoBaja.Bajas.First().TipoDocumento)
@@ -494,7 +511,7 @@ namespace cfd.FacturaElectronica
                                     }
                                     break;
                                 case "03":
-                                    if (!trxVenta.Sopnumbe.Substring(0, 1).Equals("F"))
+                                    if (!trxVenta.Sopnumbe.Substring(0, 1).Equals("B"))
                                     {
                                         msj = "El folio de la Boleta debe empezar con la letra B. ";
                                         throw new ApplicationException(msj);
@@ -506,11 +523,11 @@ namespace cfd.FacturaElectronica
                             }
                             string nombreArchivo = Utiles.FormatoNombreArchivo(trxVenta.Docid + trxVenta.Sopnumbe + "_" + trxVenta.s_CUSTNMBR, trxVenta.s_NombreCliente, 20) + "_" + accion.Substring(0, 4);
 
-                            var resultado = servicioTimbre.Baja(trxVenta.DocElectronico.Emisor.NroDocumento, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, numeroSunat);
+                            var resultado = servicioTimbre.Baja(trxVenta.DocumentoBaja.Emisor.NroDocumento, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, numeroSunat);
 
                             var rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, resultado.Item2, nombreArchivo, ".xml", false);
 
-                            DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, resultado.Item1, _Conex.Usuario, resultado.Item2.Replace("encoding=\"utf-8\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
+                            DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, resultado.Item1, _Conex.Usuario, resultado.Item2.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
 
                             DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje, resultado.Item1);
 
