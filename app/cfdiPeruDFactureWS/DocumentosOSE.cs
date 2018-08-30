@@ -18,6 +18,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
         private string _DocElectronicoLinea01;
         private string _DocElectronicoLinea02;
         private string _DocElectronicoLinea03;
+        string _DocElectronicoLinea04 = string.Empty;
 
         public String FormatearDocElectronico(String tipoDocumento, DocumentoElectronico docElectronico)
         {
@@ -76,10 +77,10 @@ namespace cfdiPeruOperadorServiciosElectronicos
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.Gratuitas.ToString("0.00").Replace(",", ".") + "|";
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + string.Concat(docElectronico.Emisor.Direccion, " ", docElectronico.Emisor.Urbanizacion, " ", docElectronico.Emisor.Departamento, " ", docElectronico.Emisor.Distrito, " cp", docElectronico.Emisor.Ubigeo, "|");
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // TIPO_CAMBIO
-            _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.MetodoPago + "|"; // METODO_PAGO
-            _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // Observaciones
+            _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; //docElectronico.MetodoPago // 23 METODO_PAGO
+            _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // 24 Observaciones
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.DescuentoGlobal.ToString("0.00").Replace(",", ".") + "|"; 
-            _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // CODIGO_NOTA
+            _DocElectronicoLinea02 += docElectronico.Discrepancias.First().Tipo +"|"; // CODIGO_NOTA
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + Environment.NewLine;
 
             //LINEA 3 CONCEPTOS 
@@ -101,8 +102,16 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
             }
 
+            //LINEA 4  DATOS adicionales
+            if (!tipoDocumento.Equals("07"))
+            {
+                _DocElectronicoLinea04 = "04|";
+                _DocElectronicoLinea04 += "1|";
+                _DocElectronicoLinea04 += "Observaciones|";
+                _DocElectronicoLinea04 += docElectronico.Observaciones.Trim() + "|";
+            }
 
-            _DocElectronico = _DocElectronicoLinea0A + _DocElectronicoLinea01 + _DocElectronicoLinea02 + _DocElectronicoLinea03;
+            _DocElectronico = _DocElectronicoLinea0A + _DocElectronicoLinea01 + _DocElectronicoLinea02 + _DocElectronicoLinea03 + _DocElectronicoLinea04;
 
             return _DocElectronico;
         }
@@ -147,7 +156,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.Gratuitas.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea02 += string.Concat(docResumen.Emisor.Direccion, " ", docResumen.Emisor.Urbanizacion, " ", docResumen.Emisor.Departamento, " ", docResumen.Emisor.Distrito,  "|");
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // TIPO_CAMBIO
-                _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.MetodoPago + "|"; // METODO_PAGO
+                _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // detalle.MetodoPago + // METODO_PAGO no obligatorio
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // Observaciones
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + detalle.DescuentosGlobales.ToString("0.00").Replace(",", ".") + "|";
                 _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // CODIGO_NOTA\n

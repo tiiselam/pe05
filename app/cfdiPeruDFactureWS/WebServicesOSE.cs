@@ -177,7 +177,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
             {
                 throw new TimeoutException("Excepción al conectarse con el Web Service de Facturacion de DFactur-e. [Baja] " + cancela.NumeroError + " - " + cancela.MensajeError);
             }
-            return Tuple.Create(cancela.Nroticketdeatencion, cancela.XmlBaja);
+            return Tuple.Create(cancela.Nroticketdeatencion, cancela?.XmlBaja);
         }
         //public async Task DescargaPDFAsync(string ruc, string tipoDoc, string serie, string correlativo)
         //{

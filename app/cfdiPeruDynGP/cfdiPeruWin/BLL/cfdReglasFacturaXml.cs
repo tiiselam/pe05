@@ -197,7 +197,7 @@ namespace cfd.FacturaElectronica
                 logVenta.IdUsuario = Utiles.Derecha(idusuario, 10);
                 logVenta.IdUsuarioAnulacion = "-";
                 logVenta.FechaAnulacion = new DateTime(1900, 1, 1);
-                if (!innerxml.Equals("")) 
+                if (!string.IsNullOrEmpty(innerxml)) 
                     logVenta.ArchivoXML = innerxml;
                 logVenta.EstadoActual = eBinarioActual;
                 logVenta.MensajeEA = Utiles.Derecha(mensajeBinActual, 255);

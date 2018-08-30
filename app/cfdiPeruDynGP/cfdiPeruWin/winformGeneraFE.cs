@@ -625,7 +625,7 @@ namespace cfdiPeru
                             return;
                         }
 
-                    System.Diagnostics.Process.Start(nombreYRutaPdf);
+                    System.Diagnostics.Process.Start(nombreYRutaPdf.ToLower().Replace(".xml", ".pdf"));
 
                 }
                 else

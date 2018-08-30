@@ -153,16 +153,16 @@ namespace MaquinaDeEstados
 
             if (tipoDoc.Equals("RESUMEN") && accion.Equals("CONSULTA CDR"))
             {
-                    if (_Compania.emite && _Compania.publica && publicado(eBinarioActual) && !RechazaSunat(eBinarioActual) && !AceptaSunat(eBinarioActual))
-                    {
-                        _eBinarioNuevo = Utiles.Izquierda(eBinarioActual, 4) + "1" + Utiles.Derecha(eBinarioActual, 1);        //aceptado sunat
-                        eBinActualConError = "1" + Utiles.Derecha(eBinarioActual, 5);                                        //rechazado SUNAT
-                        eBinActualConError = Utiles.Izquierda(eBinActualConError, 4) + "0" + Utiles.Derecha(eBinActualConError, 1);     //no aceptado
-                        nodoDestinoStatusBase = !nodoDestinoAceptado ? "rechazo_sunat" : "acepta_sunat";
-                        return true;
-                    }
-                    else
-                        ultimoMensaje = "No se puede consultar el CDR porque no existe la solicitud, o el resumen ya fue aceptado/rechazado por la SUNAT. [ValidaTransicion] " + eBinarioActual;
+                //if (_Compania.emite && _Compania.publica && publicado(eBinarioActual) && !RechazaSunat(eBinarioActual) && !AceptaSunat(eBinarioActual))
+                //{
+                //    _eBinarioNuevo = Utiles.Izquierda(eBinarioActual, 4) + "1" + Utiles.Derecha(eBinarioActual, 1);        //aceptado sunat
+                //    eBinActualConError = "1" + Utiles.Derecha(eBinarioActual, 5);                                        //rechazado SUNAT
+                //    eBinActualConError = Utiles.Izquierda(eBinActualConError, 4) + "0" + Utiles.Derecha(eBinActualConError, 1);     //no aceptado
+                //    nodoDestinoStatusBase = !nodoDestinoAceptado ? "rechazo_sunat" : "acepta_sunat";
+                //    return true;
+                //}
+                //else
+                ultimoMensaje = "Verifique el CDR del resumen en el sitio web del OSE"; // "No se puede consultar el CDR porque no existe la solicitud, o el resumen ya fue aceptado/rechazado por la SUNAT. [ValidaTransicion] " + eBinarioActual;
             }
 
             if (tipoDoc.Equals("FACTURA") && accion.Equals("BAJA"))
@@ -181,26 +181,27 @@ namespace MaquinaDeEstados
 
             if (tipoDoc.Equals("FACTURA") && accion.Equals("CONSULTA CDR"))
             {
-                if (_Compania.emite == emitido(eBinarioActual) && !Anulado(eBinarioActual) && !RechazaSunat(eBinarioActual) && publicado(eBinarioActual))
-                {
-                    _eBinarioNuevo = Utiles.Izquierda(eBinarioActual, 4) + "1" + Utiles.Derecha(_eBinarioNuevo, 1);     //rechazado o baja aceptada
-                    _eBinarioNuevo = "0" + Utiles.Derecha(_eBinarioNuevo, 5);
-                    eBinActualConError = Utiles.Izquierda(eBinarioActual, 4) + "0" + Utiles.Derecha(_eBinarioNuevo, 1); //baja rechazada
-                    eBinActualConError = "1" + Utiles.Derecha(eBinActualConError, 5);
-                    nodoDestinoStatusBase = !nodoDestinoAceptado ? "rechazo_sunat" : "anulado";
-                    return true;
-                }
-                else if (_Compania.emite == emitido(eBinarioActual) && !Anulado(eBinarioActual) && !RechazaSunat(eBinarioActual) && !publicado(eBinarioActual))
+                //if (_Compania.emite == emitido(eBinarioActual) && !Anulado(eBinarioActual) && !RechazaSunat(eBinarioActual) && publicado(eBinarioActual))
+                //{
+                //    _eBinarioNuevo = Utiles.Izquierda(eBinarioActual, 4) + "1" + Utiles.Derecha(_eBinarioNuevo, 1);     //rechazado o baja aceptada
+                //    _eBinarioNuevo = "0" + Utiles.Derecha(_eBinarioNuevo, 5);
+                //    eBinActualConError = Utiles.Izquierda(eBinarioActual, 4) + "0" + Utiles.Derecha(_eBinarioNuevo, 1); //baja rechazada
+                //    eBinActualConError = "1" + Utiles.Derecha(eBinActualConError, 5);
+                //    nodoDestinoStatusBase = !nodoDestinoAceptado ? "rechazo_sunat" : "anulado";
+                //    return true;
+                //}
+                //else 
+                if (_Compania.emite == emitido(eBinarioActual) && !Anulado(eBinarioActual) && !RechazaSunat(eBinarioActual) && !publicado(eBinarioActual))
                 {
                     _eBinarioNuevo = Utiles.Izquierda(eBinarioActual, 4) + "0" + Utiles.Derecha(_eBinarioNuevo, 1);     //doc aceptado
                     _eBinarioNuevo = "0" + Utiles.Derecha(_eBinarioNuevo, 5);
                     eBinActualConError = Utiles.Izquierda(eBinarioActual, 4) + "1" + Utiles.Derecha(_eBinarioNuevo, 1); //doc rechazado
                     eBinActualConError = "0" + Utiles.Derecha(eBinActualConError, 5);
-                    nodoDestinoStatusBase = !nodoDestinoAceptado ? "rechazo_sunat" : "aceptado_sunat";
+                    nodoDestinoStatusBase = !nodoDestinoAceptado ? "rechazo_sunat" : "acepta_sunat";
                     return true;
                 }
                 else
-                    ultimoMensaje = "No se puede consultar en la SUNAT porque no se hizo la solicitud, ya fue dado de baja o la baja fue rechazada. [ValidaTransicion] " + eBinarioActual;
+                    ultimoMensaje = "Si ya envió la baja de boleta o factura, verifique el CDR en el sitio web del OSE"; //No se puede consultar en la SUNAT porque no se hizo la solicitud, ya fue dado de baja o la baja fue rechazada. [ValidaTransicion] " + eBinarioActual;
             }
 
             return false;

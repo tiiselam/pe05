@@ -527,8 +527,8 @@
             // genFacturaElectrónicaV10ToolStripMenuItem
             // 
             this.genFacturaElectrónicaV10ToolStripMenuItem.Name = "genFacturaElectrónicaV10ToolStripMenuItem";
-            this.genFacturaElectrónicaV10ToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
-            this.genFacturaElectrónicaV10ToolStripMenuItem.Text = "Factura Electrónica PERU v8.0.0-beta+ubl2";
+            this.genFacturaElectrónicaV10ToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
+            this.genFacturaElectrónicaV10ToolStripMenuItem.Text = "Factura Electrónica PERU v8.0.0+ubl2";
             // 
             // toolStripMenuItem2
             // 
@@ -653,8 +653,8 @@
             this.tsButtonImprimir.Image = ((System.Drawing.Image)(resources.GetObject("tsButtonImprimir.Image")));
             this.tsButtonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsButtonImprimir.Name = "tsButtonImprimir";
-            this.tsButtonImprimir.Size = new System.Drawing.Size(67, 19);
-            this.tsButtonImprimir.Text = "Ver factura";
+            this.tsButtonImprimir.Size = new System.Drawing.Size(27, 19);
+            this.tsButtonImprimir.Text = "Ver";
             this.tsButtonImprimir.Click += new System.EventHandler(this.tsButtonImprimir_Click);
             // 
             // toolStripConsulta

@@ -131,7 +131,7 @@ namespace cfd.FacturaElectronica
                                         msj = "ok";
                                         break;
                                     case "03":
-                                        msj = "No se puede emitir porque las boletas se envían en el resumen. Ingrese a la opción Resumen.";
+                                        msj = "ok";
                                         break;
                                     default:
                                         msj = "No se puede emitir porque el tipo de documento: " + trxVenta.DocElectronico.TipoDocumento + " no está configurado.";
@@ -311,8 +311,8 @@ namespace cfd.FacturaElectronica
                     {
                         String[] serieCorrelativo = trxVenta.Sopnumbe.Split(new char[] { '-' });
 
-                        string nombreArchivo = Utiles.FormatoNombreArchivo(trxVenta.Docid + trxVenta.Sopnumbe + "_" + trxVenta.s_CUSTNMBR, trxVenta.s_NombreCliente, 20) + "_CDR_" + accion.Substring(0, 2);
-
+                        string nombreArchivo = Utiles.FormatoNombreArchivo(trxVenta.Docid + trxVenta.Sopnumbe + "_" + trxVenta.s_CUSTNMBR, trxVenta.s_NombreCliente, 20) + "_CDR_";
+                        
                         if (maquina.ValidaTransicion(claseDocumento, accion, trxVenta.EstadoActual))
                             if (trxVenta.Voidstts == 0 && trxVenta.EstadoContabilizado.Equals("contabilizado"))  //documento no anulado
                             {
@@ -332,12 +332,13 @@ namespace cfd.FacturaElectronica
                                     serie = serieCorrelativo[1];
                                     correlativo = serieCorrelativo[2];
                                 }
-                                rutaNombreCDR = Path.Combine(trxVenta.RutaXml.Trim(), nombreArchivo + ".xml");
                                 var cdr = servicioTimbre.ObtieneCDRdelOSE(trxVenta.Rfc, tipoDoc, serie, correlativo);
-                                var rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, cdr, nombreArchivo, ".xml", false);
 
                                 var resCdr = ResultadoCDR(claseDocumento, cdr);
                                 maquina.DestinoAceptado = resCdr.Item1;
+                                rutaNombreCDR = Path.Combine(trxVenta.RutaXml.Trim(), nombreArchivo + maquina.DestinoStatusBase +".xml");
+                                var rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, cdr, nombreArchivo, maquina.DestinoStatusBase + ".xml", false);
+
                                 DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaNombreCDR, ticket, _Conex.Usuario, accion, maquina.DestinoStatusBase, maquina.DestinoEBinario, accion+":"+resCdr.Item3);
                                 DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje, ticket);
 
@@ -527,7 +528,7 @@ namespace cfd.FacturaElectronica
 
                             var rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, resultado.Item2, nombreArchivo, ".xml", false);
 
-                            DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, resultado.Item1, _Conex.Usuario, resultado.Item2.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
+                            DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, resultado.Item1, _Conex.Usuario, resultado?.Item2?.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
 
                             DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje, resultado.Item1);
 

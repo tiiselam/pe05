@@ -103,6 +103,7 @@ namespace cfdiPeru
                 _docElectronico.TotalVenta = docGP.DocVenta.total;
                 _docElectronico.MontoEnLetras = docGP.DocVenta.montoEnLetras;
                 _docElectronico.MetodoPago = docGP.DocVenta.formaPago;
+                _docElectronico.Observaciones = docGP.DocVenta.discrepanciaDesc;
 
                 lDetalleDocumento = new List<DetalleDocumento>();
                 int i = 1;
