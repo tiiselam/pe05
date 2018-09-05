@@ -804,10 +804,10 @@
   </wsdl:binding>
   <wsdl:service name="MetodosClient">
     <wsdl:port name="MetodosClientSoap" binding="tns:MetodosClientSoap">
-      <soap:address location="http://ws.dfacture.com.pe/integracionesdemo/MetodosClient.asmx" />
+      <soap:address location="https://caja.dfacture.com.pe:8001/FacturacionPERU8001/MetodosClient.asmx" />
     </wsdl:port>
     <wsdl:port name="MetodosClientSoap12" binding="tns:MetodosClientSoap12">
-      <soap12:address location="http://ws.dfacture.com.pe/integracionesdemo/MetodosClient.asmx" />
+      <soap12:address location="https://caja.dfacture.com.pe:8001/FacturacionPERU8001/MetodosClient.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

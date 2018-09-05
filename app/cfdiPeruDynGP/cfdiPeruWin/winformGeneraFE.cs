@@ -43,7 +43,7 @@ namespace cfdiPeru
         List<CfdiDocumentoId> LDocsNoSeleccionados = new List<CfdiDocumentoId>();   //Docs no marcados del grid
         private ConexionDB DatosConexionDB = new ConexionDB();  //Lee la configuración del archivo xml y obtiene los datos de conexión.
 
-        ICfdiMetodosWebService ServiciosOse = new WebServicesOSE();
+        ICfdiMetodosWebService ServiciosOse; 
         ICfdiPeruDocumento EstructuraDocsOse = new DocumentosOSE();
 
         public winformGeneraFE()
@@ -351,6 +351,7 @@ namespace cfdiPeru
 
             Parametros Param = new Parametros(DatosConexionDB.Elemento.Intercompany);
             Param.ExtDefault = this.tabCfdi.SelectedTab.Name;
+            ServiciosOse = new WebServicesOSE(Param.URLwebServPAC);
 
             if (!Param.ultimoMensaje.Equals(string.Empty)) 
             {
@@ -685,6 +686,7 @@ namespace cfdiPeru
 
             Parametros Param = new Parametros(DatosConexionDB.Elemento.Intercompany);
             Param.ExtDefault = this.tabCfdi.SelectedTab.Name;
+            ServiciosOse = new WebServicesOSE(Param.URLwebServPAC);
 
             if (!Param.ultimoMensaje.Equals(string.Empty))
             {
@@ -787,6 +789,7 @@ namespace cfdiPeru
 
             Parametros Param = new Parametros(DatosConexionDB.Elemento.Intercompany);
             Param.ExtDefault = this.tabCfdi.SelectedTab.Name;
+            ServiciosOse = new WebServicesOSE(Param.URLwebServPAC);
 
             if (!Param.ultimoMensaje.Equals(string.Empty))
             {
@@ -944,6 +947,7 @@ namespace cfdiPeru
             txtbxMensajes.Refresh();
 
             Parametros _param = new Parametros(DatosConexionDB.Elemento.Intercompany);
+            ServiciosOse = new WebServicesOSE(_param.URLwebServPAC);
             if (!_param.ultimoMensaje.Equals(string.Empty))
             {
                 txtbxMensajes.Text = _param.ultimoMensaje;

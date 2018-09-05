@@ -26,7 +26,7 @@ namespace cfdiPeruOperadorServiciosElectronicos.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://ws.dfacture.com.pe/integracionesdemo/MetodosClient.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://caja.dfacture.com.pe:8001/FacturacionPERU8001/MetodosClient.asmx")]
         public string cfdiPeruDFactureWS_pe_dfacture_ws_MetodosClient {
             get {
                 return ((string)(this["cfdiPeruDFactureWS_pe_dfacture_ws_MetodosClient"]));

@@ -81,10 +81,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://ws.dfacture.com.pe/integracionesdemo/MetodosClient.asmx">
+    <WebReferenceUrl Include="https://caja.dfacture.com.pe:8001/FacturacionPERU8001/MetodosClient.asmx ">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\pe.dfacture.ws\</RelPath>
-      <UpdateFromURL>http://ws.dfacture.com.pe/integracionesdemo/MetodosClient.asmx</UpdateFromURL>
+      <UpdateFromURL>https://caja.dfacture.com.pe:8001/FacturacionPERU8001/MetodosClient.asmx </UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

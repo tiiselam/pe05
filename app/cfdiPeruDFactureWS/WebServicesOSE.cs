@@ -14,11 +14,14 @@ namespace cfdiPeruOperadorServiciosElectronicos
     public class WebServicesOSE : ICfdiMetodosWebService
     {
         pe.dfacture.ws.MetodosClient Servicio = new pe.dfacture.ws.MetodosClient();
+        public WebServicesOSE(string urlWebService)
+        {
+            Servicio.Url = urlWebService;
+        }
 
         public String TimbraYEnviaASunat(string ruc, string usuario, string usuarioPassword, string texto)
         {
             pe.dfacture.ws.RespuestaTimbradoTXT respuestaT = new pe.dfacture.ws.RespuestaTimbradoTXT();
-
             byte[] archivo = System.Text.Encoding.UTF8.GetBytes(texto);
 
             respuestaT = Servicio.timbraEnviaTXT32(ruc, usuario, usuarioPassword, archivo);

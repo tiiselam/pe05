@@ -80,7 +80,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; //docElectronico.MetodoPago // 23 METODO_PAGO
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + "|"; // 24 Observaciones
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + docElectronico.DescuentoGlobal.ToString("0.00").Replace(",", ".") + "|"; 
-            _DocElectronicoLinea02 += docElectronico.Discrepancias.First().Tipo +"|"; // CODIGO_NOTA
+            _DocElectronicoLinea02 += (tipoDocumento.Equals("07")? docElectronico.Discrepancias.First().Tipo: string.Empty) +"|"; // CODIGO_NOTA
             _DocElectronicoLinea02 = _DocElectronicoLinea02 + Environment.NewLine;
 
             //LINEA 3 CONCEPTOS 
