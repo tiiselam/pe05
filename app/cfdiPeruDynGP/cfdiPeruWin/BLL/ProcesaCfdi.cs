@@ -11,6 +11,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using cfdiPeruDFacture;
+using System.Windows.Forms;
+
 
 namespace cfd.FacturaElectronica
 {
@@ -84,14 +87,16 @@ namespace cfd.FacturaElectronica
                     msj = String.Empty;
                     try
                     {
+                        
                         String accion = "EMITE XML Y PDF";
+                        
                         if (trxVenta.Estado.Equals("no emitido") &&
                             maquina.ValidaTransicion(_Param.tipoDoc, accion, trxVenta.EstadoActual, "emitido/impreso") &&
                             trxVenta.EstadoContabilizado.Equals("contabilizado"))
                             if (trxVenta.Voidstts == 0)  //documento no anulado
                             {
                                 trxVenta.ArmarDocElectronico();
-
+                        
                                 var proxy = new HttpClient { BaseAddress = new Uri(ConfigurationManager.AppSettings["UrlOpenInvoicePeruApi"]) };
 
                                 string metodoApi = string.Empty;
@@ -219,6 +224,8 @@ namespace cfd.FacturaElectronica
             try
             {
                 String msj = String.Empty;
+                String archivosalida = String.Empty;
+
                 trxVenta.Rewind();                                                          //move to first record
 
                 int errores = 0; int i = 1;
@@ -230,10 +237,92 @@ namespace cfd.FacturaElectronica
                 do
                 {
                     msj = String.Empty;
+                    archivosalida = String.Empty;
+
                     try
                     {
                         trxVenta.ArmarDocElectronico();
-//                        trxVenta.DocElectronico
+
+                        //MessageBox.Show("Doc " + trxVenta.DocElectronico.IdDocumento, "My Application", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+
+                        ICfdiPeruDFacture archivodigital = new ICfdiPeruDFacture();
+
+                        archivosalida = archivodigital.FormatearDocElectronico("3", trxVenta.DocElectronico);
+                        // MessageBox.Show("DOC " + trxVenta.DocElectronico.IdDocumento + "--> " + archivosalida, "My Application", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                                                
+
+                    }
+                    catch (HttpRequestException he)
+                    {
+                        msj = string.Concat(he.Message, Environment.NewLine, he.StackTrace);
+                        errores++;
+                    }
+                    catch (ApplicationException ae)
+                    {
+                        msj = ae.Message + Environment.NewLine + ae.StackTrace;
+                        errores++;
+                    }
+                    catch (IOException io)
+                    {
+                        msj = "Excepción al revisar la carpeta/archivo: " + trxVenta.Ruta_clave + " Verifique su existencia y privilegios." + Environment.NewLine + io.Message + Environment.NewLine;
+                        errores++;
+                    }
+                    catch (Exception lo)
+                    {
+                        string imsj = lo.InnerException == null ? "" : lo.InnerException.ToString();
+                        msj = lo.Message + " " + imsj + Environment.NewLine + lo.StackTrace;
+                        errores++;
+                    }
+                    finally
+                    {
+                        OnProgreso(i * 100 / trxVenta.RowCount, "Doc:" + trxVenta.Sopnumbe + " " + msj.Trim() + Environment.NewLine);              //Notifica al suscriptor
+                        i++;
+                    }
+                } while (trxVenta.MoveNext() && errores < 10);
+            }
+            catch (Exception xw)
+            {
+                string imsj = xw.InnerException == null ? "" : xw.InnerException.ToString();
+                this.ultimoMensaje = xw.Message + " " + imsj + Environment.NewLine + xw.StackTrace;
+            }
+            finally
+            {
+                OnProgreso(100, ultimoMensaje);
+            }
+            OnProgreso(100, "Proceso finalizado!");
+        }
+
+        public async Task GeneraResumenXmTestlAsync()
+        {
+            try
+            {
+                String msj = String.Empty;
+                String archivosalida = String.Empty;
+
+                trxVenta.Rewind();                                                          //move to first record
+
+                int errores = 0; int i = 1;
+                cfdReglasFacturaXml DocVenta = new cfdReglasFacturaXml(_Conex, _Param);     //log de facturas xml emitidas y anuladas
+                ReglasME maquina = new ReglasME(_Param);
+                ValidadorXML validadorxml = new ValidadorXML(_Param);
+                TransformerXML loader = new TransformerXML();
+                OnProgreso(1, "INICIANDO EMISION DE COMPROBANTES DE VENTA...");              //Notifica al suscriptor
+                do
+                {
+                    msj = String.Empty;
+                    archivosalida = String.Empty;
+
+                    try
+                    {
+                        trxVenta.ArmarResumenElectronico();
+
+                        //MessageBox.Show("Doc " + trxVenta.ResumenElectronico.IdDocumento, "My Application", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+
+                        ICfdiPeruDFacture archivodigital = new ICfdiPeruDFacture();
+
+                        archivosalida = archivodigital.FormatearResumenElectronico("3", trxVenta.ResumenElectronico);
+
+                        //MessageBox.Show(archivosalida, "My Application", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
 
                     }
                     catch (HttpRequestException he)
