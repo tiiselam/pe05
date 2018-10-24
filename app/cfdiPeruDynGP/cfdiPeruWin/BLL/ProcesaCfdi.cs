@@ -167,7 +167,8 @@ namespace cfd.FacturaElectronica
                     }
                     catch (TimeoutException ae)
                     {
-                        msj = ae.Message + Environment.NewLine + ae.StackTrace;
+                        string imsj = ae.InnerException == null ? "" : ae.InnerException.ToString();
+                        msj = ae.Message + " " + imsj + Environment.NewLine + ae.StackTrace;
                         errores++;
                     }
                     catch (IOException io)

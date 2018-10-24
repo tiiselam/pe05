@@ -141,11 +141,21 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
         public string DescargaPDF(string ruc, string tipoDoc, string serie, string correlativo)
         {
-            string serieCorrelativo = string.Concat(tipoDoc, "-", serie, "-", correlativo);
-            string archivoPdf = Servicio.DescargaPDF(ruc, serieCorrelativo);
-            if (archivoPdf == "0")
+            string archivoPdf = "0";
+            string serieCorrelativo = string.Empty;
+            try
             {
-                throw new ArgumentException(string.Concat("No se puede descargar el PDF. Verifique la numeración: tipo - serie - correlativo: ", serieCorrelativo, " e intente nuevamente más tarde. "));
+                serieCorrelativo = string.Concat(tipoDoc, "-", serie, "-", correlativo);
+                archivoPdf = Servicio.DescargaPDF(ruc, serieCorrelativo);
+                if (archivoPdf == "0")
+                {
+                    throw new ArgumentException(string.Concat("No se puede descargar el PDF. Verifique la numeración: tipo - serie - correlativo: ", serieCorrelativo, " e intente nuevamente más tarde. "));
+                }
+
+            }
+            catch (Exception)
+            {
+                throw new TimeoutException(string.Concat("Probable timeout. No se puede descargar el PDF. Puede descargarlo desde el portal."));
             }
             return archivoPdf;
         }
