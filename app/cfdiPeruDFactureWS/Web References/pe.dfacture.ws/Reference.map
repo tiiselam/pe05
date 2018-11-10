@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="https://caja.dfacture.com.pe:8001/FacturacionPERU8001/MetodosClient.asmx?disco" filename="MetodosClient.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://caja.dfacture.com.pe:8001/FacturacionPERU8001/MetodosClient.asmx?wsdl" filename="MetodosClient.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>

@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="cfdiPeruOperadorServiciosElectronicos.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="cfdiPeruDFactureWS_pe_dfacture_ws_MetodosClient" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://caja.dfacture.com.pe:8001/FacturacionPERU8001/MetodosClient.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -12,7 +12,9 @@ using cfdiPeru;
 using Comun;
 //using Reporteador;
 using MaquinaDeEstados;
-//using QRCodeLib;
+
+using System.Threading.Tasks;
+
 
 namespace cfd.FacturaElectronica
 {
@@ -143,7 +145,7 @@ namespace cfd.FacturaElectronica
         }
 
         /// <summary>
-        /// si la factura est· simult·neamente pagada, ingresa el cobro en el log en estado emitido
+        /// si la factura est√° simult√°neamente pagada, ingresa el cobro en el log en estado emitido
         /// </summary>
         public void RegistraLogDePagosSimultaneos(short Soptype, string Sopnumbe, string eBinarioNuevo, string eBinarioNuevoExplicado, string eBinActualConError, string eBinActualConErrorExplicado)
         {
@@ -168,7 +170,7 @@ namespace cfd.FacturaElectronica
             }
             catch (Exception eGen)
             {
-                ultimoMensaje = "ExcepciÛn al ingresar los pagos simult·neos en el log. [RegistraLogDePagosSimultaneos] " + eGen.Message + " " + eGen.Source;
+                ultimoMensaje = "Excepci√≥n al ingresar los pagos simult√°neos en el log. [RegistraLogDePagosSimultaneos] " + eGen.Message + " " + eGen.Source;
                 ActualizaFacturaEmitida(Soptype, Sopnumbe, _Conexion.Usuario, "emitido", "emitido", eBinActualConError, eBinActualConErrorExplicado + ultimoMensaje.Trim(), String.Empty);
                 numMensajeError++;
                 throw;
@@ -197,7 +199,7 @@ namespace cfd.FacturaElectronica
                 logVenta.IdUsuario = Utiles.Derecha(idusuario, 10);
                 logVenta.IdUsuarioAnulacion = "-";
                 logVenta.FechaAnulacion = new DateTime(1900, 1, 1);
-                if (!innerxml.Equals("")) 
+                if (!string.IsNullOrEmpty(innerxml)) 
                     logVenta.ArchivoXML = innerxml;
                 logVenta.EstadoActual = eBinarioActual;
                 logVenta.MensajeEA = Utiles.Derecha(mensajeBinActual, 255);
@@ -240,7 +242,7 @@ namespace cfd.FacturaElectronica
                 }
                 else
                 {
-                    throw new ArgumentException(Sopnumbe+" No est· en la bit·cora en estado 'emitido'.");
+                    throw new ArgumentException(Sopnumbe+" No est√° en la bit√°cora en estado 'emitido'.");
                 }
             }
             catch (Exception)
@@ -250,10 +252,165 @@ namespace cfd.FacturaElectronica
         }
 
         /// <summary>
-        /// Guarda el archivo xml, lo comprime en zip y anota en la bit·cora la factura emitida y el nuevo estado binario.
-        /// Luego genera y guarda el cÛdigo de barras bidimensional y pdf. En caso de error, anota en la bit·cora. 
+        /// Guarda el archivo xml.
         /// </summary>
-        /// <param name="trxVenta">Lista de facturas cuyo Ìndice apunta a la factura que se va procesar.</param>
+        /// <param name="trxVenta">Lista de facturas cuyo √≠ndice apunta a la factura que se va procesar.</param>
+        /// <param name="comprobante">Documento xml firmado por la sunat</param>
+        /// <param name="nombreArchivo">nombre de archivo (opcional)</param>
+        /// <param name="tipoDoc">Tipo de documento</param>
+        /// <param name="accion">Acci√≥n ejecutada por el usuario</param>
+        /// <param name="esBinario">Es archivo binario o texto?</param>
+        /// <param name="extension">.xml .pdf ...</param>
+        public async Task<string> GuardaArchivoAsync(vwCfdTransaccionesDeVenta trxVenta, String comprobante, String nombreArchivo, string extension, bool esBinario)
+        {
+            string rutaYNomArchivoCfdi = string.Empty;
+            try
+            {   
+                rutaYNomArchivoCfdi = Path.Combine(trxVenta.RutaXml.Trim(), nombreArchivo + extension);
+
+                if (esBinario)
+                {
+                    byte[] data = Convert.FromBase64String(comprobante);
+                    using (FileStream SourceStream = File.Open(rutaYNomArchivoCfdi, FileMode.OpenOrCreate))
+                    {
+                        SourceStream.Seek(0, SeekOrigin.End);
+                        await SourceStream.WriteAsync(data, 0, data.Length);
+                    }
+
+                }
+                else
+                {
+                    using (StreamWriter outputFile = new StreamWriter(rutaYNomArchivoCfdi))
+                    {
+                        await outputFile.WriteAsync(comprobante);
+                    }
+                }
+                return rutaYNomArchivoCfdi;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                string smsj = "Verifique la existencia de la carpeta indicada en la configuraci√≥n de Ruta de archivos Xml de GP. La ruta de la carpeta no existe: " + rutaYNomArchivoCfdi;
+                throw new DirectoryNotFoundException(smsj);
+            }
+            catch (IOException)
+            {
+                string smsj = "Verifique permisos de escritura en la carpeta: " + rutaYNomArchivoCfdi + ". No se pudo guardar el archivo xml.";
+                throw new IOException(smsj);
+            }
+            catch (Exception eAFE)
+            {
+                string smsj;
+                if (eAFE.Message.Contains("denied"))
+                    smsj = "Elimine el archivo xml antes de volver a generar uno nuevo. Luego vuelva a intentar. " + eAFE.Message;
+                else
+                    smsj = "Contacte a su administrador. No se pudo guardar el archivo XML. " + eAFE.Message + Environment.NewLine + eAFE.StackTrace;
+                throw new IOException(smsj);
+            }
+        }
+
+        /// <summary>
+        /// Guarda el archivo xml.
+        /// </summary>
+        /// <param name="trxVenta">Lista de facturas cuyo √≠ndice apunta a la factura que se va procesar.</param>
+        /// <param name="comprobante">Documento xml firmado por la sunat</param>
+        /// <param name="nombreArchivo">nombre de archivo (opcional)</param>
+        /// <param name="tipoDoc">Tipo de documento</param>
+        /// <param name="accion">Acci√≥n ejecutada por el usuario</param>
+        public string GuardaArchivo(vwCfdTransaccionesDeVenta trxVenta, String comprobante, String nombreArchivo, String tipoDoc, String accion)
+        {
+            try
+            {   //arma el nombre del archivo xml
+                string nomArchivo = string.IsNullOrEmpty(nombreArchivo) ? Utiles.FormatoNombreArchivo(trxVenta.Docid + trxVenta.Sopnumbe + "_" + trxVenta.s_CUSTNMBR, trxVenta.s_NombreCliente, 20) : nombreArchivo;
+                string rutaYNomArchivoCfdi = string.Concat(trxVenta.RutaXml.Trim(), nomArchivo, "_", accion.Substring(0, 2), ".xml");
+
+                //Guarda el archivo xml
+                if ((tipoDoc.Equals("FACTURA") && accion.Equals("EMITE XML Y PDF")) ||
+                    (tipoDoc.Equals("RESUMEN") && accion.Equals("ENVIA RESUMEN")) ||
+                    (tipoDoc.Equals("FACTURA") && accion.Equals("DAR DE BAJA")) ||
+                    accion.Equals("CONSULTA CDR")
+                    )
+                {
+                    if (!string.IsNullOrEmpty(comprobante))
+                        File.WriteAllText(rutaYNomArchivoCfdi, comprobante);
+                    else
+                        throw new ArgumentException("No se puede guardar el archivo xml " + nomArchivo + " porque est√° vac√≠o.");
+                }
+                return rutaYNomArchivoCfdi;
+
+            }
+            catch (DirectoryNotFoundException)
+            {
+                string smsj = "Verifique la existencia de la carpeta indicada en la configuraci√≥n de Ruta de archivos Xml de GP. La ruta de la carpeta no existe: " + trxVenta.RutaXml;
+                throw new DirectoryNotFoundException(smsj);
+            }
+            catch (IOException)
+            {
+                string smsj = "Verifique permisos de escritura en la carpeta: " + trxVenta.RutaXml + ". No se pudo guardar el archivo xml.";
+                throw new IOException(smsj);
+            }
+            catch (Exception eAFE)
+            {
+                string smsj;
+                if (eAFE.Message.Contains("denied"))
+                    smsj = "Elimine el archivo xml antes de volver a generar uno nuevo. Luego vuelva a intentar. " + eAFE.Message;
+                else
+                    smsj = "Contacte a su administrador. No se pudo guardar el archivo XML. " + eAFE.Message + Environment.NewLine + eAFE.StackTrace;
+                throw new Exception(smsj);
+            }
+        }
+        /// <summary>
+        /// Anota en la bit√°cora la factura emitida y el nuevo estado binario.
+        /// </summary>
+        /// <param name="trxVenta">Lista de facturas cuyo √≠ndice apunta a la factura que se va procesar.</param>
+        /// <param name="comprobante">Documento xml firmado por la sunat</param>
+        /// <param name="mEstados">Nuevo set de estados</param>
+        /// <param name="ticket"></param>
+        /// <param name="tipoDoc"></param>
+        /// <param name="accion"></param>
+        /// <param name="eBinarioOK"></param>
+        public void LogDocumento(vwCfdTransaccionesDeVenta trxVenta, String comprobante, ReglasME mEstados, String ticket, String tipoDoc, String accion, bool eBinarioOK, String rutaYNomArchivoCfdi)
+        {
+            try
+            {   
+                String statusBase;
+                String msjBinActual;
+                String eBinario = !eBinarioOK ? mEstados.eBinActualConError : mEstados.eBinarioNuevo;
+                switch (accion)
+                {
+                    case "DAR DE BAJA":
+                        statusBase = "publicado";
+                        msjBinActual = "Baja solicitada el " + DateTime.Today.ToString();
+                        break;
+                    case "CONSULTA CDR":
+                        if (tipoDoc.Equals("FACTURA"))
+                            statusBase = !eBinarioOK ? "rechazo_sunat" : "anulado";
+                        else
+                            statusBase = !eBinarioOK ? "rechazo_sunat" : "acepta_sunat";
+
+                        msjBinActual = comprobante;
+                        break;
+                    default:
+                        statusBase = "emitido";
+                        msjBinActual = mEstados.EnLetras(eBinario, tipoDoc);
+                        break;
+                }
+
+                //Registra log de la emisi√≥n del xml antes de imprimir el pdf, sino habr√° error al imprimir
+                RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNomArchivoCfdi, ticket, _Conexion.Usuario, comprobante.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""),
+                                        statusBase, eBinario, msjBinActual);
+            }
+            catch (Exception eAFE)
+            {
+                string smsj = "Contacte al administrador. No se pudo registrar el estado del documento en la bit√°cora. " + eAFE.Message + Environment.NewLine + eAFE.StackTrace;
+                throw new Exception(smsj);
+            }
+        }
+
+        /// <summary>
+        /// Guarda el archivo xml, lo comprime en zip y anota en la bit√°cora la factura emitida y el nuevo estado binario.
+        /// Luego genera y guarda el c√≥digo de barras bidimensional y pdf. En caso de error, anota en la bit√°cora. 
+        /// </summary>
+        /// <param name="trxVenta">Lista de facturas cuyo √≠ndice apunta a la factura que se va procesar.</param>
         /// <param name="comprobante">Documento xml firmado por la sunat</param>
         /// <param name="mEstados">Nuevo set de estados</param>
         /// <param name="tramaXmlFirmado">trama del xml firmado por la sunat en base 64</param>
@@ -276,18 +433,18 @@ namespace cfd.FacturaElectronica
                     if (!string.IsNullOrEmpty(tramaXmlFirmado))
                         File.WriteAllBytes($"{rutaYNomArchivoCfdi}", Convert.FromBase64String(tramaXmlFirmado));
                     else
-                        throw new ArgumentException("No se puede guardar el archivo xml " + nomArchivo + " porque est· vacÌo.");
+                        throw new ArgumentException("No se puede guardar el archivo xml " + nomArchivo + " porque est√° vac√≠o.");
                 }
 
                 //Guarda el CDR
-                if (tipoDoc.Equals("FACTURA") && accion.Equals("EMITE XML Y PDF") ||
+                if (tipoDoc.Equals("FACTURA") && //accion.Equals("EMITE XML Y PDF") ||
                     accion.Equals("CONSULTA CDR")
                     )
                 {
                     if (!string.IsNullOrEmpty(tramaZipCdr))
                         File.WriteAllBytes($"{rutaYNomArchivoCdr}", Convert.FromBase64String(tramaZipCdr));
                     else
-                        throw new ArgumentException("No se puede guardar el archivo cdr de la SUNAT porque est· vacÌo.");
+                        throw new ArgumentException("No se puede guardar el archivo cdr de la SUNAT porque est√° vac√≠o.");
                 }
 
                 String status;
@@ -313,8 +470,8 @@ namespace cfd.FacturaElectronica
                         break;
                 }
                 
-                //Registra log de la emisiÛn del xml antes de imprimir el pdf, sino habr· error al imprimir
-                RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNomArchivoCfdi, ticket, _Conexion.Usuario, comprobante.Replace("encoding=\"utf-8\"", ""),
+                //Registra log de la emisi√≥n del xml antes de imprimir el pdf, sino habr√° error al imprimir
+                RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNomArchivoCfdi, ticket, _Conexion.Usuario, comprobante.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""),
                                         status, eBinario, msjBinActual);
 
                 //Genera pdf
@@ -324,12 +481,12 @@ namespace cfd.FacturaElectronica
             }
             catch (DirectoryNotFoundException)
             {
-                string smsj = "Verifique en GP la existencia de la carpeta indicada en la configuraciÛn de Ruta de archivos Xml. La ruta de la carpeta no pudo ser encontrada: " + trxVenta.RutaXml;
+                string smsj = "Verifique en GP la existencia de la carpeta indicada en la configuraci√≥n de Ruta de archivos Xml. La ruta de la carpeta no pudo ser encontrada: " + trxVenta.RutaXml;
                 throw new DirectoryNotFoundException(smsj);
             }
             catch (IOException)
             {
-                string smsj = "Verifique permisos de escritura en la carpeta: " + trxVenta.RutaXml + ". No se pudo guardar el archivo xml ni registrar el documento en la bit·cora. ";
+                string smsj = "Verifique permisos de escritura en la carpeta: " + trxVenta.RutaXml + ". No se pudo guardar el archivo xml ni registrar el documento en la bit√°cora. ";
                 throw new IOException(smsj);
             }
             catch (Exception eAFE)
@@ -338,7 +495,7 @@ namespace cfd.FacturaElectronica
                 if (eAFE.Message.Contains("denied"))
                     smsj = "Elimine el archivo xml antes de volver a generar uno nuevo. Luego vuelva a intentar. " + eAFE.Message;
                 else
-                    smsj = "Contacte a su administrador. No se pudo guardar el archivo XML ni registrar la Bit·cora. " + eAFE.Message + Environment.NewLine + eAFE.StackTrace;
+                    smsj = "Contacte a su administrador. No se pudo guardar el archivo XML ni registrar la Bit√°cora. " + eAFE.Message + Environment.NewLine + eAFE.StackTrace;
                 throw new Exception(smsj);
             }
         }
@@ -373,7 +530,7 @@ namespace cfd.FacturaElectronica
 
         /// <summary>
         /// Genera y guarda el archivo pdf. 
-        /// Luego anota en la bit·cora la factura impresa y el nuevo estado binario
+        /// Luego anota en la bit√°cora la factura impresa y el nuevo estado binario
         /// </summary>
         /// <param name="trxVenta"></param>
         /// <param name="eBase"></param>
@@ -402,7 +559,7 @@ namespace cfd.FacturaElectronica
             }
             catch (Exception eAFE)
             {
-                ultimoMensaje = "Contacte a su administrador. No se pudo guardar el archivo PDF ni registrar la Bit·cora. [AlmacenaEnRepositorio()] " + eAFE.Message;
+                ultimoMensaje = "Contacte a su administrador. No se pudo guardar el archivo PDF ni registrar la Bit√°cora. [AlmacenaEnRepositorio()] " + eAFE.Message;
                 numMensajeError++;
                 return false;
             }

@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://Dfactur-e.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://Dfactur-e.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://Dfactur-e.com/">
+      <s:element name="ComunicacionBaja">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="correlativo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ComunicacionBajaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ComunicacionBajaResult" type="tns:Cancelacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Cancelacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Procesado" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="XmlBaja" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nroticketdeatencion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UUID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DescargaXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DescargaXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DescargaXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DescargaPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DescargaPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DescargaPDFResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DescargaCDR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DescargaCDRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DescargaCDRResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadCDR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadCDRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadCDRResult" type="tns:DownloadResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DownloadResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Document" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Process" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Numeration" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Estatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nroticketdeatencion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EstatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EstatusResult" type="tns:Proceso" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Proceso">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Procesado" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nroticketdeatencion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getDocumentStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="document" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDocumentStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getDocumentStatusResult" type="tns:StatusResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StatusResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GuiasRemision">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileContent" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GuiasRemisionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GuiasRemisionResult" type="tns:StampingResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StampingResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Process" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StampingXML" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Numeration" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransacctionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Session" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RecuperaPeticion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecuperaPeticionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecuperaPeticionResult" type="tns:RespuestaTimbradoTXT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespuestaTimbradoTXT">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Procesado" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="XMLTimbrado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UUID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdTransaccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="session" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RetencionPercepcion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContenidoArchivoTexto" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetencionPercepcionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetencionPercepcionResult" type="tns:StampingResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenDiario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContenidoArchivoTexto" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumenDiarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResumenDiarioResult" type="tns:Resumen" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Resumen">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Procesado" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="XmlResumen" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nroticketdeatencion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UUID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Reversion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="correlativo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReversionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReversionResult" type="tns:Cancelacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="timbraEnviaTXT32">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContenidoArchivoTexto" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="timbraEnviaTXT32Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="timbraEnviaTXT32Result" type="tns:RespuestaTimbradoTXT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TimbresRestantes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TimbresRestantesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TimbresRestantesResult" type="tns:Timbresrestantes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Timbresrestantes">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Procesado" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NrodeTickets" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="validaAccesos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="validaAccesosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="validaAccesosResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCertificado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUCEmisor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="certificado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="llave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCertificadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetCertificadoResult" type="tns:certificateresponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="certificateresponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Procesado" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeError" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ComunicacionBajaSoapIn">
+    <wsdl:part name="parameters" element="tns:ComunicacionBaja" />
+  </wsdl:message>
+  <wsdl:message name="ComunicacionBajaSoapOut">
+    <wsdl:part name="parameters" element="tns:ComunicacionBajaResponse" />
+  </wsdl:message>
+  <wsdl:message name="DescargaXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:DescargaXML" />
+  </wsdl:message>
+  <wsdl:message name="DescargaXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:DescargaXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="DescargaPDFSoapIn">
+    <wsdl:part name="parameters" element="tns:DescargaPDF" />
+  </wsdl:message>
+  <wsdl:message name="DescargaPDFSoapOut">
+    <wsdl:part name="parameters" element="tns:DescargaPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="DescargaCDRSoapIn">
+    <wsdl:part name="parameters" element="tns:DescargaCDR" />
+  </wsdl:message>
+  <wsdl:message name="DescargaCDRSoapOut">
+    <wsdl:part name="parameters" element="tns:DescargaCDRResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadCDRSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadCDR" />
+  </wsdl:message>
+  <wsdl:message name="DownloadCDRSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadCDRResponse" />
+  </wsdl:message>
+  <wsdl:message name="EstatusSoapIn">
+    <wsdl:part name="parameters" element="tns:Estatus" />
+  </wsdl:message>
+  <wsdl:message name="EstatusSoapOut">
+    <wsdl:part name="parameters" element="tns:EstatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDocumentStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:getDocumentStatus" />
+  </wsdl:message>
+  <wsdl:message name="getDocumentStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:getDocumentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GuiasRemisionSoapIn">
+    <wsdl:part name="parameters" element="tns:GuiasRemision" />
+  </wsdl:message>
+  <wsdl:message name="GuiasRemisionSoapOut">
+    <wsdl:part name="parameters" element="tns:GuiasRemisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecuperaPeticionSoapIn">
+    <wsdl:part name="parameters" element="tns:RecuperaPeticion" />
+  </wsdl:message>
+  <wsdl:message name="RecuperaPeticionSoapOut">
+    <wsdl:part name="parameters" element="tns:RecuperaPeticionResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetencionPercepcionSoapIn">
+    <wsdl:part name="parameters" element="tns:RetencionPercepcion" />
+  </wsdl:message>
+  <wsdl:message name="RetencionPercepcionSoapOut">
+    <wsdl:part name="parameters" element="tns:RetencionPercepcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumenDiarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ResumenDiario" />
+  </wsdl:message>
+  <wsdl:message name="ResumenDiarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ResumenDiarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReversionSoapIn">
+    <wsdl:part name="parameters" element="tns:Reversion" />
+  </wsdl:message>
+  <wsdl:message name="ReversionSoapOut">
+    <wsdl:part name="parameters" element="tns:ReversionResponse" />
+  </wsdl:message>
+  <wsdl:message name="timbraEnviaTXT32SoapIn">
+    <wsdl:part name="parameters" element="tns:timbraEnviaTXT32" />
+  </wsdl:message>
+  <wsdl:message name="timbraEnviaTXT32SoapOut">
+    <wsdl:part name="parameters" element="tns:timbraEnviaTXT32Response" />
+  </wsdl:message>
+  <wsdl:message name="TimbresRestantesSoapIn">
+    <wsdl:part name="parameters" element="tns:TimbresRestantes" />
+  </wsdl:message>
+  <wsdl:message name="TimbresRestantesSoapOut">
+    <wsdl:part name="parameters" element="tns:TimbresRestantesResponse" />
+  </wsdl:message>
+  <wsdl:message name="validaAccesosSoapIn">
+    <wsdl:part name="parameters" element="tns:validaAccesos" />
+  </wsdl:message>
+  <wsdl:message name="validaAccesosSoapOut">
+    <wsdl:part name="parameters" element="tns:validaAccesosResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCertificadoSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCertificado" />
+  </wsdl:message>
+  <wsdl:message name="SetCertificadoSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCertificadoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MetodosClientSoap">
+    <wsdl:operation name="ComunicacionBaja">
+      <wsdl:input message="tns:ComunicacionBajaSoapIn" />
+      <wsdl:output message="tns:ComunicacionBajaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DescargaXML">
+      <wsdl:input message="tns:DescargaXMLSoapIn" />
+      <wsdl:output message="tns:DescargaXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DescargaPDF">
+      <wsdl:input message="tns:DescargaPDFSoapIn" />
+      <wsdl:output message="tns:DescargaPDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DescargaCDR">
+      <wsdl:input message="tns:DescargaCDRSoapIn" />
+      <wsdl:output message="tns:DescargaCDRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadCDR">
+      <wsdl:input message="tns:DownloadCDRSoapIn" />
+      <wsdl:output message="tns:DownloadCDRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Estatus">
+      <wsdl:input message="tns:EstatusSoapIn" />
+      <wsdl:output message="tns:EstatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentStatus">
+      <wsdl:input message="tns:getDocumentStatusSoapIn" />
+      <wsdl:output message="tns:getDocumentStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GuiasRemision">
+      <wsdl:input message="tns:GuiasRemisionSoapIn" />
+      <wsdl:output message="tns:GuiasRemisionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaPeticion">
+      <wsdl:input message="tns:RecuperaPeticionSoapIn" />
+      <wsdl:output message="tns:RecuperaPeticionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetencionPercepcion">
+      <wsdl:input message="tns:RetencionPercepcionSoapIn" />
+      <wsdl:output message="tns:RetencionPercepcionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumenDiario">
+      <wsdl:input message="tns:ResumenDiarioSoapIn" />
+      <wsdl:output message="tns:ResumenDiarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Reversion">
+      <wsdl:input message="tns:ReversionSoapIn" />
+      <wsdl:output message="tns:ReversionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="timbraEnviaTXT32">
+      <wsdl:input message="tns:timbraEnviaTXT32SoapIn" />
+      <wsdl:output message="tns:timbraEnviaTXT32SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TimbresRestantes">
+      <wsdl:input message="tns:TimbresRestantesSoapIn" />
+      <wsdl:output message="tns:TimbresRestantesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="validaAccesos">
+      <wsdl:input message="tns:validaAccesosSoapIn" />
+      <wsdl:output message="tns:validaAccesosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCertificado">
+      <wsdl:input message="tns:SetCertificadoSoapIn" />
+      <wsdl:output message="tns:SetCertificadoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MetodosClientSoap" type="tns:MetodosClientSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ComunicacionBaja">
+      <soap:operation soapAction="http://Dfactur-e.com/ComunicacionBaja" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DescargaXML">
+      <soap:operation soapAction="http://Dfactur-e.com/DescargaXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DescargaPDF">
+      <soap:operation soapAction="http://Dfactur-e.com/DescargaPDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DescargaCDR">
+      <soap:operation soapAction="http://Dfactur-e.com/DescargaCDR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadCDR">
+      <soap:operation soapAction="http://Dfactur-e.com/DownloadCDR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Estatus">
+      <soap:operation soapAction="http://Dfactur-e.com/Estatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentStatus">
+      <soap:operation soapAction="http://Dfactur-e.com/getDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuiasRemision">
+      <soap:operation soapAction="http://Dfactur-e.com/GuiasRemision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaPeticion">
+      <soap:operation soapAction="http://Dfactur-e.com/RecuperaPeticion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetencionPercepcion">
+      <soap:operation soapAction="http://Dfactur-e.com/RetencionPercepcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenDiario">
+      <soap:operation soapAction="http://Dfactur-e.com/ResumenDiario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reversion">
+      <soap:operation soapAction="http://Dfactur-e.com/Reversion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="timbraEnviaTXT32">
+      <soap:operation soapAction="http://Dfactur-e.com/timbraEnviaTXT32" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbresRestantes">
+      <soap:operation soapAction="http://Dfactur-e.com/TimbresRestantes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validaAccesos">
+      <soap:operation soapAction="http://Dfactur-e.com/validaAccesos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCertificado">
+      <soap:operation soapAction="http://Dfactur-e.com/SetCertificado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MetodosClientSoap12" type="tns:MetodosClientSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ComunicacionBaja">
+      <soap12:operation soapAction="http://Dfactur-e.com/ComunicacionBaja" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DescargaXML">
+      <soap12:operation soapAction="http://Dfactur-e.com/DescargaXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DescargaPDF">
+      <soap12:operation soapAction="http://Dfactur-e.com/DescargaPDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DescargaCDR">
+      <soap12:operation soapAction="http://Dfactur-e.com/DescargaCDR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadCDR">
+      <soap12:operation soapAction="http://Dfactur-e.com/DownloadCDR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Estatus">
+      <soap12:operation soapAction="http://Dfactur-e.com/Estatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentStatus">
+      <soap12:operation soapAction="http://Dfactur-e.com/getDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuiasRemision">
+      <soap12:operation soapAction="http://Dfactur-e.com/GuiasRemision" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaPeticion">
+      <soap12:operation soapAction="http://Dfactur-e.com/RecuperaPeticion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetencionPercepcion">
+      <soap12:operation soapAction="http://Dfactur-e.com/RetencionPercepcion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumenDiario">
+      <soap12:operation soapAction="http://Dfactur-e.com/ResumenDiario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reversion">
+      <soap12:operation soapAction="http://Dfactur-e.com/Reversion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="timbraEnviaTXT32">
+      <soap12:operation soapAction="http://Dfactur-e.com/timbraEnviaTXT32" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbresRestantes">
+      <soap12:operation soapAction="http://Dfactur-e.com/TimbresRestantes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validaAccesos">
+      <soap12:operation soapAction="http://Dfactur-e.com/validaAccesos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCertificado">
+      <soap12:operation soapAction="http://Dfactur-e.com/SetCertificado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MetodosClient">
+    <wsdl:port name="MetodosClientSoap" binding="tns:MetodosClientSoap">
+      <soap:address location="https://caja.dfacture.com.pe:8001/FacturacionPERU8001/MetodosClient.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MetodosClientSoap12" binding="tns:MetodosClientSoap12">
+      <soap12:address location="https://caja.dfacture.com.pe:8001/FacturacionPERU8001/MetodosClient.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

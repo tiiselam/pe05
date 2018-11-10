@@ -38,19 +38,6 @@ namespace Comun
         public string mailCCO { get { return _mailCCO; } set { _mailCCO = value; } }
     }
 
-    //public struct EstadosPermitidos
-    //{
-    //    private bool _emite;
-    //    private bool _anula;
-    //    private bool _imprime;
-    //    private bool _publica;
-    //    private bool _envia;
-    //    public EstadosPermitidos(string emite, string anula, string imprime, string publica, string envia)
-    //    {
-
-    //    }
-    //}
-
     public class Parametros
     {
         public string ultimoMensaje = "";
@@ -151,7 +138,7 @@ namespace Comun
                     _emailUser = elemento.SelectSingleNode("//compannia[@bd='" + IdCompannia + "']/emailSetup/usuario/text()").Value;
 
                 }
-                catch (Exception usr)
+                catch (Exception)
                 {
                     _emailUser = string.Empty;
                 }
@@ -161,7 +148,7 @@ namespace Comun
                     _emailPwd = elemento.SelectSingleNode("//compannia[@bd='" + IdCompannia + "']/emailSetup/clave/text()").Value;
 
                 }
-                catch (Exception pwd)
+                catch (Exception)
                 {
                     _emailPwd = string.Empty;
                 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace cfdiPeru
+namespace cfd.FacturaElectronica
 {
     class vwCfdiPagosSimultaneos_wrapper:vwCfdiPagosSimultaneos
     {
