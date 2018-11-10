@@ -140,13 +140,26 @@ namespace cfd.FacturaElectronica
 
                                 string tramaDocumento = servicioEstructuraDoc.FormatearDocElectronico(trxVenta.DocElectronico.TipoDocumento, trxVenta.DocElectronico);
 
-                                xmlFactura = servicioTimbre.TimbraYEnviaASunat(trxVenta.DocElectronico.Emisor.NroDocumento, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, tramaDocumento);
+                                try
+                                {
+                                    xmlFactura = servicioTimbre.TimbraYEnviaASunat(trxVenta.DocElectronico.Emisor.NroDocumento, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, tramaDocumento);
+                                    DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, "FAC", _Conex.Usuario, xmlFactura.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
+                                }
+                                catch (Exception lo)
+                                {
+                                    string imsj = lo.InnerException == null ? "" : lo.InnerException.ToString();
+                                    msj = "GeneraDocumentoXmlAsync " + lo.Message;
+                                    DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, msj, "errDFacture", _Conex.Usuario, string.Empty, "error", maquina.DestinoEBinario, lo.StackTrace);
+                                    msj += " " + imsj + Environment.NewLine + lo.StackTrace;
+                                    errores++;
+                                }
 
-                                rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, xmlFactura, nombreArchivo, ".xml", false);
+                                if (!string.IsNullOrEmpty(xmlFactura))
+                                {
+                                    rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, xmlFactura, nombreArchivo, ".xml", false);
 
-                                DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, "FAC", _Conex.Usuario, xmlFactura.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
-
-                                var tPdf = await servicioTimbre.ObtienePDFdelOSEAsync(trxVenta.DocElectronico.Emisor.NroDocumento, trxVenta.DocElectronico.TipoDocumento, serieCorrelativo[0], serieCorrelativo[1], trxVenta.RutaXml.Trim(), nombreArchivo, ".pdf");
+                                    var tPdf = await servicioTimbre.ObtienePDFdelOSEAsync(trxVenta.DocElectronico.Emisor.NroDocumento, trxVenta.DocElectronico.TipoDocumento, serieCorrelativo[0], serieCorrelativo[1], trxVenta.RutaXml.Trim(), nombreArchivo, ".pdf");
+                                }
                             }
                             else //si el documento está anulado en gp, agregar al log como emitido
                             {
@@ -171,17 +184,25 @@ namespace cfd.FacturaElectronica
                         msj = ae.Message + " " + imsj + Environment.NewLine + ae.StackTrace;
                         errores++;
                     }
+                    catch (DirectoryNotFoundException dnf)
+                    {
+                        msj = "El comprobante fue emitido, pero no se pudo guardar el archivo en: " + trxVenta.Ruta_clave + " Verifique si existe la carpeta." + Environment.NewLine;
+                        DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, msj, "errCarpeta", _Conex.Usuario, string.Empty, "error", maquina.DestinoEBinario, dnf.Message);
+                        msj += dnf.Message + Environment.NewLine;
+                        errores++;
+                    }
                     catch (IOException io)
                     {
-                        msj = "El comprobante fue emitido, pero no se pudo guardar el archivo en: " + trxVenta.Ruta_clave + " Verifique la carpeta y sus permisos." + Environment.NewLine + io.Message + Environment.NewLine;
-                        DocVenta.LogDocumento(trxVenta, xmlFactura, maquina, "FAC", _Param.tipoDoc, accion, true, msj);
+                        msj = "El comprobante fue emitido, pero no se pudo guardar el archivo en: " + trxVenta.Ruta_clave + " Verifique permisos a la carpeta." + Environment.NewLine;
+                        DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, msj, "errIO", _Conex.Usuario, string.Empty, "error", maquina.DestinoEBinario, io.Message);
+                        msj += io.Message + Environment.NewLine; 
                         errores++;
                     }
                     catch (Exception lo)
                     {
                         string imsj = lo.InnerException == null ? "" : lo.InnerException.ToString();
                         msj = lo.Message + " " + imsj + Environment.NewLine + lo.StackTrace;
-                        DocVenta.LogDocumento(trxVenta, xmlFactura, maquina, "FAC", _Param.tipoDoc, accion, false, msj);
+                        DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, lo.Message, "errDesconocido", _Conex.Usuario, string.Empty, "error", maquina.DestinoEBinario, lo.StackTrace);
                         errores++;
                     }
                     finally

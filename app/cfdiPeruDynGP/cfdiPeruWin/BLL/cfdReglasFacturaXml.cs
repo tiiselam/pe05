@@ -302,7 +302,7 @@ namespace cfd.FacturaElectronica
                     smsj = "Elimine el archivo xml antes de volver a generar uno nuevo. Luego vuelva a intentar. " + eAFE.Message;
                 else
                     smsj = "Contacte a su administrador. No se pudo guardar el archivo XML. " + eAFE.Message + Environment.NewLine + eAFE.StackTrace;
-                throw new Exception(smsj);
+                throw new IOException(smsj);
             }
         }
 
