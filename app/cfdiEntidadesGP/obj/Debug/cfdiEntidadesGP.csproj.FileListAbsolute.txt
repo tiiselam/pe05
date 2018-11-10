@@ -1,0 +1,12 @@
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\bin\Debug\cfdiEntidadesGP.dll.config
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\bin\Debug\cfdiEntidadesGP.dll
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\bin\Debug\cfdiEntidadesGP.pdb
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\bin\Debug\EntityFramework.dll
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\bin\Debug\EntityFramework.SqlServer.dll
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\bin\Debug\EntityFramework.xml
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\bin\Debug\EntityFramework.SqlServer.xml
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csprojAssemblyReference.cache
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csproj.CoreCompileInputs.cache
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csproj.CopyComplete
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.dll
+C:\DESA\TIISELAM\pe05-master\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.pdb
