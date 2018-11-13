@@ -22,10 +22,10 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiConceptos' does not have a primary
     <Property Name="NoIdentificacion" Type="varchar" MaxLength="1" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" />
     <Property Name="precioUniConIva" Type="numeric" Precision="38" Scale="18" />
-    <Property Name="valorUni" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="valorUni" Type="numeric" Precision="38" Scale="18" />
     <Property Name="cantidad" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="descuento" Type="numeric" Precision="38" Scale="9" />
-    <Property Name="importe" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="importe" Type="numeric" Precision="20" Scale="5" />
     <Property Name="orslstax" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="tipoPrecio" Type="varchar" MaxLength="61" />
     <Property Name="tipoImpuesto" Type="varchar" MaxLength="31" />
@@ -55,6 +55,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
     <Property Name="receptorTipoDoc" Type="varchar" MaxLength="3" />
     <Property Name="receptorNroDoc" Type="nvarchar(max)" />
     <Property Name="receptorNombre" Type="nvarchar(max)" />
+    <Property Name="emailTo" Type="nvarchar(max)" />
     <Property Name="idDocumento" Type="varchar" MaxLength="21" />
     <Property Name="fechaEmision" Type="datetime" />
     <Property Name="moneda" Type="varchar" MaxLength="15" />
@@ -76,6 +77,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
     <Property Name="exoneradoPen" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="gratuitoPen" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="docamnt" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="formaPago" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="discrepanciaTipo" Type="varchar" MaxLength="2" />
     <Property Name="discrepanciaDesc" Type="nvarchar(max)" />
     <Property Name="montoEnLetras" Type="varchar" MaxLength="2000" />
@@ -110,17 +112,20 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraResumenDiario' does not have
     <Property Name="sopnumbe" Type="varchar" MaxLength="21" Nullable="false" />
     <Property Name="iniRango" Type="int" Nullable="false" />
     <Property Name="finRango" Type="int" Nullable="false" />
-    <Property Name="moneda" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="moneda" Type="varchar" MaxLength="15" />
+    <Property Name="xchgrate" Type="numeric" Precision="19" Scale="7" Nullable="false" />
     <Property Name="totalIvaImponible" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="totalIva" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="totalInafecta" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="totalExonerado" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="totalGratuito" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="totalDescuento" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="totalDescuento" Type="numeric" Precision="20" Scale="5" />
+    <Property Name="ORTDISAM" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="total" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="formaPago" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="tipoDocumentoTo" Type="varchar" MaxLength="8000" />
-    <Property Name="sopnumbeTo" Type="char" MaxLength="41" Nullable="false" />
+    <Property Name="sopnumbeTo" Type="varchar" MaxLength="15" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -183,6 +188,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiGeneraDocumentoDeVenta].[receptorTipoDoc] AS [receptorTipoDoc], 
     [vwCfdiGeneraDocumentoDeVenta].[receptorNroDoc] AS [receptorNroDoc], 
     [vwCfdiGeneraDocumentoDeVenta].[receptorNombre] AS [receptorNombre], 
+    [vwCfdiGeneraDocumentoDeVenta].[emailTo] AS [emailTo], 
     [vwCfdiGeneraDocumentoDeVenta].[idDocumento] AS [idDocumento], 
     [vwCfdiGeneraDocumentoDeVenta].[fechaEmision] AS [fechaEmision], 
     [vwCfdiGeneraDocumentoDeVenta].[moneda] AS [moneda], 
@@ -204,6 +210,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiGeneraDocumentoDeVenta].[exoneradoPen] AS [exoneradoPen], 
     [vwCfdiGeneraDocumentoDeVenta].[gratuitoPen] AS [gratuitoPen], 
     [vwCfdiGeneraDocumentoDeVenta].[docamnt] AS [docamnt], 
+    [vwCfdiGeneraDocumentoDeVenta].[formaPago] AS [formaPago], 
     [vwCfdiGeneraDocumentoDeVenta].[discrepanciaTipo] AS [discrepanciaTipo], 
     [vwCfdiGeneraDocumentoDeVenta].[discrepanciaDesc] AS [discrepanciaDesc], 
     [vwCfdiGeneraDocumentoDeVenta].[montoEnLetras] AS [montoEnLetras], 
@@ -233,14 +240,17 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiGeneraResumenDiario].[iniRango] AS [iniRango], 
     [vwCfdiGeneraResumenDiario].[finRango] AS [finRango], 
     [vwCfdiGeneraResumenDiario].[moneda] AS [moneda], 
+    [vwCfdiGeneraResumenDiario].[xchgrate] AS [xchgrate], 
     [vwCfdiGeneraResumenDiario].[totalIvaImponible] AS [totalIvaImponible], 
     [vwCfdiGeneraResumenDiario].[totalIva] AS [totalIva], 
     [vwCfdiGeneraResumenDiario].[totalInafecta] AS [totalInafecta], 
     [vwCfdiGeneraResumenDiario].[totalExonerado] AS [totalExonerado], 
     [vwCfdiGeneraResumenDiario].[totalGratuito] AS [totalGratuito], 
     [vwCfdiGeneraResumenDiario].[totalDescuento] AS [totalDescuento], 
+    [vwCfdiGeneraResumenDiario].[ORTDISAM] AS [ORTDISAM], 
     [vwCfdiGeneraResumenDiario].[total] AS [total], 
     [vwCfdiGeneraResumenDiario].[cantidad] AS [cantidad], 
+    [vwCfdiGeneraResumenDiario].[formaPago] AS [formaPago], 
     [vwCfdiGeneraResumenDiario].[tipoDocumentoTo] AS [tipoDocumentoTo], 
     [vwCfdiGeneraResumenDiario].[sopnumbeTo] AS [sopnumbeTo]
     FROM [dbo].[vwCfdiGeneraResumenDiario] AS [vwCfdiGeneraResumenDiario]</DefiningQuery>
