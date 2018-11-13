@@ -32,7 +32,10 @@ namespace cfdiPeruOperadorServiciosElectronicos
             }
             else
             {
-                throw new TimeoutException("Excepción al conectarse con el Web Service de Facturacion de DFactur-e. " + respuestaT.NumeroError + " - " + respuestaT.MensajeError);
+                if (respuestaT.NumeroError.Equals("0016"))
+                    throw new ArgumentException(respuestaT.NumeroError + " - " + respuestaT.MensajeError);
+                else
+                    throw new TimeoutException("Excepción al conectarse con el Web Service de Facturacion de DFacture. -" + respuestaT.NumeroError + "- " + respuestaT.MensajeError);
             }
             return respuestaT.XMLTimbrado;
         }
@@ -63,9 +66,35 @@ namespace cfdiPeruOperadorServiciosElectronicos
             string archivoCDR = Servicio.DescargaCDR(ruc, serieCorrelativo);
             if (archivoCDR == "0")
             {
-                throw new ArgumentException(string.Concat("No se puede descargar el CDR. Verifique la numeración: tipo - serie - correlativo: ", serieCorrelativo, " e intente nuevamente más tarde. "));
+                throw new ArgumentException(string.Concat("No se puede descargar el CDR del portal. Verifique la numeración: tipo - serie - correlativo: ", serieCorrelativo, " e intente nuevamente más tarde. "));
             }
             return archivoCDR;
+        }
+
+        public string ObtieneXMLdelOSE(string ruc, string tipoDoc, string serie, string correlativo)
+        {
+            string archivoXML = DescargaXML(ruc, tipoDoc, serie, correlativo);
+            string docxml = string.Empty;
+            var data = Convert.FromBase64String(archivoXML);
+            docxml = System.Text.Encoding.UTF8.GetString(data);
+            //using (var compressedStream = new MemoryStream(data))
+            //{
+            //    docxml = UnzipFromStream(compressedStream);
+            //}
+
+            return docxml;
+
+        }
+
+        public string DescargaXML(string ruc, string tipoDoc, string serie, string correlativo)
+        {
+            string serieCorrelativo = string.Concat(tipoDoc, "-", serie, "-", correlativo);
+            string archivoXML = Servicio.DescargaXML(ruc, serieCorrelativo);
+            if (archivoXML == "0")
+            {
+                throw new ArgumentException(string.Concat("No se puede descargar el XML del portal. Verifique la numeración: tipo - serie - correlativo: ", serieCorrelativo, " e intente nuevamente más tarde. "));
+            }
+            return archivoXML;
         }
 
         private string UnzipFromStream(Stream zipStream)

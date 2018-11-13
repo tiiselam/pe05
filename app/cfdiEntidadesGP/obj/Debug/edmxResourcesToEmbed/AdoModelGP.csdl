@@ -20,101 +20,13 @@
     <Property Name="NoIdentificacion" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="precioUniConIva" Type="Decimal" Precision="38" Scale="18" />
-    <Property Name="valorUni" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="valorUni" Type="Decimal" Precision="38" Scale="18" Nullable="false" />
     <Property Name="cantidad" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
     <Property Name="descuento" Type="Decimal" Precision="38" Scale="9" />
-    <Property Name="importe" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="importe" Type="Decimal" Precision="20" Scale="5" />
     <Property Name="orslstax" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
     <Property Name="tipoPrecio" Type="String" MaxLength="61" FixedLength="false" Unicode="false" />
     <Property Name="tipoImpuesto" Type="String" MaxLength="31" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="vwCfdiGeneraDocumentoDeVenta">
-    <Key>
-      <PropertyRef Name="soptype" />
-      <PropertyRef Name="sopnumbe" />
-    </Key>
-    <Property Name="correlativo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="soptype" Type="Int16" Nullable="false" />
-    <Property Name="sopnumbe" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="serie" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
-    <Property Name="numero" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
-    <Property Name="tipoDocumento" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-    <Property Name="emisorTipoDoc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="emisorNroDoc" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-    <Property Name="emisorNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorUbigeo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorDireccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorUrbanizacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorDepartamento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorProvincia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorDistrito" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="receptorTipoDoc" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-    <Property Name="receptorNroDoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="receptorNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="idDocumento" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
-    <Property Name="fechaEmision" Type="DateTime" Precision="3" />
-    <Property Name="moneda" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Name="tipoOperacion" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-    <Property Name="descuento" Type="Decimal" Precision="20" Scale="5" />
-    <Property Name="ORTDISAM" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="ivaTasa" Type="Decimal" Precision="23" Scale="9" />
-    <Property Name="ivaImponible" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="iva" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="inafecta" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="exonerado" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="gratuito" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="xchgrate" Type="Decimal" Precision="19" Scale="7" Nullable="false" />
-    <Property Name="total" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="trdisamt" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="IvaImponiblePen" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="ivaPen" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="inafectaPen" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="exoneradoPen" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="gratuitoPen" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="docamnt" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="discrepanciaTipo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-    <Property Name="discrepanciaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="montoEnLetras" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-    <Property Name="estadoContabilizado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="docdate" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
-  <EntityType Name="vwCfdiGeneraResumenDiario">
-    <Key>
-      <PropertyRef Name="tipoResumenDiario" />
-      <PropertyRef Name="numResumenDiario" />
-      <PropertyRef Name="tipoDocumento" />
-      <PropertyRef Name="sopnumbe" />
-    </Key>
-    <Property Name="tipoResumenDiario" Type="Int32" Nullable="false" />
-    <Property Name="numResumenDiario" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="docdate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="tipoDocumento" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="emisorTipoDoc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="emisorNroDoc" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-    <Property Name="emisorNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorUbigeo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorDireccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorUrbanizacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorDepartamento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorProvincia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="emisorDistrito" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="receptorTipoDoc" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-    <Property Name="receptorNroDoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="serie" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
-    <Property Name="sopnumbe" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="iniRango" Type="Int32" Nullable="false" />
-    <Property Name="finRango" Type="Int32" Nullable="false" />
-    <Property Name="moneda" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="totalIvaImponible" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="totalIva" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="totalInafecta" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="totalExonerado" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="totalGratuito" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="totalDescuento" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="total" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="cantidad" Type="Int32" Nullable="false" />
-    <Property Name="tipoDocumentoTo" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-    <Property Name="sopnumbeTo" Type="String" MaxLength="41" FixedLength="true" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityType Name="vwCfdiRelacionados">
     <Key>
@@ -133,8 +45,101 @@
   </EntityType>
   <EntityContainer Name="PER10Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="vwCfdiConceptos" EntityType="Self.vwCfdiConceptos" />
-    <EntitySet Name="vwCfdiGeneraDocumentoDeVenta" EntityType="Self.vwCfdiGeneraDocumentoDeVenta" />
-    <EntitySet Name="vwCfdiGeneraResumenDiario" EntityType="Self.vwCfdiGeneraResumenDiario" />
     <EntitySet Name="vwCfdiRelacionados" EntityType="Self.vwCfdiRelacionados" />
+    <EntitySet Name="vwCfdiGeneraDocumentoDeVenta" EntityType="PERUEntities.vwCfdiGeneraDocumentoDeVenta" />
+    <EntitySet Name="vwCfdiGeneraResumenDiario" EntityType="PERUEntities.vwCfdiGeneraResumenDiario" />
   </EntityContainer>
+  <EntityType Name="vwCfdiGeneraDocumentoDeVenta">
+    <Key>
+      <PropertyRef Name="soptype" />
+      <PropertyRef Name="sopnumbe" />
+    </Key>
+    <Property Name="correlativo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="soptype" Type="Int16" Nullable="false" />
+    <Property Name="sopnumbe" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="serie" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Name="numero" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Name="tipoDocumento" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="emisorTipoDoc" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="emisorNroDoc" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="emisorNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorUbigeo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorDireccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorUrbanizacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorDepartamento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorProvincia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorDistrito" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="receptorTipoDoc" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="receptorNroDoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="receptorNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emailTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idDocumento" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Name="fechaEmision" Type="DateTime" Precision="3" />
+    <Property Name="moneda" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="tipoOperacion" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="descuento" Type="Decimal" Precision="20" Scale="5" Nullable="false" />
+    <Property Name="ORTDISAM" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="ivaTasa" Type="Decimal" Precision="23" Scale="9" />
+    <Property Name="ivaImponible" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="iva" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="inafecta" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="exonerado" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="gratuito" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="xchgrate" Type="Decimal" Nullable="false" Precision="19" Scale="7" />
+    <Property Name="total" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="trdisamt" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="IvaImponiblePen" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="ivaPen" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="inafectaPen" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="exoneradoPen" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="gratuitoPen" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="docamnt" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="formaPago" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="discrepanciaTipo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="discrepanciaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="montoEnLetras" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="estadoContabilizado" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="docdate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="vwCfdiGeneraResumenDiario">
+    <Key>
+      <PropertyRef Name="tipoResumenDiario" />
+      <PropertyRef Name="numResumenDiario" />
+      <PropertyRef Name="tipoDocumento" />
+      <PropertyRef Name="sopnumbe" />
+    </Key>
+    <Property Name="tipoResumenDiario" Type="Int32" Nullable="false" />
+    <Property Name="numResumenDiario" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="docdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tipoDocumento" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="emisorTipoDoc" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="emisorNroDoc" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="emisorNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorUbigeo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorDireccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorUrbanizacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorDepartamento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorProvincia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emisorDistrito" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="receptorTipoDoc" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="receptorNroDoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="serie" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Name="sopnumbe" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iniRango" Type="Int32" Nullable="false" />
+    <Property Name="finRango" Type="Int32" Nullable="false" />
+    <Property Name="moneda" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="xchgrate" Type="Decimal" Nullable="false" Precision="19" Scale="7" />
+    <Property Name="totalIvaImponible" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="totalIva" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="totalInafecta" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="totalExonerado" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="totalGratuito" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="totalDescuento" Type="Decimal" Precision="20" Scale="5" />
+    <Property Name="ORTDISAM" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="total" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="formaPago" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="tipoDocumentoTo" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="sopnumbeTo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>
