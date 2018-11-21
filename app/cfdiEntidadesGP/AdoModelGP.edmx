@@ -13,7 +13,6 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiConceptos' does not have a primary
             <PropertyRef Name="sopnumbe" />
             <PropertyRef Name="LNITMSEQ" />
             <PropertyRef Name="CMPNTSEQ" />
-            <PropertyRef Name="cantidad" />
             <PropertyRef Name="ITEMNMBR" />
           </Key>
           <Property Name="id" Type="bigint" />
@@ -402,7 +401,6 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
             <PropertyRef Name="sopnumbe" />
             <PropertyRef Name="LNITMSEQ" />
             <PropertyRef Name="CMPNTSEQ" />
-            <PropertyRef Name="cantidad" />
             <PropertyRef Name="ITEMNMBR" />
           </Key>
           <Property Name="id" Type="Int64" />

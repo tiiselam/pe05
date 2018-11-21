@@ -84,11 +84,12 @@
     <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="precioUniConIva" Type="Decimal" Precision="38" Scale="6" />
     <Property Name="valorUni" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="importe" Type="Decimal" Precision="38" Scale="9" />
     <Property Name="cantidad" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
     <Property Name="descuento" Type="Decimal" Precision="38" Scale="9" />
-    <Property Name="baseImponibleDescuento" Type="Decimal" Precision="38" Scale="9" />
-    <Property Name="codigoDescuento" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-    <Property Name="importe" Type="Decimal" Precision="20" Scale="5" />
+    <Property Name="descuentoBaseImponible" Type="Decimal" Precision="38" Scale="9" />
+    <Property Name="descuentoPorcentaje" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="descuentoCodigo" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
     <Property Name="montoIva" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
     <Property Name="montoImponibleIva" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
     <Property Name="porcentajeIva" Type="Decimal" Precision="23" Scale="9" />
@@ -136,6 +137,8 @@
     <Property Name="porcentajeDetraccion" Type="Decimal" Precision="19" Scale="5" />
     <Property Name="montoDetraccion" Type="Decimal" Precision="38" Scale="9" />
     <Property Name="codleyendaDetraccion" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="numCuentaBancoNacion" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="medioPagoDetraccion" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Name="montoTotalVenta" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
     <Property Name="montoTotalImpuestos" Type="Decimal" Nullable="false" Precision="38" Scale="5" />
     <Property Name="montoSubtotalValorVenta" Type="Decimal" Precision="38" Scale="5" />
