@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PeruService.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PeruService.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Respuesta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="archivo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="codigo" type="xs:int" />
+      <xs:element minOccurs="0" name="mensaje" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="numeracion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Respuesta" nillable="true" type="tns:Respuesta" />
+  <xs:complexType name="RespuestaEnviar">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigo" type="xs:int" />
+      <xs:element minOccurs="0" name="crc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="estatus" type="xs:boolean" />
+      <xs:element minOccurs="0" name="hora" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idtransaccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mensaje" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="numeracion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RespuestaEnviar" nillable="true" type="tns:RespuestaEnviar" />
+  <xs:complexType name="RespuestaGuiaRemision">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigo" type="xs:int" />
+      <xs:element minOccurs="0" name="estatus" type="xs:boolean" />
+      <xs:element minOccurs="0" name="hora" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idtransaccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mensaje" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="numeracion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RespuestaGuiaRemision" nillable="true" type="tns:RespuestaGuiaRemision" />
+  <xs:complexType name="RespuestaComprobantes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigo" type="xs:int" />
+      <xs:element minOccurs="0" name="estatus" type="xs:boolean" />
+      <xs:element minOccurs="0" name="hora" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idtransaccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mensaje" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="numeracion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RespuestaComprobantes" nillable="true" type="tns:RespuestaComprobantes" />
+</xs:schema>

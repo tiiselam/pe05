@@ -88,12 +88,10 @@ C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\o
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\obj\Debug\cfdiPeruWin.csproj.CopyComplete
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\obj\Debug\cfdiPeruWin.exe
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\obj\Debug\cfdiPeruWin.pdb
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\cfdiPeruDFactureWS.dll
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\cfdiPeruInterfacesFacturador.dll
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\cfdiPeruDFactureWS.pdb
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\cfdiPeruDFactureWS.dll.config
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\cfdiPeruInterfacesFacturador.pdb
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\cfdiPeruInterfacesFacturador.dll.config
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\ICSharpCode.SharpZipLib.dll
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\ICSharpCode.SharpZipLib.xml
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\obj\Debug\cfdiPeruWin.csprojAssemblyReference.cache
+C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\cfdiPeruDFactureUbl21.dll
+C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\cfdiPeruDFactureUbl21.pdb
+C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruDynGP\cfdiPeruWin\bin\Debug\cfdiPeruDFactureUbl21.dll.config

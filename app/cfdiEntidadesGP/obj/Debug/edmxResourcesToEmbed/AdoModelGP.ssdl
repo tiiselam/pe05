@@ -19,16 +19,22 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiConceptos' does not have a primary
     <Property Name="ITEMDESC" Type="char" MaxLength="101" Nullable="false" />
     <Property Name="CMPNTSEQ" Type="int" Nullable="false" />
     <Property Name="udemSunat" Type="varchar" MaxLength="255" />
+    <Property Name="claveProdSunat" Type="char" MaxLength="11" />
     <Property Name="NoIdentificacion" Type="varchar" MaxLength="1" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" />
-    <Property Name="precioUniConIva" Type="numeric" Precision="38" Scale="18" />
-    <Property Name="valorUni" Type="numeric" Precision="38" Scale="18" />
+    <Property Name="precioUniConIva" Type="numeric" Precision="38" Scale="6" />
+    <Property Name="valorUni" Type="numeric" Precision="38" Scale="6" />
     <Property Name="cantidad" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="descuento" Type="numeric" Precision="38" Scale="9" />
+    <Property Name="baseImponibleDescuento" Type="numeric" Precision="38" Scale="9" />
+    <Property Name="codigoDescuento" Type="varchar" MaxLength="2" Nullable="false" />
     <Property Name="importe" Type="numeric" Precision="20" Scale="5" />
-    <Property Name="orslstax" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="tipoPrecio" Type="varchar" MaxLength="61" />
-    <Property Name="tipoImpuesto" Type="varchar" MaxLength="31" />
+    <Property Name="montoIva" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="montoImponibleIva" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="porcentajeIva" Type="numeric" Precision="23" Scale="9" />
+    <Property Name="tipoTributo" Type="varchar" MaxLength="244" />
+    <Property Name="tipoAfectacion" Type="varchar" MaxLength="124" />
+    <Property Name="operacionOnerosa" Type="varchar" MaxLength="1" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -52,34 +58,47 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
     <Property Name="emisorDepartamento" Type="nvarchar(max)" />
     <Property Name="emisorProvincia" Type="nvarchar(max)" />
     <Property Name="emisorDistrito" Type="nvarchar(max)" />
+    <Property Name="emisorCodPais" Type="nvarchar(max)" />
     <Property Name="receptorTipoDoc" Type="varchar" MaxLength="3" />
     <Property Name="receptorNroDoc" Type="nvarchar(max)" />
     <Property Name="receptorNombre" Type="nvarchar(max)" />
     <Property Name="emailTo" Type="nvarchar(max)" />
+    <Property Name="send_email_statements" Type="int" />
     <Property Name="idDocumento" Type="varchar" MaxLength="21" />
-    <Property Name="fechaEmision" Type="datetime" />
+    <Property Name="fechaEmision" Type="datetime" Nullable="false" />
+    <Property Name="horaEmision" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="fechaVencimiento" Type="datetime" Nullable="false" />
     <Property Name="moneda" Type="varchar" MaxLength="15" />
-    <Property Name="tipoOperacion" Type="varchar" MaxLength="8000" />
-    <Property Name="descuento" Type="numeric" Precision="20" Scale="5" />
-    <Property Name="ORTDISAM" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="ivaTasa" Type="numeric" Precision="23" Scale="9" />
-    <Property Name="ivaImponible" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="iva" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="inafecta" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="exonerado" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="gratuito" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="tipoOperacion" Type="varchar" MaxLength="3" />
     <Property Name="xchgrate" Type="numeric" Precision="19" Scale="7" Nullable="false" />
-    <Property Name="total" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="trdisamt" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="IvaImponiblePen" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="ivaPen" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="inafectaPen" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="exoneradoPen" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="gratuitoPen" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="docamnt" Type="numeric" Precision="19" Scale="5" Nullable="false" />
-    <Property Name="formaPago" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="discrepanciaTipo" Type="varchar" MaxLength="2" />
-    <Property Name="discrepanciaDesc" Type="nvarchar(max)" />
+    <Property Name="descuentoGlobalMonto" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="descuentoGlobalImponible" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="descuentoGlobalPorcentaje" Type="numeric" Precision="38" Scale="19" />
+    <Property Name="codigoDetraccion" Type="char" MaxLength="3" />
+    <Property Name="porcentajeDetraccion" Type="numeric" Precision="19" Scale="5" />
+    <Property Name="montoDetraccion" Type="numeric" Precision="38" Scale="9" />
+    <Property Name="codleyendaDetraccion" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="montoTotalVenta" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="montoTotalImpuestos" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalValorVenta" Type="numeric" Precision="38" Scale="5" />
+    <Property Name="montoTotalDescuentosPorItem" Type="numeric" Precision="20" Scale="5" />
+    <Property Name="montoTotalImpuOperGratuitas" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoTotalIgv" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalIvaImponible" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalExonerado" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalExportacion" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalGratuito" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalInafecto" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalIvaImponiblePen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalExoneradoPen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalExportacionPen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalGratuitoPen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="montoSubtotalInafectoPen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
+    <Property Name="cRelacionadoNumDocAfectado" Type="varchar" MaxLength="21" />
+    <Property Name="cRelacionadoTipoDocAfectado" Type="varchar" MaxLength="8000" />
+    <Property Name="infoRelNotasCodigoTipoNota" Type="varchar" MaxLength="2" />
+    <Property Name="infoRelNotasObservaciones" Type="nvarchar(max)" />
+    <Property Name="codleyendaTransfGratuita" Type="varchar" MaxLength="4" Nullable="false" />
     <Property Name="montoEnLetras" Type="varchar" MaxLength="2000" />
     <Property Name="estadoContabilizado" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="docdate" Type="datetime" Nullable="false" />
@@ -156,16 +175,22 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiConceptos].[ITEMDESC] AS [ITEMDESC], 
     [vwCfdiConceptos].[CMPNTSEQ] AS [CMPNTSEQ], 
     [vwCfdiConceptos].[udemSunat] AS [udemSunat], 
+    [vwCfdiConceptos].[claveProdSunat] AS [claveProdSunat], 
     [vwCfdiConceptos].[NoIdentificacion] AS [NoIdentificacion], 
     [vwCfdiConceptos].[Descripcion] AS [Descripcion], 
     [vwCfdiConceptos].[precioUniConIva] AS [precioUniConIva], 
     [vwCfdiConceptos].[valorUni] AS [valorUni], 
     [vwCfdiConceptos].[cantidad] AS [cantidad], 
     [vwCfdiConceptos].[descuento] AS [descuento], 
+    [vwCfdiConceptos].[baseImponibleDescuento] AS [baseImponibleDescuento], 
+    [vwCfdiConceptos].[codigoDescuento] AS [codigoDescuento], 
     [vwCfdiConceptos].[importe] AS [importe], 
-    [vwCfdiConceptos].[orslstax] AS [orslstax], 
-    [vwCfdiConceptos].[tipoPrecio] AS [tipoPrecio], 
-    [vwCfdiConceptos].[tipoImpuesto] AS [tipoImpuesto]
+    [vwCfdiConceptos].[montoIva] AS [montoIva], 
+    [vwCfdiConceptos].[montoImponibleIva] AS [montoImponibleIva], 
+    [vwCfdiConceptos].[porcentajeIva] AS [porcentajeIva], 
+    [vwCfdiConceptos].[tipoTributo] AS [tipoTributo], 
+    [vwCfdiConceptos].[tipoAfectacion] AS [tipoAfectacion], 
+    [vwCfdiConceptos].[operacionOnerosa] AS [operacionOnerosa]
     FROM [dbo].[vwCfdiConceptos] AS [vwCfdiConceptos]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="vwCfdiGeneraDocumentoDeVenta" EntityType="Self.vwCfdiGeneraDocumentoDeVenta" store:Type="Views" store:Schema="dbo">
@@ -185,34 +210,47 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiGeneraDocumentoDeVenta].[emisorDepartamento] AS [emisorDepartamento], 
     [vwCfdiGeneraDocumentoDeVenta].[emisorProvincia] AS [emisorProvincia], 
     [vwCfdiGeneraDocumentoDeVenta].[emisorDistrito] AS [emisorDistrito], 
+    [vwCfdiGeneraDocumentoDeVenta].[emisorCodPais] AS [emisorCodPais], 
     [vwCfdiGeneraDocumentoDeVenta].[receptorTipoDoc] AS [receptorTipoDoc], 
     [vwCfdiGeneraDocumentoDeVenta].[receptorNroDoc] AS [receptorNroDoc], 
     [vwCfdiGeneraDocumentoDeVenta].[receptorNombre] AS [receptorNombre], 
     [vwCfdiGeneraDocumentoDeVenta].[emailTo] AS [emailTo], 
+    [vwCfdiGeneraDocumentoDeVenta].[send_email_statements] AS [send_email_statements], 
     [vwCfdiGeneraDocumentoDeVenta].[idDocumento] AS [idDocumento], 
     [vwCfdiGeneraDocumentoDeVenta].[fechaEmision] AS [fechaEmision], 
+    [vwCfdiGeneraDocumentoDeVenta].[horaEmision] AS [horaEmision], 
+    [vwCfdiGeneraDocumentoDeVenta].[fechaVencimiento] AS [fechaVencimiento], 
     [vwCfdiGeneraDocumentoDeVenta].[moneda] AS [moneda], 
     [vwCfdiGeneraDocumentoDeVenta].[tipoOperacion] AS [tipoOperacion], 
-    [vwCfdiGeneraDocumentoDeVenta].[descuento] AS [descuento], 
-    [vwCfdiGeneraDocumentoDeVenta].[ORTDISAM] AS [ORTDISAM], 
-    [vwCfdiGeneraDocumentoDeVenta].[ivaTasa] AS [ivaTasa], 
-    [vwCfdiGeneraDocumentoDeVenta].[ivaImponible] AS [ivaImponible], 
-    [vwCfdiGeneraDocumentoDeVenta].[iva] AS [iva], 
-    [vwCfdiGeneraDocumentoDeVenta].[inafecta] AS [inafecta], 
-    [vwCfdiGeneraDocumentoDeVenta].[exonerado] AS [exonerado], 
-    [vwCfdiGeneraDocumentoDeVenta].[gratuito] AS [gratuito], 
     [vwCfdiGeneraDocumentoDeVenta].[xchgrate] AS [xchgrate], 
-    [vwCfdiGeneraDocumentoDeVenta].[total] AS [total], 
-    [vwCfdiGeneraDocumentoDeVenta].[trdisamt] AS [trdisamt], 
-    [vwCfdiGeneraDocumentoDeVenta].[IvaImponiblePen] AS [IvaImponiblePen], 
-    [vwCfdiGeneraDocumentoDeVenta].[ivaPen] AS [ivaPen], 
-    [vwCfdiGeneraDocumentoDeVenta].[inafectaPen] AS [inafectaPen], 
-    [vwCfdiGeneraDocumentoDeVenta].[exoneradoPen] AS [exoneradoPen], 
-    [vwCfdiGeneraDocumentoDeVenta].[gratuitoPen] AS [gratuitoPen], 
-    [vwCfdiGeneraDocumentoDeVenta].[docamnt] AS [docamnt], 
-    [vwCfdiGeneraDocumentoDeVenta].[formaPago] AS [formaPago], 
-    [vwCfdiGeneraDocumentoDeVenta].[discrepanciaTipo] AS [discrepanciaTipo], 
-    [vwCfdiGeneraDocumentoDeVenta].[discrepanciaDesc] AS [discrepanciaDesc], 
+    [vwCfdiGeneraDocumentoDeVenta].[descuentoGlobalMonto] AS [descuentoGlobalMonto], 
+    [vwCfdiGeneraDocumentoDeVenta].[descuentoGlobalImponible] AS [descuentoGlobalImponible], 
+    [vwCfdiGeneraDocumentoDeVenta].[descuentoGlobalPorcentaje] AS [descuentoGlobalPorcentaje], 
+    [vwCfdiGeneraDocumentoDeVenta].[codigoDetraccion] AS [codigoDetraccion], 
+    [vwCfdiGeneraDocumentoDeVenta].[porcentajeDetraccion] AS [porcentajeDetraccion], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoDetraccion] AS [montoDetraccion], 
+    [vwCfdiGeneraDocumentoDeVenta].[codleyendaDetraccion] AS [codleyendaDetraccion], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoTotalVenta] AS [montoTotalVenta], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoTotalImpuestos] AS [montoTotalImpuestos], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalValorVenta] AS [montoSubtotalValorVenta], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoTotalDescuentosPorItem] AS [montoTotalDescuentosPorItem], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoTotalImpuOperGratuitas] AS [montoTotalImpuOperGratuitas], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoTotalIgv] AS [montoTotalIgv], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalIvaImponible] AS [montoSubtotalIvaImponible], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalExonerado] AS [montoSubtotalExonerado], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalExportacion] AS [montoSubtotalExportacion], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalGratuito] AS [montoSubtotalGratuito], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalInafecto] AS [montoSubtotalInafecto], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalIvaImponiblePen] AS [montoSubtotalIvaImponiblePen], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalExoneradoPen] AS [montoSubtotalExoneradoPen], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalExportacionPen] AS [montoSubtotalExportacionPen], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalGratuitoPen] AS [montoSubtotalGratuitoPen], 
+    [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalInafectoPen] AS [montoSubtotalInafectoPen], 
+    [vwCfdiGeneraDocumentoDeVenta].[cRelacionadoNumDocAfectado] AS [cRelacionadoNumDocAfectado], 
+    [vwCfdiGeneraDocumentoDeVenta].[cRelacionadoTipoDocAfectado] AS [cRelacionadoTipoDocAfectado], 
+    [vwCfdiGeneraDocumentoDeVenta].[infoRelNotasCodigoTipoNota] AS [infoRelNotasCodigoTipoNota], 
+    [vwCfdiGeneraDocumentoDeVenta].[infoRelNotasObservaciones] AS [infoRelNotasObservaciones], 
+    [vwCfdiGeneraDocumentoDeVenta].[codleyendaTransfGratuita] AS [codleyendaTransfGratuita], 
     [vwCfdiGeneraDocumentoDeVenta].[montoEnLetras] AS [montoEnLetras], 
     [vwCfdiGeneraDocumentoDeVenta].[estadoContabilizado] AS [estadoContabilizado], 
     [vwCfdiGeneraDocumentoDeVenta].[docdate] AS [docdate]

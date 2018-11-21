@@ -9,7 +9,6 @@ using System.Diagnostics;
 using System.IO;
 
 using Comun;
-//using Reporteador;
 using cfd.FacturaElectronica;
 using MyGeneration.dOOdads;
 using MaquinaDeEstados;
@@ -44,7 +43,7 @@ namespace cfdiPeru
         private ConexionDB DatosConexionDB = new ConexionDB();  //Lee la configuración del archivo xml y obtiene los datos de conexión.
 
         ICfdiMetodosWebService ServiciosOse; 
-        ICfdiPeruDocumento EstructuraDocsOse = new DocumentosOSE();
+        ICfdiPeruDocumento EstructuraDocsOse;
 
         public winformGeneraFE()
         {
@@ -379,7 +378,7 @@ namespace cfdiPeru
                 if (this.tabCfdi.SelectedTab.Name.Equals("tabResumen"))
                     await proc.GeneraResumenXmlAsync(ServiciosOse, EstructuraDocsOse);
                 else
-                    await proc.GeneraDocumentoXmlAsync(ServiciosOse, EstructuraDocsOse);
+                    await proc.GeneraDocumentoXmlAsync(ServiciosOse);
 
             }
             //Actualiza la pantalla

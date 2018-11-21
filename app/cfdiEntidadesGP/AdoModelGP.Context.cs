@@ -25,9 +25,9 @@ namespace cfdiEntidadesGP
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<vwCfdiConceptos> vwCfdiConceptos { get; set; }
         public virtual DbSet<vwCfdiRelacionados> vwCfdiRelacionados { get; set; }
-        public virtual DbSet<vwCfdiGeneraDocumentoDeVenta> vwCfdiGeneraDocumentoDeVenta { get; set; }
         public virtual DbSet<vwCfdiGeneraResumenDiario> vwCfdiGeneraResumenDiario { get; set; }
+        public virtual DbSet<vwCfdiConceptos> vwCfdiConceptos { get; set; }
+        public virtual DbSet<vwCfdiGeneraDocumentoDeVenta> vwCfdiGeneraDocumentoDeVenta { get; set; }
     }
 }

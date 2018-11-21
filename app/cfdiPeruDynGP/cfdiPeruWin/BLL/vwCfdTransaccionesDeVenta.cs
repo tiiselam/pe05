@@ -12,11 +12,12 @@ namespace cfdiPeru
         DocumentoElectronico _docElectronico;
         ComunicacionBaja _documentoBaja;
         ResumenDiarioNuevo _resumenElectronico;
+        DocumentoVentaGP docGP;
         List<DetalleDocumento> lDetalleDocumento;
         private const string FormatoFecha = "yyyy-MM-dd";
         private const string FormatoFechaHora = "yyyy-MM-dd";
 
-        public DocumentoElectronico DocElectronico
+        private DocumentoElectronico DocElectronico
         {
             get
             {
@@ -55,6 +56,8 @@ namespace cfdiPeru
             }
         }
 
+        public DocumentoVentaGP DocGP { get => docGP; set => docGP = value; }
+
         public vwCfdTransaccionesDeVenta(string connstr, string nombreVista)
         {
             this.ConnectionString = connstr;
@@ -69,7 +72,7 @@ namespace cfdiPeru
         {
             try
             {
-                DocumentoVentaGP docGP = new DocumentoVentaGP();
+                docGP = new DocumentoVentaGP();
 
                 docGP.GetDatosDocumentoVenta(this.Sopnumbe, this.Soptype);
 
@@ -93,17 +96,17 @@ namespace cfdiPeru
                 _docElectronico.Receptor.NombreLegal = docGP.DocVenta.receptorNombre;
                 _docElectronico.Receptor.EMailTo = docGP.DocVenta.emailTo;
                 _docElectronico.TipoOperacion = docGP.DocVenta.tipoOperacion;
-                _docElectronico.DescuentoGlobal = docGP.DocVenta.ORTDISAM;
-                _docElectronico.DescuentoNoGlobal = docGP.DocVenta.descuento;
-                _docElectronico.TotalIgv = docGP.DocVenta.iva;
-                _docElectronico.Gravadas = docGP.DocVenta.ivaImponible;
-                _docElectronico.Inafectas = docGP.DocVenta.inafecta;
-                _docElectronico.Exoneradas = docGP.DocVenta.exonerado;
-                _docElectronico.Gratuitas = docGP.DocVenta.gratuito;
-                _docElectronico.TotalVenta = docGP.DocVenta.total;
-                _docElectronico.MontoEnLetras = docGP.DocVenta.montoEnLetras;
-                _docElectronico.MetodoPago = docGP.DocVenta.formaPago;
-                _docElectronico.Observaciones = docGP.DocVenta.discrepanciaDesc;
+                //_docElectronico.DescuentoGlobal = docGP.DocVenta.ORTDISAM;
+                //_docElectronico.DescuentoNoGlobal = docGP.DocVenta.descuento;
+                //_docElectronico.TotalIgv = docGP.DocVenta.iva;
+                //_docElectronico.Gravadas = docGP.DocVenta.ivaImponible;
+                //_docElectronico.Inafectas = docGP.DocVenta.inafecta;
+                //_docElectronico.Exoneradas = docGP.DocVenta.exonerado;
+                //_docElectronico.Gratuitas = docGP.DocVenta.gratuito;
+                //_docElectronico.TotalVenta = docGP.DocVenta.total;
+                //_docElectronico.MontoEnLetras = docGP.DocVenta.montoEnLetras;
+                //_docElectronico.MetodoPago = docGP.DocVenta.formaPago;
+                //_docElectronico.Observaciones = docGP.DocVenta.discrepanciaDesc;
 
                 lDetalleDocumento = new List<DetalleDocumento>();
                 int i = 1;
@@ -112,16 +115,16 @@ namespace cfdiPeru
                     lDetalleDocumento.Add(new DetalleDocumento()
                     {
                         CodigoItem = d.ITEMNMBR,
-                        Id = i, // Convert.ToInt16(d.id),
+                        Id = i, 
                         Descripcion = d.Descripcion,
                         Cantidad = d.cantidad,
                         UnidadMedida = d.udemSunat,
-                        PrecioUnitario = d.valorUni,
+//                        PrecioUnitario = d.valorUni,
                         PrecioReferencial = Convert.ToDecimal(d.precioUniConIva),
                         TotalVenta = Convert.ToDecimal(d.importe),
-                        TipoPrecio = d.tipoPrecio,
-                        Impuesto = d.orslstax,
-                        TipoImpuesto = d.tipoImpuesto,
+//                        TipoPrecio = d.tipoPrecio,
+//                        Impuesto = d.orslstax,
+//                        TipoImpuesto = d.tipoImpuesto,
                         
                     });
                     i++;
@@ -143,8 +146,8 @@ namespace cfdiPeru
 
                         _docElectronico.Discrepancias.Add(new Discrepancia()
                         {
-                            Tipo = docGP.DocVenta.discrepanciaTipo,
-                            Descripcion = docGP.DocVenta.discrepanciaDesc,
+                            //Tipo = docGP.DocVenta.discrepanciaTipo,
+                            //Descripcion = docGP.DocVenta.discrepanciaDesc,
                             NroReferencia = d.sopnumbeTo
                         });
                     }

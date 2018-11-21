@@ -19,4 +19,3 @@ C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\c
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csproj.CopyComplete
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.dll
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.pdb
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csprojAssemblyReference.cache

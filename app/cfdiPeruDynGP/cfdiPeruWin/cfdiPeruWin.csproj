@@ -196,9 +196,9 @@
       <Project>{4954c962-f4d6-4c0c-91dd-18a690e326cd}</Project>
       <Name>cfdiEntidadesGP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\cfdiPeruDFactureWS\cfdiPeruDFactureWS.csproj">
-      <Project>{7ec180e2-bcc6-4cb0-a992-375bed2ce336}</Project>
-      <Name>cfdiPeruDFactureWS</Name>
+    <ProjectReference Include="..\..\cfdiPeruDFactureUbl21\cfdiPeruDFactureUbl21.csproj">
+      <Project>{e7057c8d-cd27-42d9-b19c-1b4330fc0c2d}</Project>
+      <Name>cfdiPeruDFactureUbl21</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\cfdiPeruInterfacesFacturador\cfdiPeruInterfaces.csproj">
       <Project>{32e2bbb0-c891-4b06-8dec-7075d00cac71}</Project>

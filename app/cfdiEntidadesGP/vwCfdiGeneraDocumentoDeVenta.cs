@@ -29,34 +29,47 @@ namespace cfdiEntidadesGP
         public string emisorDepartamento { get; set; }
         public string emisorProvincia { get; set; }
         public string emisorDistrito { get; set; }
+        public string emisorCodPais { get; set; }
         public string receptorTipoDoc { get; set; }
         public string receptorNroDoc { get; set; }
         public string receptorNombre { get; set; }
         public string emailTo { get; set; }
+        public Nullable<int> send_email_statements { get; set; }
         public string idDocumento { get; set; }
-        public Nullable<System.DateTime> fechaEmision { get; set; }
+        public System.DateTime fechaEmision { get; set; }
+        public string horaEmision { get; set; }
+        public System.DateTime fechaVencimiento { get; set; }
         public string moneda { get; set; }
         public string tipoOperacion { get; set; }
-        public decimal descuento { get; set; }
-        public decimal ORTDISAM { get; set; }
-        public Nullable<decimal> ivaTasa { get; set; }
-        public decimal ivaImponible { get; set; }
-        public decimal iva { get; set; }
-        public decimal inafecta { get; set; }
-        public decimal exonerado { get; set; }
-        public decimal gratuito { get; set; }
         public decimal xchgrate { get; set; }
-        public decimal total { get; set; }
-        public decimal trdisamt { get; set; }
-        public decimal IvaImponiblePen { get; set; }
-        public decimal ivaPen { get; set; }
-        public decimal inafectaPen { get; set; }
-        public decimal exoneradoPen { get; set; }
-        public decimal gratuitoPen { get; set; }
-        public decimal docamnt { get; set; }
-        public string formaPago { get; set; }
-        public string discrepanciaTipo { get; set; }
-        public string discrepanciaDesc { get; set; }
+        public decimal descuentoGlobalMonto { get; set; }
+        public decimal descuentoGlobalImponible { get; set; }
+        public Nullable<decimal> descuentoGlobalPorcentaje { get; set; }
+        public string codigoDetraccion { get; set; }
+        public Nullable<decimal> porcentajeDetraccion { get; set; }
+        public Nullable<decimal> montoDetraccion { get; set; }
+        public string codleyendaDetraccion { get; set; }
+        public decimal montoTotalVenta { get; set; }
+        public decimal montoTotalImpuestos { get; set; }
+        public Nullable<decimal> montoSubtotalValorVenta { get; set; }
+        public Nullable<decimal> montoTotalDescuentosPorItem { get; set; }
+        public decimal montoTotalImpuOperGratuitas { get; set; }
+        public decimal montoTotalIgv { get; set; }
+        public decimal montoSubtotalIvaImponible { get; set; }
+        public decimal montoSubtotalExonerado { get; set; }
+        public decimal montoSubtotalExportacion { get; set; }
+        public decimal montoSubtotalGratuito { get; set; }
+        public decimal montoSubtotalInafecto { get; set; }
+        public decimal montoSubtotalIvaImponiblePen { get; set; }
+        public decimal montoSubtotalExoneradoPen { get; set; }
+        public decimal montoSubtotalExportacionPen { get; set; }
+        public decimal montoSubtotalGratuitoPen { get; set; }
+        public decimal montoSubtotalInafectoPen { get; set; }
+        public string cRelacionadoNumDocAfectado { get; set; }
+        public string cRelacionadoTipoDocAfectado { get; set; }
+        public string infoRelNotasCodigoTipoNota { get; set; }
+        public string infoRelNotasObservaciones { get; set; }
+        public string codleyendaTransfGratuita { get; set; }
         public string montoEnLetras { get; set; }
         public string estadoContabilizado { get; set; }
         public System.DateTime docdate { get; set; }

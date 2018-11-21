@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PeruService.Response" />
+  <xs:import schemaLocation="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes" />
+  <xs:element name="CargarCertificado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="certificadoBase64" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="certificadoClaveBase64" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CargarCertificadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="CargarCertificadoResult" nillable="true" type="q1:Respuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ComunicacionBaja">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="documento" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="motivo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ComunicacionBajaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="ComunicacionBajaResult" nillable="true" type="q2:Respuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DescargaArchivo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="documento" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="tipoArchivo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DescargaArchivoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="DescargaArchivoResult" nillable="true" type="q3:Respuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Enviar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/PeruService.Classes" minOccurs="0" name="documentoElectronico" nillable="true" type="q4:DocumentoElectronico" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnviarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="EnviarResult" nillable="true" type="q5:RespuestaEnviar" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EstatusDocumento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="documento" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EstatusDocumentoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="EstatusDocumentoResult" nillable="true" type="q6:Respuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FoliosRestantes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FoliosRestantesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="FoliosRestantesResult" nillable="true" type="q7:Respuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuiasRemision">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="layout" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuiasRemisionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="GuiasRemisionResult" nillable="true" type="q8:RespuestaGuiaRemision" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResumenDiario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fechaEmision" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fechaReferencia" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResumenDiarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="ResumenDiarioResult" nillable="true" type="q9:Respuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetencionPercepcion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="layout" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetencionPercepcionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="RetencionPercepcionResult" nillable="true" type="q10:RespuestaComprobantes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Reversion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="documento" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="motivo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReversionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="ReversionResult" nillable="true" type="q11:Respuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidaAcceso">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidaAccesoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ValidaAccesoResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
