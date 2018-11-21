@@ -13,6 +13,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiConceptos' does not have a primary
             <PropertyRef Name="sopnumbe" />
             <PropertyRef Name="LNITMSEQ" />
             <PropertyRef Name="CMPNTSEQ" />
+            <PropertyRef Name="cantidad" />
             <PropertyRef Name="ITEMNMBR" />
           </Key>
           <Property Name="id" Type="bigint" />
@@ -29,11 +30,12 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiConceptos' does not have a primary
           <Property Name="Descripcion" Type="nvarchar(max)" />
           <Property Name="precioUniConIva" Type="numeric" Precision="38" Scale="6" />
           <Property Name="valorUni" Type="numeric" Precision="38" Scale="6" />
+          <Property Name="importe" Type="numeric" Precision="38" Scale="9" />
           <Property Name="cantidad" Type="numeric" Precision="19" Scale="5" Nullable="false" />
           <Property Name="descuento" Type="numeric" Precision="38" Scale="9" />
-          <Property Name="baseImponibleDescuento" Type="numeric" Precision="38" Scale="9" />
-          <Property Name="codigoDescuento" Type="varchar" MaxLength="2" Nullable="false" />
-          <Property Name="importe" Type="numeric" Precision="20" Scale="5" />
+          <Property Name="descuentoBaseImponible" Type="numeric" Precision="38" Scale="9" />
+          <Property Name="descuentoPorcentaje" Type="numeric" Precision="38" Scale="6" />
+          <Property Name="descuentoCodigo" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="montoIva" Type="numeric" Precision="19" Scale="5" Nullable="false" />
           <Property Name="montoImponibleIva" Type="numeric" Precision="19" Scale="5" Nullable="false" />
           <Property Name="porcentajeIva" Type="numeric" Precision="23" Scale="9" />
@@ -83,6 +85,8 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
           <Property Name="porcentajeDetraccion" Type="numeric" Precision="19" Scale="5" />
           <Property Name="montoDetraccion" Type="numeric" Precision="38" Scale="9" />
           <Property Name="codleyendaDetraccion" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="numCuentaBancoNacion" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="medioPagoDetraccion" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="montoTotalVenta" Type="numeric" Precision="19" Scale="5" Nullable="false" />
           <Property Name="montoTotalImpuestos" Type="numeric" Precision="38" Scale="5" Nullable="false" />
           <Property Name="montoSubtotalValorVenta" Type="numeric" Precision="38" Scale="5" />
@@ -199,11 +203,12 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiConceptos].[Descripcion] AS [Descripcion], 
     [vwCfdiConceptos].[precioUniConIva] AS [precioUniConIva], 
     [vwCfdiConceptos].[valorUni] AS [valorUni], 
+    [vwCfdiConceptos].[importe] AS [importe], 
     [vwCfdiConceptos].[cantidad] AS [cantidad], 
     [vwCfdiConceptos].[descuento] AS [descuento], 
-    [vwCfdiConceptos].[baseImponibleDescuento] AS [baseImponibleDescuento], 
-    [vwCfdiConceptos].[codigoDescuento] AS [codigoDescuento], 
-    [vwCfdiConceptos].[importe] AS [importe], 
+    [vwCfdiConceptos].[descuentoBaseImponible] AS [descuentoBaseImponible], 
+    [vwCfdiConceptos].[descuentoPorcentaje] AS [descuentoPorcentaje], 
+    [vwCfdiConceptos].[descuentoCodigo] AS [descuentoCodigo], 
     [vwCfdiConceptos].[montoIva] AS [montoIva], 
     [vwCfdiConceptos].[montoImponibleIva] AS [montoImponibleIva], 
     [vwCfdiConceptos].[porcentajeIva] AS [porcentajeIva], 
@@ -249,6 +254,8 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiGeneraDocumentoDeVenta].[porcentajeDetraccion] AS [porcentajeDetraccion], 
     [vwCfdiGeneraDocumentoDeVenta].[montoDetraccion] AS [montoDetraccion], 
     [vwCfdiGeneraDocumentoDeVenta].[codleyendaDetraccion] AS [codleyendaDetraccion], 
+    [vwCfdiGeneraDocumentoDeVenta].[numCuentaBancoNacion] AS [numCuentaBancoNacion], 
+    [vwCfdiGeneraDocumentoDeVenta].[medioPagoDetraccion] AS [medioPagoDetraccion], 
     [vwCfdiGeneraDocumentoDeVenta].[montoTotalVenta] AS [montoTotalVenta], 
     [vwCfdiGeneraDocumentoDeVenta].[montoTotalImpuestos] AS [montoTotalImpuestos], 
     [vwCfdiGeneraDocumentoDeVenta].[montoSubtotalValorVenta] AS [montoSubtotalValorVenta], 
@@ -395,6 +402,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
             <PropertyRef Name="sopnumbe" />
             <PropertyRef Name="LNITMSEQ" />
             <PropertyRef Name="CMPNTSEQ" />
+            <PropertyRef Name="cantidad" />
             <PropertyRef Name="ITEMNMBR" />
           </Key>
           <Property Name="id" Type="Int64" />
@@ -411,11 +419,12 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="precioUniConIva" Type="Decimal" Precision="38" Scale="6" />
           <Property Name="valorUni" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="importe" Type="Decimal" Precision="38" Scale="9" />
           <Property Name="cantidad" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
           <Property Name="descuento" Type="Decimal" Precision="38" Scale="9" />
-          <Property Name="baseImponibleDescuento" Type="Decimal" Precision="38" Scale="9" />
-          <Property Name="codigoDescuento" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="importe" Type="Decimal" Precision="20" Scale="5" />
+          <Property Name="descuentoBaseImponible" Type="Decimal" Precision="38" Scale="9" />
+          <Property Name="descuentoPorcentaje" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="descuentoCodigo" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="montoIva" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
           <Property Name="montoImponibleIva" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
           <Property Name="porcentajeIva" Type="Decimal" Precision="23" Scale="9" />
@@ -463,6 +472,8 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <Property Name="porcentajeDetraccion" Type="Decimal" Precision="19" Scale="5" />
           <Property Name="montoDetraccion" Type="Decimal" Precision="38" Scale="9" />
           <Property Name="codleyendaDetraccion" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="numCuentaBancoNacion" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="medioPagoDetraccion" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="montoTotalVenta" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
           <Property Name="montoTotalImpuestos" Type="Decimal" Nullable="false" Precision="38" Scale="5" />
           <Property Name="montoSubtotalValorVenta" Type="Decimal" Precision="38" Scale="5" />
@@ -554,11 +565,12 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
                 <ScalarProperty Name="porcentajeIva" ColumnName="porcentajeIva" />
                 <ScalarProperty Name="montoImponibleIva" ColumnName="montoImponibleIva" />
                 <ScalarProperty Name="montoIva" ColumnName="montoIva" />
-                <ScalarProperty Name="importe" ColumnName="importe" />
-                <ScalarProperty Name="codigoDescuento" ColumnName="codigoDescuento" />
-                <ScalarProperty Name="baseImponibleDescuento" ColumnName="baseImponibleDescuento" />
+                <ScalarProperty Name="descuentoCodigo" ColumnName="descuentoCodigo" />
+                <ScalarProperty Name="descuentoPorcentaje" ColumnName="descuentoPorcentaje" />
+                <ScalarProperty Name="descuentoBaseImponible" ColumnName="descuentoBaseImponible" />
                 <ScalarProperty Name="descuento" ColumnName="descuento" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
                 <ScalarProperty Name="valorUni" ColumnName="valorUni" />
                 <ScalarProperty Name="precioUniConIva" ColumnName="precioUniConIva" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -603,6 +615,8 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
                 <ScalarProperty Name="montoSubtotalValorVenta" ColumnName="montoSubtotalValorVenta" />
                 <ScalarProperty Name="montoTotalImpuestos" ColumnName="montoTotalImpuestos" />
                 <ScalarProperty Name="montoTotalVenta" ColumnName="montoTotalVenta" />
+                <ScalarProperty Name="medioPagoDetraccion" ColumnName="medioPagoDetraccion" />
+                <ScalarProperty Name="numCuentaBancoNacion" ColumnName="numCuentaBancoNacion" />
                 <ScalarProperty Name="codleyendaDetraccion" ColumnName="codleyendaDetraccion" />
                 <ScalarProperty Name="montoDetraccion" ColumnName="montoDetraccion" />
                 <ScalarProperty Name="porcentajeDetraccion" ColumnName="porcentajeDetraccion" />

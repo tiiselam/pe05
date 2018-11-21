@@ -28,11 +28,12 @@ namespace cfdiEntidadesGP
         public string Descripcion { get; set; }
         public Nullable<decimal> precioUniConIva { get; set; }
         public Nullable<decimal> valorUni { get; set; }
+        public Nullable<decimal> importe { get; set; }
         public decimal cantidad { get; set; }
         public Nullable<decimal> descuento { get; set; }
-        public Nullable<decimal> baseImponibleDescuento { get; set; }
-        public string codigoDescuento { get; set; }
-        public Nullable<decimal> importe { get; set; }
+        public Nullable<decimal> descuentoBaseImponible { get; set; }
+        public Nullable<decimal> descuentoPorcentaje { get; set; }
+        public string descuentoCodigo { get; set; }
         public decimal montoIva { get; set; }
         public decimal montoImponibleIva { get; set; }
         public Nullable<decimal> porcentajeIva { get; set; }

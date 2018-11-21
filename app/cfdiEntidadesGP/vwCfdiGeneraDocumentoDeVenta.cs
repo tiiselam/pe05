@@ -49,6 +49,8 @@ namespace cfdiEntidadesGP
         public Nullable<decimal> porcentajeDetraccion { get; set; }
         public Nullable<decimal> montoDetraccion { get; set; }
         public string codleyendaDetraccion { get; set; }
+        public string numCuentaBancoNacion { get; set; }
+        public string medioPagoDetraccion { get; set; }
         public decimal montoTotalVenta { get; set; }
         public decimal montoTotalImpuestos { get; set; }
         public Nullable<decimal> montoSubtotalValorVenta { get; set; }
