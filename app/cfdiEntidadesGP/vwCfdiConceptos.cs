@@ -23,15 +23,21 @@ namespace cfdiEntidadesGP
         public string ITEMDESC { get; set; }
         public int CMPNTSEQ { get; set; }
         public string udemSunat { get; set; }
+        public string claveProdSunat { get; set; }
         public string NoIdentificacion { get; set; }
         public string Descripcion { get; set; }
         public Nullable<decimal> precioUniConIva { get; set; }
-        public decimal valorUni { get; set; }
+        public Nullable<decimal> valorUni { get; set; }
         public decimal cantidad { get; set; }
         public Nullable<decimal> descuento { get; set; }
+        public Nullable<decimal> baseImponibleDescuento { get; set; }
+        public string codigoDescuento { get; set; }
         public Nullable<decimal> importe { get; set; }
-        public decimal orslstax { get; set; }
-        public string tipoPrecio { get; set; }
-        public string tipoImpuesto { get; set; }
+        public decimal montoIva { get; set; }
+        public decimal montoImponibleIva { get; set; }
+        public Nullable<decimal> porcentajeIva { get; set; }
+        public string tipoTributo { get; set; }
+        public string tipoAfectacion { get; set; }
+        public string operacionOnerosa { get; set; }
     }
 }

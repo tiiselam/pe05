@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaquinaDeEstados", "cfdiPer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cfdiPeruInterfaces", "cfdiPeruInterfacesFacturador\cfdiPeruInterfaces.csproj", "{32E2BBB0-C891-4B06-8DEC-7075D00CAC71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cfdiPeruDFactureWS", "cfdiPeruDFactureWS\cfdiPeruDFactureWS.csproj", "{7EC180E2-BCC6-4CB0-A992-375BED2CE336}"
-EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "cfdiPeruWinSetup", "cfdiPeruWinSetup\cfdiPeruWinSetup.vdproj", "{4CDD495F-C05E-4535-A7D8-E21BE1C3C218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cfdiPeruDFactureUbl21", "cfdiPeruDFactureUbl21\cfdiPeruDFactureUbl21.csproj", "{E7057C8D-CD27-42D9-B19C-1B4330FC0C2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,18 +75,18 @@ Global
 		{32E2BBB0-C891-4B06-8DEC-7075D00CAC71}.Release|Any CPU.Build.0 = Release|Any CPU
 		{32E2BBB0-C891-4B06-8DEC-7075D00CAC71}.Release|x86.ActiveCfg = Release|Any CPU
 		{32E2BBB0-C891-4B06-8DEC-7075D00CAC71}.Release|x86.Build.0 = Release|Any CPU
-		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Debug|x86.Build.0 = Debug|Any CPU
-		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Release|x86.ActiveCfg = Release|Any CPU
-		{7EC180E2-BCC6-4CB0-A992-375BED2CE336}.Release|x86.Build.0 = Release|Any CPU
 		{4CDD495F-C05E-4535-A7D8-E21BE1C3C218}.Debug|Any CPU.ActiveCfg = Debug
 		{4CDD495F-C05E-4535-A7D8-E21BE1C3C218}.Debug|x86.ActiveCfg = Debug
 		{4CDD495F-C05E-4535-A7D8-E21BE1C3C218}.Release|Any CPU.ActiveCfg = Release
 		{4CDD495F-C05E-4535-A7D8-E21BE1C3C218}.Release|x86.ActiveCfg = Release
+		{E7057C8D-CD27-42D9-B19C-1B4330FC0C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7057C8D-CD27-42D9-B19C-1B4330FC0C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7057C8D-CD27-42D9-B19C-1B4330FC0C2D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E7057C8D-CD27-42D9-B19C-1B4330FC0C2D}.Debug|x86.Build.0 = Debug|Any CPU
+		{E7057C8D-CD27-42D9-B19C-1B4330FC0C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7057C8D-CD27-42D9-B19C-1B4330FC0C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7057C8D-CD27-42D9-B19C-1B4330FC0C2D}.Release|x86.ActiveCfg = Release|Any CPU
+		{E7057C8D-CD27-42D9-B19C-1B4330FC0C2D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
