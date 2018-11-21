@@ -61,11 +61,12 @@
           <ScalarProperty Name="porcentajeIva" ColumnName="porcentajeIva" />
           <ScalarProperty Name="montoImponibleIva" ColumnName="montoImponibleIva" />
           <ScalarProperty Name="montoIva" ColumnName="montoIva" />
-          <ScalarProperty Name="importe" ColumnName="importe" />
-          <ScalarProperty Name="codigoDescuento" ColumnName="codigoDescuento" />
-          <ScalarProperty Name="baseImponibleDescuento" ColumnName="baseImponibleDescuento" />
+          <ScalarProperty Name="descuentoCodigo" ColumnName="descuentoCodigo" />
+          <ScalarProperty Name="descuentoPorcentaje" ColumnName="descuentoPorcentaje" />
+          <ScalarProperty Name="descuentoBaseImponible" ColumnName="descuentoBaseImponible" />
           <ScalarProperty Name="descuento" ColumnName="descuento" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
           <ScalarProperty Name="valorUni" ColumnName="valorUni" />
           <ScalarProperty Name="precioUniConIva" ColumnName="precioUniConIva" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -110,6 +111,8 @@
           <ScalarProperty Name="montoSubtotalValorVenta" ColumnName="montoSubtotalValorVenta" />
           <ScalarProperty Name="montoTotalImpuestos" ColumnName="montoTotalImpuestos" />
           <ScalarProperty Name="montoTotalVenta" ColumnName="montoTotalVenta" />
+          <ScalarProperty Name="medioPagoDetraccion" ColumnName="medioPagoDetraccion" />
+          <ScalarProperty Name="numCuentaBancoNacion" ColumnName="numCuentaBancoNacion" />
           <ScalarProperty Name="codleyendaDetraccion" ColumnName="codleyendaDetraccion" />
           <ScalarProperty Name="montoDetraccion" ColumnName="montoDetraccion" />
           <ScalarProperty Name="porcentajeDetraccion" ColumnName="porcentajeDetraccion" />

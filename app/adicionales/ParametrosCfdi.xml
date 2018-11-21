@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<listaParametros>
+  <servidor>10.1.1.22</servidor>
+  <seguridadIntegrada>0</seguridadIntegrada>
+  <usuariosql>sa</usuariosql>
+  <passwordsql>sa22</passwordsql>
+  <compannia bd="PER10">
+    <URLArchivoXSD>NA</URLArchivoXSD>
+    <URLArchivoXSLT>NA</URLArchivoXSLT>
+    <URLConsulta>NA</URLConsulta>
+    <PAC>
+      <urlWebService>http://demoint.thefactoryhka.com.pe/Service.svc?wsdl</urlWebService>
+    </PAC>
+    <reporteador>na</reporteador>
+	<reporteExtensiones>
+       <Factura>.rpt</Factura>
+	   <Cobro>.COB.rpt</Cobro>
+	   <Traslado>.REM.rpt</Traslado>
+	</reporteExtensiones>
+    <rutaReporteCrystal tipo="default">
+      <Ruta>na</Ruta>
+      <Margenes>
+        <bottomMargin>0</bottomMargin>
+        <topMargin>0</topMargin>
+        <leftMargin>0</leftMargin>
+        <rightMargin>0</rightMargin>
+      </Margenes>
+      <Parametro>
+        <Nombre>Desde Numero</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>Hasta Numero</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <Parametro>
+        <Nombre>sTabla</Nombre>
+        <Tipo>string</Tipo>
+      </Parametro>
+      <imprime>0</imprime>
+      <nombreImpresora>na</nombreImpresora>
+    </rutaReporteCrystal>
+    <ReporteSSRS tipo="default">
+      <Ruta>na</Ruta>
+      <SSRSServer>na</SSRSServer>
+      <Parametro>
+        <Nombre>na</Nombre>
+        <Tipo>na</Tipo>
+      </Parametro>
+    </ReporteSSRS>
+    <emite>1</emite>
+    <anula>1</anula>
+    <imprime>1</imprime>
+    <publica>1</publica>
+    <envia>1</envia>
+    <zip>1</zip>
+    <emailSetup>
+                <smtp>smtp.gmail.com</smtp>
+                <puerto>587</puerto>
+                <cuenta>billing@gettyimageslatam.com</cuenta>
+		<usuario>billing@gettyimageslatam.com</usuario>
+		<clave>na</clave>
+	        <ssl>true</ssl>
+		<replyto>billing@gettyimageslatam.com</replyto>
+                <carta>FACTURA_ELECTRONICA</carta>
+                <adjuntoEmite>zip</adjuntoEmite>
+                <adjuntoImprime>pdf</adjuntoImprime>
+    </emailSetup>
+  </compannia>
+  
+</listaParametros>
