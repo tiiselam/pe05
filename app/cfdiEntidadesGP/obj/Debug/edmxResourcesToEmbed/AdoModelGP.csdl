@@ -13,7 +13,7 @@
     <Property Name="soptypeFrom" Type="Int16" Nullable="false" />
     <Property Name="sopnumbeFrom" Type="String" MaxLength="21" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="soptypeTo" Type="Int32" Nullable="false" />
-    <Property Name="sopnumbeTo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sopnumbeTo" Type="String" MaxLength="41" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityContainer Name="PER10Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="vwCfdiRelacionados" EntityType="Self.vwCfdiRelacionados" />
@@ -96,6 +96,10 @@
     <Property Name="tipoTributo" Type="String" MaxLength="244" FixedLength="false" Unicode="false" />
     <Property Name="tipoAfectacion" Type="String" MaxLength="124" FixedLength="false" Unicode="false" />
     <Property Name="operacionOnerosa" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="montoImponibleExonera" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="montoImponibleInafecto" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="montoImponibleGratuito" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+    <Property Name="montoImponibleExporta" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
   </EntityType>
   <EntityType Name="vwCfdiGeneraDocumentoDeVenta">
     <Key>
@@ -125,7 +129,7 @@
     <Property Name="send_email_statements" Type="Int32" />
     <Property Name="idDocumento" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
     <Property Name="fechaEmision" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="horaEmision" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="horaEmision" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="fechaVencimiento" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="moneda" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="tipoOperacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
@@ -137,7 +141,7 @@
     <Property Name="porcentajeDetraccion" Type="Decimal" Precision="19" Scale="5" />
     <Property Name="montoDetraccion" Type="Decimal" Precision="38" Scale="9" />
     <Property Name="codleyendaDetraccion" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
-    <Property Name="numCuentaBancoNacion" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="numCuentaBancoNacion" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
     <Property Name="medioPagoDetraccion" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Name="montoTotalVenta" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
     <Property Name="montoTotalImpuestos" Type="Decimal" Nullable="false" Precision="38" Scale="5" />

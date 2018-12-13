@@ -55,6 +55,10 @@
     <EntitySetMapping Name="vwCfdiConceptos">
       <EntityTypeMapping TypeName="PERUEntities.vwCfdiConceptos">
         <MappingFragment StoreEntitySet="vwCfdiConceptos">
+          <ScalarProperty Name="montoImponibleExporta" ColumnName="montoImponibleExporta" />
+          <ScalarProperty Name="montoImponibleGratuito" ColumnName="montoImponibleGratuito" />
+          <ScalarProperty Name="montoImponibleInafecto" ColumnName="montoImponibleInafecto" />
+          <ScalarProperty Name="montoImponibleExonera" ColumnName="montoImponibleExonera" />
           <ScalarProperty Name="operacionOnerosa" ColumnName="operacionOnerosa" />
           <ScalarProperty Name="tipoAfectacion" ColumnName="tipoAfectacion" />
           <ScalarProperty Name="tipoTributo" ColumnName="tipoTributo" />

@@ -33,6 +33,10 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiConceptos' does not have a primary
     <Property Name="montoIva" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="montoImponibleIva" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="porcentajeIva" Type="numeric" Precision="23" Scale="9" />
+    <Property Name="montoImponibleExonera" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="montoImponibleInafecto" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="montoImponibleGratuito" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+    <Property Name="montoImponibleExporta" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="tipoTributo" Type="varchar" MaxLength="244" />
     <Property Name="tipoAfectacion" Type="varchar" MaxLength="124" />
     <Property Name="operacionOnerosa" Type="varchar" MaxLength="1" Nullable="false" />
@@ -67,7 +71,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
     <Property Name="send_email_statements" Type="int" />
     <Property Name="idDocumento" Type="varchar" MaxLength="21" />
     <Property Name="fechaEmision" Type="datetime" Nullable="false" />
-    <Property Name="horaEmision" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="horaEmision" Type="varchar" MaxLength="10" />
     <Property Name="fechaVencimiento" Type="datetime" Nullable="false" />
     <Property Name="moneda" Type="varchar" MaxLength="15" />
     <Property Name="tipoOperacion" Type="varchar" MaxLength="3" />
@@ -79,7 +83,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
     <Property Name="porcentajeDetraccion" Type="numeric" Precision="19" Scale="5" />
     <Property Name="montoDetraccion" Type="numeric" Precision="38" Scale="9" />
     <Property Name="codleyendaDetraccion" Type="varchar" MaxLength="4" Nullable="false" />
-    <Property Name="numCuentaBancoNacion" Type="varchar" MaxLength="8000" Nullable="false" />
+    <Property Name="numCuentaBancoNacion" Type="varchar" MaxLength="8000" />
     <Property Name="medioPagoDetraccion" Type="varchar" MaxLength="3" Nullable="false" />
     <Property Name="montoTotalVenta" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="montoTotalImpuestos" Type="numeric" Precision="38" Scale="5" Nullable="false" />
@@ -164,7 +168,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     <Property Name="soptypeFrom" Type="smallint" Nullable="false" />
     <Property Name="sopnumbeFrom" Type="char" MaxLength="21" Nullable="false" />
     <Property Name="soptypeTo" Type="int" Nullable="false" />
-    <Property Name="sopnumbeTo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="sopnumbeTo" Type="varchar" MaxLength="41" Nullable="false" />
   </EntityType>
   <EntityContainer Name="PERUEntitiesStoreContainer">
     <EntitySet Name="vwCfdiConceptos" EntityType="Self.vwCfdiConceptos" store:Type="Views" store:Schema="dbo">
@@ -192,6 +196,10 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiConceptos].[montoIva] AS [montoIva], 
     [vwCfdiConceptos].[montoImponibleIva] AS [montoImponibleIva], 
     [vwCfdiConceptos].[porcentajeIva] AS [porcentajeIva], 
+    [vwCfdiConceptos].[montoImponibleExonera] AS [montoImponibleExonera], 
+    [vwCfdiConceptos].[montoImponibleInafecto] AS [montoImponibleInafecto], 
+    [vwCfdiConceptos].[montoImponibleGratuito] AS [montoImponibleGratuito], 
+    [vwCfdiConceptos].[montoImponibleExporta] AS [montoImponibleExporta], 
     [vwCfdiConceptos].[tipoTributo] AS [tipoTributo], 
     [vwCfdiConceptos].[tipoAfectacion] AS [tipoAfectacion], 
     [vwCfdiConceptos].[operacionOnerosa] AS [operacionOnerosa]
