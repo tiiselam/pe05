@@ -20,3 +20,15 @@ C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\c
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.dll
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.pdb
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\bin\Debug\cfdiEntidadesGP.dll.config
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\bin\Debug\cfdiEntidadesGP.dll
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\bin\Debug\cfdiEntidadesGP.pdb
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\bin\Debug\EntityFramework.dll
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\bin\Debug\EntityFramework.xml
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csproj.CopyComplete
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.dll
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.pdb
