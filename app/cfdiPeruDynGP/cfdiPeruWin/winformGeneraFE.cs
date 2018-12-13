@@ -352,6 +352,9 @@ namespace cfdiPeru
             Param.ExtDefault = this.tabCfdi.SelectedTab.Name;
             ServiciosOse = new WebServicesOSE(Param.URLwebServPAC);
 
+            //ServiciosOse.TimbraYEnviaASunat()
+                       
+
             if (!Param.ultimoMensaje.Equals(string.Empty)) 
             {
                 txtbxMensajes.Text = Param.ultimoMensaje;

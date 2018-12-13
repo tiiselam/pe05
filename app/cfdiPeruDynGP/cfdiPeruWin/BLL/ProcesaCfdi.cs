@@ -83,7 +83,7 @@ namespace cfd.FacturaElectronica
                 ReglasME maquina = new ReglasME(_Param);
                 ValidadorXML validadorxml = new ValidadorXML(_Param);
                 TransformerXML loader = new TransformerXML();
-                OnProgreso(1, "INICIANDO EMISION DE COMPROBANTES DE VENTA...");             //Notifica al suscriptor
+                OnProgreso(1, "INICIANDO EMISION DE COMPROBANTES DE VENTA...");
                 do
                 {
                     msj = String.Empty;
@@ -93,12 +93,12 @@ namespace cfd.FacturaElectronica
                         if (trxVenta.Estado.Equals("no emitido") &&
                             maquina.ValidaTransicion(_Param.tipoDoc, accion, trxVenta.EstadoActual) &&
                             trxVenta.EstadoContabilizado.Equals("contabilizado"))
+                        { 
                             if (trxVenta.Voidstts == 0)  //documento no anulado
                             {
                                 trxVenta.ArmarDocElectronico();
                                 String[] serieCorrelativo = trxVenta.DocGP.DocVenta.idDocumento.Split(new char[] { '-' });
                                 string nombreArchivo = Utiles.FormatoNombreArchivo(trxVenta.Docid + trxVenta.Sopnumbe + "_" + trxVenta.s_CUSTNMBR, trxVenta.s_NombreCliente, 20) + "_" + accion.Substring(0, 2);
-
                                 //validaciones
                                 switch (trxVenta.DocGP.DocVenta.tipoDocumento)
                                 {
@@ -145,13 +145,17 @@ namespace cfd.FacturaElectronica
                                 try
                                 {
                                     xmlFactura = servicioTimbre.TimbraYEnviaASunat(trxVenta.DocGP.DocVenta.emisorNroDoc, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, trxVenta.DocGP);
-                                    DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, "FAC", _Conex.Usuario, xmlFactura.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
+                                    OnProgreso(1, "Solicitud Enviada:\r\n" + xmlFactura);
+                                    DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, "FAC", _Conex.Usuario, xmlFactura.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"iso-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
+                                    msj = xmlFactura;
+
                                 }
                                 catch (ArgumentException ae)    //0016
                                 {
                                     msj = ae.Message;
-                                    xmlFactura = servicioTimbre.ObtieneXMLdelOSE(trxVenta.DocGP.DocVenta.emisorNroDoc, trxVenta.DocGP.DocVenta.tipoDocumento, serieCorrelativo[0], serieCorrelativo[1]);
-                                    DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, "FAC", _Conex.Usuario, xmlFactura.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"ISO-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
+                                    //MSAL. Modificacion. Se agrega usuario y passw
+                                    xmlFactura = servicioTimbre.ObtieneXMLdelOSE(trxVenta.DocGP.DocVenta.emisorNroDoc, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, trxVenta.DocGP.DocVenta.tipoDocumento, serieCorrelativo[0], serieCorrelativo[1]);
+                                    DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, "FAC", _Conex.Usuario, xmlFactura.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"iso-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
                                 }
                                 catch (Exception lo)
                                 {
@@ -162,16 +166,23 @@ namespace cfd.FacturaElectronica
 
                                 if (!string.IsNullOrEmpty(xmlFactura))
                                 {
+                                    //OnProgreso(1, "Escribe XML a disco en:" + rutaYNom);
                                     rutaYNom = await DocVenta.GuardaArchivoAsync(trxVenta, xmlFactura, nombreArchivo, extension, false);
-                                    var tPdf = await servicioTimbre.ObtienePDFdelOSEAsync(trxVenta.DocGP.DocVenta.emisorNroDoc, trxVenta.DocGP.DocVenta.tipoDocumento, serieCorrelativo[0], serieCorrelativo[1], trxVenta.RutaXml.Trim(), nombreArchivo, ".pdf");
+                                    //MSAL. Modificacion. Se agrega usuario y passw
+                                    //OnProgreso(1, " PRe Genera PDF directo:" + rutaYNom);
+                                    var tPdf = await servicioTimbre.ObtienePDFdelOSEAsync(trxVenta.DocGP.DocVenta.emisorNroDoc,  trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, trxVenta.DocGP.DocVenta.tipoDocumento, serieCorrelativo[0], serieCorrelativo[1], trxVenta.RutaXml.Trim(), nombreArchivo, ".pdf");
+                                    OnProgreso(1, " Post Genera PDF directo:" + tPdf);
                                 }
                             }
                             else //si el documento está anulado en gp, agregar al log como emitido
                             {
                                 maquina.ValidaTransicion("FACTURA", "ANULA VENTA", trxVenta.EstadoActual, "emitido");
                                 msj = "Anulado en GP y marcado como emitido.";
+                                OnProgreso(1, msj);
                                 DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, "Anulado en GP", "0", _Conex.Usuario, "", "emitido", maquina.eBinarioNuevo, msj.Trim());
                             }
+                        }
+                        else OnProgreso(1, "ELSE NO HAGO NADA");
                     }
                     catch (HttpRequestException he)
                     {
@@ -212,6 +223,7 @@ namespace cfd.FacturaElectronica
                     }
                     finally
                     {
+                        OnProgreso(1, " finally Inner Try Exc:");
                         OnProgreso(i * 100 / trxVenta.RowCount, "Doc:" + trxVenta.Sopnumbe + " " + msj.Trim() + Environment.NewLine);              //Notifica al suscriptor
                         i++;
                     }
@@ -225,6 +237,7 @@ namespace cfd.FacturaElectronica
             }
             finally
             {
+                OnProgreso(100, " finally Outer Try Exc:");
                 OnProgreso(100, ultimoMensaje);
             }
             OnProgreso(100, "Proceso finalizado!");
@@ -617,8 +630,10 @@ namespace cfd.FacturaElectronica
                             {
                                 trxVenta.ArmarDocElectronico();
 
-                                rutaNombrePDF = await servicioTimbre.ObtienePDFdelOSEAsync(trxVenta.Rfc, trxVenta.DocGP.DocVenta.tipoDocumento, serieCorrelativo[0], serieCorrelativo[1], trxVenta.RutaXml.Trim(), nombreArchivo, ".pdf");
-
+                                //MSAL 27/11/2018. Modifica llamado.
+                                OnProgreso(1, "PRE PdFOSE..." + rutaNombrePDF + ":" + trxVenta.RutaXml.Trim() + ":" + nombreArchivo);
+                                rutaNombrePDF = await servicioTimbre.ObtienePDFdelOSEAsync(trxVenta.Rfc, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, trxVenta.DocGP.DocVenta.tipoDocumento, serieCorrelativo[0], serieCorrelativo[1], trxVenta.RutaXml.Trim(), nombreArchivo, ".pdf");
+                                OnProgreso(1, "POST PdF..." + rutaNombrePDF + ":" + trxVenta.RutaXml.Trim() + ":" +  nombreArchivo);
                                 DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaNombrePDF, ticket, _Conex.Usuario, accion, maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
 
                                 DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje, ticket);

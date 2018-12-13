@@ -15,3 +15,16 @@ C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturado
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiEntidadesGP.pdb
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiEntidadesGP.dll.config
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\EntityFramework.xml
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiPeruInterfacesFacturador.dll.config
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiPeruInterfacesFacturador.dll
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiPeruInterfacesFacturador.pdb
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiEntidadesGP.dll
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\EntityFramework.dll
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiEntidadesGP.pdb
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiEntidadesGP.dll.config
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\EntityFramework.xml
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\obj\Debug\cfdiPeruInterfaces.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\obj\Debug\cfdiPeruInterfaces.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\obj\Debug\cfdiPeruInterfaces.csproj.CopyComplete
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\obj\Debug\cfdiPeruInterfacesFacturador.dll
+C:\Users\Admin\Documents\GitHub\pe05\app\cfdiPeruInterfacesFacturador\obj\Debug\cfdiPeruInterfacesFacturador.pdb
