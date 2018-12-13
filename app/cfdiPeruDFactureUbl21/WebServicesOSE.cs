@@ -16,10 +16,11 @@ namespace cfdiPeruOperadorServiciosElectronicos
         public DocumentoElectronico DocEnviarWS = new DocumentoElectronico();
         public ServiceClient ServicioWS = new ServiceClient();
         string debug_xml;
+        string MensajeError;
 
         public WebServicesOSE(string URLwebServPAC)
         {
-            //ServicioWS.Endpoint.Address = new System.ServiceModel.EndpointAddress(URLwebServPAC) ;
+            ServicioWS.Endpoint.Address = new System.ServiceModel.EndpointAddress(URLwebServPAC) ;
         }
 
         public string TimbraYEnviaASunat(string ruc, string usuario, string usuarioPassword, DocumentoVentaGP documentoGP)
@@ -135,13 +136,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
                         }
                     }
                     
-
-                    /*var relacionado = new Relacionado();
-                    relacionado.numeroDocRelacionado = documentoGP.DocVenta.cRelacionadoNumDocAfectado.Trim();
-                    relacionado.tipoDocRelacionado = documentoGP.DocVenta.cRelacionadoTipoDocAfectado;
-
-                    DocEnviarWS.relacionado = new Relacionado[1];
-                    DocEnviarWS.relacionado[0] = relacionado;*/
                 }
 
 
@@ -225,12 +219,33 @@ namespace cfdiPeruOperadorServiciosElectronicos
                         debug_xml = debug_xml + "   <numeroOrden>" + producto.numeroOrden + "\r\n";
                     }
 
-
                     // SECCION PRODUCTO IGV
                     producto.IGV = new ProductoIGV();
-                    producto.IGV.baseImponible = producto_gp.montoImponibleIva.ToString("0.00");
+                    switch (producto_gp.tipoAfectacion.ToString().Trim())
+                    {
+                        case "20":
+                            producto.IGV.baseImponible = producto_gp.montoImponibleExonera.ToString("0.00");
+                            break;
+                        case "21":
+                            producto.IGV.baseImponible = producto_gp.montoImponibleGratuito.ToString("0.00");
+                            break;
+                        case "30":
+                            producto.IGV.baseImponible = producto_gp.montoImponibleInafecto.ToString("0.00");
+                            break;
+                        case "35":
+                            producto.IGV.baseImponible = producto_gp.montoImponibleInafecto.ToString("0.00");
+                            break;
+                        case "40":
+                            producto.IGV.baseImponible = producto_gp.montoImponibleExporta.ToString("0.00");
+                            break;
+                        default:
+                            producto.IGV.baseImponible = producto_gp.montoImponibleIva.ToString("0.00");
+                            break;
+                    }
+                                     
                     producto.IGV.monto = producto_gp.montoIva.ToString("0.00");
                     producto.IGV.tipo = producto_gp.tipoAfectacion.ToString().Trim();
+
                     if (!string.IsNullOrEmpty(documentoGP.DocVenta.infoRelNotasCodigoTipoNota))
                     {
                         producto.IGV.porcentaje = string.Format("{0,8:0.00}", producto_gp.porcentajeIva * 100).Trim();
@@ -243,6 +258,11 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
                         debug_xml = debug_xml + "   <IGV>\r\n";
                         debug_xml = debug_xml + "       <baseImponible>" + producto.IGV.baseImponible + "\r\n";
+                        debug_xml = debug_xml + "           <baseImponibleIVA>" + producto_gp.montoImponibleIva.ToString("0.00") + "\r\n";
+                        debug_xml = debug_xml + "           <baseImponibleExo>" + producto_gp.montoImponibleExonera.ToString("0.00") + "\r\n";
+                        debug_xml = debug_xml + "           <baseImponibleExp>" + producto_gp.montoImponibleExporta.ToString("0.00") + "\r\n";
+                        debug_xml = debug_xml + "           <baseImponibleGra>" + producto_gp.montoImponibleGratuito.ToString("0.00") + "\r\n";
+                        debug_xml = debug_xml + "           <baseImponibleIna>" + producto_gp.montoImponibleInafecto.ToString("0.00") + "\r\n";
                         debug_xml = debug_xml + "       <porcentaje>" + producto.IGV.porcentaje + "\r\n";
                         debug_xml = debug_xml + "       <monto>" + producto.IGV.monto + "\r\n";
                         debug_xml = debug_xml + "       <tipo>" + producto.IGV.tipo + "\r\n";
@@ -426,15 +446,16 @@ namespace cfdiPeruOperadorServiciosElectronicos
                     }
                     else
                     {
-                        //throw new Exception("Mensaje: " + response.mensaje + Environment.NewLine +
-                       return "Mensaje Error XML: " + response.mensaje + Environment.NewLine +
-                                                            "Código error: " + response.codigo + Environment.NewLine +
-                                                           "Estatus: " + response.estatus + Environment.NewLine +
-                                                           "Hora: " + response.hora + Environment.NewLine +
-                                                           "Id Transacción: " + response.idtransaccion + Environment.NewLine +
-                                                           "Numeración: " + response.numeracion + Environment.NewLine +
-                                                           "CRC: " + response.crc + Environment.NewLine + 
-                                                           "DebugXML: " + debug_xml + Environment.NewLine;
+                        MensajeError = "Mensaje: " + response.mensaje + Environment.NewLine +
+                                      "Código error: " + response.codigo + Environment.NewLine;
+
+                        using (StreamWriter sw = File.CreateText(ruc + documentoGP.DocVenta.serie + documentoGP.DocVenta.numero + DateTime.Today.ToLongDateString()))
+                        {
+                            sw.WriteLine(debug_xml);
+                        }
+
+                        throw new NotImplementedException(MensajeError);
+                      
                     }
                 }
                 //catch (Exception ex)
@@ -445,7 +466,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
             } 
             catch(Exception)
             {
-                throw new NotImplementedException("Exception Main" + debug_xml);
+                throw new NotImplementedException(MensajeError);
             }
 
             

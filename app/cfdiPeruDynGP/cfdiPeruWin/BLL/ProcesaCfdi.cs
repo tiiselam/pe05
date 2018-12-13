@@ -145,7 +145,7 @@ namespace cfd.FacturaElectronica
                                 try
                                 {
                                     xmlFactura = servicioTimbre.TimbraYEnviaASunat(trxVenta.DocGP.DocVenta.emisorNroDoc, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, trxVenta.DocGP);
-                                    OnProgreso(1, "Solicitud Enviada:\r\n" + xmlFactura);
+                                    //OnProgreso(1, "Solicitud Enviada:\r\n" + xmlFactura);
                                     DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, "FAC", _Conex.Usuario, xmlFactura.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"iso-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
                                     msj = xmlFactura;
 
@@ -171,7 +171,7 @@ namespace cfd.FacturaElectronica
                                     //MSAL. Modificacion. Se agrega usuario y passw
                                     //OnProgreso(1, " PRe Genera PDF directo:" + rutaYNom);
                                     var tPdf = await servicioTimbre.ObtienePDFdelOSEAsync(trxVenta.DocGP.DocVenta.emisorNroDoc,  trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, trxVenta.DocGP.DocVenta.tipoDocumento, serieCorrelativo[0], serieCorrelativo[1], trxVenta.RutaXml.Trim(), nombreArchivo, ".pdf");
-                                    OnProgreso(1, " Post Genera PDF directo:" + tPdf);
+                                    //OnProgreso(1, " Post Genera PDF directo:" + tPdf);
                                 }
                             }
                             else //si el documento está anulado en gp, agregar al log como emitido
@@ -182,7 +182,7 @@ namespace cfd.FacturaElectronica
                                 DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, "Anulado en GP", "0", _Conex.Usuario, "", "emitido", maquina.eBinarioNuevo, msj.Trim());
                             }
                         }
-                        else OnProgreso(1, "ELSE NO HAGO NADA");
+                        //else OnProgreso(1, "ELSE NO HAGO NADA");
                     }
                     catch (HttpRequestException he)
                     {
@@ -223,7 +223,7 @@ namespace cfd.FacturaElectronica
                     }
                     finally
                     {
-                        OnProgreso(1, " finally Inner Try Exc:");
+                        //OnProgreso(1, " finally Inner Try Exc:");
                         OnProgreso(i * 100 / trxVenta.RowCount, "Doc:" + trxVenta.Sopnumbe + " " + msj.Trim() + Environment.NewLine);              //Notifica al suscriptor
                         i++;
                     }
@@ -237,7 +237,7 @@ namespace cfd.FacturaElectronica
             }
             finally
             {
-                OnProgreso(100, " finally Outer Try Exc:");
+                //OnProgreso(100, " finally Outer Try Exc:");
                 OnProgreso(100, ultimoMensaje);
             }
             OnProgreso(100, "Proceso finalizado!");
