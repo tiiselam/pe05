@@ -40,5 +40,9 @@ namespace cfdiEntidadesGP
         public string tipoTributo { get; set; }
         public string tipoAfectacion { get; set; }
         public string operacionOnerosa { get; set; }
+        public decimal montoImponibleExonera { get; set; }
+        public decimal montoImponibleInafecto { get; set; }
+        public decimal montoImponibleGratuito { get; set; }
+        public decimal montoImponibleExporta { get; set; }
     }
 }
