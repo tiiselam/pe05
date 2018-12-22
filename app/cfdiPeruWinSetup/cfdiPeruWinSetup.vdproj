@@ -22,7 +22,7 @@
         "Entry"
         {
         "MsmKey" = "8:_1C5FC4F530CB3196343454371F9A976F"
-        "OwnerKey" = "8:_78CECF275396238F4AC9961F16285C4F"
+        "OwnerKey" = "8:_DBC7AD09904986D39AA70554CE3FCAC2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -99,6 +99,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5C398F7396C2D4E666EBEE3813255C33"
+        "OwnerKey" = "8:_1C5FC4F530CB3196343454371F9A976F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5C398F7396C2D4E666EBEE3813255C33"
+        "OwnerKey" = "8:_DBC7AD09904986D39AA70554CE3FCAC2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5CA7E3F108EF980F6128105E0EC61C5F"
         "OwnerKey" = "8:_16545C7E2F5E4A2BBF143784B173792B"
         "MsmSig" = "8:_UNDEFINED"
@@ -135,31 +147,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_66238BE6DDF1F08BBC7D4B6D404DB957"
-        "OwnerKey" = "8:_78CECF275396238F4AC9961F16285C4F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_70FEF19AAC093AFF10E8C85049619A18"
-        "OwnerKey" = "8:_16545C7E2F5E4A2BBF143784B173792B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_78CECF275396238F4AC9961F16285C4F"
-        "OwnerKey" = "8:_16545C7E2F5E4A2BBF143784B173792B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_93D6148B5844966000E466A91E8F19F0"
-        "OwnerKey" = "8:_78CECF275396238F4AC9961F16285C4F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_93D6148B5844966000E466A91E8F19F0"
         "OwnerKey" = "8:_16545C7E2F5E4A2BBF143784B173792B"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -173,6 +161,12 @@
         {
         "MsmKey" = "8:_AE4F4EC7C99EA097A4B6F10EAD008FE5"
         "OwnerKey" = "8:_5CA7E3F108EF980F6128105E0EC61C5F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DBC7AD09904986D39AA70554CE3FCAC2"
+        "OwnerKey" = "8:_16545C7E2F5E4A2BBF143784B173792B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -232,19 +226,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_78CECF275396238F4AC9961F16285C4F"
+        "OwnerKey" = "8:_DBC7AD09904986D39AA70554CE3FCAC2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1C5FC4F530CB3196343454371F9A976F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_93D6148B5844966000E466A91E8F19F0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -328,6 +316,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -730,68 +726,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_78CECF275396238F4AC9961F16285C4F"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:cfdiPeruDFactureWS, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_78CECF275396238F4AC9961F16285C4F"
-                    {
-                    "Name" = "8:cfdiPeruDFactureWS.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:cfdiPeruDFactureWS.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8F3CF4C251C740DEAE74429D1A10C70C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_93D6148B5844966000E466A91E8F19F0"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_93D6148B5844966000E466A91E8F19F0"
-                    {
-                    "Name" = "8:ICSharpCode.SharpZipLib.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:ICSharpCode.SharpZipLib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8F3CF4C251C740DEAE74429D1A10C70C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AE4F4EC7C99EA097A4B6F10EAD008FE5"
             {
             "AssemblyRegister" = "3:1"
@@ -806,6 +740,37 @@
                     }
                 }
             "SourcePath" = "8:Comun.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8F3CF4C251C740DEAE74429D1A10C70C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DBC7AD09904986D39AA70554CE3FCAC2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:cfdiPeruDFactureUbl21, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_DBC7AD09904986D39AA70554CE3FCAC2"
+                    {
+                    "Name" = "8:cfdiPeruDFactureUbl21.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:cfdiPeruDFactureUbl21.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8F3CF4C251C740DEAE74429D1A10C70C"
@@ -840,7 +805,7 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_BE1744929DC64AF3B91A05331B8E4116"
                     {
-                    "Name" = "8:PERU CFDI UBL2.0"
+                    "Name" = "8:PERU CFDI UBL2.1"
                     "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -1013,7 +978,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0577DF789E544E4AACEAE8438B152BE4"
             {
-            "Name" = "8:CFDI PERU UBL2.0"
+            "Name" = "8:CFDI PERU UBL2.1"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
