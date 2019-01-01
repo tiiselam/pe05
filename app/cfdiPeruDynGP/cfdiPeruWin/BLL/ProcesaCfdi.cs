@@ -145,7 +145,6 @@ namespace cfd.FacturaElectronica
                                 {
                                     xmlFactura = await servicioTimbre.TimbraYEnviaASunatAsync(trxVenta.DocGP.DocVenta.emisorNroDoc, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, trxVenta.DocGP);
                                     DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaYNom, "FAC", _Conex.Usuario, xmlFactura.Replace("encoding=\"utf-8\"", "").Replace("encoding=\"iso-8859-1\"", ""), maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
-                                    msj = xmlFactura;
 
                                 }
                                 catch (ArgumentException ae)    //202 ó 207
@@ -617,7 +616,7 @@ namespace cfd.FacturaElectronica
                         if (maquina.ValidaTransicion(_Param.tipoDoc, accion, trxVenta.EstadoActual))
                             if (trxVenta.Voidstts == 0 && trxVenta.EstadoContabilizado.Equals("contabilizado"))  //no anulado y contabilizado
                             {
-                                //trxVenta.ArmarDocElectronico();
+                                trxVenta.ArmarDocElectronico();
                                 rutaNombrePDF = await servicioTimbre.ObtienePDFdelOSEAsync(trxVenta.Rfc, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, trxVenta.DocGP.DocVenta.tipoDocumento, serieCorrelativo[0], serieCorrelativo[1], trxVenta.RutaXml.Trim(), nombreArchivo, ".pdf");
                                 DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, rutaNombrePDF, ticket, _Conex.Usuario, accion, maquina.DestinoStatusBase, maquina.DestinoEBinario, maquina.DestinoMensaje);
 
@@ -687,7 +686,7 @@ namespace cfd.FacturaElectronica
                         {
                             eBinario = maquina.eBinarioNuevo;
 
-                            //trxVenta.ArmarBaja(motivoBaja);
+                            trxVenta.ArmarBaja(motivoBaja);
                             String[] serieCorrelativo = trxVenta.Sopnumbe.Split(new char[] { '-' });
                             string numeroSunat = serieCorrelativo[0] + "-" + serieCorrelativo[1];
                             //string numeroSunat = serieCorrelativo[0] + "-" + long.Parse(serieCorrelativo[1]).ToString();

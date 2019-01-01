@@ -52,8 +52,8 @@ namespace cfdiPeruOperadorServiciosElectronicos
             //DocEnviarWS.receptor.departamento = documentoGP.
             //DocEnviarWS.receptor.direccion = documentoGP.DocVenta.
             //DocEnviarWS.receptor.distrito = documentoGP.DocVenta.
-            //    DocEnviarWS.receptor.email = documentoGP.DocVenta.e
-            //    DocEnviarWS.receptor.notificar = documentoGP.DocVenta.
+            DocEnviarWS.receptor.email = documentoGP.DocVenta.emailTo;
+            DocEnviarWS.receptor.notificar = documentoGP.DocVenta.emailTo.Trim() == string.Empty ? "NO" : "SI";
             DocEnviarWS.receptor.numDocumento = documentoGP.DocVenta.receptorNroDoc;
             //     DocEnviarWS.receptor.pais = documentoGP.DocVenta.
             //DocEnviarWS.receptor.provincia = documentoGP.DocVenta
@@ -612,8 +612,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
            
             
         }
-
-        ///////////////////////////////////////////////////////
 
         public string TimbraYEnviaASunat(string ruc, string usuario, string usuarioPassword, string texto)
         {

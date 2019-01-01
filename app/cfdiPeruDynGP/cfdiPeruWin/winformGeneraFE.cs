@@ -627,8 +627,11 @@ namespace cfdiPeru
                             txtbxMensajes.Text = "La factura " + prmFolioDesde + " no se puede imprimir porque está anulada. \r\n";
                             return;
                         }
-
-                    System.Diagnostics.Process.Start(nombreYRutaPdf.ToLower().Replace(".xml", ".pdf"));
+                        string archivo = nombreYRutaPdf.ToLower().Replace(".xml", ".pdf");
+                        if (File.Exists(archivo))
+                            System.Diagnostics.Process.Start(archivo);
+                        else
+                            txtbxMensajes.Text = $"No existe el archivo {archivo}";
 
                 }
                 else
