@@ -27,8 +27,8 @@ C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\bin\Debug\E
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\bin\Debug\EntityFramework.SqlServer.dll
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\bin\Debug\EntityFramework.xml
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\bin\Debug\EntityFramework.SqlServer.xml
+C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csprojAssemblyReference.cache
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csproj.CoreCompileInputs.cache
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csproj.CopyComplete
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.dll
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.pdb
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiEntidadesGP\obj\Debug\cfdiEntidadesGP.csprojAssemblyReference.cache
