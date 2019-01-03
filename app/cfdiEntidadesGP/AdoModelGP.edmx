@@ -16,6 +16,15 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiConceptos' does not have a primary
             
             <PropertyRef Name="CMPNTSEQ" />
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <PropertyRef Name="ITEMNMBR" />
           </Key>
           <Property Name="id" Type="bigint" />
@@ -217,6 +226,19 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <Property Name="soptypeTo" Type="int" Nullable="false" />
           <Property Name="sopnumbeTo" Type="varchar" MaxLength="41" Nullable="false" />
         </EntityType>
+        <Function Name="fCfdiParametrosTipoLeyenda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ADRSCODE" Type="char" Mode="In" />
+          <Parameter Name="Master_Type" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="inetinfo" Type="text" Nullable="false" />
+                <Property Name="INET7" Type="char" MaxLength="201" Nullable="false" />
+                <Property Name="INET8" Type="char" MaxLength="201" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="PERUEntitiesStoreContainer">
           <EntitySet Name="vwCfdiConceptos" EntityType="Self.vwCfdiConceptos" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -389,6 +411,10 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <EntitySet Name="vwCfdiGeneraResumenDiario" EntityType="PERUEntities.vwCfdiGeneraResumenDiario" />
           <EntitySet Name="vwCfdiConceptos" EntityType="PERUEntities.vwCfdiConceptos" />
           <EntitySet Name="vwCfdiGeneraDocumentoDeVenta" EntityType="PERUEntities.vwCfdiGeneraDocumentoDeVenta" />
+          <FunctionImport Name="fCfdiParametrosTipoLeyenda" IsComposable="true" ReturnType="Collection(PERUEntities.fCfdiParametrosTipoLeyenda_Result)">
+            <Parameter Name="ADRSCODE" Mode="In" Type="String" />
+            <Parameter Name="Master_Type" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="vwCfdiGeneraResumenDiario">
           <Key>
@@ -537,6 +563,11 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <Property Name="estadoContabilizado" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="docdate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <ComplexType Name="fCfdiParametrosTipoLeyenda_Result">
+          <Property Type="String" Name="inetinfo" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="INET7" Nullable="false" MaxLength="201" />
+          <Property Type="String" Name="INET8" Nullable="false" MaxLength="201" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -697,6 +728,15 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fCfdiParametrosTipoLeyenda" FunctionName="PERUEntities.Store.fCfdiParametrosTipoLeyenda">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERUEntities.fCfdiParametrosTipoLeyenda_Result">
+                <ScalarProperty Name="inetinfo" ColumnName="inetinfo" />
+                <ScalarProperty Name="INET7" ColumnName="INET7" />
+                <ScalarProperty Name="INET8" ColumnName="INET8" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

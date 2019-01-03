@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2f0e389f72f9407ea095c3d36dc31933" Name="Diagram1" ZoomLevel="94">
+      <Diagram DiagramId="2f0e389f72f9407ea095c3d36dc31933" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="PERUEntities.vwCfdiRelacionados" Width="1.875" PointX="7.5" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PERUEntities.vwCfdiGeneraResumenDiario" Width="2" PointX="5.125" PointY="0.625" />
         <EntityTypeShape EntityType="PERUEntities.vwCfdiConceptos" Width="1.875" PointX="0.5" PointY="0.625" />

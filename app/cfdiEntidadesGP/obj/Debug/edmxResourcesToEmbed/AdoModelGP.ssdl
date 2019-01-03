@@ -170,6 +170,19 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     <Property Name="soptypeTo" Type="int" Nullable="false" />
     <Property Name="sopnumbeTo" Type="varchar" MaxLength="41" Nullable="false" />
   </EntityType>
+  <Function Name="fCfdiParametrosTipoLeyenda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ADRSCODE" Type="char" Mode="In" />
+    <Parameter Name="Master_Type" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="inetinfo" Type="text" Nullable="false" />
+          <Property Name="INET7" Type="char" MaxLength="201" Nullable="false" />
+          <Property Name="INET8" Type="char" MaxLength="201" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <EntityContainer Name="PERUEntitiesStoreContainer">
     <EntitySet Name="vwCfdiConceptos" EntityType="Self.vwCfdiConceptos" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

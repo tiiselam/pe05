@@ -132,9 +132,6 @@
     <Compile Include="BLL\cfdFacturaPdfWorker.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BLL\cfdFacturaXmlWorker.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="BLL\ProcesaCfdi.cs" />
     <Compile Include="BLL\cfdLogFacturaXML.cs" />
     <Compile Include="BLL\cfdReglasEmail.cs" />

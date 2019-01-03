@@ -155,5 +155,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fCfdiParametrosTipoLeyenda" FunctionName="PERUEntities.Store.fCfdiParametrosTipoLeyenda">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PERUEntities.fCfdiParametrosTipoLeyenda_Result">
+          <ScalarProperty Name="inetinfo" ColumnName="inetinfo" />
+          <ScalarProperty Name="INET7" ColumnName="INET7" />
+          <ScalarProperty Name="INET8" ColumnName="INET8" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

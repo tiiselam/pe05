@@ -7,7 +7,8 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using cfdiPeruDFactureUbl21.DFactureUbl21;
-
+using System.Xml.Linq;
+//using System.Xml;
 
 namespace cfdiPeruOperadorServiciosElectronicos
 {
@@ -412,6 +413,28 @@ namespace cfdiPeruOperadorServiciosElectronicos
             DocEnviarWS.pago.fechaInicio = DateTime.Now.ToString("yyyy-MM-dd");
             DocEnviarWS.pago.fechaFin = DateTime.Now.ToString("yyyy-MM-dd");
 
+            //SECCION PERSONALIZACION PDF
+            if (!string.IsNullOrEmpty(documentoGP.LeyendasXml))
+            {
+                XElement leyendasX = XElement.Parse(documentoGP.LeyendasXml);
+                int numLeyendas = leyendasX.Elements().Count();
+                if (!string.IsNullOrEmpty(leyendasX.Elements().FirstOrDefault().Attribute("S").Value) && 
+                    !string.IsNullOrEmpty(leyendasX.Elements().FirstOrDefault().Attribute("T").Value) &&
+                    !string.IsNullOrEmpty(leyendasX.Elements().FirstOrDefault().Attribute("V").Value)
+                    )
+                {
+                    DocEnviarWS.personalizacionPDF = new PersonalizacionPDF[numLeyendas];
+                    int idx = 0;
+                    foreach (XElement child in leyendasX.Elements())
+                    {
+                        DocEnviarWS.personalizacionPDF[idx] = new PersonalizacionPDF();
+                        DocEnviarWS.personalizacionPDF[idx].seccion = child.Attribute("S").Value;
+                        DocEnviarWS.personalizacionPDF[idx].titulo = child.Attribute("T").Value;
+                        DocEnviarWS.personalizacionPDF[idx].valor = child.Attribute("V").Value;
+                        idx++;
+                    }
+                }
+            }
             {
                 debug_xml = debug_xml + "<PAGO>" + "\r\n";
                 debug_xml = debug_xml + "   <moneda>" + DocEnviarWS.pago.moneda + "\r\n";
@@ -638,18 +661,35 @@ namespace cfdiPeruOperadorServiciosElectronicos
         //    throw new NotImplementedException();
         //}
 
-        public string ObtieneCDRdelOSE(string ruc, string tipoDoc, string serie, string correlativo)
+        public async Task<string> ConsultaStatusAlOSEAsync(string ruc, string usuario, string usuarioPassword, string tipoDoc, string serie, string correlativo)
         {
-            throw new NotImplementedException();
+            //string rutaYNomArchivoPDF = Path.Combine(ruta, nombreArchivo + extension);
+
+            var response_descarga = await ServicioWS.EstatusDocumentoAsync(usuario, usuarioPassword, ruc + "-" + tipoDoc + "-" + serie + "-" + correlativo);
+            return string.Concat(response_descarga.codigo.ToString(), "-", response_descarga.mensaje);
+            //if (response_descarga.codigo == 0)
+            //{
+            //    return response_descarga.codigo.ToString();
+            //}
+            //else
+            //{
+            //    return string.Concat(response_descarga.codigo.ToString(), " - ", response_descarga.mensaje);
+            //}
+
         }
+
+        //public string ObtieneCDRdelOSE(string ruc, string tipoDoc, string serie, string correlativo)
+        //{
+        //    throw new NotImplementedException();
+        //}
         //public Tuple<string, string> Baja(string ruc, string usuario, string usuarioPassword, string nroDocumento, string motivo)
         //{
         //        throw new NotImplementedException();
         //}
-        public Tuple<string, string> ResumenDiario(string ruc, string usuario, string usuarioPassword, string texto)
-        {
-            throw new NotImplementedException();
-        }
+        //public Tuple<string, string> ResumenDiario(string ruc, string usuario, string usuarioPassword, string texto)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
     }
 }

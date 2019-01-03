@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace cfdiEntidadesGP
         List<vwCfdiGeneraResumenDiario> _lDocResumenLineas;
         List <vwCfdiConceptos> _LDocVentaConceptos;
         List<vwCfdiRelacionados> _LDocVentaRelacionados;
+        private string _leyendasXml = string.Empty;
 
         public DocumentoVentaGP()
         {
@@ -86,6 +88,17 @@ namespace cfdiEntidadesGP
             set
             {
                 _lDocResumenLineas = value;
+            }
+        }
+
+        public string LeyendasXml { get => _leyendasXml; set => _leyendasXml = value; }
+
+        public static async Task<string> GetParametrosTipoLeyendaAsync()
+        {
+            using (var ctx = new PER10Entities())
+            {
+                var leyendas = await ctx.fCfdiParametrosTipoLeyenda("LEYENDASFE", "CMP").AsQueryable().ToListAsync();
+                return leyendas.FirstOrDefault().inetinfo;
             }
         }
 

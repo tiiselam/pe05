@@ -378,9 +378,9 @@ namespace cfdiPeru
                 proc.Progreso += new ProcesaCfdi.LogHandler(reportaProgreso);
                 pBarProcesoActivo.Visible = true;
 
-                if (this.tabCfdi.SelectedTab.Name.Equals("tabResumen"))
-                    await proc.GeneraResumenXmlAsync(ServiciosOse, EstructuraDocsOse);
-                else
+                //    await proc.GeneraResumenXmlAsync(ServiciosOse, EstructuraDocsOse);
+                //else
+                if (this.tabCfdi.SelectedTab.Name.Equals("tabFacturas"))
                     await proc.GeneraDocumentoXmlAsync(ServiciosOse);
 
             }
@@ -821,10 +821,10 @@ namespace cfdiPeru
 
                 pBarProcesoActivo.Visible = true;
 
-                //                if (this.tabCfdi.SelectedTab.Name.Equals("tabResumen"))
-                await proc.ProcesaConsultaCDRAsync(ServiciosOse); //.ProcesaConsultaCDR();
-                //else
-                //    txtbxMensajes.Text = "Presione el tab RESUMEN y luego el botón Consulta CDR." + Environment.NewLine;
+                if (this.tabCfdi.SelectedTab.Name.Equals("tabFacturas"))
+                    await proc.ProcesaConsultaStatusAsync(ServiciosOse);
+                else
+                    txtbxMensajes.Text = "Presione el tab FACTURAS y luego el botón Consulta." + Environment.NewLine;
 
                 //Actualiza la pantalla
                 Parametros Cia = new Parametros(DatosConexionDB.Elemento.Intercompany);   //Carga configuración desde xml

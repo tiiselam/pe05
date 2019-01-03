@@ -22,10 +22,11 @@ namespace cfdiPeruInterfaces
         Task<string> SolicitarBajaAsync(string ruc, string usuario, string usuarioPassword, string nroDocumento, string motivo);
 
         //Task<string> ObtieneCDRdelOSEAsync(string ruc, string tipoDoc, string serie, string correlativo, string rutaYNomArchivoCfdi);
-        string ObtieneCDRdelOSE(string ruc, string tipoDoc, string serie, string correlativo);
+        //string ObtieneCDRdelOSE(string ruc, string tipoDoc, string serie, string correlativo);
         //Tuple<string, string> Baja(string ruc, string usuario, string usuarioPassword, string nroDocumento);
+        Task<string> ConsultaStatusAlOSEAsync(string ruc, string usuario, string usuarioPassword, string tipoDoc, string serie, string correlativo);
 
-        Tuple<string, string> ResumenDiario(string ruc, string usuario, string usuarioPassword, string texto);
+        //Tuple<string, string> ResumenDiario(string ruc, string usuario, string usuarioPassword, string texto);
 
     }
 

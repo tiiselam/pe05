@@ -20,6 +20,10 @@
     <EntitySet Name="vwCfdiGeneraResumenDiario" EntityType="PERUEntities.vwCfdiGeneraResumenDiario" />
     <EntitySet Name="vwCfdiConceptos" EntityType="PERUEntities.vwCfdiConceptos" />
     <EntitySet Name="vwCfdiGeneraDocumentoDeVenta" EntityType="PERUEntities.vwCfdiGeneraDocumentoDeVenta" />
+    <FunctionImport Name="fCfdiParametrosTipoLeyenda" IsComposable="true" ReturnType="Collection(PERUEntities.fCfdiParametrosTipoLeyenda_Result)">
+      <Parameter Name="ADRSCODE" Mode="In" Type="String" />
+      <Parameter Name="Master_Type" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="vwCfdiGeneraResumenDiario">
     <Key>
@@ -168,4 +172,9 @@
     <Property Name="estadoContabilizado" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
     <Property Name="docdate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
+  <ComplexType Name="fCfdiParametrosTipoLeyenda_Result">
+    <Property Type="String" Name="inetinfo" Nullable="false" MaxLength="Max" />
+    <Property Type="String" Name="INET7" Nullable="false" MaxLength="201" />
+    <Property Type="String" Name="INET8" Nullable="false" MaxLength="201" />
+  </ComplexType>
 </Schema>
