@@ -514,19 +514,12 @@ namespace cfd.FacturaElectronica
                                 string tipoDoc = string.Empty;
                                 string serie = string.Empty;
                                 string correlativo = string.Empty;
-                                //if (!trxVenta.Docid.Equals("RESUMEN"))
-                                //{
-                                    trxVenta.ArmarDocElectronico(string.Empty);
-                                    tipoDoc = trxVenta.DocGP.DocVenta.tipoDocumento;
-                                    serie = serieCorrelativo[0];
-                                    correlativo = serieCorrelativo[1];
-                                //}
-                                //else
-                                //{
-                                //    tipoDoc = serieCorrelativo[0];
-                                //    serie = serieCorrelativo[1];
-                                //    correlativo = serieCorrelativo[2];
-                                //}
+
+                                trxVenta.ArmarDocElectronico(string.Empty);
+                                tipoDoc = trxVenta.DocGP.DocVenta.tipoDocumento;
+                                serie = serieCorrelativo[0];
+                                correlativo = serieCorrelativo[1];
+
                                 resultadoSunat = await servicioTimbre.ConsultaStatusAlOSEAsync(trxVenta.DocGP.DocVenta.emisorNroDoc, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, tipoDoc, serie, correlativo);
                                 String[] codigoYMensaje = resultadoSunat.Split(new char[] { '-' });
                                 maquina.DestinoAceptado = codigoYMensaje[0]=="0" ? true : false;

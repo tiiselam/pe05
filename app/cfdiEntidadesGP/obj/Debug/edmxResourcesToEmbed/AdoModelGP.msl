@@ -91,6 +91,10 @@
     <EntitySetMapping Name="vwCfdiGeneraDocumentoDeVenta">
       <EntityTypeMapping TypeName="PERUEntities.vwCfdiGeneraDocumentoDeVenta">
         <MappingFragment StoreEntitySet="vwCfdiGeneraDocumentoDeVenta">
+          <ScalarProperty Name="receptorCiudad" ColumnName="receptorCiudad" />
+          <ScalarProperty Name="receptorPais" ColumnName="receptorPais" />
+          <ScalarProperty Name="receptorProvincia" ColumnName="receptorProvincia" />
+          <ScalarProperty Name="receptorDireccion" ColumnName="receptorDireccion" />
           <ScalarProperty Name="docdate" ColumnName="docdate" />
           <ScalarProperty Name="estadoContabilizado" ColumnName="estadoContabilizado" />
           <ScalarProperty Name="montoEnLetras" ColumnName="montoEnLetras" />

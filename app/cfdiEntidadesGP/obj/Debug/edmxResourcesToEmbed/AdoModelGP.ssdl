@@ -67,6 +67,10 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
     <Property Name="receptorTipoDoc" Type="varchar" MaxLength="3" />
     <Property Name="receptorNroDoc" Type="nvarchar(max)" />
     <Property Name="receptorNombre" Type="nvarchar(max)" />
+    <Property Name="receptorDireccion" Type="nvarchar(max)" />
+    <Property Name="receptorProvincia" Type="nvarchar(max)" />
+    <Property Name="receptorPais" Type="nvarchar(max)" />
+    <Property Name="receptorCiudad" Type="nvarchar(max)" />
     <Property Name="emailTo" Type="nvarchar(max)" />
     <Property Name="send_email_statements" Type="int" />
     <Property Name="idDocumento" Type="varchar" MaxLength="21" />
@@ -74,12 +78,12 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
     <Property Name="horaEmision" Type="varchar" MaxLength="10" />
     <Property Name="fechaVencimiento" Type="datetime" Nullable="false" />
     <Property Name="moneda" Type="varchar" MaxLength="15" />
-    <Property Name="tipoOperacion" Type="varchar" MaxLength="3" />
+    <Property Name="tipoOperacion" Type="varchar" MaxLength="5" />
     <Property Name="xchgrate" Type="numeric" Precision="19" Scale="7" Nullable="false" />
     <Property Name="descuentoGlobalMonto" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="descuentoGlobalImponible" Type="numeric" Precision="19" Scale="5" Nullable="false" />
     <Property Name="descuentoGlobalPorcentaje" Type="numeric" Precision="38" Scale="19" />
-    <Property Name="codigoDetraccion" Type="char" MaxLength="3" />
+    <Property Name="codigoDetraccion" Type="char" MaxLength="5" />
     <Property Name="porcentajeDetraccion" Type="numeric" Precision="19" Scale="5" />
     <Property Name="montoDetraccion" Type="numeric" Precision="38" Scale="9" />
     <Property Name="codleyendaDetraccion" Type="varchar" MaxLength="4" Nullable="false" />
@@ -101,7 +105,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
     <Property Name="montoSubtotalExportacionPen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
     <Property Name="montoSubtotalGratuitoPen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
     <Property Name="montoSubtotalInafectoPen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
-    <Property Name="cRelacionadoNumDocAfectado" Type="varchar" MaxLength="21" />
+    <Property Name="cRelacionadoNumDocAfectado" Type="char" MaxLength="23" />
     <Property Name="cRelacionadoTipoDocAfectado" Type="varchar" MaxLength="8000" />
     <Property Name="infoRelNotasCodigoTipoNota" Type="varchar" MaxLength="2" />
     <Property Name="infoRelNotasObservaciones" Type="nvarchar(max)" />
@@ -239,6 +243,10 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiGeneraDocumentoDeVenta].[receptorTipoDoc] AS [receptorTipoDoc], 
     [vwCfdiGeneraDocumentoDeVenta].[receptorNroDoc] AS [receptorNroDoc], 
     [vwCfdiGeneraDocumentoDeVenta].[receptorNombre] AS [receptorNombre], 
+    [vwCfdiGeneraDocumentoDeVenta].[receptorDireccion] AS [receptorDireccion], 
+    [vwCfdiGeneraDocumentoDeVenta].[receptorProvincia] AS [receptorProvincia], 
+    [vwCfdiGeneraDocumentoDeVenta].[receptorPais] AS [receptorPais], 
+    [vwCfdiGeneraDocumentoDeVenta].[receptorCiudad] AS [receptorCiudad], 
     [vwCfdiGeneraDocumentoDeVenta].[emailTo] AS [emailTo], 
     [vwCfdiGeneraDocumentoDeVenta].[send_email_statements] AS [send_email_statements], 
     [vwCfdiGeneraDocumentoDeVenta].[idDocumento] AS [idDocumento], 

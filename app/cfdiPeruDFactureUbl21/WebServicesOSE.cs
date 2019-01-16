@@ -50,14 +50,14 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
             // SECCION RECEPTOR
             DocEnviarWS.receptor = new Receptor();
-            //DocEnviarWS.receptor.departamento = documentoGP.
-            //DocEnviarWS.receptor.direccion = documentoGP.DocVenta.
-            //DocEnviarWS.receptor.distrito = documentoGP.DocVenta.
             DocEnviarWS.receptor.email = documentoGP.DocVenta.emailTo;
             DocEnviarWS.receptor.notificar = documentoGP.DocVenta.emailTo.Trim() == string.Empty ? "NO" : "SI";
             DocEnviarWS.receptor.numDocumento = documentoGP.DocVenta.receptorNroDoc;
-            //     DocEnviarWS.receptor.pais = documentoGP.DocVenta.
-            //DocEnviarWS.receptor.provincia = documentoGP.DocVenta
+            DocEnviarWS.receptor.direccion = documentoGP.DocVenta.receptorDireccion;
+            DocEnviarWS.receptor.departamento = documentoGP.DocVenta.receptorCiudad;
+            //DocEnviarWS.receptor.distrito = documentoGP.DocVenta.recep
+            DocEnviarWS.receptor.pais = documentoGP.DocVenta.receptorPais;
+            DocEnviarWS.receptor.provincia = documentoGP.DocVenta.receptorProvincia;
             DocEnviarWS.receptor.razonSocial = documentoGP.DocVenta.receptorNombre;
             //     DocEnviarWS.receptor.telefono = documentoGP.DocVenta.
             DocEnviarWS.receptor.tipoDocumento = documentoGP.DocVenta.receptorTipoDoc;
