@@ -522,12 +522,15 @@ namespace cfd.FacturaElectronica
 
                                 resultadoSunat = await servicioTimbre.ConsultaStatusAlOSEAsync(trxVenta.DocGP.DocVenta.emisorNroDoc, trxVenta.Ruta_certificadoPac, trxVenta.Contrasenia_clavePac, tipoDoc, serie, correlativo);
                                 String[] codigoYMensaje = resultadoSunat.Split(new char[] { '-' });
-                                maquina.DestinoAceptado = codigoYMensaje[0]=="0" ? true : false;
+                                maquina.DestinoAceptado = codigoYMensaje[0] == "0" ? true : false;
                                 maquina.ActualizarNodoDestinoStatusBase();
-
                                 DocVenta.RegistraLogDeArchivoXML(trxVenta.Soptype, trxVenta.Sopnumbe, codigoYMensaje[1], codigoYMensaje[0], _Conex.Usuario, accion, maquina.DestinoStatusBase, maquina.DestinoEBinario, accion + ":" + codigoYMensaje[0]);
-                                DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje, codigoYMensaje[0]);
-                                msj = resultadoSunat;
+
+                                if (codigoYMensaje[0].Equals("0") || int.Parse(codigoYMensaje[0])>1000)
+                                {
+                                    DocVenta.ActualizaFacturaEmitida(trxVenta.Soptype, trxVenta.Sopnumbe, _Conex.Usuario, "emitido", "emitido", maquina.DestinoEBinario, maquina.DestinoMensaje, codigoYMensaje[0]);
+                                }
+                                msj = "Mensaje del OCE: " + resultadoSunat;
 
                             }
                     }
