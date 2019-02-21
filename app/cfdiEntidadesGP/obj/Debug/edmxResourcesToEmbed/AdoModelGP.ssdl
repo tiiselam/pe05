@@ -113,6 +113,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
     <Property Name="montoEnLetras" Type="varchar" MaxLength="2000" />
     <Property Name="estadoContabilizado" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="docdate" Type="datetime" Nullable="false" />
+    <Property Name="leyendaPorFactura" Type="varchar" MaxLength="51" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraResumenDiario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -288,7 +289,8 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiGeneraDocumentoDeVenta].[codleyendaTransfGratuita] AS [codleyendaTransfGratuita], 
     [vwCfdiGeneraDocumentoDeVenta].[montoEnLetras] AS [montoEnLetras], 
     [vwCfdiGeneraDocumentoDeVenta].[estadoContabilizado] AS [estadoContabilizado], 
-    [vwCfdiGeneraDocumentoDeVenta].[docdate] AS [docdate]
+    [vwCfdiGeneraDocumentoDeVenta].[docdate] AS [docdate], 
+    [vwCfdiGeneraDocumentoDeVenta].[leyendaPorFactura] AS [leyendaPorFactura]
     FROM [dbo].[vwCfdiGeneraDocumentoDeVenta] AS [vwCfdiGeneraDocumentoDeVenta]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="vwCfdiGeneraResumenDiario" EntityType="Self.vwCfdiGeneraResumenDiario" store:Type="Views" store:Schema="dbo">
