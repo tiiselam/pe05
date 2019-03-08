@@ -75,5 +75,10 @@ namespace cfdiEntidadesGP
         public string montoEnLetras { get; set; }
         public string estadoContabilizado { get; set; }
         public System.DateTime docdate { get; set; }
+        public string receptorDireccion { get; set; }
+        public string receptorProvincia { get; set; }
+        public string receptorPais { get; set; }
+        public string receptorCiudad { get; set; }
+        public string leyendaPorFactura { get; set; }
     }
 }

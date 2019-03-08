@@ -91,6 +91,11 @@
     <EntitySetMapping Name="vwCfdiGeneraDocumentoDeVenta">
       <EntityTypeMapping TypeName="PERUEntities.vwCfdiGeneraDocumentoDeVenta">
         <MappingFragment StoreEntitySet="vwCfdiGeneraDocumentoDeVenta">
+          <ScalarProperty Name="leyendaPorFactura" ColumnName="leyendaPorFactura" />
+          <ScalarProperty Name="receptorCiudad" ColumnName="receptorCiudad" />
+          <ScalarProperty Name="receptorPais" ColumnName="receptorPais" />
+          <ScalarProperty Name="receptorProvincia" ColumnName="receptorProvincia" />
+          <ScalarProperty Name="receptorDireccion" ColumnName="receptorDireccion" />
           <ScalarProperty Name="docdate" ColumnName="docdate" />
           <ScalarProperty Name="estadoContabilizado" ColumnName="estadoContabilizado" />
           <ScalarProperty Name="montoEnLetras" ColumnName="montoEnLetras" />
@@ -155,5 +160,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fCfdiParametrosTipoLeyenda" FunctionName="PERUEntities.Store.fCfdiParametrosTipoLeyenda">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PERUEntities.fCfdiParametrosTipoLeyenda_Result">
+          <ScalarProperty Name="inetinfo" ColumnName="inetinfo" />
+          <ScalarProperty Name="INET7" ColumnName="INET7" />
+          <ScalarProperty Name="INET8" ColumnName="INET8" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

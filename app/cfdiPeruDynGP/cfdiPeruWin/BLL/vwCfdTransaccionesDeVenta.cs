@@ -4,6 +4,9 @@ using System.Text;
 using OpenInvoicePeru.Comun.Dto.Modelos;
 using cfdiEntidadesGP;
 using Comun;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.Linq;
 
 namespace cfdiPeru
 {
@@ -68,13 +71,28 @@ namespace cfdiPeru
             //this.MappingName = "vwCfdiTransaccionesDeVenta";
         }
 
-        public void ArmarDocElectronico()
+        public static async Task<string> ObtieneLeyendasAsync()
         {
+            return await DocumentoVentaGP.GetParametrosTipoLeyendaAsync();
+
+        }
+
+        public void ArmarDocElectronico(string leyendas)
+        {
+            string leyendaConjunta = leyendas;
             try
             {
                 docGP = new DocumentoVentaGP();
-
                 docGP.GetDatosDocumentoVenta(this.Sopnumbe, this.Soptype);
+
+                if (!string.IsNullOrEmpty(leyendas) && !string.IsNullOrEmpty(docGP.DocVenta.leyendaPorFactura))
+                {
+                    XElement leyendasX = XElement.Parse(leyendas);
+                    XElement nuevaSeccion = new XElement("SECCION", new XAttribute("S", 1), new XAttribute("T", "Adicional"), new XAttribute("V", docGP.DocVenta.leyendaPorFactura));
+                    leyendasX.Add(nuevaSeccion);
+                    leyendaConjunta = leyendasX.ToString();
+                }
+                docGP.LeyendasXml = leyendaConjunta;
 
                 _docElectronico = new DocumentoElectronico();
                 _docElectronico.TipoDocumento = docGP.DocVenta.tipoDocumento;

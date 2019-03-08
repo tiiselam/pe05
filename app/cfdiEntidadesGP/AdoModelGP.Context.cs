@@ -12,6 +12,8 @@ namespace cfdiEntidadesGP
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class PER10Entities : DbContext
     {
@@ -29,5 +31,19 @@ namespace cfdiEntidadesGP
         public virtual DbSet<vwCfdiGeneraResumenDiario> vwCfdiGeneraResumenDiario { get; set; }
         public virtual DbSet<vwCfdiConceptos> vwCfdiConceptos { get; set; }
         public virtual DbSet<vwCfdiGeneraDocumentoDeVenta> vwCfdiGeneraDocumentoDeVenta { get; set; }
+    
+        [DbFunction("PER10Entities", "fCfdiParametrosTipoLeyenda")]
+        public virtual IQueryable<fCfdiParametrosTipoLeyenda_Result> fCfdiParametrosTipoLeyenda(string aDRSCODE, string master_Type)
+        {
+            var aDRSCODEParameter = aDRSCODE != null ?
+                new ObjectParameter("ADRSCODE", aDRSCODE) :
+                new ObjectParameter("ADRSCODE", typeof(string));
+    
+            var master_TypeParameter = master_Type != null ?
+                new ObjectParameter("Master_Type", master_Type) :
+                new ObjectParameter("Master_Type", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fCfdiParametrosTipoLeyenda_Result>("[PER10Entities].[fCfdiParametrosTipoLeyenda](@ADRSCODE, @Master_Type)", aDRSCODEParameter, master_TypeParameter);
+        }
     }
 }

@@ -20,6 +20,10 @@
     <EntitySet Name="vwCfdiGeneraResumenDiario" EntityType="PERUEntities.vwCfdiGeneraResumenDiario" />
     <EntitySet Name="vwCfdiConceptos" EntityType="PERUEntities.vwCfdiConceptos" />
     <EntitySet Name="vwCfdiGeneraDocumentoDeVenta" EntityType="PERUEntities.vwCfdiGeneraDocumentoDeVenta" />
+    <FunctionImport Name="fCfdiParametrosTipoLeyenda" IsComposable="true" ReturnType="Collection(PERUEntities.fCfdiParametrosTipoLeyenda_Result)">
+      <Parameter Name="ADRSCODE" Mode="In" Type="String" />
+      <Parameter Name="Master_Type" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="vwCfdiGeneraResumenDiario">
     <Key>
@@ -132,12 +136,12 @@
     <Property Name="horaEmision" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="fechaVencimiento" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="moneda" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Name="tipoOperacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="tipoOperacion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="xchgrate" Type="Decimal" Nullable="false" Precision="19" Scale="7" />
     <Property Name="descuentoGlobalMonto" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
     <Property Name="descuentoGlobalImponible" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
     <Property Name="descuentoGlobalPorcentaje" Type="Decimal" Precision="38" Scale="19" />
-    <Property Name="codigoDetraccion" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="codigoDetraccion" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
     <Property Name="porcentajeDetraccion" Type="Decimal" Precision="19" Scale="5" />
     <Property Name="montoDetraccion" Type="Decimal" Precision="38" Scale="9" />
     <Property Name="codleyendaDetraccion" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
@@ -159,7 +163,7 @@
     <Property Name="montoSubtotalExportacionPen" Type="Decimal" Nullable="false" Precision="38" Scale="5" />
     <Property Name="montoSubtotalGratuitoPen" Type="Decimal" Nullable="false" Precision="38" Scale="5" />
     <Property Name="montoSubtotalInafectoPen" Type="Decimal" Nullable="false" Precision="38" Scale="5" />
-    <Property Name="cRelacionadoNumDocAfectado" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Name="cRelacionadoNumDocAfectado" Type="String" MaxLength="23" FixedLength="true" Unicode="false" />
     <Property Name="cRelacionadoTipoDocAfectado" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
     <Property Name="infoRelNotasCodigoTipoNota" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
     <Property Name="infoRelNotasObservaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -167,5 +171,15 @@
     <Property Name="montoEnLetras" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
     <Property Name="estadoContabilizado" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
     <Property Name="docdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="receptorDireccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="receptorProvincia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="receptorPais" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="receptorCiudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="leyendaPorFactura" Type="String" MaxLength="51" FixedLength="false" Unicode="false" />
   </EntityType>
+  <ComplexType Name="fCfdiParametrosTipoLeyenda_Result">
+    <Property Type="String" Name="inetinfo" Nullable="false" MaxLength="Max" />
+    <Property Type="String" Name="INET7" Nullable="false" MaxLength="201" />
+    <Property Type="String" Name="INET8" Nullable="false" MaxLength="201" />
+  </ComplexType>
 </Schema>

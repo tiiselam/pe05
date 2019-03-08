@@ -16,6 +16,15 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiConceptos' does not have a primary
             
             <PropertyRef Name="CMPNTSEQ" />
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <PropertyRef Name="ITEMNMBR" />
           </Key>
           <Property Name="id" Type="bigint" />
@@ -100,6 +109,10 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
           <Property Name="receptorTipoDoc" Type="varchar" MaxLength="3" />
           <Property Name="receptorNroDoc" Type="nvarchar(max)" />
           <Property Name="receptorNombre" Type="nvarchar(max)" />
+          <Property Name="receptorDireccion" Type="nvarchar(max)" />
+          <Property Name="receptorProvincia" Type="nvarchar(max)" />
+          <Property Name="receptorPais" Type="nvarchar(max)" />
+          <Property Name="receptorCiudad" Type="nvarchar(max)" />
           <Property Name="emailTo" Type="nvarchar(max)" />
           <Property Name="send_email_statements" Type="int" />
           <Property Name="idDocumento" Type="varchar" MaxLength="21" />
@@ -107,12 +120,12 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
           <Property Name="horaEmision" Type="varchar" MaxLength="10" />
           <Property Name="fechaVencimiento" Type="datetime" Nullable="false" />
           <Property Name="moneda" Type="varchar" MaxLength="15" />
-          <Property Name="tipoOperacion" Type="varchar" MaxLength="3" />
+          <Property Name="tipoOperacion" Type="varchar" MaxLength="5" />
           <Property Name="xchgrate" Type="numeric" Precision="19" Scale="7" Nullable="false" />
           <Property Name="descuentoGlobalMonto" Type="numeric" Precision="19" Scale="5" Nullable="false" />
           <Property Name="descuentoGlobalImponible" Type="numeric" Precision="19" Scale="5" Nullable="false" />
           <Property Name="descuentoGlobalPorcentaje" Type="numeric" Precision="38" Scale="19" />
-          <Property Name="codigoDetraccion" Type="char" MaxLength="3" />
+          <Property Name="codigoDetraccion" Type="char" MaxLength="5" />
           <Property Name="porcentajeDetraccion" Type="numeric" Precision="19" Scale="5" />
           <Property Name="montoDetraccion" Type="numeric" Precision="38" Scale="9" />
           <Property Name="codleyendaDetraccion" Type="varchar" MaxLength="4" Nullable="false" />
@@ -134,7 +147,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
           <Property Name="montoSubtotalExportacionPen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
           <Property Name="montoSubtotalGratuitoPen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
           <Property Name="montoSubtotalInafectoPen" Type="numeric" Precision="38" Scale="5" Nullable="false" />
-          <Property Name="cRelacionadoNumDocAfectado" Type="varchar" MaxLength="21" />
+          <Property Name="cRelacionadoNumDocAfectado" Type="char" MaxLength="23" />
           <Property Name="cRelacionadoTipoDocAfectado" Type="varchar" MaxLength="8000" />
           <Property Name="infoRelNotasCodigoTipoNota" Type="varchar" MaxLength="2" />
           <Property Name="infoRelNotasObservaciones" Type="nvarchar(max)" />
@@ -142,6 +155,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
           <Property Name="montoEnLetras" Type="varchar" MaxLength="2000" />
           <Property Name="estadoContabilizado" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="docdate" Type="datetime" Nullable="false" />
+          <Property Name="leyendaPorFactura" Type="varchar" MaxLength="51" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraResumenDiario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -217,6 +231,19 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <Property Name="soptypeTo" Type="int" Nullable="false" />
           <Property Name="sopnumbeTo" Type="varchar" MaxLength="41" Nullable="false" />
         </EntityType>
+        <Function Name="fCfdiParametrosTipoLeyenda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ADRSCODE" Type="char" Mode="In" />
+          <Parameter Name="Master_Type" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="inetinfo" Type="text" Nullable="false" />
+                <Property Name="INET7" Type="char" MaxLength="201" Nullable="false" />
+                <Property Name="INET8" Type="char" MaxLength="201" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="PERUEntitiesStoreContainer">
           <EntitySet Name="vwCfdiConceptos" EntityType="Self.vwCfdiConceptos" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -273,6 +300,10 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiGeneraDocumentoDeVenta].[receptorTipoDoc] AS [receptorTipoDoc], 
     [vwCfdiGeneraDocumentoDeVenta].[receptorNroDoc] AS [receptorNroDoc], 
     [vwCfdiGeneraDocumentoDeVenta].[receptorNombre] AS [receptorNombre], 
+    [vwCfdiGeneraDocumentoDeVenta].[receptorDireccion] AS [receptorDireccion], 
+    [vwCfdiGeneraDocumentoDeVenta].[receptorProvincia] AS [receptorProvincia], 
+    [vwCfdiGeneraDocumentoDeVenta].[receptorPais] AS [receptorPais], 
+    [vwCfdiGeneraDocumentoDeVenta].[receptorCiudad] AS [receptorCiudad], 
     [vwCfdiGeneraDocumentoDeVenta].[emailTo] AS [emailTo], 
     [vwCfdiGeneraDocumentoDeVenta].[send_email_statements] AS [send_email_statements], 
     [vwCfdiGeneraDocumentoDeVenta].[idDocumento] AS [idDocumento], 
@@ -314,7 +345,8 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiGeneraDocumentoDeVenta].[codleyendaTransfGratuita] AS [codleyendaTransfGratuita], 
     [vwCfdiGeneraDocumentoDeVenta].[montoEnLetras] AS [montoEnLetras], 
     [vwCfdiGeneraDocumentoDeVenta].[estadoContabilizado] AS [estadoContabilizado], 
-    [vwCfdiGeneraDocumentoDeVenta].[docdate] AS [docdate]
+    [vwCfdiGeneraDocumentoDeVenta].[docdate] AS [docdate], 
+    [vwCfdiGeneraDocumentoDeVenta].[leyendaPorFactura] AS [leyendaPorFactura]
     FROM [dbo].[vwCfdiGeneraDocumentoDeVenta] AS [vwCfdiGeneraDocumentoDeVenta]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwCfdiGeneraResumenDiario" EntityType="Self.vwCfdiGeneraResumenDiario" store:Type="Views" store:Schema="dbo">
@@ -389,6 +421,10 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <EntitySet Name="vwCfdiGeneraResumenDiario" EntityType="PERUEntities.vwCfdiGeneraResumenDiario" />
           <EntitySet Name="vwCfdiConceptos" EntityType="PERUEntities.vwCfdiConceptos" />
           <EntitySet Name="vwCfdiGeneraDocumentoDeVenta" EntityType="PERUEntities.vwCfdiGeneraDocumentoDeVenta" />
+          <FunctionImport Name="fCfdiParametrosTipoLeyenda" IsComposable="true" ReturnType="Collection(PERUEntities.fCfdiParametrosTipoLeyenda_Result)">
+            <Parameter Name="ADRSCODE" Mode="In" Type="String" />
+            <Parameter Name="Master_Type" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="vwCfdiGeneraResumenDiario">
           <Key>
@@ -501,12 +537,12 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <Property Name="horaEmision" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="fechaVencimiento" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="moneda" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="tipoOperacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="tipoOperacion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="xchgrate" Type="Decimal" Nullable="false" Precision="19" Scale="7" />
           <Property Name="descuentoGlobalMonto" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
           <Property Name="descuentoGlobalImponible" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
           <Property Name="descuentoGlobalPorcentaje" Type="Decimal" Precision="38" Scale="19" />
-          <Property Name="codigoDetraccion" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="codigoDetraccion" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
           <Property Name="porcentajeDetraccion" Type="Decimal" Precision="19" Scale="5" />
           <Property Name="montoDetraccion" Type="Decimal" Precision="38" Scale="9" />
           <Property Name="codleyendaDetraccion" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
@@ -528,7 +564,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <Property Name="montoSubtotalExportacionPen" Type="Decimal" Nullable="false" Precision="38" Scale="5" />
           <Property Name="montoSubtotalGratuitoPen" Type="Decimal" Nullable="false" Precision="38" Scale="5" />
           <Property Name="montoSubtotalInafectoPen" Type="Decimal" Nullable="false" Precision="38" Scale="5" />
-          <Property Name="cRelacionadoNumDocAfectado" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Name="cRelacionadoNumDocAfectado" Type="String" MaxLength="23" FixedLength="true" Unicode="false" />
           <Property Name="cRelacionadoTipoDocAfectado" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
           <Property Name="infoRelNotasCodigoTipoNota" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="infoRelNotasObservaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -536,7 +572,17 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <Property Name="montoEnLetras" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="estadoContabilizado" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="docdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="receptorDireccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="receptorProvincia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="receptorPais" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="receptorCiudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="leyendaPorFactura" Type="String" MaxLength="51" FixedLength="false" Unicode="false" />
         </EntityType>
+        <ComplexType Name="fCfdiParametrosTipoLeyenda_Result">
+          <Property Type="String" Name="inetinfo" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="INET7" Nullable="false" MaxLength="201" />
+          <Property Type="String" Name="INET8" Nullable="false" MaxLength="201" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -633,6 +679,11 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <EntitySetMapping Name="vwCfdiGeneraDocumentoDeVenta">
             <EntityTypeMapping TypeName="PERUEntities.vwCfdiGeneraDocumentoDeVenta">
               <MappingFragment StoreEntitySet="vwCfdiGeneraDocumentoDeVenta">
+                <ScalarProperty Name="leyendaPorFactura" ColumnName="leyendaPorFactura" />
+                <ScalarProperty Name="receptorCiudad" ColumnName="receptorCiudad" />
+                <ScalarProperty Name="receptorPais" ColumnName="receptorPais" />
+                <ScalarProperty Name="receptorProvincia" ColumnName="receptorProvincia" />
+                <ScalarProperty Name="receptorDireccion" ColumnName="receptorDireccion" />
                 <ScalarProperty Name="docdate" ColumnName="docdate" />
                 <ScalarProperty Name="estadoContabilizado" ColumnName="estadoContabilizado" />
                 <ScalarProperty Name="montoEnLetras" ColumnName="montoEnLetras" />
@@ -697,6 +748,15 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fCfdiParametrosTipoLeyenda" FunctionName="PERUEntities.Store.fCfdiParametrosTipoLeyenda">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERUEntities.fCfdiParametrosTipoLeyenda_Result">
+                <ScalarProperty Name="inetinfo" ColumnName="inetinfo" />
+                <ScalarProperty Name="INET7" ColumnName="INET7" />
+                <ScalarProperty Name="INET8" ColumnName="INET8" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

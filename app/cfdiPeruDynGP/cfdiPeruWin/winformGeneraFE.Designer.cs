@@ -527,8 +527,8 @@
             // genFacturaElectrónicaV10ToolStripMenuItem
             // 
             this.genFacturaElectrónicaV10ToolStripMenuItem.Name = "genFacturaElectrónicaV10ToolStripMenuItem";
-            this.genFacturaElectrónicaV10ToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
-            this.genFacturaElectrónicaV10ToolStripMenuItem.Text = "Factura Electrónica PERU v8.2.3+ubl2";
+            this.genFacturaElectrónicaV10ToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.genFacturaElectrónicaV10ToolStripMenuItem.Text = "Factura Electrónica PERU v8.6.1+ubl21";
             // 
             // toolStripMenuItem2
             // 
@@ -754,8 +754,8 @@
             this.tsButtonConsultaTimbre.Image = ((System.Drawing.Image)(resources.GetObject("tsButtonConsultaTimbre.Image")));
             this.tsButtonConsultaTimbre.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsButtonConsultaTimbre.Name = "tsButtonConsultaTimbre";
-            this.tsButtonConsultaTimbre.Size = new System.Drawing.Size(104, 20);
-            this.tsButtonConsultaTimbre.Text = "Consultar CDR";
+            this.tsButtonConsultaTimbre.Size = new System.Drawing.Size(113, 20);
+            this.tsButtonConsultaTimbre.Text = "Consultar Status";
             this.tsButtonConsultaTimbre.Click += new System.EventHandler(this.tsButtonConsultaTimbre_Click);
             // 
             // tsBtnAnulaElimina

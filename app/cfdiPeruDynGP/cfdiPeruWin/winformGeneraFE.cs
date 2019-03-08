@@ -378,9 +378,9 @@ namespace cfdiPeru
                 proc.Progreso += new ProcesaCfdi.LogHandler(reportaProgreso);
                 pBarProcesoActivo.Visible = true;
 
-                if (this.tabCfdi.SelectedTab.Name.Equals("tabResumen"))
-                    await proc.GeneraResumenXmlAsync(ServiciosOse, EstructuraDocsOse);
-                else
+                //    await proc.GeneraResumenXmlAsync(ServiciosOse, EstructuraDocsOse);
+                //else
+                if (this.tabCfdi.SelectedTab.Name.Equals("tabFacturas"))
                     await proc.GeneraDocumentoXmlAsync(ServiciosOse);
 
             }
@@ -627,8 +627,11 @@ namespace cfdiPeru
                             txtbxMensajes.Text = "La factura " + prmFolioDesde + " no se puede imprimir porque está anulada. \r\n";
                             return;
                         }
-
-                    System.Diagnostics.Process.Start(nombreYRutaPdf.ToLower().Replace(".xml", ".pdf"));
+                        string archivo = nombreYRutaPdf.ToLower().Replace(".xml", ".pdf");
+                        if (File.Exists(archivo))
+                            System.Diagnostics.Process.Start(archivo);
+                        else
+                            txtbxMensajes.Text = $"No existe el archivo {archivo}";
 
                 }
                 else
@@ -818,10 +821,10 @@ namespace cfdiPeru
 
                 pBarProcesoActivo.Visible = true;
 
-                //                if (this.tabCfdi.SelectedTab.Name.Equals("tabResumen"))
-                await proc.ProcesaConsultaCDRAsync(ServiciosOse); //.ProcesaConsultaCDR();
-                //else
-                //    txtbxMensajes.Text = "Presione el tab RESUMEN y luego el botón Consulta CDR." + Environment.NewLine;
+                if (this.tabCfdi.SelectedTab.Name.Equals("tabFacturas"))
+                    await proc.ProcesaConsultaStatusAsync(ServiciosOse);
+                else
+                    txtbxMensajes.Text = "Presione el tab FACTURAS y luego el botón Consulta." + Environment.NewLine;
 
                 //Actualiza la pantalla
                 Parametros Cia = new Parametros(DatosConexionDB.Elemento.Intercompany);   //Carga configuración desde xml
