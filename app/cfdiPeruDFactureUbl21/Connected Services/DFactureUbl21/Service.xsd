@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PeruService.Response" />
   <xs:import schemaLocation="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes" />
+  <xs:import schemaLocation="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/PeruService" />
   <xs:element name="CargarCertificado">
     <xs:complexType>
       <xs:sequence>
@@ -110,32 +111,14 @@
         <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="layout" nillable="true" type="xs:base64Binary" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/PeruService.Classes" minOccurs="0" name="documentoElectronico" nillable="true" type="q8:GuiaRemision" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuiasRemisionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="GuiasRemisionResult" nillable="true" type="q8:RespuestaGuiaRemision" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ResumenDiario">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="clave" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="fechaEmision" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="fechaReferencia" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ResumenDiarioResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="ResumenDiarioResult" nillable="true" type="q9:Respuesta" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="GuiasRemisionResult" nillable="true" type="q9:RespuestaGuiaRemision" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -187,6 +170,24 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="ValidaAccesoResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OperacionesEmisores">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/PeruService.Classes" minOccurs="0" name="Emisores" nillable="true" type="q12:ArrayOfIntegracionModel" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/PeruService" minOccurs="0" name="operacion" type="q13:OperacionesEmisores" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OperacionesEmisoresResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/PeruService.Response" minOccurs="0" name="OperacionesEmisoresResult" nillable="true" type="q14:RespuestaIntegracion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

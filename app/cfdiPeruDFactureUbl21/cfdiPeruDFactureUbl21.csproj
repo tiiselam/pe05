@@ -68,6 +68,9 @@
     <None Include="Connected Services\DFactureUbl21\cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaGuiaRemision.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\DFactureUbl21\cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaIntegracion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\DFactureUbl21\Service.wsdl" />
     <None Include="Connected Services\DFactureUbl21\Service.xsd">
       <SubType>Designer</SubType>
@@ -79,6 +82,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\DFactureUbl21\Service3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DFactureUbl21\Service4.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

@@ -23,6 +23,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="Service.xsd" MetadataType="Schema" ID="f9544dd8-e9d0-4c1b-981e-bb007eea0ec3" SourceId="1" SourceUrl="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service4.xsd" MetadataType="Schema" ID="52fce172-6dac-4d1f-ad3c-2b54e4ebfcb6" SourceId="1" SourceUrl="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd4" />
     <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="14aed882-143c-475d-93d4-267a99e87bd6" SourceId="1" SourceUrl="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd2" />
     <MetadataFile FileName="Service.wsdl" MetadataType="Wsdl" ID="43f6397f-be5c-4077-9b4f-ae12cbabeec5" SourceId="1" SourceUrl="http://demoint.thefactoryhka.com.pe/Service.svc?wsdl" />
     <MetadataFile FileName="Service2.xsd" MetadataType="Schema" ID="ab9aaf7d-3ba2-4c80-968d-18ba86c92649" SourceId="1" SourceUrl="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd1" />

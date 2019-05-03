@@ -79,20 +79,12 @@ namespace cfdiPeru
 
         public void ArmarDocElectronico(string leyendas)
         {
-            string leyendaConjunta = leyendas;
             try
             {
                 docGP = new DocumentoVentaGP();
                 docGP.GetDatosDocumentoVenta(this.Sopnumbe, this.Soptype);
 
-                if (!string.IsNullOrEmpty(leyendas) && !string.IsNullOrEmpty(docGP.DocVenta.leyendaPorFactura))
-                {
-                    XElement leyendasX = XElement.Parse(leyendas);
-                    XElement nuevaSeccion = new XElement("SECCION", new XAttribute("S", 1), new XAttribute("T", "Adicional"), new XAttribute("V", docGP.DocVenta.leyendaPorFactura));
-                    leyendasX.Add(nuevaSeccion);
-                    leyendaConjunta = leyendasX.ToString();
-                }
-                docGP.LeyendasXml = leyendaConjunta;
+                docGP.LeyendasXml = ObtieneLeyendaConjunta(leyendas, docGP.DocVenta.leyendaPorFactura, docGP.DocVenta.leyendaPorFactura2);
 
                 _docElectronico = new DocumentoElectronico();
                 _docElectronico.TipoDocumento = docGP.DocVenta.tipoDocumento;
@@ -133,17 +125,17 @@ namespace cfdiPeru
                     lDetalleDocumento.Add(new DetalleDocumento()
                     {
                         CodigoItem = d.ITEMNMBR,
-                        Id = i, 
+                        Id = i,
                         Descripcion = d.Descripcion,
                         Cantidad = d.cantidad,
                         UnidadMedida = d.udemSunat,
-//                        PrecioUnitario = d.valorUni,
+                        //                        PrecioUnitario = d.valorUni,
                         PrecioReferencial = Convert.ToDecimal(d.precioUniConIva),
                         TotalVenta = Convert.ToDecimal(d.importe),
-//                        TipoPrecio = d.tipoPrecio,
-//                        Impuesto = d.orslstax,
-//                        TipoImpuesto = d.tipoImpuesto,
-                        
+                        //                        TipoPrecio = d.tipoPrecio,
+                        //                        Impuesto = d.orslstax,
+                        //                        TipoImpuesto = d.tipoImpuesto,
+
                     });
                     i++;
                 }
@@ -179,6 +171,30 @@ namespace cfdiPeru
 
                 throw;
             }
+        }
+
+        private string ObtieneLeyendaConjunta(string leyendas, string leyendaPorFactura, string leyendaPorFactura2)
+        {
+            string leyendaConjunta = leyendas;
+            if (!string.IsNullOrEmpty(leyendas))
+            {
+                XElement leyendasX = XElement.Parse(leyendas);
+                XElement nuevaSeccion;
+                if (!string.IsNullOrEmpty(leyendaPorFactura))
+                {
+                    nuevaSeccion = new XElement("SECCION", new XAttribute("S", 1), new XAttribute("T", "Adicional"), new XAttribute("V", leyendaPorFactura));
+                    leyendasX.Add(nuevaSeccion);
+                }
+                if (!string.IsNullOrEmpty(leyendaPorFactura2))
+                {
+                    nuevaSeccion = new XElement("SECCION", new XAttribute("S", 2), new XAttribute("T", "Adicionales"), new XAttribute("V", leyendaPorFactura2));
+                    leyendasX.Add(nuevaSeccion);
+                }
+
+                leyendaConjunta = leyendasX.ToString();
+            }
+
+            return leyendaConjunta;
         }
 
         public void ArmarResumenElectronico()

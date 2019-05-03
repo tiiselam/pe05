@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PeruService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PeruService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="OperacionesEmisores">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Alta" />
+      <xs:enumeration value="Baja" />
+      <xs:enumeration value="Actualizacion" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="OperacionesEmisores" nillable="true" type="tns:OperacionesEmisores" />
+</xs:schema>

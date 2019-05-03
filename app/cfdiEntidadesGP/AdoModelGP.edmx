@@ -156,6 +156,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraDocumentoDeVenta' does not h
           <Property Name="estadoContabilizado" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="docdate" Type="datetime" Nullable="false" />
           <Property Name="leyendaPorFactura" Type="varchar" MaxLength="51" />
+          <Property Name="leyendaPorFactura2" Type="varchar" MaxLength="255" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'PER10.dbo.vwCfdiGeneraResumenDiario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -346,7 +347,8 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
     [vwCfdiGeneraDocumentoDeVenta].[montoEnLetras] AS [montoEnLetras], 
     [vwCfdiGeneraDocumentoDeVenta].[estadoContabilizado] AS [estadoContabilizado], 
     [vwCfdiGeneraDocumentoDeVenta].[docdate] AS [docdate], 
-    [vwCfdiGeneraDocumentoDeVenta].[leyendaPorFactura] AS [leyendaPorFactura]
+    [vwCfdiGeneraDocumentoDeVenta].[leyendaPorFactura] AS [leyendaPorFactura], 
+    [vwCfdiGeneraDocumentoDeVenta].[leyendaPorFactura2] AS [leyendaPorFactura2]
     FROM [dbo].[vwCfdiGeneraDocumentoDeVenta] AS [vwCfdiGeneraDocumentoDeVenta]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwCfdiGeneraResumenDiario" EntityType="Self.vwCfdiGeneraResumenDiario" store:Type="Views" store:Schema="dbo">
@@ -577,6 +579,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <Property Name="receptorPais" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="receptorCiudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="leyendaPorFactura" Type="String" MaxLength="51" FixedLength="false" Unicode="false" />
+          <Property Name="leyendaPorFactura2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <ComplexType Name="fCfdiParametrosTipoLeyenda_Result">
           <Property Type="String" Name="inetinfo" Nullable="false" MaxLength="Max" />
@@ -679,6 +682,7 @@ warning 6002: The table/view 'PER10.dbo.vwCfdiRelacionados' does not have a prim
           <EntitySetMapping Name="vwCfdiGeneraDocumentoDeVenta">
             <EntityTypeMapping TypeName="PERUEntities.vwCfdiGeneraDocumentoDeVenta">
               <MappingFragment StoreEntitySet="vwCfdiGeneraDocumentoDeVenta">
+                <ScalarProperty Name="leyendaPorFactura2" ColumnName="leyendaPorFactura2" />
                 <ScalarProperty Name="leyendaPorFactura" ColumnName="leyendaPorFactura" />
                 <ScalarProperty Name="receptorCiudad" ColumnName="receptorCiudad" />
                 <ScalarProperty Name="receptorPais" ColumnName="receptorPais" />

@@ -10,6 +10,7 @@
   <xs:element name="DocumentoElectronico" nillable="true" type="tns:DocumentoElectronico" />
   <xs:complexType name="ADocumentoElectronico">
     <xs:sequence>
+      <xs:element minOccurs="0" name="DatosComprador" nillable="true" type="tns:Comprador" />
       <xs:element minOccurs="0" name="anticipo" nillable="true" type="tns:ArrayOfAnticipos" />
       <xs:element minOccurs="0" name="cargosGlobales" nillable="true" type="tns:CargosGlobales" />
       <xs:element minOccurs="0" name="codigoTipoOperacion" nillable="true" type="xs:string" />
@@ -43,6 +44,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ADocumentoElectronico" nillable="true" type="tns:ADocumentoElectronico" />
+  <xs:complexType name="Comprador">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AComprador">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Comprador" nillable="true" type="tns:Comprador" />
+  <xs:complexType name="AComprador">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApellidoNombreComprador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocComprador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoDocComprador" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AComprador" nillable="true" type="tns:AComprador" />
   <xs:complexType name="ArrayOfAnticipos">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Anticipos" nillable="true" type="tns:Anticipos" />
@@ -970,4 +987,154 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="VentasSectorPublico" nillable="true" type="tns:VentasSectorPublico" />
+  <xs:complexType name="GuiaRemision">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AGuiaRemision">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GuiaRemision" nillable="true" type="tns:GuiaRemision" />
+  <xs:complexType name="AGuiaRemision">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BienesTransportar" nillable="true" type="tns:ArrayOfBien" />
+      <xs:element minOccurs="0" name="DatosConductor" nillable="true" type="tns:Conductor" />
+      <xs:element minOccurs="0" name="DatosContenedor" nillable="true" type="tns:Contenedor" />
+      <xs:element minOccurs="0" name="DatosDelEnvio" nillable="true" type="tns:DatosEnvio" />
+      <xs:element minOccurs="0" name="DatosDestinatario" nillable="true" type="tns:Datos" />
+      <xs:element minOccurs="0" name="DatosProveedor" nillable="true" type="tns:Datos" />
+      <xs:element minOccurs="0" name="DatosPuerto" nillable="true" type="tns:Puerto" />
+      <xs:element minOccurs="0" name="DatosRemitente" nillable="true" type="tns:Datos" />
+      <xs:element minOccurs="0" name="DatosTransportista" nillable="true" type="tns:Transportista" />
+      <xs:element minOccurs="0" name="DatosVehiculo" nillable="true" type="tns:Vehiculo" />
+      <xs:element minOccurs="0" name="DocumentoRelacionado" nillable="true" type="tns:Relacionado" />
+      <xs:element minOccurs="0" name="Observaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PuntoLlegada" nillable="true" type="tns:Direccion" />
+      <xs:element minOccurs="0" name="PuntoPartida" nillable="true" type="tns:Direccion" />
+      <xs:element minOccurs="0" name="RemisionReferencia" nillable="true" type="tns:GuiaRemisionBaja" />
+      <xs:element minOccurs="0" name="correlativo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaEmision" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="serie" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoDocumento" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AGuiaRemision" nillable="true" type="tns:AGuiaRemision" />
+  <xs:complexType name="ArrayOfBien">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bien" nillable="true" type="tns:Bien" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBien" nillable="true" type="tns:ArrayOfBien" />
+  <xs:complexType name="Bien">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cantidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoItem" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoSUNAT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DescripcionDetallada" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroOrden" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UnidadMedida" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Bien" nillable="true" type="tns:Bien" />
+  <xs:complexType name="Conductor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NumeroDocumentoIdentidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoDocumentoIdentidad" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Conductor" nillable="true" type="tns:Conductor" />
+  <xs:complexType name="Contenedor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NumeroContenedor" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contenedor" nillable="true" type="tns:Contenedor" />
+  <xs:complexType name="DatosEnvio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DescripcionMotivoTraslado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaInicioTraslado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IndicadorTransbordoProgramado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModalidadTraslado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MotivoTraslado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroBultosPallets" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PesoBrutoTotal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UnidadMedidaPesoBruto" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosEnvio" nillable="true" type="tns:DatosEnvio" />
+  <xs:complexType name="Datos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NumeroDocumentoIdentidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoDocumentoIdentidad" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Datos" nillable="true" type="tns:Datos" />
+  <xs:complexType name="Puerto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoPuerto" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Puerto" nillable="true" type="tns:Puerto" />
+  <xs:complexType name="Transportista">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ruc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoDocumento" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Transportista" nillable="true" type="tns:Transportista" />
+  <xs:complexType name="Vehiculo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NumeroPlaca" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Vehiculo" nillable="true" type="tns:Vehiculo" />
+  <xs:complexType name="Direccion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DireccionCompleta" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ubigeo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Direccion" nillable="true" type="tns:Direccion" />
+  <xs:complexType name="GuiaRemisionBaja">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Correlativo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Serie" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoDocumento" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GuiaRemisionBaja" nillable="true" type="tns:GuiaRemisionBaja" />
+  <xs:complexType name="ArrayOfIntegracionModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IntegracionModel" nillable="true" type="tns:IntegracionModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIntegracionModel" nillable="true" type="tns:ArrayOfIntegracionModel" />
+  <xs:complexType name="IntegracionModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Ciudad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ruc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Series" nillable="true" type="tns:ArrayOfSerieModel" />
+      <xs:element minOccurs="0" name="Ubigeo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IntegracionModel" nillable="true" type="tns:IntegracionModel" />
+  <xs:complexType name="ArrayOfSerieModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SerieModel" nillable="true" type="tns:SerieModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSerieModel" nillable="true" type="tns:ArrayOfSerieModel" />
+  <xs:complexType name="SerieModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Folio" type="xs:int" />
+      <xs:element minOccurs="0" name="Prefijo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoDocumento" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SerieModel" nillable="true" type="tns:SerieModel" />
 </xs:schema>

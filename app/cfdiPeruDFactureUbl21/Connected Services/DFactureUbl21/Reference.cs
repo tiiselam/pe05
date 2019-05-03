@@ -17,6 +17,7 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Respuesta", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Response")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaIntegracion))]
     public partial class Respuesta : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -108,6 +109,154 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RespuestaIntegracion", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Response")]
+    [System.SerializableAttribute()]
+    public partial class RespuestaIntegracion : cfdiPeruDFactureUbl21.DFactureUbl21.Respuesta {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.UsuarioCreado[] UsuariosCreadosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.UsuarioNoCreado[] UsuariosNoCreadosField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.UsuarioCreado[] UsuariosCreados {
+            get {
+                return this.UsuariosCreadosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsuariosCreadosField, value) != true)) {
+                    this.UsuariosCreadosField = value;
+                    this.RaisePropertyChanged("UsuariosCreados");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.UsuarioNoCreado[] UsuariosNoCreados {
+            get {
+                return this.UsuariosNoCreadosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsuariosNoCreadosField, value) != true)) {
+                    this.UsuariosNoCreadosField = value;
+                    this.RaisePropertyChanged("UsuariosNoCreados");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UsuarioCreado", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Response")]
+    [System.SerializableAttribute()]
+    public partial class UsuarioCreado : cfdiPeruDFactureUbl21.DFactureUbl21.Usuario {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContrasenaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreUsuarioField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Contrasena {
+            get {
+                return this.ContrasenaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContrasenaField, value) != true)) {
+                    this.ContrasenaField = value;
+                    this.RaisePropertyChanged("Contrasena");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreUsuario {
+            get {
+                return this.NombreUsuarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreUsuarioField, value) != true)) {
+                    this.NombreUsuarioField = value;
+                    this.RaisePropertyChanged("NombreUsuario");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UsuarioNoCreado", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Response")]
+    [System.SerializableAttribute()]
+    public partial class UsuarioNoCreado : cfdiPeruDFactureUbl21.DFactureUbl21.Usuario {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MensajeErrorField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MensajeError {
+            get {
+                return this.MensajeErrorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MensajeErrorField, value) != true)) {
+                    this.MensajeErrorField = value;
+                    this.RaisePropertyChanged("MensajeError");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Usuario", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Response")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(cfdiPeruDFactureUbl21.DFactureUbl21.UsuarioNoCreado))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(cfdiPeruDFactureUbl21.DFactureUbl21.UsuarioCreado))]
+    public partial class Usuario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RucField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Ruc {
+            get {
+                return this.RucField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RucField, value) != true)) {
+                    this.RucField = value;
+                    this.RaisePropertyChanged("Ruc");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ADocumentoElectronico", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(cfdiPeruDFactureUbl21.DFactureUbl21.DocumentoElectronico))]
@@ -115,6 +264,9 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Comprador DatosCompradorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private cfdiPeruDFactureUbl21.DFactureUbl21.Anticipos[] anticipoField;
@@ -213,6 +365,19 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Comprador DatosComprador {
+            get {
+                return this.DatosCompradorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosCompradorField, value) != true)) {
+                    this.DatosCompradorField = value;
+                    this.RaisePropertyChanged("DatosComprador");
+                }
             }
         }
         
@@ -1942,6 +2107,13 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Comprador", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class Comprador : cfdiPeruDFactureUbl21.DFactureUbl21.AComprador {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CargosGlobales", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
     [System.SerializableAttribute()]
     public partial class CargosGlobales : cfdiPeruDFactureUbl21.DFactureUbl21.ADocumentoElectronico.ACargosGlobales {
@@ -2383,6 +2555,84 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
     [System.Runtime.Serialization.DataContractAttribute(Name="Relacionado", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
     [System.SerializableAttribute()]
     public partial class Relacionado : cfdiPeruDFactureUbl21.DFactureUbl21.ADocumentoElectronico.ARelacionado {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AComprador", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(cfdiPeruDFactureUbl21.DFactureUbl21.Comprador))]
+    public partial class AComprador : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ApellidoNombreCompradorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DocCompradorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoDocCompradorField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApellidoNombreComprador {
+            get {
+                return this.ApellidoNombreCompradorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApellidoNombreCompradorField, value) != true)) {
+                    this.ApellidoNombreCompradorField = value;
+                    this.RaisePropertyChanged("ApellidoNombreComprador");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DocComprador {
+            get {
+                return this.DocCompradorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocCompradorField, value) != true)) {
+                    this.DocCompradorField = value;
+                    this.RaisePropertyChanged("DocComprador");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TipoDocComprador {
+            get {
+                return this.TipoDocCompradorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoDocCompradorField, value) != true)) {
+                    this.TipoDocCompradorField = value;
+                    this.RaisePropertyChanged("TipoDocComprador");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -6625,6 +6875,1133 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AGuiaRemision", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(cfdiPeruDFactureUbl21.DFactureUbl21.GuiaRemision))]
+    public partial class AGuiaRemision : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Bien[] BienesTransportarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Conductor DatosConductorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Contenedor DatosContenedorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.DatosEnvio DatosDelEnvioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Datos DatosDestinatarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Datos DatosProveedorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Puerto DatosPuertoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Datos DatosRemitenteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Transportista DatosTransportistaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Vehiculo DatosVehiculoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Relacionado DocumentoRelacionadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ObservacionesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Direccion PuntoLlegadaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.Direccion PuntoPartidaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.GuiaRemisionBaja RemisionReferenciaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string correlativoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string fechaEmisionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string serieField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string tipoDocumentoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Bien[] BienesTransportar {
+            get {
+                return this.BienesTransportarField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BienesTransportarField, value) != true)) {
+                    this.BienesTransportarField = value;
+                    this.RaisePropertyChanged("BienesTransportar");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Conductor DatosConductor {
+            get {
+                return this.DatosConductorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosConductorField, value) != true)) {
+                    this.DatosConductorField = value;
+                    this.RaisePropertyChanged("DatosConductor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Contenedor DatosContenedor {
+            get {
+                return this.DatosContenedorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosContenedorField, value) != true)) {
+                    this.DatosContenedorField = value;
+                    this.RaisePropertyChanged("DatosContenedor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.DatosEnvio DatosDelEnvio {
+            get {
+                return this.DatosDelEnvioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosDelEnvioField, value) != true)) {
+                    this.DatosDelEnvioField = value;
+                    this.RaisePropertyChanged("DatosDelEnvio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Datos DatosDestinatario {
+            get {
+                return this.DatosDestinatarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosDestinatarioField, value) != true)) {
+                    this.DatosDestinatarioField = value;
+                    this.RaisePropertyChanged("DatosDestinatario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Datos DatosProveedor {
+            get {
+                return this.DatosProveedorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosProveedorField, value) != true)) {
+                    this.DatosProveedorField = value;
+                    this.RaisePropertyChanged("DatosProveedor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Puerto DatosPuerto {
+            get {
+                return this.DatosPuertoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosPuertoField, value) != true)) {
+                    this.DatosPuertoField = value;
+                    this.RaisePropertyChanged("DatosPuerto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Datos DatosRemitente {
+            get {
+                return this.DatosRemitenteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosRemitenteField, value) != true)) {
+                    this.DatosRemitenteField = value;
+                    this.RaisePropertyChanged("DatosRemitente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Transportista DatosTransportista {
+            get {
+                return this.DatosTransportistaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosTransportistaField, value) != true)) {
+                    this.DatosTransportistaField = value;
+                    this.RaisePropertyChanged("DatosTransportista");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Vehiculo DatosVehiculo {
+            get {
+                return this.DatosVehiculoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatosVehiculoField, value) != true)) {
+                    this.DatosVehiculoField = value;
+                    this.RaisePropertyChanged("DatosVehiculo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Relacionado DocumentoRelacionado {
+            get {
+                return this.DocumentoRelacionadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocumentoRelacionadoField, value) != true)) {
+                    this.DocumentoRelacionadoField = value;
+                    this.RaisePropertyChanged("DocumentoRelacionado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Observaciones {
+            get {
+                return this.ObservacionesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ObservacionesField, value) != true)) {
+                    this.ObservacionesField = value;
+                    this.RaisePropertyChanged("Observaciones");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Direccion PuntoLlegada {
+            get {
+                return this.PuntoLlegadaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PuntoLlegadaField, value) != true)) {
+                    this.PuntoLlegadaField = value;
+                    this.RaisePropertyChanged("PuntoLlegada");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.Direccion PuntoPartida {
+            get {
+                return this.PuntoPartidaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PuntoPartidaField, value) != true)) {
+                    this.PuntoPartidaField = value;
+                    this.RaisePropertyChanged("PuntoPartida");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.GuiaRemisionBaja RemisionReferencia {
+            get {
+                return this.RemisionReferenciaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemisionReferenciaField, value) != true)) {
+                    this.RemisionReferenciaField = value;
+                    this.RaisePropertyChanged("RemisionReferencia");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string correlativo {
+            get {
+                return this.correlativoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.correlativoField, value) != true)) {
+                    this.correlativoField = value;
+                    this.RaisePropertyChanged("correlativo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string fechaEmision {
+            get {
+                return this.fechaEmisionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.fechaEmisionField, value) != true)) {
+                    this.fechaEmisionField = value;
+                    this.RaisePropertyChanged("fechaEmision");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string serie {
+            get {
+                return this.serieField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.serieField, value) != true)) {
+                    this.serieField = value;
+                    this.RaisePropertyChanged("serie");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string tipoDocumento {
+            get {
+                return this.tipoDocumentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.tipoDocumentoField, value) != true)) {
+                    this.tipoDocumentoField = value;
+                    this.RaisePropertyChanged("tipoDocumento");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Conductor", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class Conductor : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumeroDocumentoIdentidadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoDocumentoIdentidadField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NumeroDocumentoIdentidad {
+            get {
+                return this.NumeroDocumentoIdentidadField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumeroDocumentoIdentidadField, value) != true)) {
+                    this.NumeroDocumentoIdentidadField = value;
+                    this.RaisePropertyChanged("NumeroDocumentoIdentidad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TipoDocumentoIdentidad {
+            get {
+                return this.TipoDocumentoIdentidadField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoDocumentoIdentidadField, value) != true)) {
+                    this.TipoDocumentoIdentidadField = value;
+                    this.RaisePropertyChanged("TipoDocumentoIdentidad");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contenedor", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class Contenedor : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumeroContenedorField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NumeroContenedor {
+            get {
+                return this.NumeroContenedorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumeroContenedorField, value) != true)) {
+                    this.NumeroContenedorField = value;
+                    this.RaisePropertyChanged("NumeroContenedor");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DatosEnvio", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class DatosEnvio : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescripcionMotivoTrasladoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FechaInicioTrasladoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IndicadorTransbordoProgramadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ModalidadTrasladoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MotivoTrasladoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumeroBultosPalletsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PesoBrutoTotalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UnidadMedidaPesoBrutoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DescripcionMotivoTraslado {
+            get {
+                return this.DescripcionMotivoTrasladoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescripcionMotivoTrasladoField, value) != true)) {
+                    this.DescripcionMotivoTrasladoField = value;
+                    this.RaisePropertyChanged("DescripcionMotivoTraslado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FechaInicioTraslado {
+            get {
+                return this.FechaInicioTrasladoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FechaInicioTrasladoField, value) != true)) {
+                    this.FechaInicioTrasladoField = value;
+                    this.RaisePropertyChanged("FechaInicioTraslado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IndicadorTransbordoProgramado {
+            get {
+                return this.IndicadorTransbordoProgramadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IndicadorTransbordoProgramadoField, value) != true)) {
+                    this.IndicadorTransbordoProgramadoField = value;
+                    this.RaisePropertyChanged("IndicadorTransbordoProgramado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ModalidadTraslado {
+            get {
+                return this.ModalidadTrasladoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ModalidadTrasladoField, value) != true)) {
+                    this.ModalidadTrasladoField = value;
+                    this.RaisePropertyChanged("ModalidadTraslado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MotivoTraslado {
+            get {
+                return this.MotivoTrasladoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MotivoTrasladoField, value) != true)) {
+                    this.MotivoTrasladoField = value;
+                    this.RaisePropertyChanged("MotivoTraslado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NumeroBultosPallets {
+            get {
+                return this.NumeroBultosPalletsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumeroBultosPalletsField, value) != true)) {
+                    this.NumeroBultosPalletsField = value;
+                    this.RaisePropertyChanged("NumeroBultosPallets");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PesoBrutoTotal {
+            get {
+                return this.PesoBrutoTotalField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PesoBrutoTotalField, value) != true)) {
+                    this.PesoBrutoTotalField = value;
+                    this.RaisePropertyChanged("PesoBrutoTotal");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UnidadMedidaPesoBruto {
+            get {
+                return this.UnidadMedidaPesoBrutoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UnidadMedidaPesoBrutoField, value) != true)) {
+                    this.UnidadMedidaPesoBrutoField = value;
+                    this.RaisePropertyChanged("UnidadMedidaPesoBruto");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Datos", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class Datos : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumeroDocumentoIdentidadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RazonSocialField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoDocumentoIdentidadField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NumeroDocumentoIdentidad {
+            get {
+                return this.NumeroDocumentoIdentidadField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumeroDocumentoIdentidadField, value) != true)) {
+                    this.NumeroDocumentoIdentidadField = value;
+                    this.RaisePropertyChanged("NumeroDocumentoIdentidad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RazonSocial {
+            get {
+                return this.RazonSocialField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RazonSocialField, value) != true)) {
+                    this.RazonSocialField = value;
+                    this.RaisePropertyChanged("RazonSocial");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TipoDocumentoIdentidad {
+            get {
+                return this.TipoDocumentoIdentidadField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoDocumentoIdentidadField, value) != true)) {
+                    this.TipoDocumentoIdentidadField = value;
+                    this.RaisePropertyChanged("TipoDocumentoIdentidad");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Puerto", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class Puerto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoPuertoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CodigoPuerto {
+            get {
+                return this.CodigoPuertoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoPuertoField, value) != true)) {
+                    this.CodigoPuertoField = value;
+                    this.RaisePropertyChanged("CodigoPuerto");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Transportista", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class Transportista : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RazonSocialField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RucField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoDocumentoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RazonSocial {
+            get {
+                return this.RazonSocialField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RazonSocialField, value) != true)) {
+                    this.RazonSocialField = value;
+                    this.RaisePropertyChanged("RazonSocial");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Ruc {
+            get {
+                return this.RucField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RucField, value) != true)) {
+                    this.RucField = value;
+                    this.RaisePropertyChanged("Ruc");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TipoDocumento {
+            get {
+                return this.TipoDocumentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoDocumentoField, value) != true)) {
+                    this.TipoDocumentoField = value;
+                    this.RaisePropertyChanged("TipoDocumento");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Vehiculo", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class Vehiculo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumeroPlacaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NumeroPlaca {
+            get {
+                return this.NumeroPlacaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumeroPlacaField, value) != true)) {
+                    this.NumeroPlacaField = value;
+                    this.RaisePropertyChanged("NumeroPlaca");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Direccion", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class Direccion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DireccionCompletaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UbigeoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DireccionCompleta {
+            get {
+                return this.DireccionCompletaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DireccionCompletaField, value) != true)) {
+                    this.DireccionCompletaField = value;
+                    this.RaisePropertyChanged("DireccionCompleta");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Ubigeo {
+            get {
+                return this.UbigeoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UbigeoField, value) != true)) {
+                    this.UbigeoField = value;
+                    this.RaisePropertyChanged("Ubigeo");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GuiaRemisionBaja", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class GuiaRemisionBaja : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CorrelativoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumDocumentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SerieField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoDocumentoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Correlativo {
+            get {
+                return this.CorrelativoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CorrelativoField, value) != true)) {
+                    this.CorrelativoField = value;
+                    this.RaisePropertyChanged("Correlativo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NumDocumento {
+            get {
+                return this.NumDocumentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumDocumentoField, value) != true)) {
+                    this.NumDocumentoField = value;
+                    this.RaisePropertyChanged("NumDocumento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Serie {
+            get {
+                return this.SerieField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SerieField, value) != true)) {
+                    this.SerieField = value;
+                    this.RaisePropertyChanged("Serie");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TipoDocumento {
+            get {
+                return this.TipoDocumentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoDocumentoField, value) != true)) {
+                    this.TipoDocumentoField = value;
+                    this.RaisePropertyChanged("TipoDocumento");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GuiaRemision", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class GuiaRemision : cfdiPeruDFactureUbl21.DFactureUbl21.AGuiaRemision {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Bien", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class Bien : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CantidadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoItemField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoSUNATField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescripcionDetalladaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumeroOrdenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UnidadMedidaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Cantidad {
+            get {
+                return this.CantidadField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CantidadField, value) != true)) {
+                    this.CantidadField = value;
+                    this.RaisePropertyChanged("Cantidad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CodigoItem {
+            get {
+                return this.CodigoItemField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoItemField, value) != true)) {
+                    this.CodigoItemField = value;
+                    this.RaisePropertyChanged("CodigoItem");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CodigoSUNAT {
+            get {
+                return this.CodigoSUNATField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoSUNATField, value) != true)) {
+                    this.CodigoSUNATField = value;
+                    this.RaisePropertyChanged("CodigoSUNAT");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DescripcionDetallada {
+            get {
+                return this.DescripcionDetalladaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescripcionDetalladaField, value) != true)) {
+                    this.DescripcionDetalladaField = value;
+                    this.RaisePropertyChanged("DescripcionDetallada");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NumeroOrden {
+            get {
+                return this.NumeroOrdenField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumeroOrdenField, value) != true)) {
+                    this.NumeroOrdenField = value;
+                    this.RaisePropertyChanged("NumeroOrden");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UnidadMedida {
+            get {
+                return this.UnidadMedidaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UnidadMedidaField, value) != true)) {
+                    this.UnidadMedidaField = value;
+                    this.RaisePropertyChanged("UnidadMedida");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RespuestaGuiaRemision", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Response")]
     [System.SerializableAttribute()]
     public partial class RespuestaGuiaRemision : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -6905,6 +8282,222 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IntegracionModel", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class IntegracionModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CiudadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DireccionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RucField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private cfdiPeruDFactureUbl21.DFactureUbl21.SerieModel[] SeriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UbigeoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Ciudad {
+            get {
+                return this.CiudadField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CiudadField, value) != true)) {
+                    this.CiudadField = value;
+                    this.RaisePropertyChanged("Ciudad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Direccion {
+            get {
+                return this.DireccionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DireccionField, value) != true)) {
+                    this.DireccionField = value;
+                    this.RaisePropertyChanged("Direccion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Ruc {
+            get {
+                return this.RucField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RucField, value) != true)) {
+                    this.RucField = value;
+                    this.RaisePropertyChanged("Ruc");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public cfdiPeruDFactureUbl21.DFactureUbl21.SerieModel[] Series {
+            get {
+                return this.SeriesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeriesField, value) != true)) {
+                    this.SeriesField = value;
+                    this.RaisePropertyChanged("Series");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Ubigeo {
+            get {
+                return this.UbigeoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UbigeoField, value) != true)) {
+                    this.UbigeoField = value;
+                    this.RaisePropertyChanged("Ubigeo");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SerieModel", Namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class SerieModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FolioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PrefijoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoDocumentoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Folio {
+            get {
+                return this.FolioField;
+            }
+            set {
+                if ((this.FolioField.Equals(value) != true)) {
+                    this.FolioField = value;
+                    this.RaisePropertyChanged("Folio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Prefijo {
+            get {
+                return this.PrefijoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrefijoField, value) != true)) {
+                    this.PrefijoField = value;
+                    this.RaisePropertyChanged("Prefijo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TipoDocumento {
+            get {
+                return this.TipoDocumentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoDocumentoField, value) != true)) {
+                    this.TipoDocumentoField = value;
+                    this.RaisePropertyChanged("TipoDocumento");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OperacionesEmisores", Namespace="http://schemas.datacontract.org/2004/07/PeruService")]
+    public enum OperacionesEmisores : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Alta = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Baja = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Actualizacion = 2,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DFactureUbl21.IService")]
     public interface IService {
@@ -6946,16 +8539,10 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
         System.Threading.Tasks.Task<cfdiPeruDFactureUbl21.DFactureUbl21.Respuesta> FoliosRestantesAsync(string ruc, string usuario, string clave);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GuiasRemision", ReplyAction="http://tempuri.org/IService/GuiasRemisionResponse")]
-        cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaGuiaRemision GuiasRemision(string ruc, string usuario, string clave, byte[] layout);
+        cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaGuiaRemision GuiasRemision(string ruc, string usuario, string clave, cfdiPeruDFactureUbl21.DFactureUbl21.GuiaRemision documentoElectronico);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GuiasRemision", ReplyAction="http://tempuri.org/IService/GuiasRemisionResponse")]
-        System.Threading.Tasks.Task<cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaGuiaRemision> GuiasRemisionAsync(string ruc, string usuario, string clave, byte[] layout);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ResumenDiario", ReplyAction="http://tempuri.org/IService/ResumenDiarioResponse")]
-        cfdiPeruDFactureUbl21.DFactureUbl21.Respuesta ResumenDiario(string ruc, string usuario, string clave, string fechaEmision, string fechaReferencia);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ResumenDiario", ReplyAction="http://tempuri.org/IService/ResumenDiarioResponse")]
-        System.Threading.Tasks.Task<cfdiPeruDFactureUbl21.DFactureUbl21.Respuesta> ResumenDiarioAsync(string ruc, string usuario, string clave, string fechaEmision, string fechaReferencia);
+        System.Threading.Tasks.Task<cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaGuiaRemision> GuiasRemisionAsync(string ruc, string usuario, string clave, cfdiPeruDFactureUbl21.DFactureUbl21.GuiaRemision documentoElectronico);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RetencionPercepcion", ReplyAction="http://tempuri.org/IService/RetencionPercepcionResponse")]
         cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaComprobantes RetencionPercepcion(string ruc, string usuario, string clave, byte[] layout);
@@ -6974,6 +8561,12 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ValidaAcceso", ReplyAction="http://tempuri.org/IService/ValidaAccesoResponse")]
         System.Threading.Tasks.Task<bool> ValidaAccesoAsync(string ruc, string usuario, string clave);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/OperacionesEmisores", ReplyAction="http://tempuri.org/IService/OperacionesEmisoresResponse")]
+        cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaIntegracion OperacionesEmisores(string ruc, string user, string userPassword, cfdiPeruDFactureUbl21.DFactureUbl21.IntegracionModel[] Emisores, cfdiPeruDFactureUbl21.DFactureUbl21.OperacionesEmisores operacion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/OperacionesEmisores", ReplyAction="http://tempuri.org/IService/OperacionesEmisoresResponse")]
+        System.Threading.Tasks.Task<cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaIntegracion> OperacionesEmisoresAsync(string ruc, string user, string userPassword, cfdiPeruDFactureUbl21.DFactureUbl21.IntegracionModel[] Emisores, cfdiPeruDFactureUbl21.DFactureUbl21.OperacionesEmisores operacion);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -7051,20 +8644,12 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
             return base.Channel.FoliosRestantesAsync(ruc, usuario, clave);
         }
         
-        public cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaGuiaRemision GuiasRemision(string ruc, string usuario, string clave, byte[] layout) {
-            return base.Channel.GuiasRemision(ruc, usuario, clave, layout);
+        public cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaGuiaRemision GuiasRemision(string ruc, string usuario, string clave, cfdiPeruDFactureUbl21.DFactureUbl21.GuiaRemision documentoElectronico) {
+            return base.Channel.GuiasRemision(ruc, usuario, clave, documentoElectronico);
         }
         
-        public System.Threading.Tasks.Task<cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaGuiaRemision> GuiasRemisionAsync(string ruc, string usuario, string clave, byte[] layout) {
-            return base.Channel.GuiasRemisionAsync(ruc, usuario, clave, layout);
-        }
-        
-        public cfdiPeruDFactureUbl21.DFactureUbl21.Respuesta ResumenDiario(string ruc, string usuario, string clave, string fechaEmision, string fechaReferencia) {
-            return base.Channel.ResumenDiario(ruc, usuario, clave, fechaEmision, fechaReferencia);
-        }
-        
-        public System.Threading.Tasks.Task<cfdiPeruDFactureUbl21.DFactureUbl21.Respuesta> ResumenDiarioAsync(string ruc, string usuario, string clave, string fechaEmision, string fechaReferencia) {
-            return base.Channel.ResumenDiarioAsync(ruc, usuario, clave, fechaEmision, fechaReferencia);
+        public System.Threading.Tasks.Task<cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaGuiaRemision> GuiasRemisionAsync(string ruc, string usuario, string clave, cfdiPeruDFactureUbl21.DFactureUbl21.GuiaRemision documentoElectronico) {
+            return base.Channel.GuiasRemisionAsync(ruc, usuario, clave, documentoElectronico);
         }
         
         public cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaComprobantes RetencionPercepcion(string ruc, string usuario, string clave, byte[] layout) {
@@ -7089,6 +8674,14 @@ namespace cfdiPeruDFactureUbl21.DFactureUbl21 {
         
         public System.Threading.Tasks.Task<bool> ValidaAccesoAsync(string ruc, string usuario, string clave) {
             return base.Channel.ValidaAccesoAsync(ruc, usuario, clave);
+        }
+        
+        public cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaIntegracion OperacionesEmisores(string ruc, string user, string userPassword, cfdiPeruDFactureUbl21.DFactureUbl21.IntegracionModel[] Emisores, cfdiPeruDFactureUbl21.DFactureUbl21.OperacionesEmisores operacion) {
+            return base.Channel.OperacionesEmisores(ruc, user, userPassword, Emisores, operacion);
+        }
+        
+        public System.Threading.Tasks.Task<cfdiPeruDFactureUbl21.DFactureUbl21.RespuestaIntegracion> OperacionesEmisoresAsync(string ruc, string user, string userPassword, cfdiPeruDFactureUbl21.DFactureUbl21.IntegracionModel[] Emisores, cfdiPeruDFactureUbl21.DFactureUbl21.OperacionesEmisores operacion) {
+            return base.Channel.OperacionesEmisoresAsync(ruc, user, userPassword, Emisores, operacion);
         }
     }
 }
