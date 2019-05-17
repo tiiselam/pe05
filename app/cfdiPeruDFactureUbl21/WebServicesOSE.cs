@@ -67,14 +67,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
             debug_xml = debug_xml + "   <RazonSocial>" + DocEnviarWS.receptor.razonSocial + "\r\n";
 
             // SECCION COMROBANTE
-            if (!string.IsNullOrEmpty(documentoGP.DocVenta.tipoOperacion))
-            {
-                DocEnviarWS.codigoTipoOperacion = documentoGP.DocVenta.tipoOperacion;
-            }
-            else
-            {
-                DocEnviarWS.codigoTipoOperacion = "0101";
-            }
+            DocEnviarWS.codigoTipoOperacion = documentoGP.DocVenta.tipoOperacion;
             DocEnviarWS.correlativo = documentoGP.DocVenta.numero;
             //DocEnviarWS.correlativo = "10000106"; // se usa para reenviar comprobante.
             DocEnviarWS.fechaEmision = documentoGP.DocVenta.fechaEmision.ToString("yyyy-MM-dd");
@@ -345,8 +338,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
                 var detracciones = new Detraccion();
                 detracciones.codigo = documentoGP.DocVenta.codigoDetraccion.Trim();
-                //detracciones.medioPago = documentoGP.DocVenta.medioPagoDetraccion.Trim();
-                detracciones.medioPago = "002";
+                detracciones.medioPago = documentoGP.DocVenta.medioPagoDetraccion;
                 detracciones.monto = string.Format("{0,14:0.00}", documentoGP.DocVenta.montoDetraccion).Trim();
                 detracciones.numCuentaBancodelaNacion = documentoGP.DocVenta.numCuentaBancoNacion.Trim();
                 detracciones.porcentaje = string.Format("{0,8:0.00}", documentoGP.DocVenta.porcentajeDetraccion).Trim();
