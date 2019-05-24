@@ -43,7 +43,6 @@ namespace cfdiPeru
         private ConexionDB DatosConexionDB = new ConexionDB();  //Lee la configuración del archivo xml y obtiene los datos de conexión.
 
         ICfdiMetodosWebService ServiciosOse; 
-        ICfdiPeruDocumento EstructuraDocsOse;
 
         public winformGeneraFE()
         {

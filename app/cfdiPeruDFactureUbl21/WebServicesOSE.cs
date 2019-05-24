@@ -24,6 +24,11 @@ namespace cfdiPeruOperadorServiciosElectronicos
             ServicioWS.Endpoint.Address = new System.ServiceModel.EndpointAddress(URLwebServPAC) ;
         }
 
+        /// <summary>
+        /// Arma el objeto del servicio web
+        /// </summary>
+        /// <param name="documentoGP"></param>
+        /// <returns></returns>
         private DocumentoElectronico ArmaDocumentoEnviarWS(DocumentoVentaGP documentoGP)
         {
             DocEnviarWS = new DocumentoElectronico();
@@ -36,8 +41,9 @@ namespace cfdiPeruOperadorServiciosElectronicos
             DocEnviarWS.emisor = new Emisor();
 
             DocEnviarWS.emisor.ruc = documentoGP.DocVenta.emisorNroDoc;
+            if (!string.IsNullOrEmpty(documentoGP.DocVenta.emisorUbigeo.Trim()) && !documentoGP.DocVenta.emisorUbigeo.ToLower().Contains("no existe tag") && !documentoGP.DocVenta.emisorUbigeo.ToLower().Equals("na"))
+                DocEnviarWS.emisor.lugarExpedicion = documentoGP.DocVenta.emisorUbigeo.Trim(); 
             //DocEnviarWS.emisor.nombreComercial = documentoGP.DocVenta.emisorNombre;
-            //DocEnviarWS.emisor.lugarExpedicion = documentoGP.DocVenta.emmisor**
             /*DocEnviarWS.emisor.domicilioFiscal = documentoGP.DocVenta.emisorDireccion;
             DocEnviarWS.emisor.urbanizacion = documentoGP.DocVenta.emisorUrbanizacion;
             DocEnviarWS.emisor.distrito = documentoGP.DocVenta.emisorDistrito;
