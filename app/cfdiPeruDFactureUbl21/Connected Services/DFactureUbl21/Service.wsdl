@@ -6,6 +6,7 @@
       <xsd:import schemaLocation="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PeruService.Response" />
       <xsd:import schemaLocation="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/PeruService.Classes" />
+      <xsd:import schemaLocation="http://demoint.thefactoryhka.com.pe/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/PeruService" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_CargarCertificado_InputMessage">
@@ -50,12 +51,6 @@
   <wsdl:message name="IService_GuiasRemision_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuiasRemisionResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_ResumenDiario_InputMessage">
-    <wsdl:part name="parameters" element="tns:ResumenDiario" />
-  </wsdl:message>
-  <wsdl:message name="IService_ResumenDiario_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ResumenDiarioResponse" />
-  </wsdl:message>
   <wsdl:message name="IService_RetencionPercepcion_InputMessage">
     <wsdl:part name="parameters" element="tns:RetencionPercepcion" />
   </wsdl:message>
@@ -73,6 +68,12 @@
   </wsdl:message>
   <wsdl:message name="IService_ValidaAcceso_OutputMessage">
     <wsdl:part name="parameters" element="tns:ValidaAccesoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_OperacionesEmisores_InputMessage">
+    <wsdl:part name="parameters" element="tns:OperacionesEmisores" />
+  </wsdl:message>
+  <wsdl:message name="IService_OperacionesEmisores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OperacionesEmisoresResponse" />
   </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="CargarCertificado">
@@ -103,10 +104,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GuiasRemision" message="tns:IService_GuiasRemision_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GuiasRemisionResponse" message="tns:IService_GuiasRemision_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ResumenDiario">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/ResumenDiario" message="tns:IService_ResumenDiario_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/ResumenDiarioResponse" message="tns:IService_ResumenDiario_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="RetencionPercepcion">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/RetencionPercepcion" message="tns:IService_RetencionPercepcion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/RetencionPercepcionResponse" message="tns:IService_RetencionPercepcion_OutputMessage" />
@@ -118,6 +115,10 @@
     <wsdl:operation name="ValidaAcceso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/ValidaAcceso" message="tns:IService_ValidaAcceso_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/ValidaAccesoResponse" message="tns:IService_ValidaAcceso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OperacionesEmisores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/OperacionesEmisores" message="tns:IService_OperacionesEmisores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OperacionesEmisoresResponse" message="tns:IService_OperacionesEmisores_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -185,15 +186,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ResumenDiario">
-      <soap:operation soapAction="http://tempuri.org/IService/ResumenDiario" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="RetencionPercepcion">
       <soap:operation soapAction="http://tempuri.org/IService/RetencionPercepcion" style="document" />
       <wsdl:input>
@@ -214,6 +206,15 @@
     </wsdl:operation>
     <wsdl:operation name="ValidaAcceso">
       <soap:operation soapAction="http://tempuri.org/IService/ValidaAcceso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OperacionesEmisores">
+      <soap:operation soapAction="http://tempuri.org/IService/OperacionesEmisores" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

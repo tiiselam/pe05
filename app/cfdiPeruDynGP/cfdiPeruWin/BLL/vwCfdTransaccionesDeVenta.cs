@@ -12,39 +12,10 @@ namespace cfdiPeru
 {
     class vwCfdTransaccionesDeVenta : vwCfdiTransaccionesDeVenta
     {
-        DocumentoElectronico _docElectronico;
         ComunicacionBaja _documentoBaja;
-        ResumenDiarioNuevo _resumenElectronico;
         DocumentoVentaGP docGP;
-        List<DetalleDocumento> lDetalleDocumento;
         private const string FormatoFecha = "yyyy-MM-dd";
         private const string FormatoFechaHora = "yyyy-MM-dd";
-
-        private DocumentoElectronico DocElectronico
-        {
-            get
-            {
-                return _docElectronico;
-            }
-
-            set
-            {
-                _docElectronico = value;
-            }
-        }
-
-        public ResumenDiarioNuevo ResumenElectronico
-        {
-            get
-            {
-                return _resumenElectronico;
-            }
-
-            set
-            {
-                _resumenElectronico = value;
-            }
-        }
 
         public ComunicacionBaja DocumentoBaja
         {
@@ -79,99 +50,12 @@ namespace cfdiPeru
 
         public void ArmarDocElectronico(string leyendas)
         {
-            string leyendaConjunta = leyendas;
             try
             {
                 docGP = new DocumentoVentaGP();
                 docGP.GetDatosDocumentoVenta(this.Sopnumbe, this.Soptype);
 
-                if (!string.IsNullOrEmpty(leyendas) && !string.IsNullOrEmpty(docGP.DocVenta.leyendaPorFactura))
-                {
-                    XElement leyendasX = XElement.Parse(leyendas);
-                    XElement nuevaSeccion = new XElement("SECCION", new XAttribute("S", 1), new XAttribute("T", "Adicional"), new XAttribute("V", docGP.DocVenta.leyendaPorFactura));
-                    leyendasX.Add(nuevaSeccion);
-                    leyendaConjunta = leyendasX.ToString();
-                }
-                docGP.LeyendasXml = leyendaConjunta;
-
-                _docElectronico = new DocumentoElectronico();
-                _docElectronico.TipoDocumento = docGP.DocVenta.tipoDocumento;
-                _docElectronico.IdDocumento = docGP.DocVenta.idDocumento;
-                _docElectronico.FechaEmision = this.Fechahora.ToString(FormatoFechaHora);
-                _docElectronico.Moneda = docGP.DocVenta.moneda;
-                _docElectronico.Emisor.NroDocumento = docGP.DocVenta.emisorNroDoc;
-                _docElectronico.Emisor.NombreComercial = docGP.DocVenta.emisorNombre;
-                _docElectronico.Emisor.NombreLegal = docGP.DocVenta.emisorNombre;
-                _docElectronico.Emisor.Ubigeo = docGP.DocVenta.emisorUbigeo;
-                _docElectronico.Emisor.Direccion = docGP.DocVenta.emisorDireccion;
-                _docElectronico.Emisor.Urbanizacion = docGP.DocVenta.emisorUrbanizacion;
-                _docElectronico.Emisor.Departamento = docGP.DocVenta.emisorDepartamento;
-                _docElectronico.Emisor.Provincia = docGP.DocVenta.emisorProvincia;
-                _docElectronico.Emisor.Distrito = docGP.DocVenta.emisorDistrito;
-                _docElectronico.Receptor.TipoDocumento = docGP.DocVenta.receptorTipoDoc;
-                _docElectronico.Receptor.NroDocumento = docGP.DocVenta.receptorNroDoc;
-                _docElectronico.Receptor.NombreComercial = docGP.DocVenta.receptorNombre;
-                _docElectronico.Receptor.NombreLegal = docGP.DocVenta.receptorNombre;
-                _docElectronico.Receptor.EMailTo = docGP.DocVenta.emailTo;
-                _docElectronico.TipoOperacion = docGP.DocVenta.tipoOperacion;
-                //_docElectronico.DescuentoGlobal = docGP.DocVenta.ORTDISAM;
-                //_docElectronico.DescuentoNoGlobal = docGP.DocVenta.descuento;
-                //_docElectronico.TotalIgv = docGP.DocVenta.iva;
-                //_docElectronico.Gravadas = docGP.DocVenta.ivaImponible;
-                //_docElectronico.Inafectas = docGP.DocVenta.inafecta;
-                //_docElectronico.Exoneradas = docGP.DocVenta.exonerado;
-                //_docElectronico.Gratuitas = docGP.DocVenta.gratuito;
-                //_docElectronico.TotalVenta = docGP.DocVenta.total;
-                //_docElectronico.MontoEnLetras = docGP.DocVenta.montoEnLetras;
-                //_docElectronico.MetodoPago = docGP.DocVenta.formaPago;
-                //_docElectronico.Observaciones = docGP.DocVenta.discrepanciaDesc;
-
-                lDetalleDocumento = new List<DetalleDocumento>();
-                int i = 1;
-                foreach (vwCfdiConceptos d in docGP.LDocVentaConceptos)
-                {
-                    lDetalleDocumento.Add(new DetalleDocumento()
-                    {
-                        CodigoItem = d.ITEMNMBR,
-                        Id = i, 
-                        Descripcion = d.Descripcion,
-                        Cantidad = d.cantidad,
-                        UnidadMedida = d.udemSunat,
-//                        PrecioUnitario = d.valorUni,
-                        PrecioReferencial = Convert.ToDecimal(d.precioUniConIva),
-                        TotalVenta = Convert.ToDecimal(d.importe),
-//                        TipoPrecio = d.tipoPrecio,
-//                        Impuesto = d.orslstax,
-//                        TipoImpuesto = d.tipoImpuesto,
-                        
-                    });
-                    i++;
-                }
-                _docElectronico.Items = new List<DetalleDocumento>();
-                _docElectronico.Items = lDetalleDocumento;
-
-                if (docGP.LDocVentaRelacionados.Count > 0)
-                {
-                    _docElectronico.Relacionados = new List<DocumentoRelacionado>();
-                    _docElectronico.Discrepancias = new List<Discrepancia>();
-                    foreach (vwCfdiRelacionados d in docGP.LDocVentaRelacionados)
-                    {
-                        _docElectronico.Relacionados.Add(new DocumentoRelacionado()
-                        {
-                            NroDocumento = d.sopnumbeTo,
-                            TipoDocumento = d.tipoDocumento
-                        });
-
-                        _docElectronico.Discrepancias.Add(new Discrepancia()
-                        {
-                            //Tipo = docGP.DocVenta.discrepanciaTipo,
-                            //Descripcion = docGP.DocVenta.discrepanciaDesc,
-                            NroReferencia = d.sopnumbeTo
-                        });
-                    }
-
-                }
-
+                docGP.LeyendasXml = ObtieneLeyendaConjunta(leyendas, docGP.DocVenta.leyendaPorFactura, docGP.DocVenta.leyendaPorFactura2);
 
             }
             catch (Exception)
@@ -181,6 +65,30 @@ namespace cfdiPeru
             }
         }
 
+        private string ObtieneLeyendaConjunta(string leyendas, string leyendaPorFactura, string leyendaPorFactura2)
+        {
+            string leyendaConjunta = leyendas;
+            if (!string.IsNullOrEmpty(leyendas))
+            {
+                XElement leyendasX = XElement.Parse(leyendas);
+                XElement nuevaSeccion;
+                if (!string.IsNullOrEmpty(leyendaPorFactura))
+                {
+                    nuevaSeccion = new XElement("SECCION", new XAttribute("S", 1), new XAttribute("T", "Adicional"), new XAttribute("V", leyendaPorFactura));
+                    leyendasX.Add(nuevaSeccion);
+                }
+                if (!string.IsNullOrEmpty(leyendaPorFactura2))
+                {
+                    nuevaSeccion = new XElement("SECCION", new XAttribute("S", 2), new XAttribute("T", "Adicionales"), new XAttribute("V", leyendaPorFactura2));
+                    leyendasX.Add(nuevaSeccion);
+                }
+
+                leyendaConjunta = leyendasX.ToString();
+            }
+
+            return leyendaConjunta;
+        }
+
         public void ArmarResumenElectronico()
         {
             try
@@ -188,63 +96,6 @@ namespace cfdiPeru
                 DocumentoVentaGP docGP = new DocumentoVentaGP();
                 docGP.GetDatosResumenBoletas(this.Sopnumbe, this.Soptype);
 
-                _resumenElectronico = new ResumenDiarioNuevo()
-                {
-                    IdDocumento = docGP.ResumenCab.numResumenDiario,
-                    FechaEmision = docGP.ResumenCab.docdate.ToString(FormatoFecha), //DateTime.Today.ToString(FormatoFecha),
-                    FechaReferencia = docGP.ResumenCab.docdate.ToString(FormatoFecha),
-                    Emisor = new Contribuyente()
-                    {
-                        NroDocumento = docGP.ResumenCab.emisorNroDoc,
-                        TipoDocumento = docGP.ResumenCab.emisorTipoDoc,
-                        Direccion = docGP.ResumenCab.emisorDireccion,
-                        Urbanizacion = docGP.ResumenCab.emisorUrbanizacion,
-                        Departamento = docGP.ResumenCab.emisorDepartamento,
-                        Provincia = docGP.ResumenCab.emisorProvincia,
-                        Distrito = docGP.ResumenCab.emisorDistrito,
-                        NombreComercial = docGP.ResumenCab.emisorNombre,
-                        NombreLegal = docGP.ResumenCab.emisorNombre,
-                        Ubigeo = docGP.ResumenCab.emisorUbigeo
-                    },
-                    Resumenes=new List<GrupoResumenNuevo>()
-                };
-
-                int i = 1;
-                foreach (vwCfdiGeneraResumenDiario re in docGP.LDocResumenLineas)
-                {
-                    var grn = new GrupoResumenNuevo()
-                    {
-                        Id = i,
-                        TipoDocumento = re.tipoDocumento,
-                        IdDocumento = re.sopnumbe,
-                        NroDocumentoReceptor = re.receptorNroDoc,
-                        TipoDocumentoReceptor = re.receptorTipoDoc,
-                        CodigoEstadoItem = 1,
-                        Moneda = re.moneda,
-                        TasaDeCambio = Convert.ToDecimal(re.xchgrate),
-                        TotalVenta = Convert.ToDecimal(re.total),
-                        TotalDescuentos = Convert.ToDecimal(re.totalDescuento),
-                        DescuentosGlobales = Convert.ToDecimal(re.ORTDISAM),
-                        Gratuitas = Convert.ToDecimal(re.totalGratuito),
-                        Gravadas = Convert.ToDecimal(re.totalIvaImponible),
-                        Exoneradas = Convert.ToDecimal(re.totalExonerado),
-                        Inafectas = Convert.ToDecimal(re.totalInafecta),
-                        TotalIgv = Convert.ToDecimal(re.totalIva),
-                        TotalIsc = Convert.ToDecimal(0.00),
-                        TotalOtrosImpuestos = Convert.ToDecimal(0.00),
-                        MetodoPago = re.formaPago,
-                        DocumentoRelacionado = (re.tipoDocumento=="07" || re.tipoDocumento == "08") ? re.sopnumbeTo : null,
-                        TipoDocumentoRelacionado = (re.tipoDocumento == "07" || re.tipoDocumento == "08") ? re.tipoDocumentoTo : null,
-                        //IdDocumento = re.serie,
-                        //Serie = re.serie,
-                        //CorrelativoInicio = Convert.ToInt32(re.iniRango),
-                        //CorrelativoFin = Convert.ToInt32(re.finRango),
-                    };
-
-                    _resumenElectronico.Resumenes.Add(grn);
-
-                    i++;
-                }
             }
             catch (Exception)
             { throw;

@@ -91,6 +91,7 @@
     <EntitySetMapping Name="vwCfdiGeneraDocumentoDeVenta">
       <EntityTypeMapping TypeName="PERUEntities.vwCfdiGeneraDocumentoDeVenta">
         <MappingFragment StoreEntitySet="vwCfdiGeneraDocumentoDeVenta">
+          <ScalarProperty Name="leyendaPorFactura2" ColumnName="leyendaPorFactura2" />
           <ScalarProperty Name="leyendaPorFactura" ColumnName="leyendaPorFactura" />
           <ScalarProperty Name="receptorCiudad" ColumnName="receptorCiudad" />
           <ScalarProperty Name="receptorPais" ColumnName="receptorPais" />

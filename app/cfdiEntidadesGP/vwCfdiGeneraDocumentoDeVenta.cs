@@ -80,5 +80,6 @@ namespace cfdiEntidadesGP
         public string receptorPais { get; set; }
         public string receptorCiudad { get; set; }
         public string leyendaPorFactura { get; set; }
+        public string leyendaPorFactura2 { get; set; }
     }
 }

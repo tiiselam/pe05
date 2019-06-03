@@ -15,14 +15,10 @@ C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturado
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiPeruInterfacesFacturador.dll
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiPeruInterfacesFacturador.pdb
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiEntidadesGP.dll
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\OpenInvoicePeru.Comun.Dto.dll
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\EntityFramework.dll
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\Newtonsoft.Json.dll
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiEntidadesGP.pdb
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\cfdiEntidadesGP.dll.config
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\OpenInvoicePeru.Comun.Dto.pdb
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\EntityFramework.xml
-C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\bin\Debug\Newtonsoft.Json.xml
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\obj\Debug\cfdiPeruInterfaces.csprojAssemblyReference.cache
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\obj\Debug\cfdiPeruInterfaces.csproj.CoreCompileInputs.cache
 C:\jcTii\Desarrollo\PERU_FacturaElectronica\pe05\app\cfdiPeruInterfacesFacturador\obj\Debug\cfdiPeruInterfaces.csproj.CopyComplete

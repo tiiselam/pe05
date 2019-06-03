@@ -176,6 +176,7 @@
     <Property Name="receptorPais" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="receptorCiudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="leyendaPorFactura" Type="String" MaxLength="51" FixedLength="false" Unicode="false" />
+    <Property Name="leyendaPorFactura2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <ComplexType Name="fCfdiParametrosTipoLeyenda_Result">
     <Property Type="String" Name="inetinfo" Nullable="false" MaxLength="Max" />

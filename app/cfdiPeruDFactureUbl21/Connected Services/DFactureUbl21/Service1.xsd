@@ -46,4 +46,54 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RespuestaComprobantes" nillable="true" type="tns:RespuestaComprobantes" />
+  <xs:complexType name="RespuestaIntegracion">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Respuesta">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UsuariosCreados" nillable="true" type="tns:ArrayOfUsuarioCreado" />
+          <xs:element minOccurs="0" name="UsuariosNoCreados" nillable="true" type="tns:ArrayOfUsuarioNoCreado" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RespuestaIntegracion" nillable="true" type="tns:RespuestaIntegracion" />
+  <xs:complexType name="ArrayOfUsuarioCreado">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UsuarioCreado" nillable="true" type="tns:UsuarioCreado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUsuarioCreado" nillable="true" type="tns:ArrayOfUsuarioCreado" />
+  <xs:complexType name="UsuarioCreado">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Usuario">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Contrasena" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreUsuario" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UsuarioCreado" nillable="true" type="tns:UsuarioCreado" />
+  <xs:complexType name="Usuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Ruc" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Usuario" nillable="true" type="tns:Usuario" />
+  <xs:complexType name="ArrayOfUsuarioNoCreado">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UsuarioNoCreado" nillable="true" type="tns:UsuarioNoCreado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUsuarioNoCreado" nillable="true" type="tns:ArrayOfUsuarioNoCreado" />
+  <xs:complexType name="UsuarioNoCreado">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Usuario">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MensajeError" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UsuarioNoCreado" nillable="true" type="tns:UsuarioNoCreado" />
 </xs:schema>

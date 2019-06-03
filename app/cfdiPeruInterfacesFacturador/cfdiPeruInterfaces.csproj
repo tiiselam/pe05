@@ -39,12 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICfdiMetodosWebService.cs" />
-    <Compile Include="ICfdiPeru.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="OpenInvoicePeru.Comun.Dto">
-      <HintPath>..\..\..\pe02\app\OpenInvoicePeru.Comun.Dto\bin\Debug\OpenInvoicePeru.Comun.Dto.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cfdiEntidadesGP\cfdiEntidadesGP.csproj">
