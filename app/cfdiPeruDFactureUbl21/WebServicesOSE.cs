@@ -62,7 +62,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
             DocEnviarWS.receptor.direccion = documentoGP.DocVenta.receptorDireccion;
             DocEnviarWS.receptor.departamento = documentoGP.DocVenta.receptorCiudad;
             //DocEnviarWS.receptor.distrito = documentoGP.DocVenta.recep
-            DocEnviarWS.receptor.pais = documentoGP.DocVenta.receptorPais;
+            //DocEnviarWS.receptor.pais = documentoGP.DocVenta.receptorPais;
             DocEnviarWS.receptor.provincia = documentoGP.DocVenta.receptorProvincia;
             DocEnviarWS.receptor.razonSocial = documentoGP.DocVenta.receptorNombre;
             //     DocEnviarWS.receptor.telefono = documentoGP.DocVenta.
@@ -417,6 +417,13 @@ namespace cfdiPeruOperadorServiciosElectronicos
                 debug_xml = debug_xml + "       <gratuitas>" + DocEnviarWS.totales.subtotal.gratuitas + "\r\n";
                 debug_xml = debug_xml + "       <inafectas>" + DocEnviarWS.totales.subtotal.inafectas + "\r\n";
                 debug_xml = debug_xml + "   <FIN SUBTOTALES>" + "\r\n";
+            }
+
+            //Caso de exportación
+            if (documentoGP.DocVenta.tipoOperacion.Substring(0, 2).Equals("02"))    
+            {
+                DocEnviarWS.entregaBienoServicio = new Delivery();
+                DocEnviarWS.entregaBienoServicio.paisUsoServicio = documentoGP.DocVenta.receptorPais;
             }
 
             //SECCION PAGO
