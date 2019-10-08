@@ -62,7 +62,7 @@ namespace cfdiPeruOperadorServiciosElectronicos
             DocEnviarWS.receptor.direccion = documentoGP.DocVenta.receptorDireccion;
             DocEnviarWS.receptor.departamento = documentoGP.DocVenta.receptorCiudad;
             //DocEnviarWS.receptor.distrito = documentoGP.DocVenta.recep
-            DocEnviarWS.receptor.pais = documentoGP.DocVenta.receptorPais;
+            //DocEnviarWS.receptor.pais = documentoGP.DocVenta.receptorPais;
             DocEnviarWS.receptor.provincia = documentoGP.DocVenta.receptorProvincia;
             DocEnviarWS.receptor.razonSocial = documentoGP.DocVenta.receptorNombre;
             //     DocEnviarWS.receptor.telefono = documentoGP.DocVenta.
@@ -371,9 +371,15 @@ namespace cfdiPeruOperadorServiciosElectronicos
             DocEnviarWS.totales.importeTotalVenta = documentoGP.DocVenta.montoTotalVenta.ToString("0.00");
             DocEnviarWS.totales.montoTotalImpuestos = documentoGP.DocVenta.montoTotalImpuestos.ToString("0.00");
             DocEnviarWS.totales.subtotalValorVenta = string.Format("{0,14:0.00}", documentoGP.DocVenta.montoSubtotalValorVenta).Trim();
-            DocEnviarWS.totales.sumaTotalDescuentosporItem = string.Format("{0,14:0.00}", documentoGP.DocVenta.montoTotalDescuentosPorItem).Trim();
-            DocEnviarWS.totales.sumatoriaImpuestosOG = documentoGP.DocVenta.montoTotalImpuOperGratuitas.ToString("0.00");
-            DocEnviarWS.totales.totalIGV = documentoGP.DocVenta.montoTotalIgv.ToString("0.00");
+
+            if (documentoGP.DocVenta.montoTotalDescuentosPorItem > 0)
+                DocEnviarWS.totales.sumaTotalDescuentosporItem = string.Format("{0,14:0.00}", documentoGP.DocVenta.montoTotalDescuentosPorItem).Trim();
+
+            if (documentoGP.DocVenta.montoTotalImpuOperGratuitas > 0)
+                DocEnviarWS.totales.sumatoriaImpuestosOG = documentoGP.DocVenta.montoTotalImpuOperGratuitas.ToString("0.00");
+
+            if (documentoGP.DocVenta.montoTotalIgv > 0)
+                DocEnviarWS.totales.totalIGV = documentoGP.DocVenta.montoTotalIgv.ToString("0.00");
 
             {
                 debug_xml = debug_xml + "   <importeTotalPagar>" + DocEnviarWS.totales.importeTotalPagar + "\r\n";
@@ -390,10 +396,19 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
             DocEnviarWS.totales.subtotal = new Subtotal();
             DocEnviarWS.totales.subtotal.IGV = documentoGP.DocVenta.montoSubtotalIvaImponible.ToString("0.00");
-            DocEnviarWS.totales.subtotal.exoneradas = documentoGP.DocVenta.montoSubtotalExonerado.ToString("0.00");
-            DocEnviarWS.totales.subtotal.exportacion = documentoGP.DocVenta.montoSubtotalExportacion.ToString("0.00");
-            DocEnviarWS.totales.subtotal.gratuitas = documentoGP.DocVenta.montoSubtotalGratuito.ToString("0.00");
-            DocEnviarWS.totales.subtotal.inafectas = documentoGP.DocVenta.montoSubtotalInafecto.ToString("0.00");
+
+            if (documentoGP.DocVenta.montoSubtotalExonerado > 0)
+                DocEnviarWS.totales.subtotal.exoneradas = documentoGP.DocVenta.montoSubtotalExonerado.ToString("0.00");
+
+            if (documentoGP.DocVenta.montoSubtotalExportacion > 0)
+                DocEnviarWS.totales.subtotal.exportacion = documentoGP.DocVenta.montoSubtotalExportacion.ToString("0.00");
+
+            if (documentoGP.DocVenta.montoSubtotalGratuito > 0)
+                DocEnviarWS.totales.subtotal.gratuitas = documentoGP.DocVenta.montoSubtotalGratuito.ToString("0.00");
+
+            if (documentoGP.DocVenta.montoSubtotalInafecto > 0)
+                DocEnviarWS.totales.subtotal.inafectas = documentoGP.DocVenta.montoSubtotalInafecto.ToString("0.00");
+
             {
                 debug_xml = debug_xml + "   <SUBTOTALES>" + "\r\n";
                 debug_xml = debug_xml + "       <IGV>" + DocEnviarWS.totales.subtotal.IGV + "\r\n";
@@ -402,6 +417,13 @@ namespace cfdiPeruOperadorServiciosElectronicos
                 debug_xml = debug_xml + "       <gratuitas>" + DocEnviarWS.totales.subtotal.gratuitas + "\r\n";
                 debug_xml = debug_xml + "       <inafectas>" + DocEnviarWS.totales.subtotal.inafectas + "\r\n";
                 debug_xml = debug_xml + "   <FIN SUBTOTALES>" + "\r\n";
+            }
+
+            //Caso de exportación
+            if (documentoGP.DocVenta.tipoOperacion.Substring(0, 2).Equals("02"))    
+            {
+                DocEnviarWS.entregaBienoServicio = new Delivery();
+                DocEnviarWS.entregaBienoServicio.paisUsoServicio = documentoGP.DocVenta.receptorPais;
             }
 
             //SECCION PAGO
