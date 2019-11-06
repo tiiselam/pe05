@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using cfdiPeruDFactureUbl21.DFactureUbl21;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 //using System.Xml;
 
 namespace cfdiPeruOperadorServiciosElectronicos
@@ -52,8 +53,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
             DocEnviarWS.emisor.codigoPais = documentoGP.DocVenta.emisorCodPais;
             DocEnviarWS.emisor.ubigeo = documentoGP.DocVenta.emisorUbigeo;*/
 
-            debug_xml = "<EMISOR>" + DocEnviarWS.emisor.ruc + "\r\n";
-
             // SECCION RECEPTOR
             DocEnviarWS.receptor = new Receptor();
             DocEnviarWS.receptor.email = documentoGP.DocVenta.emailTo;
@@ -69,9 +68,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
             DocEnviarWS.receptor.tipoDocumento = documentoGP.DocVenta.receptorTipoDoc;
             //    DocEnviarWS.receptor.ubigeo = documentoGP.DocVenta.rece
 
-            debug_xml = debug_xml + "<RECEPTOR>" + DocEnviarWS.receptor.tipoDocumento + ":" + DocEnviarWS.receptor.numDocumento + "\r\n";
-            debug_xml = debug_xml + "   <RazonSocial>" + DocEnviarWS.receptor.razonSocial + "\r\n";
-
             // SECCION COMROBANTE
             DocEnviarWS.codigoTipoOperacion = documentoGP.DocVenta.tipoOperacion;
             DocEnviarWS.correlativo = documentoGP.DocVenta.numero;
@@ -82,25 +78,10 @@ namespace cfdiPeruOperadorServiciosElectronicos
             DocEnviarWS.idTransaccion = documentoGP.DocVenta.idDocumento;
             DocEnviarWS.serie = documentoGP.DocVenta.serie;
             DocEnviarWS.tipoDocumento = documentoGP.DocVenta.tipoDocumento;
-            {
-                debug_xml = debug_xml + "<COMPROBANTE>" + DocEnviarWS.serie + "-" + DocEnviarWS.correlativo + "\r\n";
-                debug_xml = debug_xml + "   <tipoDocumento>" + DocEnviarWS.tipoDocumento + "\r\n";
-                debug_xml = debug_xml + "   <codigoTipoOperacion>" + DocEnviarWS.codigoTipoOperacion + "\r\n";
-                debug_xml = debug_xml + "   <FechaEmisio>" + DocEnviarWS.fechaEmision + "\r\n";
-                debug_xml = debug_xml + "   <fechaVencimiento>" + DocEnviarWS.fechaVencimiento + "\r\n";
-                debug_xml = debug_xml + "   <horaEmision>" + DocEnviarWS.horaEmision + "\r\n";
-                debug_xml = debug_xml + "   <idTransaccion>" + DocEnviarWS.idTransaccion + "\r\n";
-                debug_xml = debug_xml + "<FIN COMPROBANTE>" + "\r\n";
-            }
             // FIN SECCION COMPROBANTE
 
             // SECCION Relacionado. VER mas adelante
-            debug_xml = debug_xml + "<RELACIONADO NOTAS>" + documentoGP.LDocVentaRelacionados.Count() + "\r\n";
-            if (string.IsNullOrEmpty(documentoGP.DocVenta.cRelacionadoTipoDocAfectado))
-            {
-                debug_xml = debug_xml + "<SIN DOC RELACIONADO>" + "\r\n";
-            }
-            else
+            if (!string.IsNullOrEmpty(documentoGP.DocVenta.cRelacionadoTipoDocAfectado))
             {
                 if (DocEnviarWS.tipoDocumento == "07" || DocEnviarWS.tipoDocumento == "08")
                 {
@@ -113,11 +94,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
                     DocEnviarWS.relacionadoNotas = new RelacionadoNotas();
                     DocEnviarWS.relacionadoNotas = relacionadoN;
-                    debug_xml = debug_xml + "  <TIPOAFECTADO>" + DocEnviarWS.relacionadoNotas.tipoDocAfectado + "\r\n";
-                    debug_xml = debug_xml + "  <DOCAFECTADO>" + DocEnviarWS.relacionadoNotas.numeroDocAfectado + "\r\n";
-                    debug_xml = debug_xml + "  <NOTA>" + DocEnviarWS.relacionadoNotas.codigoTipoNota + "\r\n";
-                    debug_xml = debug_xml + "  <observaciones>" + DocEnviarWS.relacionadoNotas.observaciones + "\r\n";
-                    debug_xml = debug_xml + "<FIN RELACIONADO NOTAS>\r\n";
                 }
                 else
                 {
@@ -130,16 +106,11 @@ namespace cfdiPeruOperadorServiciosElectronicos
                         DocEnviarWS.relacionado = new Relacionado[1];
                         DocEnviarWS.relacionado[0] = relacionado;
 
-                        debug_xml = debug_xml + "  <TIPOAFECTADO>" + DocEnviarWS.relacionado[0].numeroDocRelacionado + "\r\n";
-                        debug_xml = debug_xml + "  <DOCAFECTADO>" + DocEnviarWS.relacionado[0].tipoDocRelacionado + "\r\n";
-                        debug_xml = debug_xml + "<FIN RELACIONADO NOTAS>\r\n";
                     }
                 }
 
             }
 
-
-            // debug_xml = debug_xml + "<RELACIONADO NOTAS>" + documentoGP.LDocVentaRelacionados.Count() + "\r\n";
             foreach (vwCfdiRelacionados relacionado_gp in documentoGP.LDocVentaRelacionados)
             {
                 if (DocEnviarWS.tipoDocumento == "07" || DocEnviarWS.tipoDocumento == "08")
@@ -154,11 +125,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
                     DocEnviarWS.relacionadoNotas = new RelacionadoNotas();
                     DocEnviarWS.relacionadoNotas = relacionadoN;
 
-                    debug_xml = debug_xml + "  <TIPOAFECTADO>" + DocEnviarWS.relacionadoNotas.tipoDocAfectado + "\r\n";
-                    debug_xml = debug_xml + "  <DOCAFECTADO>" + DocEnviarWS.relacionadoNotas.numeroDocAfectado + "\r\n";
-                    debug_xml = debug_xml + "  <NOTA>" + DocEnviarWS.relacionadoNotas.codigoTipoNota + "\r\n";
-                    debug_xml = debug_xml + "  <observaciones>" + DocEnviarWS.relacionadoNotas.observaciones + "\r\n";
-                    debug_xml = debug_xml + "<FIN RELACIONADO NOTAS>\r\n";
                 }
                 else
                 {
@@ -170,10 +136,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
                         DocEnviarWS.relacionado = new Relacionado[1];
                         DocEnviarWS.relacionado[0] = relacionado;
-
-                        debug_xml = debug_xml + "  <TIPOAFECTADO>" + DocEnviarWS.relacionado[0].numeroDocRelacionado + "\r\n";
-                        debug_xml = debug_xml + "  <DOCAFECTADO>" + DocEnviarWS.relacionado[0].tipoDocRelacionado + "\r\n";
-                        debug_xml = debug_xml + "<FIN RELACIONADO NOTAS>\r\n";
                     }
 
                 }
@@ -186,7 +148,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
             // SECCION Producto.
             DocEnviarWS.producto = new Producto[documentoGP.LDocVentaConceptos.Count()];
-            debug_xml = debug_xml + "<CANT PROD>" + DocEnviarWS.producto.Count() + "\r\n";
             i = 0; correlativo = 1;
             foreach (vwCfdiConceptos producto_gp in documentoGP.LDocVentaConceptos)
             {
@@ -203,21 +164,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
                 producto.valorUnitarioBI = producto_gp.valorUni.ToString();
                 producto.valorVentaItemQxBI = string.Format("{0,14:0.00}", producto_gp.importe).Trim();
                 producto.numeroOrden = correlativo.ToString();
-                {
-                    debug_xml = debug_xml + "<PRODUCTO>" + correlativo + "\r\n";
-
-                    debug_xml = debug_xml + "   <cantidad>" + producto.cantidad + "\r\n";
-                    debug_xml = debug_xml + "   <codigoPLU>" + producto.codigoPLU + "\r\n";
-                    debug_xml = debug_xml + "   <codigoPLUSunat>" + producto.codigoPLUSunat + "\r\n";
-                    debug_xml = debug_xml + "   <descripcion>" + producto.descripcion + "\r\n";
-                    debug_xml = debug_xml + "   <montoTotalImpuestoItem>" + producto.montoTotalImpuestoItem + "\r\n";
-                    debug_xml = debug_xml + "   <precioVentaUnitarioItem>" + producto.precioVentaUnitarioItem + "\r\n";
-                    debug_xml = debug_xml + "   <unidadMedida>" + producto.unidadMedida + "\r\n";
-                    debug_xml = debug_xml + "   <valorReferencialUnitario>" + producto.valorReferencialUnitario + "\r\n";
-                    debug_xml = debug_xml + "   <valorUnitarioBI>" + producto.valorUnitarioBI + "\r\n";
-                    debug_xml = debug_xml + "   <valorVentaItemQxBI>" + producto.valorVentaItemQxBI + "\r\n";
-                    debug_xml = debug_xml + "   <numeroOrden>" + producto.numeroOrden + "\r\n";
-                }
 
                 // SECCION PRODUCTO IGV
                 producto.IGV = new ProductoIGV();
@@ -254,19 +200,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
                 {
                     producto.IGV.porcentaje = string.Format("{0,8:0.00}", producto_gp.porcentajeIva * 100).Trim();
                 }
-                {
-
-                    debug_xml = debug_xml + "   <IGV>\r\n";
-                    debug_xml = debug_xml + "       <baseImponible>" + producto.IGV.baseImponible + "\r\n";
-                    debug_xml = debug_xml + "           <baseImponibleIVA>" + producto_gp.montoImponibleIva.ToString("0.00") + "\r\n";
-                    debug_xml = debug_xml + "           <baseImponibleExo>" + producto_gp.montoImponibleExonera.ToString("0.00") + "\r\n";
-                    debug_xml = debug_xml + "           <baseImponibleExp>" + producto_gp.montoImponibleExporta.ToString("0.00") + "\r\n";
-                    debug_xml = debug_xml + "           <baseImponibleGra>" + producto_gp.montoImponibleGratuito.ToString("0.00") + "\r\n";
-                    debug_xml = debug_xml + "           <baseImponibleIna>" + producto_gp.montoImponibleInafecto.ToString("0.00") + "\r\n";
-                    debug_xml = debug_xml + "       <porcentaje>" + producto.IGV.porcentaje + "\r\n";
-                    debug_xml = debug_xml + "       <monto>" + producto.IGV.monto + "\r\n";
-                    debug_xml = debug_xml + "       <tipo>" + producto.IGV.tipo + "\r\n";
-                }
 
                 //SECCION PRODUCTO DESCUENTO
                 if (producto_gp.descuento != 0)
@@ -282,25 +215,14 @@ namespace cfdiPeruOperadorServiciosElectronicos
                         DescItemIGV = false;
                     }
 
-                    {
-                        debug_xml = debug_xml + "   <DESC ITEM>" + "\r\n";
-                        debug_xml = debug_xml + "       <baseImponible>" + producto.descuento.baseImponible + "\r\n";
-                        debug_xml = debug_xml + "       <monto>" + producto.descuento.monto + "\r\n";
-                        debug_xml = debug_xml + "       <porcentaje>" + producto.descuento.porcentaje + "\r\n";
-                        debug_xml = debug_xml + "       <codigo>" + producto.descuento.codigo + "\r\n";
-                    }
-
                 }
 
                 DocEnviarWS.producto[i] = producto;
-                debug_xml = debug_xml + "  <PRODUCTO>" + DocEnviarWS.producto[i].codigoPLU + " Imp:" + DocEnviarWS.producto[i].valorVentaItemQxBI + "\r\n";
-                debug_xml = debug_xml + "       IGVporc: " + DocEnviarWS.producto[i].IGV.porcentaje + "\r\n";
 
                 //Aumenta contadoresDocEnviarWS.producto[i].
                 i++;
                 correlativo++;
             }
-            debug_xml = debug_xml + "<FIN PRODUCTOS>\r\n";
 
             // SECCION Descuentos Globales
             if (documentoGP.DocVenta.descuentoGlobalMonto != 0)
@@ -319,29 +241,11 @@ namespace cfdiPeruOperadorServiciosElectronicos
                 }
                 DocEnviarWS.descuentosGlobales.porcentaje = string.Format("{0,8:0.00000}", documentoGP.DocVenta.descuentoGlobalPorcentaje).Trim();
 
-                {
-                    debug_xml = debug_xml + "<DESCUENTOS GLOBALES>" + "\r\n";
-                    debug_xml = debug_xml + "    <baseImponible" + DocEnviarWS.descuentosGlobales.baseImponible + "\r\n";
-                    debug_xml = debug_xml + "    <porcentaje>" + DocEnviarWS.descuentosGlobales.porcentaje + "\r\n";
-                    debug_xml = debug_xml + "    <monto>" + DocEnviarWS.descuentosGlobales.monto + "\r\n";
-                    debug_xml = debug_xml + "    <motivo>" + DocEnviarWS.descuentosGlobales.motivo + "\r\n";
-                    debug_xml = debug_xml + "<FIN DESCUENTOS GLOBALES>" + "\r\n";
-                }
-            }
-            else
-            {
-                debug_xml = debug_xml + "<SIN DESCUENTOS GLOBALES>" + "\r\n";
             }
 
             //SECCION DETRACCIONES
-            if (string.IsNullOrEmpty(documentoGP.DocVenta.codigoDetraccion) || documentoGP.DocVenta.codigoDetraccion.Trim() == "00")
+            if (!(string.IsNullOrEmpty(documentoGP.DocVenta.codigoDetraccion) || documentoGP.DocVenta.codigoDetraccion.Trim() == "00"))
             {
-                debug_xml = debug_xml + "<SIN DETRACCIONES>" + "\r\n";
-            }
-            else
-            {
-                debug_xml = debug_xml + "<DETRACCIONES>" + "\r\n";
-
                 var detracciones = new Detraccion();
                 detracciones.codigo = documentoGP.DocVenta.codigoDetraccion.Trim();
                 detracciones.medioPago = documentoGP.DocVenta.medioPagoDetraccion;
@@ -352,20 +256,9 @@ namespace cfdiPeruOperadorServiciosElectronicos
                 DocEnviarWS.detraccion = new Detraccion[1];
                 DocEnviarWS.detraccion[0] = detracciones;
 
-                {
-                    debug_xml = debug_xml + "    <codigo>" + DocEnviarWS.detraccion[0].codigo + "\r\n";
-                    debug_xml = debug_xml + "    <medioPago>" + DocEnviarWS.detraccion[0].medioPago + "\r\n";
-                    debug_xml = debug_xml + "    <monto>" + DocEnviarWS.detraccion[0].monto + "\r\n";
-                    debug_xml = debug_xml + "    <numCuentaBancodelaNacion>" + DocEnviarWS.detraccion[0].numCuentaBancodelaNacion + "\r\n";
-                    debug_xml = debug_xml + "    <porcentaje>" + DocEnviarWS.detraccion[0].porcentaje + "\r\n";
-                }
-
-                debug_xml = debug_xml + "<FIN DETRACCIONES>" + DocEnviarWS.detraccion[0].monto + "\r\n";
             }
 
-
             //SECCION TOTALES
-            debug_xml = debug_xml + "<TOTALES>" + "\r\n";
             DocEnviarWS.totales = new Totales();
             DocEnviarWS.totales.importeTotalPagar = documentoGP.DocVenta.montoTotalVenta.ToString("0.00");
             DocEnviarWS.totales.importeTotalVenta = documentoGP.DocVenta.montoTotalVenta.ToString("0.00");
@@ -380,17 +273,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
             if (documentoGP.DocVenta.montoTotalIgv > 0)
                 DocEnviarWS.totales.totalIGV = documentoGP.DocVenta.montoTotalIgv.ToString("0.00");
-
-            {
-                debug_xml = debug_xml + "   <importeTotalPagar>" + DocEnviarWS.totales.importeTotalPagar + "\r\n";
-                debug_xml = debug_xml + "   <importeTotalVenta>" + DocEnviarWS.totales.importeTotalVenta + "\r\n";
-                debug_xml = debug_xml + "   <montoTotalImpuestos>" + DocEnviarWS.totales.montoTotalImpuestos + "\r\n";
-                debug_xml = debug_xml + "   <subtotalValorVenta>" + DocEnviarWS.totales.subtotalValorVenta + "\r\n";
-                debug_xml = debug_xml + "   <sumaTotalDescuentosporItem>" + DocEnviarWS.totales.sumaTotalDescuentosporItem + "\r\n";
-                debug_xml = debug_xml + "   <sumatoriaImpuestosOG>" + DocEnviarWS.totales.sumatoriaImpuestosOG + "\r\n";
-                debug_xml = debug_xml + "   <totalIGV>" + DocEnviarWS.totales.totalIGV + "\r\n";
-                debug_xml = debug_xml + "<FIN TOTALES>" + "\r\n";
-            }
 
             //SECCION SUBTOTALES
 
@@ -408,16 +290,6 @@ namespace cfdiPeruOperadorServiciosElectronicos
 
             if (documentoGP.DocVenta.montoSubtotalInafecto > 0)
                 DocEnviarWS.totales.subtotal.inafectas = documentoGP.DocVenta.montoSubtotalInafecto.ToString("0.00");
-
-            {
-                debug_xml = debug_xml + "   <SUBTOTALES>" + "\r\n";
-                debug_xml = debug_xml + "       <IGV>" + DocEnviarWS.totales.subtotal.IGV + "\r\n";
-                debug_xml = debug_xml + "       <exoneradas>" + DocEnviarWS.totales.subtotal.exoneradas + "\r\n";
-                debug_xml = debug_xml + "       <exportacion>" + DocEnviarWS.totales.subtotal.exportacion + "\r\n";
-                debug_xml = debug_xml + "       <gratuitas>" + DocEnviarWS.totales.subtotal.gratuitas + "\r\n";
-                debug_xml = debug_xml + "       <inafectas>" + DocEnviarWS.totales.subtotal.inafectas + "\r\n";
-                debug_xml = debug_xml + "   <FIN SUBTOTALES>" + "\r\n";
-            }
 
             //Caso de exportación
             if (documentoGP.DocVenta.tipoOperacion.Substring(0, 2).Equals("02"))    
@@ -455,14 +327,13 @@ namespace cfdiPeruOperadorServiciosElectronicos
                     }
                 }
             }
-            {
-                debug_xml = debug_xml + "<PAGO>" + "\r\n";
-                debug_xml = debug_xml + "   <moneda>" + DocEnviarWS.pago.moneda + "\r\n";
-                debug_xml = debug_xml + "    <tipoCambio>" + DocEnviarWS.pago.tipoCambio + "\r\n";
-                debug_xml = debug_xml + "<FIN PAGO>" + "\r\n";
-            }
 
-            debug_xml = debug_xml + "<LLAMADA>" ;
+            XmlSerializer xml = new XmlSerializer(typeof(DocumentoElectronico));
+            using (StringWriter sw = new StringWriter())
+            {
+                xml.Serialize(sw, DocEnviarWS);
+                debug_xml = sw.ToString();
+            }
 
             return DocEnviarWS;
         }
@@ -478,26 +349,10 @@ namespace cfdiPeruOperadorServiciosElectronicos
                         
                     byte[] converbyte = Convert.FromBase64String(response.xml.ToString());
                     return System.Text.Encoding.UTF8.GetString(converbyte);
-                    //return response.xml.ToString();
-
-                    /*return "Mensaje XML: " + response.mensaje + Environment.NewLine +
-                                                        "Código error: " + response.codigo + Environment.NewLine +
-                                                        "Estatus: " + response.estatus + Environment.NewLine +
-                                                        "Hora: " + response.hora + Environment.NewLine +
-                                                        "Id Transacción: " + response.idtransaccion + Environment.NewLine +
-                                                        "Numeración: " + response.numeracion + Environment.NewLine +
-                                                        "CRC: " + response.crc + Environment.NewLine +
-                                                        "DebugXML: " + debug_xml + Environment.NewLine  + 
-                                                        "XML: " + converbyte.ToString();*/
-
 
                 }
                 else
                 {
-                    //using (StreamWriter sw = File.CreateText(ruc + documentoGP.DocVenta.serie + documentoGP.DocVenta.numero + DateTime.Today.ToLongDateString()))
-                    //{
-                    //    sw.WriteLine(debug_xml);
-                    //}
                     if (response.codigo == 202 || response.codigo == 207)
                         throw new ArgumentException(response.codigo.ToString() + " - " + response.mensaje );
                     else
