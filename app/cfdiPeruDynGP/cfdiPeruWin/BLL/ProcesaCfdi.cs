@@ -85,7 +85,7 @@ namespace cfd.FacturaElectronica
                 OnProgreso(1, "INICIANDO EMISION DE COMPROBANTES DE VENTA...");
                 do
                 {
-                    msj = String.Empty;
+                    msj = "ok";
                     String accion = "EMITE XML Y PDF";
                     try
                     {
@@ -123,16 +123,32 @@ namespace cfd.FacturaElectronica
                                             msj = "No ha informado la causa de la discrepancia en la nota de crédito.";
                                             continue;
                                         }
-
+                                        if (string.IsNullOrEmpty(trxVenta.DocGP.DocVenta.tipoOperacion))
+                                        {
+                                            msj = "No ha informado el tipo de operación en la nota de crédito.";
+                                            continue;
+                                        }
                                         break;
                                     case "08":
-                                        msj = "ok";
+                                        if (string.IsNullOrEmpty(trxVenta.DocGP.DocVenta.tipoOperacion))
+                                        {
+                                            msj = "No ha informado el tipo de operación en la nota de débito.";
+                                            continue;
+                                        }
                                         break;
                                     case "01":
-                                        msj = "ok";
+                                        if (string.IsNullOrEmpty(trxVenta.DocGP.DocVenta.tipoOperacion))
+                                        {
+                                            msj = "No ha informado el tipo de operación en la factura.";
+                                            continue;
+                                        }
                                         break;
                                     case "03":
-                                        msj = "ok";
+                                        if (string.IsNullOrEmpty(trxVenta.DocGP.DocVenta.tipoOperacion))
+                                        {
+                                            msj = "No ha informado el tipo de operación en la boleta.";
+                                            continue;
+                                        }
                                         break;
                                     default:
                                         msj = "No se puede emitir porque el tipo de documento: " + trxVenta.DocGP.DocVenta.tipoDocumento + " no está configurado.";

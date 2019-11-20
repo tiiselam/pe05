@@ -527,8 +527,8 @@
             // genFacturaElectrónicaV10ToolStripMenuItem
             // 
             this.genFacturaElectrónicaV10ToolStripMenuItem.Name = "genFacturaElectrónicaV10ToolStripMenuItem";
-            this.genFacturaElectrónicaV10ToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
-            this.genFacturaElectrónicaV10ToolStripMenuItem.Text = "Factura Electrónica PERU ubl21 v8.9.3";
+            this.genFacturaElectrónicaV10ToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.genFacturaElectrónicaV10ToolStripMenuItem.Text = "Factura Electrónica PERU ubl21 v8.10.3";
             // 
             // toolStripMenuItem2
             // 
